@@ -14,12 +14,11 @@
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
                 <TabItem x:Name="tiInt32" Header="Integer32">
                     <Grid Background="#FFE5E5E5">
-                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="363"/>
+                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="417"/>
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbInt32Extra" HorizontalAlignment="Left" Margin="92,128,0,0" VerticalAlignment="Top" Width="363" ItemsSource="{Binding Property}" SelectedItem="{Binding IntegerLists, Mode=TwoWay}" Text="Select Option"/>
-                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="522,130,0,0" VerticalAlignment="Top" Width="90" Click="Button_Click"/>
-                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,171,285,80" AutoGenerateColumns="False">
+                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="327,103,0,0" VerticalAlignment="Top" Width="90" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,285,114" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="60"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="50"></DataGridTextColumn>
@@ -28,7 +27,7 @@
                         </DataGrid>
                         <TextBox x:Name="tbValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
                         <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="531,351,0,0" VerticalAlignment="Top" Width="81" Click="btnInt32Remove_Click"/>
-                        <Button Content="Button" HorizontalAlignment="Left" Margin="650,262,0,0" VerticalAlignment="Top" Click="Button_Click_1"/>
+                        <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="438,103,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="71"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Interger 64">
@@ -56,6 +55,10 @@
         <TextBox x:Name="tbWCID_Copy" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
         <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+        <ToolBar HorizontalAlignment="Center" Height="33" Margin="0,10,0,0" VerticalAlignment="Top" Width="780">
+            <Button Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button Content="Save" VerticalAlignment="Top"/>
+        </ToolBar>
 
 
 
