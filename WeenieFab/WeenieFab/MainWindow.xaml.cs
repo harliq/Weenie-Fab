@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
@@ -36,13 +37,6 @@ namespace WeenieFab
             dgInt32.DataContext = integerDataTable;
 
         }
-
-        //public class DataGridValues
-        //{
-        //    public string Property { get; set; }
-        //    public string Value { get; set; }
-        //    public string Description { get; set; }
-        //}
 
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
         {
@@ -168,6 +162,40 @@ namespace WeenieFab
                 cbInt32Props.SelectedIndex = cbindex;
                 tbValue.Text = dr[1].ToString();
             }
+        }
+
+        private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Open SQL File";
+            ofd.Filter = "SQL files|*.sql";
+            ofd.InitialDirectory = @"C:\Ace";
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+
+
+            }
+        }
+
+        private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Open Text File";
+            sfd.Filter = "SQL files|*.sql";
+            sfd.FileName = tbWCID.Text + $".sql";
+            sfd.InitialDirectory = @"C:\Ace";
+
+            Nullable<bool> result = sfd.ShowDialog();
+
+            if (result == true)
+            {
+
+                WriteSQLFile(sfd.FileName);
+
+            }
+
         }
     }
 }

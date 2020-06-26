@@ -52,12 +52,12 @@
             </TabControl>
         </Grid>
         <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWCID_Copy" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
         <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
         <ToolBar HorizontalAlignment="Center" Height="33" Margin="0,10,0,0" VerticalAlignment="Top" Width="780">
-            <Button Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Button Content="Save" VerticalAlignment="Top"/>
+            <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click"/>
+            <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click"/>
         </ToolBar>
 
 
