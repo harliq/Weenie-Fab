@@ -9,22 +9,71 @@ namespace WeenieFab
     {
         public void ReadSQLFile(string filepath)
         {
-            foreach (string line in File.ReadLines(filepath))
+            string headerblob = "";
+            string wcidblob = "";
+            string int32Blob = "";
+            string int64Blob = "";
+            string stringblob = "";
+
+            string line;
+
+            // string path = @"C:\Users\sam\Documents\GCProg\testReadFile.txt";
+            using (StreamReader sr = new StreamReader(filepath))
             {
-                //if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
-                //{
-                //    File.ne
-                //    string linedata = "";
-                //    linedata = line.Replace("VALUES", "");
-                //    linedata = linedata.Replace("(", "");
-                //    linedata = linedata.Replace(");", "");
-                //    linedata = linedata.Replace("'", "");
-                //    string[] lootProfileValues = linedata.Split(',');
-                //    profileData.DTdid = ConvertToInt(lootProfileValues[0]);
+                while ((line = sr.ReadLine()) != null) // Whatever logic you have
+                {
+                    // string line = sr.ReadLine();
+                    if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
+                        wcidblob += sr.ReadLine();
+                    else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
+                    {
+                        while (sr.Peek() > 0)
+                        {
+                            if (line.Contains($"\n"))
+                                break;
+                            else
+                            int32Blob += sr.ReadLine();
+                            
+                        }
+                    }
+                    else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
+                    {
+                        while (sr.Peek() > 0)
+                        {
+                            if (line.Contains($"\n"))
+                                break;
+                            else
+                                int64Blob += sr.ReadLine();
 
+                        }
+                    }
 
-                //}
+                    // string invoice = InvoiceNumberFunc(sr);
+                    // Use invoice
+                }
+                sr.Close();
             }
+
+            
+
+
+
+            //foreach (string line in File.ReadLines(filepath))
+            //{
+            //    //if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
+            //    //{
+            //    //    File.ne
+            //    //    string linedata = "";
+            //    //    linedata = line.Replace("VALUES", "");
+            //    //    linedata = linedata.Replace("(", "");
+            //    //    linedata = linedata.Replace(");", "");
+            //    //    linedata = linedata.Replace("'", "");
+            //    //    string[] lootProfileValues = linedata.Split(',');
+            //    //    profileData.DTdid = ConvertToInt(lootProfileValues[0]);
+
+
+            //    //}
+            //}
 
 
         }

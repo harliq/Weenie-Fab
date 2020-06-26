@@ -174,7 +174,7 @@ namespace WeenieFab
 
             if (result == true)
             {
-
+                ReadSQLFile(ofd.FileName);
 
             }
         }
