@@ -7,10 +7,11 @@
         mc:Ignorable="d"
         Title="Weenie Fab" Height="600" Width="800">
     <Grid>
-        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
-        <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,12,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
+
+        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
+        <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
-            <TabControl x:Name="tabControl">
+            <TabControl x:Name="tabControl" Margin="0,33,0,0">
                 <TabItem x:Name="tiInt32" Header="Integer32">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="363"/>
@@ -51,10 +52,13 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,12,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWCID_Copy" HorizontalAlignment="Left" Margin="255,16,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
-        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,15,0,0" VerticalAlignment="Top" Width="233"/>
-        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,12,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+        <TextBox x:Name="tbWCID_Copy" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
+        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+
+
 
     </Grid>
+
 </Window>

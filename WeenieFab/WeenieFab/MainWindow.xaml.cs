@@ -140,11 +140,12 @@ namespace WeenieFab
 
         private void btnInt32Remove_Click(object sender, RoutedEventArgs e)
         {
-            var selectedItem = dgInt32.SelectedItem;
-            if (selectedItem != null)
-            {
-                dgInt32.Items.Remove(selectedItem);
-            }
+            var index = dgInt32.SelectedIndex;
+            DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            DataRow dr = integerDataTable.Rows[currentRowIndex.GetIndex()];
+            dr.Delete();
+            
+            integerDataTable.AcceptChanges();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
