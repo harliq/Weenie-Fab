@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Weenie Fab" Height="600" Width="1060" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/icon/WeenieFabIcon.ico">
+        Title="Weenie Fab" Height="600" Width="1060" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/WeenieFabIcon.ico">
     <Grid>
 
         <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>

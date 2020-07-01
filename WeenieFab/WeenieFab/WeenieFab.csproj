@@ -6,4 +6,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="WeenieFabIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="WeenieFabIcon.ico" />
+  </ItemGroup>
+
 </Project>
