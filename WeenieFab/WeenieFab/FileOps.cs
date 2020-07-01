@@ -28,6 +28,14 @@ namespace WeenieFab
             string spellBookBlob = "";
             string line;
 
+            // Regex Patterns
+            var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*$";
+            var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*$";
+            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*$";
+            var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ ]*)'\)\s*\/\*\s*(.*)\s*\*\/.*$";
+            var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*$";
+
+
             using (StreamReader sr = new StreamReader(filepath))
             {
                 while ((line = sr.ReadLine()) != null) // Whatever logic you have
@@ -54,22 +62,38 @@ namespace WeenieFab
                     else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
                     {
                         int64Blob = ReadBlob(sr);
+                        integer64DataTable = DecodeSql.DecodeThreeValues(int64Blob,intPattern);
+                        integer64DataTable.AcceptChanges();
+                        dgInt64.DataContext = integerDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)"))
                     {
                         boolBlob = ReadBlob(sr);
+                        boolDataTable = DecodeSql.DecodeThreeValues(boolBlob, boolPattern);
+                        boolDataTable.AcceptChanges();
+                        dgBool.DataContext = boolDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)"))
                     {
                         floatBlob = ReadBlob(sr);
+                        floatDataTable = DecodeSql.DecodeThreeValues(floatBlob, floatPattern);
+                        floatDataTable.AcceptChanges();
+                        dgFloat.DataContext = floatDataTable;
+
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_string` (`object_Id`, `type`, `value`)"))
                     {
                         stringBlob = ReadBlob(sr);
+                        stringDataTable = DecodeSql.DecodeThreeValues(stringBlob, stringPattern);
+                        stringDataTable.AcceptChanges();
+                        dgString.DataContext = stringDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
                     {
                         didBlob = ReadBlob(sr);
+                        didDataTable = DecodeSql.DecodeThreeValues(didBlob, didPattern);
+                        didDataTable.AcceptChanges();
+                        dgDiD.DataContext = didDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
                     {

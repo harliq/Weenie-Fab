@@ -27,14 +27,19 @@ namespace WeenieFab
     {
         // public int SelectedItemID { get; set; }
         public static DataTable integerDataTable = new DataTable();
+        public static DataTable integer64DataTable = new DataTable();
+        public static DataTable boolDataTable = new DataTable();
+        public static DataTable floatDataTable = new DataTable();
+        public static DataTable stringDataTable = new DataTable();
+        public static DataTable didDataTable = new DataTable();
 
         public MainWindow()
         {
             InitializeComponent();
             CreateWeenieTypeList();
-            CreateIntegerLists();
+            CreateComboBoxLists();
             CreateDataTable();
-            dgInt32.DataContext = integerDataTable;
+
 
         }
 
@@ -66,21 +71,110 @@ namespace WeenieFab
             integerDataTable.Columns.Add(new DataColumn("Property"));
             integerDataTable.Columns.Add(new DataColumn("Value"));
             integerDataTable.Columns.Add(new DataColumn("Description"));
+            dgInt32.DataContext = integerDataTable;
+
+            integer64DataTable.Columns.Add(new DataColumn("Property"));
+            integer64DataTable.Columns.Add(new DataColumn("Value"));
+            integer64DataTable.Columns.Add(new DataColumn("Description"));
+            dgInt64.DataContext = integer64DataTable;
+
+            boolDataTable.Columns.Add(new DataColumn("Property"));
+            boolDataTable.Columns.Add(new DataColumn("Value"));
+            boolDataTable.Columns.Add(new DataColumn("Description"));
+            dgBool.DataContext = boolDataTable;
+
+            floatDataTable.Columns.Add(new DataColumn("Property"));
+            floatDataTable.Columns.Add(new DataColumn("Value"));
+            floatDataTable.Columns.Add(new DataColumn("Description"));
+            dgFloat.DataContext = floatDataTable;
+
+            stringDataTable.Columns.Add(new DataColumn("Property"));
+            stringDataTable.Columns.Add(new DataColumn("Value"));
+            stringDataTable.Columns.Add(new DataColumn("Description"));
+            dgString.DataContext = stringDataTable;
+
+            didDataTable.Columns.Add(new DataColumn("Property"));
+            didDataTable.Columns.Add(new DataColumn("Value"));
+            didDataTable.Columns.Add(new DataColumn("Description"));
+            dgDiD.DataContext = didDataTable;
+
+
+            //integerDataTable.Columns.Add(new DataColumn("Property"));
+            //integerDataTable.Columns.Add(new DataColumn("Value"));
+            //integerDataTable.Columns.Add(new DataColumn("Description"));
+
+
+
+
         }
 
 
 
-        public void CreateIntegerLists()
+        public void CreateComboBoxLists()
         {
-            string filepath = "Int32Properties.txt";
+            string filepaths = "Int32Types.txt," +
+                               "Int64Types.txt," +
+                               "BoolTypes.txt," +
+                               "FloatTypes.txt" +
+                               "StringTypes.txt" +
+                               "DiDTypes.txt";
 
-            List<string> integerLists = new List<string>();
-            foreach (string line in File.ReadLines(filepath))
+            string[] filepath = filepaths.Split(",");
+
+            //for (int i = 0; i < filepath.Length; i++)
+            //{
+            //    filepath[i] ;
+                
+            //}
+
+            List<string> integer32List = new List<string>();
+            foreach (string line in File.ReadLines(filepath[0]))
             {
-                integerLists.Add(line);
+                integer32List.Add(line);
             }
-            cbInt32Props.ItemsSource = integerLists;
+            cbInt32Props.ItemsSource = integer32List;
             cbInt32Props.SelectedIndex = 1;
+
+            List<string> integer64List = new List<string>();
+            foreach (string line in File.ReadLines(filepath[1]))
+            {
+                integer64List.Add(line);
+            }
+            cbInt64Props.ItemsSource = integer64List;
+            cbInt64Props.SelectedIndex = 1;
+
+            List<string> BoolList = new List<string>();
+            foreach (string line in File.ReadLines(filepath[2]))
+            {
+                BoolList.Add(line);
+            }
+            cbBoolProps.ItemsSource = BoolList;
+            cbBoolProps.SelectedIndex = 1;
+
+            List<string> FloatList = new List<string>();
+            foreach (string line in File.ReadLines(filepath[0]))
+            {
+                FloatList.Add(line);
+            }
+            cbFloatProps.ItemsSource = FloatList;
+            cbFloatProps.SelectedIndex = 1;
+
+            List<string> StringList = new List<string>();
+            foreach (string line in File.ReadLines(filepath[0]))
+            {
+                StringList.Add(line);
+            }
+            cbStringProps.ItemsSource = StringList;
+            cbStringProps.SelectedIndex = 1;
+
+            List<string> DiDList = new List<string>();
+            foreach (string line in File.ReadLines(filepath[0]))
+            {
+                DiDList.Add(line);
+            }
+            cbDiDProps.ItemsSource = DiDList;
+            cbDiDProps.SelectedIndex = 1;
+
         }
 
         public void CreateWeenieTypeList()
@@ -102,23 +196,7 @@ namespace WeenieFab
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void dgInt32_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var index = dgInt32.SelectedIndex;
-            DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
-            if (index + 1> integerDataTable.Rows.Count)
-            {
 
-            }
-            else
-            {
-                DataRow dr = integerDataTable.Rows[currentRowIndex.GetIndex()];
-                int cbindex = 0;
-                Int32.TryParse(dr[0].ToString(), out cbindex);
-                cbInt32Props.SelectedIndex = cbindex;
-                tbValue.Text = dr[1].ToString();
-            }
-        }
 
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {

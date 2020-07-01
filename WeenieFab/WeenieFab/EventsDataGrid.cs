@@ -1,0 +1,70 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+
+namespace WeenieFab
+{
+    public partial class MainWindow : Window
+    {
+        // DataGrid Events
+        private void dgInt32_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgInt32.SelectedIndex;
+            DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > integerDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = integerDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbInt32Props.SelectedIndex = cbindex;
+                tbValue.Text = dr[1].ToString();
+            }
+        }
+
+        private void dgInt64_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgInt64.SelectedIndex;
+            DataGridRow currentRowIndex = dgInt64.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > integer64DataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = integer64DataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbInt64Props.SelectedIndex = cbindex;
+                tb64Value.Text = dr[1].ToString();
+            }
+        }
+        private void dgBool_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgBool.SelectedIndex;
+            DataGridRow currentRowIndex = dgBool.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > boolDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = boolDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbBoolProps.SelectedIndex = cbindex;
+                // tbBoolValue.Text = dr[1].ToString();
+                if (dr[1].ToString() == "True")
+                    rbTrue.IsChecked = true;
+                else
+                    rbFalse.IsChecked = true;
+            }
+        }
+    }
+}
