@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Weenie Fab" Height="600" Width="800">
+        Title="Weenie Fab" Height="600" Width="1060" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen">
     <Grid>
 
         <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
@@ -14,48 +14,182 @@
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
                 <TabItem x:Name="tiInt32" Header="Integer32">
                     <Grid Background="#FFE5E5E5">
-                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="417"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="327,103,0,0" VerticalAlignment="Top" Width="90" Click="btnAddInt32_Click"/>
-                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,285,114" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+
+                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click" Grid.Column="1"/>
+                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="60"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="50"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="150"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="500"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="531,351,0,0" VerticalAlignment="Top" Width="81" Click="btnInt32Remove_Click"/>
-                        <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="438,103,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="71"/>
+                        <TextBox x:Name="tbValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
+                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click" Grid.Column="1"/>
+                        <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Interger 64">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Integer 64" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy" Content="Add " HorizontalAlignment="Left" Margin="409,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy" ItemsSource="{Binding}" Margin="92,137,202,70" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy" Content="Remove" HorizontalAlignment="Left" Margin="660,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy" Content="Update" HorizontalAlignment="Left" Margin="539,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Boolean">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy1" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Boolean" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy1" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy1" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button x:Name="btnInt32Remove_Copy1" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy1" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                        <RadioButton x:Name="rbTrue" Content="True" HorizontalAlignment="Left" Margin="92,110,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <RadioButton x:Name="rdFalse" Content="False" HorizontalAlignment="Left" Margin="163,110,0,0" VerticalAlignment="Top" FontSize="14"/>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="Float">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy2" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Float" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy2" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy2" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy1" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy2" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy2" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="String">
-                    <Grid Background="#FFE5E5E5"/>
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy3" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy3" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy3" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy2" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy3" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy3" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="DiD">
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy4" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="DiD" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy4" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy4" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy3" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy4" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy4" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="Attributes/Skills">
                     <Grid Background="#FFE5E5E5"/>
+                </TabItem>
+                <TabItem Header="BodyParts">
+                    <Grid Background="#FFE5E5E5">
+
+                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="10" Grid.ColumnSpan="2">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text="RichTextBox"/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="SpellBook">
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy5" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spells" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy5" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy5" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy4" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy5" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy5" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
+                </TabItem>
+                <TabItem Header="CreateItems">
+                    <Grid Background="#FFE5E5E5">
+                        <ComboBox x:Name="cbInt32Props_Copy6" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Button x:Name="btnAddInt32_Copy6" Content="Add " HorizontalAlignment="Left" Margin="305,108,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
+                        <DataGrid x:Name="dgInt32_Copy6" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <TextBox x:Name="tbValue_Copy5" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Button x:Name="btnInt32Remove_Copy6" Content="Remove" HorizontalAlignment="Left" Margin="556,108,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
+                        <Button x:Name="btnUpdateInt32_Copy6" Content="Update" HorizontalAlignment="Left" Margin="435,108,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click_1" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                    </Grid>
                 </TabItem>
                 <TabItem Header="EmoteScript">
                     <Grid Background="#FFE5E5E5">
+                        <RichTextBox x:Name="rtbBodyParts_Copy" FontFamily="Courier New" FontSize="10">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text="RichTextBox"/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
+
                     </Grid>
                 </TabItem>
             </TabControl>
         </Grid>
         <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Height="18"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18"/>
         <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <ToolBar HorizontalAlignment="Center" Height="33" Margin="0,10,0,0" VerticalAlignment="Top" Width="780">
+        <ToolBar HorizontalAlignment="Left" Height="33" Margin="0,10,0,0" VerticalAlignment="Top">
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click"/>
         </ToolBar>

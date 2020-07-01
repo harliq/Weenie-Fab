@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Media.TextFormatting;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Documents;
 
 namespace WeenieFab
 {
@@ -31,11 +34,22 @@ namespace WeenieFab
                 {
 
                     if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
+                    {
                         wcidblob += sr.ReadLine();
+                        string pattern = @"VALUES \s*\((\d+), '([\w -]*[a-zA-Z])?',\s*(\d+).*$";
+                        var match = Regex.Match(wcidblob, pattern);
+                        tbWCID.Text = match.Groups[1].ToString();
+                        tbWeenieName.Text = match.Groups[2].ToString();
+                        cbWeenieType.SelectedIndex = int.Parse(match.Groups[3].ToString());
+
+                    }
                     else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
                     {
                         //int32Blob = ReadInt(sr);
                         int32Blob = ReadBlob(sr);
+                        integerDataTable = DecodeSql.DecodeInt32(int32Blob);
+                        integerDataTable.AcceptChanges();
+                        dgInt32.DataContext = integerDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
                     {
@@ -72,6 +86,8 @@ namespace WeenieFab
                     else if (line.Contains("INSERT INTO `weenie_properties_body_part`"))
                     {
                         bodyPartBlob = ReadBlob(sr);
+                        rtbBodyParts.Document.Blocks.Clear();
+                        rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyPartBlob)));
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_spell_book`"))
                     {
@@ -121,7 +137,7 @@ namespace WeenieFab
                     tLine = line;
                     tLine = tLine.Replace("VALUES ", "");
                     tLine = tLine.Replace("     , ", "");
-                    blob += tLine +"\n";
+                    blob += tLine +"\r\n";
                 }
             }
             return blob;
