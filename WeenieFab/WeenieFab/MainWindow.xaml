@@ -31,11 +31,11 @@
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="60"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="100"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="100" SortDirection="Ascending"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="500"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
+                        <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
                         <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Click="btnInt32Remove_Click" Width="100"/>
                         <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
@@ -56,7 +56,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tb64Value" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="64,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1"/>
+                        <TextBox x:Name="tb64Value" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="64,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1"/>
                         <Button x:Name="btnRemoveInt64" Content="Remove" HorizontalAlignment="Left" Margin="510,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveInt64_Click" Grid.Column="1"/>
                         <Button x:Name="btnUpdateInt64" Content="Update" HorizontalAlignment="Left" Margin="398,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt64_Click" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1"/>
                         <Label Content="Value" HorizontalAlignment="Left" Margin="64,83,0,0" VerticalAlignment="Top" Grid.Column="1"/>
@@ -87,7 +87,7 @@
                 <TabItem Header="Float">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbFloatProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Decimal" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Float" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddFloat" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddFloat_Click"/>
                         <DataGrid x:Name="dgFloat" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgFloat_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
@@ -97,7 +97,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbFloatValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                        <TextBox x:Name="tbFloatValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                         <Button x:Name="btnRemoveFloat" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveFloat_Click"/>
                         <Button x:Name="btnUpdateFloat" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateFloat_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
@@ -105,7 +105,7 @@
                 <TabItem Header="String">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click"/>
                         <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgString_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
@@ -133,7 +133,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbDiDValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                        <TextBox x:Name="tbDiDValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                         <Button x:Name="btnRemoveDiD" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveDiD_Click"/>
                         <Button x:Name="btnUpdateDiD" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateDiD_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
@@ -156,7 +156,7 @@
                 <TabItem Header="SpellBook">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbSpellProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Probablitly (Float)" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spells" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddSpell" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click"/>
                         <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgSpell_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
@@ -166,7 +166,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbSpellValue" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                         <Button x:Name="btnRemoveSpell" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click"/>
                         <Button x:Name="btnUpdateSpell" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
@@ -184,7 +184,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbValue_Copy5" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                        <TextBox x:Name="tbValue_Copy5" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
                         <Button x:Name="btnInt32Remove_Copy6" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
                         <Button x:Name="btnUpdateInt32_Copy6" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>

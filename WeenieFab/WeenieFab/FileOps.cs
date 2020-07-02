@@ -37,7 +37,7 @@ namespace WeenieFab
 
             using (StreamReader sr = new StreamReader(filepath))
             {
-                while ((line = sr.ReadLine()) != null) // Whatever logic you have
+                while ((line = sr.ReadLine()) != null) 
                 {
 
                     if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
@@ -52,30 +52,30 @@ namespace WeenieFab
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
                     {
-                        //int32Blob = ReadInt(sr);
+                        
                         int32Blob = ReadBlob(sr);
-                        integerDataTable = DecodeSql.DecodeInt32(int32Blob);
+                        integerDataTable = DecodeSql.DecodeThreeValuesInt(int32Blob,intPattern);
                         integerDataTable.AcceptChanges();
                         dgInt32.DataContext = integerDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
                     {
                         int64Blob = ReadBlob(sr);
-                        integer64DataTable = DecodeSql.DecodeThreeValues(int64Blob,intPattern);
+                        integer64DataTable = DecodeSql.DecodeThreeValuesInt(int64Blob,intPattern);
                         integer64DataTable.AcceptChanges();
                         dgInt64.DataContext = integerDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)"))
                     {
                         boolBlob = ReadBlob(sr);
-                        boolDataTable = DecodeSql.DecodeThreeValues(boolBlob, boolPattern);
+                        boolDataTable = DecodeSql.DecodeThreeValuesBool(boolBlob, boolPattern);
                         boolDataTable.AcceptChanges();
                         dgBool.DataContext = boolDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)"))
                     {
                         floatBlob = ReadBlob(sr);
-                        floatDataTable = DecodeSql.DecodeThreeValues(floatBlob, floatPattern);
+                        floatDataTable = DecodeSql.DecodeThreeValuesFloat(floatBlob, floatPattern);
                         floatDataTable.AcceptChanges();
                         dgFloat.DataContext = floatDataTable;
 
@@ -83,14 +83,14 @@ namespace WeenieFab
                     else if (line.Contains("INSERT INTO `weenie_properties_string` (`object_Id`, `type`, `value`)"))
                     {
                         stringBlob = ReadBlob(sr);
-                        stringDataTable = DecodeSql.DecodeThreeValues(stringBlob, stringPattern);
+                        stringDataTable = DecodeSql.DecodeThreeValuesString(stringBlob, stringPattern);
                         stringDataTable.AcceptChanges();
                         dgString.DataContext = stringDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
                     {
                         didBlob = ReadBlob(sr);
-                        didDataTable = DecodeSql.DecodeThreeValues(didBlob, didPattern);
+                        didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
                         didDataTable.AcceptChanges();
                         dgDiD.DataContext = didDataTable;
                     }
@@ -115,6 +115,11 @@ namespace WeenieFab
                     else if (line.Contains("INSERT INTO `weenie_properties_spell_book`"))
                     {
                         spellBookBlob = ReadBlob(sr);
+
+                        spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
+                        spellDataTable.AcceptChanges();
+                        dgSpell.DataContext = spellDataTable;
+
                     }
 
                 }
@@ -169,10 +174,9 @@ namespace WeenieFab
             string line;
             string tLine;
 
-            while ((line = sr.ReadLine()) != null) // Whatever logic you have
+            while ((line = sr.ReadLine()) != null) 
             {
-                if (line == "" || line == "\t")
-                    //if (line is null)
+                if (line == "" || line == "\t")                  
                     return blob;
                 else
                 {

@@ -23,11 +23,15 @@ namespace WeenieFab
             {
                 string[] description = cbInt32Props.Text.Split(" ");
                 DataRow dr = integerDataTable.NewRow();
-                dr[0] = cbInt32Props.SelectedIndex.ToString();
-                dr[1] = tbValue.Text;
+                dr[0] = ConvertToInteger(cbInt32Props.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbValue.Text);
                 dr[2] = description[1];
 
+                // integerDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
                 integerDataTable.Rows.Add(dr);
+                integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
+                dgInt32.ItemsSource = integerDataTable.DefaultView;
+                dgInt32.Items.Refresh();
             }
         }           
         private void btnInt32Remove_Click(object sender, RoutedEventArgs e)
@@ -44,6 +48,7 @@ namespace WeenieFab
             {
                 MessageBox.Show("You can not delete that row!");
             }
+            dgInt32.Items.Refresh();
         }
         private void btnUpdateInt32_Click(object sender, RoutedEventArgs e)
         {
@@ -60,12 +65,14 @@ namespace WeenieFab
 
                 string[] description = cbInt32Props.Text.Split(" ");
 
-                dr[0] = cbInt32Props.SelectedIndex.ToString();
-                dr[1] = tbValue.Text;
+                dr[0] = ConvertToInteger(cbInt32Props.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbValue.Text);
                 dr[2] = description[1];
 
                 integerDataTable.AcceptChanges();
+                dgInt32.Items.Refresh();
             }
+ 
             catch (Exception)
             {
                 MessageBox.Show("The row you selected is blank");
@@ -83,11 +90,17 @@ namespace WeenieFab
             {
                 string[] description = cbInt64Props.Text.Split(" ");
                 DataRow dr = integer64DataTable.NewRow();
-                dr[0] = cbInt64Props.SelectedIndex.ToString();
-                dr[1] = tb64Value.Text;
+                dr[0] = ConvertToInteger(cbInt64Props.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tb64Value.Text);
                 dr[2] = description[1];
 
+                // integer64DataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
+
                 integer64DataTable.Rows.Add(dr);
+                integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
+                dgInt64.ItemsSource = integer64DataTable.DefaultView;
+                dgInt64.Items.Refresh();
+                
             }
         }
         private void btnUpdateInt64_Click(object sender, RoutedEventArgs e)
@@ -105,8 +118,8 @@ namespace WeenieFab
 
                 string[] description = cbInt64Props.Text.Split(" ");
 
-                dr[0] = cbInt64Props.SelectedIndex.ToString();
-                dr[1] = tb64Value.Text;
+                dr[0] = ConvertToInteger(cbInt64Props.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tb64Value.Text);
                 dr[2] = description[1];
 
                 integer64DataTable.AcceptChanges();
@@ -143,14 +156,19 @@ namespace WeenieFab
             {
                 string[] description = cbBoolProps.Text.Split(" ");
                 DataRow dr = boolDataTable.NewRow();
-                dr[0] = cbBoolProps.SelectedIndex.ToString();
-                if (rbTrue.IsChecked == true)
-                    dr[1] = "True";
-                else
-                    dr[1] = "False";
+                dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
+                dr[1] = rbTrue.IsChecked;
+                //if (rbTrue.IsChecked == true)
+                //    dr[1] = "True";
+                //else
+                //    dr[1] = "False";
                 dr[2] = description[1];
 
                 boolDataTable.Rows.Add(dr);
+                boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
+                dgBool.ItemsSource = boolDataTable.DefaultView;
+                dgBool.Items.Refresh();
+
             }
         }
         private void btnUpdateBool_Click(object sender, RoutedEventArgs e)
@@ -168,11 +186,12 @@ namespace WeenieFab
 
                 string[] description = cbBoolProps.Text.Split(" ");
 
-                dr[0] = cbBoolProps.SelectedIndex.ToString();
-                if (rbTrue.IsChecked == true)
-                    dr[1] = "True";
-                else
-                    dr[1] = "False";
+                dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
+                dr[1] = rbTrue.IsChecked;
+                //if (rbTrue.IsChecked == true)
+                //    dr[1] = "True";
+                //else
+                //    dr[1] = "False";
                 dr[2] = description[1];
 
                 boolDataTable.AcceptChanges();
@@ -203,19 +222,22 @@ namespace WeenieFab
         private void btnAddFloat_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
-            if (SearchForDuplicateProps(boolDataTable, cbBoolProps.SelectedIndex.ToString()))
+            if (SearchForDuplicateProps(floatDataTable, cbBoolProps.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
             else
             {
-                string[] description = cbBoolProps.Text.Split(" ");
-                DataRow dr = boolDataTable.NewRow();
-                dr[0] = cbBoolProps.SelectedIndex.ToString();
-                dr[1] = tbFloatValue.Text;
+                string[] description = cbFloatProps.Text.Split(" ");
+                DataRow dr = floatDataTable.NewRow();
+                dr[0] = ConvertToInteger(cbFloatProps.SelectedIndex.ToString());
+                dr[1] = ConvertToFloat(tbFloatValue.Text);
                 dr[2] = description[1];
 
-                boolDataTable.Rows.Add(dr);
+                floatDataTable.Rows.Add(dr);
+                floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
+                dgFloat.ItemsSource = floatDataTable.DefaultView;
+                dgFloat.Items.Refresh();
             }
         }
         private void btnUpdateFloat_Click(object sender, RoutedEventArgs e)
@@ -233,8 +255,8 @@ namespace WeenieFab
 
                 string[] description = cbFloatProps.Text.Split(" ");
 
-                dr[0] = cbFloatProps.SelectedIndex.ToString();
-                dr[1] = tbFloatValue.Text;
+                dr[0] = ConvertToInteger(cbFloatProps.SelectedIndex.ToString());
+                dr[1] = ConvertToFloat(tbFloatValue.Text);
                 dr[2] = description[1];
 
                 floatDataTable.AcceptChanges();
@@ -273,11 +295,14 @@ namespace WeenieFab
             {
                 string[] description = cbStringProps.Text.Split(" ");
                 DataRow dr = stringDataTable.NewRow();
-                dr[0] = cbStringProps.SelectedIndex.ToString();
+                dr[0] = ConvertToInteger(cbStringProps.SelectedIndex.ToString());
                 dr[1] = tbStringValue.Text;
                 dr[2] = description[1];
 
                 stringDataTable.Rows.Add(dr);
+                stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
+                dgString.ItemsSource = stringDataTable.DefaultView;
+                dgString.Items.Refresh();
             }
         }
         private void btnUpdateString_Click(object sender, RoutedEventArgs e)
@@ -295,7 +320,7 @@ namespace WeenieFab
 
                 string[] description = cbStringProps.Text.Split(" ");
 
-                dr[0] = cbStringProps.SelectedIndex.ToString();
+                dr[0] = ConvertToInteger(cbStringProps.SelectedIndex.ToString());
                 dr[1] = tbStringValue.Text;
                 dr[2] = description[1];
 
@@ -327,19 +352,26 @@ namespace WeenieFab
         private void btnAddDiD_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
-            if (SearchForDuplicateProps(boolDataTable, cbBoolProps.SelectedIndex.ToString()))
+            if (SearchForDuplicateProps(didDataTable, cbDiDProps.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
             else
             {
-                string[] description = cbBoolProps.Text.Split(" ");
-                DataRow dr = boolDataTable.NewRow();
-                dr[0] = cbBoolProps.SelectedIndex.ToString();
-                dr[1] = tbDiDValue.Text;
+                string[] description = cbDiDProps.Text.Split(" ");
+                DataRow dr = didDataTable.NewRow();
+                dr[0] = ConvertToInteger(cbDiDProps.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbDiDValue.Text);
                 dr[2] = description[1];
 
-                boolDataTable.Rows.Add(dr);
+                // boolDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
+
+                didDataTable.Rows.Add(dr);
+                didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
+                dgDiD.ItemsSource = didDataTable.DefaultView;
+                dgDiD.Items.Refresh();
+
+                
             }
         }
         private void btnUpdateDiD_Click(object sender, RoutedEventArgs e)
@@ -357,8 +389,8 @@ namespace WeenieFab
 
                 string[] description = cbDiDProps.Text.Split(" ");
 
-                dr[0] = cbDiDProps.SelectedIndex.ToString();
-                dr[1] = tbDiDValue.Text;
+                dr[0] = ConvertToInteger(cbDiDProps.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbDiDValue.Text);
                 dr[2] = description[1];
 
                 didDataTable.AcceptChanges();
@@ -397,11 +429,14 @@ namespace WeenieFab
             {
                 string[] description = cbBoolProps.Text.Split(" ");
                 DataRow dr = boolDataTable.NewRow();
-                dr[0] = cbBoolProps.SelectedIndex.ToString();
-                dr[1] = tbSpellValue.Text;
+                dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
+                dr[1] = ConvertToFloat(tbSpellValue.Text); // Spell Probablilty
                 dr[2] = description[1];
 
-                boolDataTable.Rows.Add(dr);
+                spellDataTable.Rows.Add(dr);
+                spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                dgSpell.ItemsSource = spellDataTable.DefaultView;
+                dgSpell.Items.Refresh();
             }
         }
         private void btnUpdateSpell_Click(object sender, RoutedEventArgs e)
@@ -419,8 +454,8 @@ namespace WeenieFab
 
                 string[] description = cbSpellProps.Text.Split(" ");
 
-                dr[0] = cbSpellProps.SelectedIndex.ToString();
-                dr[1] = tbSpellValue.Text;
+                dr[0] = ConvertToInteger(cbSpellProps.SelectedIndex.ToString());
+                dr[1] = ConvertToFloat(tbSpellValue.Text);
                 dr[2] = description[1];
 
                 spellDataTable.AcceptChanges();
@@ -444,6 +479,31 @@ namespace WeenieFab
             {
                 MessageBox.Show("You can not delete that row!");
             }
+        }
+
+
+        // Converter
+        private DataRow ConvertToIntRow(string property, string propertyValue, string description)
+        {
+            DataTable tempdt = new DataTable();
+
+            DataColumn propertyCol = new DataColumn("Property");
+            DataColumn valueCol = new DataColumn("Value");
+            DataColumn descriptCol = new DataColumn("Description");
+
+            propertyCol.DataType = System.Type.GetType("System.Int32");
+            valueCol.DataType = System.Type.GetType("System.Int32");
+
+            tempdt.Columns.Add(propertyCol);
+            tempdt.Columns.Add(valueCol);
+            tempdt.Columns.Add(descriptCol);
+
+            DataRow tdr = tempdt.NewRow();
+            tdr[0] = ConvertToInteger(property);
+            tdr[1] = ConvertToInteger(propertyValue);
+            tdr[2] = description;
+
+            return tdr;
         }
 
 

@@ -16,11 +16,17 @@ namespace WeenieFab
             // var intDataTable = DataTable;
 
             DataTable tempDataTable = new DataTable();
-            
 
-            tempDataTable.Columns.Add(new DataColumn("Property"));
-            tempDataTable.Columns.Add(new DataColumn("Value"));
-            tempDataTable.Columns.Add(new DataColumn("Description"));
+            DataColumn property = new DataColumn("Property");
+            DataColumn value = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
+
+            property.DataType = System.Type.GetType("System.Int32");
+            value.DataType = System.Type.GetType("System.Int32");
+
+            tempDataTable.Columns.Add(property);
+            tempDataTable.Columns.Add(value);
+            tempDataTable.Columns.Add(descript);
 
             var pattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/$";
 
@@ -30,46 +36,138 @@ namespace WeenieFab
 
                 DataRow dr = tempDataTable.NewRow();
 
-                dr[0] = match.Groups[2];
-                dr[1] = match.Groups[3];
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
                 dr[2] = match.Groups[4];
                 tempDataTable.Rows.Add(dr);
-
+                
             }
             // string Nothing = "";
             return tempDataTable;
         }
-        // (44805,   1, True ) /* Stuck */
+        
 
-        public static DataTable DecodeThreeValues(string integerblob, string pattern)
+        public static DataTable DecodeThreeValuesInt(string integerblob, string pattern)
         {
-            //  RegEx Pattern
-            // \((\d+),\s*(\d+),\s*(\d+)\).*$
-            // var intDataTable = DataTable;
-
             DataTable tempDataTable = new DataTable();
 
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn valueInt = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
 
-            tempDataTable.Columns.Add(new DataColumn("Property"));
-            tempDataTable.Columns.Add(new DataColumn("Value"));
-            tempDataTable.Columns.Add(new DataColumn("Description"));
+            propertyInt.DataType = Type.GetType("System.Int32");
+            valueInt.DataType = Type.GetType("System.Int32");
 
-            // var pattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/$";
+            tempDataTable.Columns.Add(propertyInt);
+            tempDataTable.Columns.Add(valueInt);
+            tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in integerblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[4].ToString();
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[2] = description.Trim();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+
+        public static DataTable DecodeThreeValuesFloat(string floatblob, string pattern)
+        {
+            DataTable tempDataTable = new DataTable();
+
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn valueFloat = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
+
+            propertyInt.DataType = Type.GetType("System.Int32");
+            valueFloat.DataType = Type.GetType("System.Single");
+
+            tempDataTable.Columns.Add(propertyInt);
+            tempDataTable.Columns.Add(valueFloat);
+            tempDataTable.Columns.Add(descript);
+
+            foreach (var blobLine in floatblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[4].ToString();
+                
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToFloat(match.Groups[3].ToString());
+                dr[2] = description.Trim();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+        public static DataTable DecodeThreeValuesBool(string boolblob, string pattern)
+        {
+            DataTable tempDataTable = new DataTable();
+
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn valueBool = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
+            propertyInt.DataType = Type.GetType("System.Int32");
+            valueBool.DataType = Type.GetType("System.Boolean");
+
+            tempDataTable.Columns.Add(propertyInt);
+            tempDataTable.Columns.Add(valueBool);
+            tempDataTable.Columns.Add(descript);
+
+            foreach (var blobLine in boolblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[4].ToString();
+                bool tf;
+
+                if (match.Groups[3].ToString() == "TRUE" || match.Groups[3].ToString() == "True" || match.Groups[3].ToString() == "true")
+                    tf = true;
+                else
+                    tf = false;
 
                 DataRow dr = tempDataTable.NewRow();
 
-                dr[0] = match.Groups[2];
-                dr[1] = match.Groups[3];
-                dr[2] = match.Groups[4];
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = tf;
+                dr[2] = description.Trim();
                 tempDataTable.Rows.Add(dr);
-
             }
-            
             return tempDataTable;
         }
+
+        public static DataTable DecodeThreeValuesString(string floatblob, string pattern)
+        {
+            DataTable tempDataTable = new DataTable();
+
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn valueString = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
+            propertyInt.DataType = Type.GetType("System.Int32");
+            valueString.DataType = Type.GetType("System.String");
+
+            tempDataTable.Columns.Add(propertyInt);
+            tempDataTable.Columns.Add(valueString);
+            tempDataTable.Columns.Add(descript);
+
+            foreach (var blobLine in floatblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[4].ToString();
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = match.Groups[3].ToString();
+                dr[2] = description.Trim();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+
     }
 }

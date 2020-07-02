@@ -42,11 +42,7 @@ namespace WeenieFab
             CreateWeenieTypeList();
             CreateComboBoxLists();
             CreateDataTable();
-
-
         }
-
-
 
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
         {
@@ -71,62 +67,94 @@ namespace WeenieFab
 
         public void CreateDataTable()
         {
-            integerDataTable.Columns.Add(new DataColumn("Property"));
-            integerDataTable.Columns.Add(new DataColumn("Value"));
-            integerDataTable.Columns.Add(new DataColumn("Description"));
-            dgInt32.DataContext = integerDataTable;
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn propertyInt64 = new DataColumn("Property");
+            DataColumn propertyFloat = new DataColumn("Property");
+            DataColumn propertyBool = new DataColumn("Property");
+            DataColumn propertyString = new DataColumn("Property");
+            DataColumn propertyDiD = new DataColumn("Property");
 
-            integer64DataTable.Columns.Add(new DataColumn("Property"));
-            integer64DataTable.Columns.Add(new DataColumn("Value"));
-            integer64DataTable.Columns.Add(new DataColumn("Description"));
-            dgInt64.DataContext = integer64DataTable;
+            propertyInt.DataType = Type.GetType("System.Int32");
+            propertyInt64.DataType = Type.GetType("System.Int32");
+            propertyFloat.DataType = Type.GetType("System.Int32");
+            propertyBool.DataType = Type.GetType("System.Int32");
+            propertyString.DataType = Type.GetType("System.Int32");
+            propertyDiD.DataType = Type.GetType("System.Int32");
 
-            boolDataTable.Columns.Add(new DataColumn("Property"));
-            boolDataTable.Columns.Add(new DataColumn("Value"));
-            boolDataTable.Columns.Add(new DataColumn("Description"));
+
+            DataColumn valueInt = new DataColumn("Value");
+            DataColumn valueInt64 = new DataColumn("Value");
+            DataColumn valueFloat = new DataColumn("Value");
+            DataColumn valueBool = new DataColumn("Value");
+            DataColumn valueString = new DataColumn("Value");
+            DataColumn valueDiD = new DataColumn("Value");
+
+            valueInt.DataType = Type.GetType("System.Int32");
+            valueInt64.DataType = Type.GetType("System.Int32");
+            valueFloat.DataType = Type.GetType("System.Single");
+            valueBool.DataType = Type.GetType("System.Boolean");
+            valueString.DataType = Type.GetType("System.String");
+            valueDiD.DataType = Type.GetType("System.String");
+
+            DataColumn descriptionInt = new DataColumn("Description");
+            DataColumn descriptionInt64 = new DataColumn("Description");
+            DataColumn descriptionFloat = new DataColumn("Description");
+            DataColumn descriptionBool = new DataColumn("Description");
+            DataColumn descriptionString = new DataColumn("Description");
+            DataColumn descriptionDiD = new DataColumn("Description");
+            DataColumn descriptionSpellBook = new DataColumn("Description");
+
+            // Int32
+            integerDataTable.Columns.Add(propertyInt);
+            integerDataTable.Columns.Add(valueInt);
+            integerDataTable.Columns.Add(descriptionInt);
+            dgInt32.DataContext = integerDataTable.DefaultView;
+
+            // Int64
+            integer64DataTable.Columns.Add(propertyInt64);
+            integer64DataTable.Columns.Add(valueInt64);
+            integer64DataTable.Columns.Add(descriptionInt64);
+            dgInt64.DataContext = integer64DataTable.DefaultView;
+
+            // Bool Table
+            boolDataTable.Columns.Add(propertyBool);
+            boolDataTable.Columns.Add(valueBool);
+            boolDataTable.Columns.Add(descriptionBool);
             dgBool.DataContext = boolDataTable;
 
-            floatDataTable.Columns.Add(new DataColumn("Property"));
-            floatDataTable.Columns.Add(new DataColumn("Value"));
-            floatDataTable.Columns.Add(new DataColumn("Description"));
+            // Float Table
+            floatDataTable.Columns.Add(propertyFloat);
+            floatDataTable.Columns.Add(valueFloat);
+            floatDataTable.Columns.Add(descriptionFloat);
             dgFloat.DataContext = floatDataTable;
 
-            stringDataTable.Columns.Add(new DataColumn("Property"));
-            stringDataTable.Columns.Add(new DataColumn("Value"));
-            stringDataTable.Columns.Add(new DataColumn("Description"));
-            dgString.DataContext = stringDataTable;
-
-            didDataTable.Columns.Add(new DataColumn("Property"));
-            didDataTable.Columns.Add(new DataColumn("Value"));
-            didDataTable.Columns.Add(new DataColumn("Description"));
+            // DiD
+            didDataTable.Columns.Add(propertyDiD);
+            didDataTable.Columns.Add(valueDiD);
+            didDataTable.Columns.Add(descriptionDiD);
             dgDiD.DataContext = didDataTable;
 
-            spellDataTable.Columns.Add(new DataColumn("Property"));
-            spellDataTable.Columns.Add(new DataColumn("Value"));
-            spellDataTable.Columns.Add(new DataColumn("Description"));
+            // Strings Table
+            stringDataTable.Columns.Add(propertyString);
+            stringDataTable.Columns.Add(valueString);
+            stringDataTable.Columns.Add(descriptionString);
+            dgString.DataContext = stringDataTable;
+
+            //SpellBook
+            DataColumn spellIdInt = new DataColumn("SpellId");         
+            DataColumn probabilityFloat = new DataColumn("Probability");
+            spellIdInt.DataType = Type.GetType("System.Int32");
+            probabilityFloat.DataType = Type.GetType("System.Single");
+
+            spellDataTable.Columns.Add(spellIdInt);
+            spellDataTable.Columns.Add(probabilityFloat);
+            spellDataTable.Columns.Add(descriptionSpellBook);
             dgSpell.DataContext = spellDataTable;
 
         }
 
         public void CreateComboBoxLists()
         {
-            //string filepaths = "Int32Types.txt," +
-            //                   "Int64Types.txt," +
-            //                   "BoolTypes.txt," +
-            //                   "FloatTypes.txt" +
-            //                   "StringTypes.txt" +
-            //                   "DiDTypes.txt";
-
-            //string[] filepath = filepaths.Split(",");
-
-            //for (int i = 0; i < filepath.Length; i++)
-            //{
-            //    filepath[i] ;
-
-            //}
-
-           // string filepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
             List<string> integer32List = new List<string>();
             foreach (string line in File.ReadLines(@"TypeLists\Int32Types.txt"))
             {
@@ -193,9 +221,14 @@ namespace WeenieFab
             cbWeenieType.SelectedIndex = 1;
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -233,5 +266,26 @@ namespace WeenieFab
             }
 
         }
+        public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
+        {
+            dt.DefaultView.Sort = colName + " " + direction;
+            dt = dt.DefaultView.ToTable();
+            return dt;
+        }
+
+        public static int ConvertToInteger(string text)
+        {
+            int i = 0;
+            Int32.TryParse(text, out i);
+            return i;
+        }
+
+        public static float ConvertToFloat(string text)
+        {
+            float i = 0f;
+            float.TryParse(text, out i);
+            return i;
+        }
+
     }
 }
