@@ -12,21 +12,13 @@ namespace WeenieFab
             string sqltext = "";
 
             int counter = 1;
-            //string type = "";
-
             int rowcount = dt.Rows.Count;
-            if (dt != null)
+
+            if (rowcount > 0)
             {
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    //if (row[0].ToString() == "")
-                    //{
-                    //    sqltext = "";
-                    //    break;
-                    //}
-                    //else
-                    //{
                     if (counter == 1)
                         sqltext += $" ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
                     else
@@ -42,13 +34,30 @@ namespace WeenieFab
                     counter++;
                 }
             }
-            sqltext += $"\n";
-
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
             return sqltext;
-
         }
 
+        public static string ConvertBodyTable(string bodyparts, string wcid, string header)
+        {
+            int counter = 0;
+            string sqltext = header + $"\nVALUES";
 
+            foreach (var blobLine in bodyparts.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (counter == 0)
+                    sqltext += $" {blobLine}\n";
+                else
+                    sqltext += $"     , {blobLine}\n";
+                counter++;
+            }
+            // sqltext += $"\n";
+            return sqltext;
+        }
 
     }
 }
