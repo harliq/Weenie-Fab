@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Windows.Media.TextFormatting;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
 
@@ -13,7 +12,7 @@ namespace WeenieFab
     {
         public void ReadSQLFile(string filepath)
         {
-            string headerblob = "";
+            // string headerblob = "";
             string wcidblob = "";
             string int32Blob = "";
             string int64Blob = "";
@@ -131,17 +130,37 @@ namespace WeenieFab
 
             // Header
             string header = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text} \n\n";
+            string body = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text} \n\n";
 
             // WeenieType
-            header += $"INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)\n";
-            header += $"VALUES ({tbWCID.Text}, '{tbWeenieName.Text}', {cbWeenieType.SelectedIndex}, {dateModified}) /* {weenieTypeDescription[1]} */;\n\n";
+            body += $"INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)\n";
+            body += $"VALUES ({tbWCID.Text}, '{tbWeenieName.Text}', {cbWeenieType.SelectedIndex}, {dateModified}) /* {weenieTypeDescription[1]} */;\n\n";
 
+            // Integers
+            header = $"INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)";
+            body += TableToSql.ConvertTriValueTable(integerDataTable, tbWCID.Text, header);
 
-            header += $"INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)\n";
-            header += TableToSql.ConvertTable(integerDataTable, tbWCID.Text);
+            header = $"INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)";
+            body += TableToSql.ConvertTriValueTable(integer64DataTable, tbWCID.Text, header);
 
+            // Boolean
+            header = $"INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)";
+            body += TableToSql.ConvertTriValueTable(boolDataTable, tbWCID.Text, header);
 
-            File.WriteAllText(filename, header);
+            // Float
+            header = $"INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)";
+            body += TableToSql.ConvertTriValueTable(floatDataTable, tbWCID.Text, header);
+
+            // String
+            header = $"INSERT INTO `weenie_properties_d_i_d` (`object_Id`, `type`, `value`)";
+            body += TableToSql.ConvertTriValueTable(didDataTable, tbWCID.Text, header);
+
+            // Body Parts
+            body += $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)\n";
+            
+            string richTextBoxContents = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
+            body += richTextBoxContents;
+            File.WriteAllText(filename, body);
 
         }
 

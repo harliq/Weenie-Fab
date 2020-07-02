@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -17,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Path = System.IO.Path;
 
 namespace WeenieFab
 {
@@ -32,6 +34,7 @@ namespace WeenieFab
         public static DataTable floatDataTable = new DataTable();
         public static DataTable stringDataTable = new DataTable();
         public static DataTable didDataTable = new DataTable();
+        public static DataTable spellDataTable = new DataTable();
 
         public MainWindow()
         {
@@ -98,37 +101,34 @@ namespace WeenieFab
             didDataTable.Columns.Add(new DataColumn("Description"));
             dgDiD.DataContext = didDataTable;
 
-
-            //integerDataTable.Columns.Add(new DataColumn("Property"));
-            //integerDataTable.Columns.Add(new DataColumn("Value"));
-            //integerDataTable.Columns.Add(new DataColumn("Description"));
-
-
-
+            spellDataTable.Columns.Add(new DataColumn("Property"));
+            spellDataTable.Columns.Add(new DataColumn("Value"));
+            spellDataTable.Columns.Add(new DataColumn("Description"));
+            dgSpell.DataContext = spellDataTable;
 
         }
 
-
-
         public void CreateComboBoxLists()
         {
-            string filepaths = "Int32Types.txt," +
-                               "Int64Types.txt," +
-                               "BoolTypes.txt," +
-                               "FloatTypes.txt" +
-                               "StringTypes.txt" +
-                               "DiDTypes.txt";
+            //string filepaths = "Int32Types.txt," +
+            //                   "Int64Types.txt," +
+            //                   "BoolTypes.txt," +
+            //                   "FloatTypes.txt" +
+            //                   "StringTypes.txt" +
+            //                   "DiDTypes.txt";
 
-            string[] filepath = filepaths.Split(",");
+            //string[] filepath = filepaths.Split(",");
 
             //for (int i = 0; i < filepath.Length; i++)
             //{
             //    filepath[i] ;
-                
+
             //}
 
+           // string filepath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
             List<string> integer32List = new List<string>();
-            foreach (string line in File.ReadLines(filepath[0]))
+            foreach (string line in File.ReadLines(@"TypeLists\Int32Types.txt"))
             {
                 integer32List.Add(line);
             }
@@ -136,7 +136,7 @@ namespace WeenieFab
             cbInt32Props.SelectedIndex = 1;
 
             List<string> integer64List = new List<string>();
-            foreach (string line in File.ReadLines(filepath[1]))
+            foreach (string line in File.ReadLines(@"TypeLists\Int64Types.txt"))
             {
                 integer64List.Add(line);
             }
@@ -144,7 +144,7 @@ namespace WeenieFab
             cbInt64Props.SelectedIndex = 1;
 
             List<string> BoolList = new List<string>();
-            foreach (string line in File.ReadLines(filepath[2]))
+            foreach (string line in File.ReadLines(@"TypeLists\BoolTypes.txt"))
             {
                 BoolList.Add(line);
             }
@@ -152,7 +152,7 @@ namespace WeenieFab
             cbBoolProps.SelectedIndex = 1;
 
             List<string> FloatList = new List<string>();
-            foreach (string line in File.ReadLines(filepath[0]))
+            foreach (string line in File.ReadLines(@"TypeLists\FloatTypes.txt"))
             {
                 FloatList.Add(line);
             }
@@ -160,7 +160,7 @@ namespace WeenieFab
             cbFloatProps.SelectedIndex = 1;
 
             List<string> StringList = new List<string>();
-            foreach (string line in File.ReadLines(filepath[0]))
+            foreach (string line in File.ReadLines(@"TypeLists\StringTypes.txt"))
             {
                 StringList.Add(line);
             }
@@ -168,7 +168,7 @@ namespace WeenieFab
             cbStringProps.SelectedIndex = 1;
 
             List<string> DiDList = new List<string>();
-            foreach (string line in File.ReadLines(filepath[0]))
+            foreach (string line in File.ReadLines(@"TypeLists\DiDTypes.txt"))
             {
                 DiDList.Add(line);
             }
@@ -179,7 +179,10 @@ namespace WeenieFab
 
         public void CreateWeenieTypeList()
         {
-            string filepath = "WeenieTypes.txt";
+            // string filepath = "WeenieTypes.txt";
+            // string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
+            string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
+
 
             List<string> weenieTypeList = new List<string>();
             foreach (string line in File.ReadLines(filepath))
@@ -196,8 +199,7 @@ namespace WeenieFab
             e.Handled = regex.IsMatch(e.Text);
         }
 
-
-
+        // Toolbar Buttons
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();

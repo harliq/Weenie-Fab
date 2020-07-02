@@ -36,7 +36,7 @@ namespace WeenieFab
                 tempDataTable.Rows.Add(dr);
 
             }
-            string Nothing = "";
+            // string Nothing = "";
             return tempDataTable;
         }
         // (44805,   1, True ) /* Stuck */

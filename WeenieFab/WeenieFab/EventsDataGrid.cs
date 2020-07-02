@@ -66,5 +66,78 @@ namespace WeenieFab
                     rbFalse.IsChecked = true;
             }
         }
+        private void dgFloat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgFloat.SelectedIndex;
+            DataGridRow currentRowIndex = dgFloat.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > floatDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = floatDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbFloatProps.SelectedIndex = cbindex;
+                tbFloatValue.Text = dr[1].ToString();
+            }
+        }
+
+        private void dgString_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgString.SelectedIndex;
+            DataGridRow currentRowIndex = dgString.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > stringDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = stringDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbStringProps.SelectedIndex = cbindex;
+                tbStringValue.Text = dr[1].ToString();
+            }
+        }
+
+        private void dgDiD_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgDiD.SelectedIndex;
+            DataGridRow currentRowIndex = dgDiD.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > didDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = didDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbDiDProps.SelectedIndex = cbindex;
+                tbDiDValue.Text = dr[1].ToString();
+            }
+        }
+
+
+        private void dgSpell_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var index = dgSpell.SelectedIndex;
+            DataGridRow currentRowIndex = dgSpell.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > spellDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = spellDataTable.Rows[currentRowIndex.GetIndex()];
+                int cbindex = 0;
+                Int32.TryParse(dr[0].ToString(), out cbindex);
+                cbSpellProps.SelectedIndex = cbindex;
+                tbSpellValue.Text = dr[1].ToString();
+            }
+        }
+
     }
 }

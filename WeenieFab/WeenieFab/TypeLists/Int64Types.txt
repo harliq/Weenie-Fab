@@ -1,0 +1,9 @@
+0 Undefined
+1 TotalExperience
+2 AvailableExperience
+3 AugmentationCost
+4 ItemTotalXp
+5 ItemBaseXp
+6 AvailableLuminance
+7 MaximumLuminance
+8 InteractionReqs

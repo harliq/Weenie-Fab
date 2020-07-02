@@ -7,24 +7,41 @@ namespace WeenieFab
 {
     public class TableToSql
     {
-        public static string ConvertTable(DataTable dt, string wcid)
+        public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
-            string sqltext = $"VALUES";
+            string sqltext = "";
 
-            int counter = 0;
+            int counter = 1;
             //string type = "";
 
-
-            foreach (DataRow row in dt.Rows)
-                
+            int rowcount = dt.Rows.Count;
+            if (dt != null)
             {
-                if (counter == 0)
-                    sqltext += $" ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
-                else
-                    sqltext += $"     , ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
-                counter++;
-            }
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    //if (row[0].ToString() == "")
+                    //{
+                    //    sqltext = "";
+                    //    break;
+                    //}
+                    //else
+                    //{
+                    if (counter == 1)
+                        sqltext += $" ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
+                    else
+                    {
+                        if (counter == rowcount - 1)
+                            sqltext += $"     , ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */;\n";
+                        else if (counter == rowcount)
+                            sqltext += "";
+                        else
+                            sqltext += $"     , ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
 
+                    }
+                    counter++;
+                }
+            }
             sqltext += $"\n";
 
             return sqltext;

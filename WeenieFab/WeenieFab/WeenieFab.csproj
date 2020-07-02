@@ -7,7 +7,38 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="TypeLists\BoolTypes.txt" />
+    <None Remove="TypeLists\DiDTypes.txt" />
+    <None Remove="TypeLists\FloatTypes.txt" />
+    <None Remove="TypeLists\Int32Types.txt" />
+    <None Remove="TypeLists\Int64Types.txt" />
+    <None Remove="TypeLists\StringTypes.txt" />
+    <None Remove="TypeLists\WeenieTypes.txt" />
     <None Remove="WeenieFabIcon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="TypeLists\BoolTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\DiDTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\FloatTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\Int32Types.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\Int64Types.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\StringTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\WeenieTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
