@@ -9,8 +9,9 @@ namespace WeenieFab
     {
         public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
+            dt.Clear();
             string sqltext = "";
-
+            
             int counter = 1;
             int rowcount = dt.Rows.Count;
 

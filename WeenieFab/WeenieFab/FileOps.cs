@@ -25,6 +25,7 @@ namespace WeenieFab
             string skillsBlob = "";
             string bodyPartBlob = "";
             string spellBookBlob = "";
+            string emoteBlob = "";
             string line;
 
             // Regex Patterns
@@ -121,7 +122,23 @@ namespace WeenieFab
                         dgSpell.DataContext = spellDataTable;
 
                     }
+                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`"))
+                    {
+                        emoteBlob = ReadEmoteBlob(sr);
+                        string tempES = "";
+                        string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
+                        var es = EmoteScriptLib.Converter.sql2es(emotes);
+
+                        foreach (var esline in es)
+                        {
+                            tempES += esline + "\r\n";
+                        }
+
+                        rtbEmoteScript.Document.Blocks.Clear();
+                        //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emoteBlob)));
+                        rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+                    }
                 }
                 sr.Close();
             }
@@ -144,6 +161,7 @@ namespace WeenieFab
             // Integers
             header = $"INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integerDataTable, tbWCID.Text, header);
+            dgInt32.ItemsSource = integerDataTable.DefaultView;
 
             header = $"INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integer64DataTable, tbWCID.Text, header);
@@ -166,6 +184,9 @@ namespace WeenieFab
             body += TableToSql.ConvertBodyTable(richTextBoxContents, tbWCID.Text, header);
             File.WriteAllText(filename, body);
 
+            // Emotes
+
+
         }
 
         public static string ReadBlob(StreamReader sr)
@@ -176,7 +197,7 @@ namespace WeenieFab
 
             while ((line = sr.ReadLine()) != null) 
             {
-                if (line == "" || line == "\t")                  
+                if (line == "" || line == "\t" || line =="\r\n")                  
                     return blob;
                 else
                 {
@@ -186,6 +207,28 @@ namespace WeenieFab
                     blob += tLine +"\r\n";
                 }
             }
+            // Test to see if this removes the extra blank - Nope, need to revert;
+            // string finalblob = Regex.Replace(blob, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
+            return blob;
+        }
+
+        public static string ReadEmoteBlob(StreamReader sr)
+        {
+            string blob = "";
+            string line;
+            // string tLine;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                    return blob;
+                else
+                {
+                    blob += line + "\r\n";
+                }
+            }
+            // Test to see if this removes the extra blank - Nope, need to revert;
+            
             return blob;
         }
     }

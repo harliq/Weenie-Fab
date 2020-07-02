@@ -1,0 +1,39 @@
+**Priority**
+#done-Check save
+Look into why blank rows on open
+#done-Add DiD Types
+Add SpellID textbox
+Add Attributes and Skills tables
+Fix open file (for new files) Reset all the indexes for data grids.
+Add New file button
+
+
+
+** Polish **
+Fix Width on Data Grid
+Rename MainWindows
+Cleanup unused files
+Tab Stops, Basic ToolTips
+FileName Global
+UnSavedChanges Global
+
+To finish Version 1
+
+Auto generate file name on save
+Figure out how to search spells
+
+#done-Figure out how to grab emotes from sql (are there different variations???)
+#done Add Emote Script converting from sql File
+Add ES convert to sql write
+
+**Future Features**
+Defaults for a new weenie (IE a quick wizard dialog)
+Add Options Dialog (Mainly for paths right now)
+
+Auto Convert Json Files
+Auto Calculations for Skills/Health
+
+Body Parts Table
+Auto Calculate Body Parts
+
+MarkDown for ES in WeenieFab

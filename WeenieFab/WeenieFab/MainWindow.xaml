@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Weenie Fab" Height="600" Width="1189" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/WeenieFabIcon.ico">
+        Title="Weenie Fab" Height="750" Width="1200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/WeenieFabIcon.ico">
     <Grid Background="#FFDEE2FF">
 
         <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
@@ -19,7 +19,7 @@
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
                         <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
-                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False">
                             <DataGrid.RowStyle>
                                 <Style TargetType="{x:Type DataGridRow}">
                                     <Style.Triggers>
@@ -191,7 +191,7 @@
                 </TabItem>
                 <TabItem Header="EmoteScript">
                     <Grid Background="#FFE5E5E5">
-                        <RichTextBox x:Name="rtbBodyParts_Copy" FontFamily="Courier New" FontSize="11" Background="#FFECE7DD">
+                        <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="#FFECE7DD" VerticalScrollBarVisibility="Auto">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>

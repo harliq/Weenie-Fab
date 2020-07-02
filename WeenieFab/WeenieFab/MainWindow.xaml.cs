@@ -42,6 +42,9 @@ namespace WeenieFab
             CreateWeenieTypeList();
             CreateComboBoxLists();
             CreateDataTable();
+            ClearAllDataTables();
+            ClearAllDataGrids();
+            MiscSettings();
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
@@ -141,7 +144,7 @@ namespace WeenieFab
             dgString.DataContext = stringDataTable;
 
             //SpellBook
-            DataColumn spellIdInt = new DataColumn("SpellId");         
+            DataColumn spellIdInt = new DataColumn("SpellId");
             DataColumn probabilityFloat = new DataColumn("Probability");
             spellIdInt.DataType = Type.GetType("System.Int32");
             probabilityFloat.DataType = Type.GetType("System.Single");
@@ -243,6 +246,9 @@ namespace WeenieFab
 
             if (result == true)
             {
+                ClearAllDataTables();
+                ClearAllDataGrids();
+                ResetIndexAllDataGrids();
                 ReadSQLFile(ofd.FileName);
 
             }
@@ -285,6 +291,46 @@ namespace WeenieFab
             float i = 0f;
             float.TryParse(text, out i);
             return i;
+        }
+
+        // UI Stuff
+
+        public void ClearAllDataTables()
+        {
+            integerDataTable.Clear();
+            integer64DataTable.Clear();
+            boolDataTable.Clear();
+            floatDataTable.Clear();
+            stringDataTable.Clear();
+            didDataTable.Clear();
+            spellDataTable.Clear();
+        }
+        public void ClearAllDataGrids()
+        {
+            //dgInt32.Items.Clear();
+            //dgInt64.Items.Clear();
+            //dgBool.Items.Clear();
+            //dgFloat.Items.Clear();
+            //dgString.Items.Clear();
+            //dgDiD.Items.Clear();
+            //dgSpell.Items.Clear();
+        }
+        public void ResetIndexAllDataGrids()
+        {
+            dgInt32.SelectedIndex = -1;
+
+            //dgInt64.Items.Clear();
+            //dgBool.Items.Clear();
+            //dgFloat.Items.Clear();
+            //dgString.Items.Clear();
+            //dgDiD.Items.Clear();
+            //dgSpell.Items.Clear();
+        }
+        public void MiscSettings()
+        {
+            rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+            rtbEmoteScript.Document.PageWidth = 2000;
+
         }
 
     }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="libs\EmoteScriptLib.dll" />
+    <None Remove="StringMap\SpellName.txt" />
+    <None Remove="StringMap\WeenieClassName.txt" />
+    <None Remove="StringMap\WeenieName.txt" />
     <None Remove="TypeLists\BoolTypes.txt" />
     <None Remove="TypeLists\DiDTypes.txt" />
     <None Remove="TypeLists\FloatTypes.txt" />
@@ -18,6 +22,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="libs\EmoteScriptLib.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StringMap\SpellName.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StringMap\WeenieClassName.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="StringMap\WeenieName.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TypeLists\BoolTypes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -39,6 +55,12 @@
     <Content Include="TypeLists\WeenieTypes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="EmoteScriptLib">
+      <HintPath>libs\EmoteScriptLib.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
