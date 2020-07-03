@@ -10,6 +10,10 @@
 
         <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
         <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
+        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18"/>
+        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
+        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>        
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
                 <TabItem x:Name="tiInt32" Header="Integer32">
@@ -203,10 +207,6 @@
                 </TabItem>
             </TabControl>
         </Grid>
-        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18"/>
-        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
-        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
         <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="267">
             <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click"/>
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click"/>
