@@ -1,20 +1,28 @@
-**Priority**
+** To Finish Milestone 1 **
+*Priority*
 Add Attributes and Skills tables
-Add Spells Write
 Add Spell Search
+Add Spell Description
+Add Spells Write
 Add ES convert to sql write
-Add Contents (Trophy)
+Add CreateItems (Trophy)
+Add Options Dialog (Mainly for paths right now)
 
-** Polish **
+* Polish *
 Rename MainWindows
 
 Tab Stops, Basic ToolTips
 FileName Global
 UnSavedChanges Global
 
-To finish Version 1
+Code Cleanup/Organization
+
+* Misc *
 Figure out how to search spells
 Auto generate file name on save
+Create Install Package
+
+
 
 **Completed**
 #Done-Check save
@@ -30,7 +38,6 @@ Auto generate file name on save
 
 **Future Features**
 Defaults for a new weenie (IE a quick wizard dialog)
-Add Options Dialog (Mainly for paths right now)
 
 Auto Convert Json Files
 Auto Calculations for Skills/Health

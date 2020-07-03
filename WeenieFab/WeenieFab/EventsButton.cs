@@ -10,6 +10,36 @@ namespace WeenieFab
     public partial class MainWindow : Window
     {
         // Button Events
+        // ****Toolbar Buttons****
+        private void btnNew_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show("Save current Weenie?", "Possible Unsaved Changes", buttons, icon);
+            if (result == MessageBoxResult.Yes)
+            {
+                SaveFile();
+                ClearAllDataTables();
+                ClearAllFields();
+            }
+            else if (result == MessageBoxResult.No)
+            {
+                ClearAllDataTables();
+                ClearAllFields();
+            }
+            else
+            {
+            }
+        }
+        private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFile();
+        }
+
+        private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            SaveFile();
+        }
 
         // Integer 32
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
@@ -216,8 +246,6 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
-
         // Float
         private void btnAddFloat_Click(object sender, RoutedEventArgs e)
         {
