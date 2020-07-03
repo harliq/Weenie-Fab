@@ -145,7 +145,7 @@
                 <TabItem Header="Attributes/Skills">
                     <Grid Background="#FFE5E5E5">
                         <Label Content="Skill Type" HorizontalAlignment="Left" Margin="638,35,0,0" VerticalAlignment="Top"/>
-                        <DataGrid x:Name="dgAttributes" Margin="83,190,0,281" HorizontalAlignment="Left" Width="406">
+                        <DataGrid x:Name="dgAttributes" Margin="83,190,0,0" HorizontalAlignment="Left" Width="406" Height="148" VerticalAlignment="Top">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Path=Type}" Width="1.2*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="InitLevel" IsReadOnly="True"  Binding="{Binding Path=InitLevel}" Width="2*"></DataGridTextColumn>
@@ -154,7 +154,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="2.8*"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <DataGrid x:Name="dgAttributesTwo" Margin="83,470,0,48" HorizontalAlignment="Left" Width="406">
+                        <DataGrid x:Name="dgAttributesTwo" Margin="83,470,0,0" HorizontalAlignment="Left" Width="406" Height="111" VerticalAlignment="Top">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Path=Type}" Width="1*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="InitLevel" IsReadOnly="True"  Binding="{Binding Path=InitLevel}" Width="1.4*"></DataGridTextColumn>
@@ -165,7 +165,7 @@
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Health, Stamina, Mana" HorizontalAlignment="Left" Margin="205,343,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <DataGrid Margin="642,144,71,48">
+                        <DataGrid Margin="638,144,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Height="398" Width="465">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Path=Type}" Width="1*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="LevelPP" IsReadOnly="True"  Binding="{Binding Path=InitLevel}" Width="1.5*"></DataGridTextColumn>
