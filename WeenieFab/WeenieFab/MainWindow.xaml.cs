@@ -36,6 +36,8 @@ namespace WeenieFab
         public static DataTable didDataTable = new DataTable();
         public static DataTable spellDataTable = new DataTable();
 
+        
+
         public MainWindow()
         {
             InitializeComponent();
@@ -144,8 +146,8 @@ namespace WeenieFab
             dgString.DataContext = stringDataTable;
 
             //SpellBook
-            DataColumn spellIdInt = new DataColumn("SpellId");
-            DataColumn probabilityFloat = new DataColumn("Probability");
+            DataColumn spellIdInt = new DataColumn("Property");
+            DataColumn probabilityFloat = new DataColumn("Value");
             spellIdInt.DataType = Type.GetType("System.Int32");
             probabilityFloat.DataType = Type.GetType("System.Single");
 

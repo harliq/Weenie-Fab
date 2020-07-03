@@ -12,6 +12,8 @@ namespace WeenieFab
         // DataGrid Events
         private void dgInt32_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+
+
             var index = dgInt32.SelectedIndex;
             DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > integerDataTable.Rows.Count)
@@ -25,6 +27,31 @@ namespace WeenieFab
                 Int32.TryParse(dr[0].ToString(), out cbindex);
                 cbInt32Props.SelectedIndex = cbindex;
                 tbValue.Text = dr[1].ToString();
+            }
+        }
+        private void dgInt32_RowSelected(object sender, RoutedEventArgs e)
+        {
+            // Lookup for the source to be DataGridCell
+            if (e.OriginalSource.GetType() == typeof(DataGridCell))
+            {
+
+                var index = dgInt32.SelectedIndex;
+                DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                if (index + 1 > integerDataTable.Rows.Count)
+                {
+
+                }
+                else
+                {
+                    DataRow dr = integerDataTable.Rows[currentRowIndex.GetIndex()];
+                    int cbindex = 0;
+                    Int32.TryParse(dr[0].ToString(), out cbindex);
+                    cbInt32Props.SelectedIndex = cbindex;
+                    tbValue.Text = dr[1].ToString();
+                }
+
+
+
             }
         }
 
@@ -132,12 +159,14 @@ namespace WeenieFab
             else
             {
                 DataRow dr = spellDataTable.Rows[currentRowIndex.GetIndex()];
-                int cbindex = 0;
-                Int32.TryParse(dr[0].ToString(), out cbindex);
-                cbSpellProps.SelectedIndex = cbindex;
+                // int cbindex = 0;
+                // Int32.TryParse(dr[0].ToString(), out cbindex);
+                // cbSpellProps.SelectedIndex = cbindex;
+                tbSpellId.Text = dr[0].ToString();
                 tbSpellValue.Text = dr[1].ToString();
             }
         }
 
-    }
+
+}
 }

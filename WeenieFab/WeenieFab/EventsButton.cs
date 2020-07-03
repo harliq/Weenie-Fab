@@ -421,17 +421,17 @@ namespace WeenieFab
         private void btnAddSpell_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
-            if (SearchForDuplicateProps(spellDataTable, cbSpellProps.SelectedIndex.ToString()))
+            if (SearchForDuplicateProps(spellDataTable, tbSpellId.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
             else
             {
-                string[] description = cbBoolProps.Text.Split(" ");
-                DataRow dr = boolDataTable.NewRow();
-                dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
+                // string[] description = cbBoolProps.Text.Split(" ");
+                DataRow dr = spellDataTable.NewRow();
+                dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text); // Spell Probablilty
-                dr[2] = description[1];
+                dr[2] = "Test"; //description[1];
 
                 spellDataTable.Rows.Add(dr);
                 spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
@@ -452,11 +452,11 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgSpell.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = spellDataTable.Rows[currentRowIndex.GetIndex()];
 
-                string[] description = cbSpellProps.Text.Split(" ");
+                // string[] description = cbSpellProps.Text.Split(" ");
 
-                dr[0] = ConvertToInteger(cbSpellProps.SelectedIndex.ToString());
+                dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text);
-                dr[2] = description[1];
+                // dr[2] = description[1];
 
                 spellDataTable.AcceptChanges();
             }
