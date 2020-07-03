@@ -1,30 +1,32 @@
 **Priority**
-#done-Check save
-Look into why blank rows on open
-#done-Add DiD Types
-Add SpellID textbox
 Add Attributes and Skills tables
-Fix open file (for new files) Reset all the indexes for data grids.
-Add New file button
-
-
+Add Spells Write
+Add Spell Search
+Add ES convert to sql write
+Add Contents (Trophy)
 
 ** Polish **
-Fix Width on Data Grid
 Rename MainWindows
-Cleanup unused files
+
 Tab Stops, Basic ToolTips
 FileName Global
 UnSavedChanges Global
 
 To finish Version 1
-
-Auto generate file name on save
 Figure out how to search spells
+Auto generate file name on save
 
-#done-Figure out how to grab emotes from sql (are there different variations???)
-#done Add Emote Script converting from sql File
-Add ES convert to sql write
+**Completed**
+#Done-Check save
+#Done-Look into why blank rows on open(tried several things, not sure how its happening, but not worrying right now, they don't export).
+#Done-Add DiD Types
+#Done-Add SpellID textbox
+#Done-Fix open file (for new files) Reset all the indexes for data grids.
+#Done-Add New file button
+#Done-Fix Width on Data Grid
+#Done-Cleanup unused files
+#Done-Figure out how to grab emotes from sql (are there different variations???)
+#Done-Add Emote Script converting from sql File
 
 **Future Features**
 Defaults for a new weenie (IE a quick wizard dialog)

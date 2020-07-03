@@ -5,11 +5,52 @@ using System.Text;
 using System.Windows.Media.TextFormatting;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
+using Microsoft.Win32;
 
 namespace WeenieFab
 {
     public partial class MainWindow
     {
+
+        public void OpenFile() 
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Open Weenie File";
+            ofd.Filter = "SQL files|*.sql";
+            ofd.InitialDirectory = @"C:\Ace";
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+                ClearAllDataTables();
+                ClearAllDataGrids();
+                ClearAllFields();
+                ResetIndexAllDataGrids();
+                ReadSQLFile(ofd.FileName);
+
+            }
+        }
+
+        public void SaveFile()
+        {
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save Weenie File";
+            sfd.Filter = "SQL files|*.sql";
+            sfd.FileName = tbWCID.Text + $".sql";
+            sfd.InitialDirectory = @"C:\Ace";
+
+            Nullable<bool> result = sfd.ShowDialog();
+
+            if (result == true)
+            {
+
+                WriteSQLFile(sfd.FileName);
+
+            }
+
+        }
+        
         public void ReadSQLFile(string filepath)
         {
             // string headerblob = "";
@@ -57,6 +98,7 @@ namespace WeenieFab
                         int32Blob = ReadBlob(sr);
                         integerDataTable = DecodeSql.DecodeThreeValuesInt(int32Blob,intPattern);
                         integerDataTable.AcceptChanges();
+                        integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
                         dgInt32.DataContext = integerDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
@@ -64,13 +106,15 @@ namespace WeenieFab
                         int64Blob = ReadBlob(sr);
                         integer64DataTable = DecodeSql.DecodeThreeValuesInt(int64Blob,intPattern);
                         integer64DataTable.AcceptChanges();
-                        dgInt64.DataContext = integerDataTable;
+                        integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
+                        dgInt64.DataContext = integer64DataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)"))
                     {
                         boolBlob = ReadBlob(sr);
                         boolDataTable = DecodeSql.DecodeThreeValuesBool(boolBlob, boolPattern);
                         boolDataTable.AcceptChanges();
+                        boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
                         dgBool.DataContext = boolDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)"))
@@ -78,6 +122,7 @@ namespace WeenieFab
                         floatBlob = ReadBlob(sr);
                         floatDataTable = DecodeSql.DecodeThreeValuesFloat(floatBlob, floatPattern);
                         floatDataTable.AcceptChanges();
+                        floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
                         dgFloat.DataContext = floatDataTable;
 
                     }
@@ -86,6 +131,7 @@ namespace WeenieFab
                         stringBlob = ReadBlob(sr);
                         stringDataTable = DecodeSql.DecodeThreeValuesString(stringBlob, stringPattern);
                         stringDataTable.AcceptChanges();
+                        stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
                         dgString.DataContext = stringDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
@@ -93,6 +139,7 @@ namespace WeenieFab
                         didBlob = ReadBlob(sr);
                         didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
                         didDataTable.AcceptChanges();
+                        didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
                         dgDiD.DataContext = didDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
@@ -119,6 +166,7 @@ namespace WeenieFab
 
                         spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
                         spellDataTable.AcceptChanges();
+                        spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
                         dgSpell.DataContext = spellDataTable;
 
                     }
@@ -161,7 +209,7 @@ namespace WeenieFab
             // Integers
             header = $"INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integerDataTable, tbWCID.Text, header);
-            dgInt32.ItemsSource = integerDataTable.DefaultView;
+            
 
             header = $"INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integer64DataTable, tbWCID.Text, header);

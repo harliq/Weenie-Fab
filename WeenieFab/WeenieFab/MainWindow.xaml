@@ -30,9 +30,9 @@
                                 </Style>
                             </DataGrid.RowStyle>
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="60"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="100" SortDirection="Ascending"></DataGridTextColumn>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="500"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="1*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="1*" SortDirection="Ascending"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="8*"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
@@ -49,11 +49,11 @@
                         <ComboBox x:Name="cbInt64Props" HorizontalAlignment="Left" Margin="64,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1"/>
                         <Label Content="Integer 64" HorizontalAlignment="Left" Margin="64,25,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                         <Button x:Name="btnAddInt64" Content="Add " HorizontalAlignment="Left" Margin="287,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt64_Click" Grid.Column="1"/>
-                        <DataGrid x:Name="dgInt64" ItemsSource="{Binding}" Margin="64,137,202,70" AutoGenerateColumns="False" SelectionChanged="dgInt64_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
+                        <DataGrid x:Name="dgInt64" ItemsSource="{Binding}" Margin="64,137,202,70" AutoGenerateColumns="False" DataGridCell.Selected="dgInt64_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tb64Value" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="64,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1"/>
@@ -71,11 +71,11 @@
                         <ComboBox x:Name="cbBoolProps" HorizontalAlignment="Left" Margin="4,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1"/>
                         <Label Content="Boolean" HorizontalAlignment="Left" Margin="4,25,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                         <Button x:Name="btnAddBool" Content="Add " HorizontalAlignment="Left" Margin="227,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddBool_Click" Grid.Column="1"/>
-                        <DataGrid x:Name="dgBool" ItemsSource="{Binding}" Margin="4,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgBool_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
+                        <DataGrid x:Name="dgBool" ItemsSource="{Binding}" Margin="4,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgBool_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Button x:Name="btnRemoveBool" Content="Remove" HorizontalAlignment="Left" Margin="450,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveBool_Click" Grid.Column="1"/>
@@ -90,11 +90,11 @@
                         <Label Content="Decimal" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Float" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddFloat" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddFloat_Click"/>
-                        <DataGrid x:Name="dgFloat" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgFloat_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgFloat" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgFloat_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbFloatValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
@@ -108,11 +108,11 @@
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click"/>
-                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgString_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgString_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
@@ -126,11 +126,11 @@
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="DiD" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddDiD" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddDiD_Click"/>
-                        <DataGrid x:Name="dgDiD" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgDiD_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgDiD" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgDiD_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbDiDValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
@@ -158,11 +158,11 @@
                         <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddSpell" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click"/>
-                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgSpell_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Probability" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Probability" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
@@ -177,11 +177,11 @@
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddInt32_Copy6" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
-                        <DataGrid x:Name="dgInt32_Copy6" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" SelectionChanged="dgInt32_SelectionChanged" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <DataGrid x:Name="dgInt32_Copy6" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgInt32_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="60"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="100"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="500"/>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <TextBox x:Name="tbValue_Copy5" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
@@ -208,7 +208,7 @@
         <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
         <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="267">
-            <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click"/>
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click"/>
             <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top"/>

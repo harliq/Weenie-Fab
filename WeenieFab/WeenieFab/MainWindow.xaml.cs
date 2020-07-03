@@ -238,40 +238,78 @@ namespace WeenieFab
         }
 
         // Toolbar Buttons
-        private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
+        private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.Title = "Open SQL File";
-            ofd.Filter = "SQL files|*.sql";
-            ofd.InitialDirectory = @"C:\Ace";
-            Nullable<bool> result = ofd.ShowDialog();
-
-            if (result == true)
+            MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show("Save current Weenie?", "Possible Unsaved Changes", buttons, icon);
+            if (result == MessageBoxResult.Yes)
+            {
+                SaveFile();
+                ClearAllDataTables();
+                ClearAllFields();
+            }
+            else if (result == MessageBoxResult.No)
             {
                 ClearAllDataTables();
-                ClearAllDataGrids();
-                ResetIndexAllDataGrids();
-                ReadSQLFile(ofd.FileName);
-
+                ClearAllFields();
             }
+            else
+            {
+                
+            }
+
+            //MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            //MessageBoxImage icon = MessageBoxImage.Question;
+            //if (MessageBox.Show("Save current Weenie?", "Unsaved Changes", buttons, icon) == MessageBoxResult.Yes)
+            //{
+            //    SaveFile();
+            //}
+            //else
+            //{
+            //    ClearAllDataTables();
+            //    ClearAllFields();
+            //}
+        }
+        private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFile();
+
+            //OpenFileDialog ofd = new OpenFileDialog();
+            //ofd.Title = "Open SQL File";
+            //ofd.Filter = "SQL files|*.sql";
+            //ofd.InitialDirectory = @"C:\Ace";
+            //Nullable<bool> result = ofd.ShowDialog();
+
+            //if (result == true)
+            //{
+            //    ClearAllDataTables();
+            //    ClearAllDataGrids();
+            //    ClearAllFields();
+            //    ResetIndexAllDataGrids();
+            //    ReadSQLFile(ofd.FileName);
+
+            //}
         }
 
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.Title = "Open Text File";
-            sfd.Filter = "SQL files|*.sql";
-            sfd.FileName = tbWCID.Text + $".sql";
-            sfd.InitialDirectory = @"C:\Ace";
+            SaveFile();
+            
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Title = "Open Text File";
+            //sfd.Filter = "SQL files|*.sql";
+            //sfd.FileName = tbWCID.Text + $".sql";
+            //sfd.InitialDirectory = @"C:\Ace";
 
-            Nullable<bool> result = sfd.ShowDialog();
+            //Nullable<bool> result = sfd.ShowDialog();
 
-            if (result == true)
-            {
+            //if (result == true)
+            //{
 
-                WriteSQLFile(sfd.FileName);
+            //    WriteSQLFile(sfd.FileName);
 
-            }
+            //}
 
         }
         public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
@@ -328,12 +366,42 @@ namespace WeenieFab
             //dgDiD.Items.Clear();
             //dgSpell.Items.Clear();
         }
+        public void ClearAllFields()
+        {
+            string clearContents = "";
+
+            tbWCID.Text = "";
+            tbWeenieName.Text = "";
+            tbValue.Text = "";
+            tb64Value.Text = "";
+            tbFloatValue.Text = "";
+            tbStringValue.Text = "";
+            tbDiDValue.Text = "";
+            tbSpellId.Text = "";
+            tbSpellValue.Text = "";
+
+            //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
+            //rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
+
+            rtbEmoteScript.Document.Blocks.Clear();
+            rtbBodyParts.Document.Blocks.Clear();
+
+            cbWeenieType.SelectedIndex = 1;
+            cbInt32Props.SelectedIndex = 1;
+            cbInt64Props.SelectedIndex = 1;
+            cbBoolProps.SelectedIndex = 1;
+            cbFloatProps.SelectedIndex = 1;
+            cbStringProps.SelectedIndex = 1;
+            cbDiDProps.SelectedIndex = 1;
+            
+        }
         public void MiscSettings()
         {
             rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             rtbEmoteScript.Document.PageWidth = 2000;
 
         }
+
 
     }
 }

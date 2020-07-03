@@ -55,7 +55,7 @@ namespace WeenieFab
             }
         }
 
-        private void dgInt64_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgInt64_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgInt64.SelectedIndex;
             DataGridRow currentRowIndex = dgInt64.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
@@ -72,7 +72,7 @@ namespace WeenieFab
                 tb64Value.Text = dr[1].ToString();
             }
         }
-        private void dgBool_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgBool_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgBool.SelectedIndex;
             DataGridRow currentRowIndex = dgBool.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
@@ -93,7 +93,7 @@ namespace WeenieFab
                     rbFalse.IsChecked = true;
             }
         }
-        private void dgFloat_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgFloat_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgFloat.SelectedIndex;
             DataGridRow currentRowIndex = dgFloat.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
@@ -111,7 +111,7 @@ namespace WeenieFab
             }
         }
 
-        private void dgString_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgString_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgString.SelectedIndex;
             DataGridRow currentRowIndex = dgString.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
@@ -129,7 +129,7 @@ namespace WeenieFab
             }
         }
 
-        private void dgDiD_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgDiD_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgDiD.SelectedIndex;
             DataGridRow currentRowIndex = dgDiD.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
@@ -148,7 +148,7 @@ namespace WeenieFab
         }
 
 
-        private void dgSpell_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void dgSpell_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgSpell.SelectedIndex;
             DataGridRow currentRowIndex = dgSpell.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
