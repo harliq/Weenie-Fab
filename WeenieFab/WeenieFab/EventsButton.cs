@@ -45,7 +45,7 @@ namespace WeenieFab
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
-            if (SearchForDuplicateProps(integerDataTable, cbInt32Props.SelectedIndex.ToString()))
+            if (SearchForDuplicateProps(integerDataTable, cbInt32Props.SelectedIndex))
             {
                 MessageBox.Show("Property Already Exits");
             }

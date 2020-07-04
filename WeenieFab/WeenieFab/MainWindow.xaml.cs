@@ -35,8 +35,11 @@ namespace WeenieFab
         public static DataTable stringDataTable = new DataTable();
         public static DataTable didDataTable = new DataTable();
         public static DataTable spellDataTable = new DataTable();
+        public static DataTable attributeDataTable = new DataTable();
+        public static DataTable attribute2DataTable = new DataTable();
+        public static DataTable skillsDataTable = new DataTable();
 
-        
+
 
         public MainWindow()
         {
@@ -49,6 +52,20 @@ namespace WeenieFab
             MiscSettings();
         }
 
+        private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
+        {
+            bool found = false;
+
+            foreach (DataRow row in tempTable.Rows)
+            {
+                if (row[0].Equals(searchProp))
+                    found = true;
+                else
+                    found = false;
+            }
+
+            return found;
+        }
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
         {
             bool found = false;
@@ -155,6 +172,69 @@ namespace WeenieFab
             spellDataTable.Columns.Add(probabilityFloat);
             spellDataTable.Columns.Add(descriptionSpellBook);
             dgSpell.DataContext = spellDataTable;
+
+            //Attributes
+            DataColumn typeAttrib = new DataColumn("Type");
+            DataColumn initLevelAttrib = new DataColumn("InitLevel");
+            DataColumn levelCPAttrib = new DataColumn("LevelCP");
+            DataColumn cpSpentAttrib = new DataColumn("CPSpent");
+            DataColumn descriptionAttrib = new DataColumn("Description");
+            typeAttrib.DataType = Type.GetType("System.Int32");
+            initLevelAttrib.DataType = Type.GetType("System.Single");
+            levelCPAttrib.DataType = Type.GetType("System.Single");
+            cpSpentAttrib.DataType = Type.GetType("System.Single");
+            attributeDataTable.Columns.Add(typeAttrib);
+            attributeDataTable.Columns.Add(initLevelAttrib);
+            attributeDataTable.Columns.Add(levelCPAttrib);
+            attributeDataTable.Columns.Add(cpSpentAttrib);
+            attributeDataTable.Columns.Add(descriptionAttrib);
+            dgAttributes.DataContext = attributeDataTable;
+
+            //Attributes 2
+            DataColumn typeAttrib2 = new DataColumn("Type");
+            DataColumn initLevelAttrib2 = new DataColumn("InitLevel");
+            DataColumn levelCPAttrib2 = new DataColumn("LevelCP");
+            DataColumn cpSpentAttrib2 = new DataColumn("CPSpent");
+            DataColumn currentLevelAttrib2 = new DataColumn("CurrentLevel");
+            DataColumn descriptionAttrib2 = new DataColumn("Description");
+            typeAttrib2.DataType = Type.GetType("System.Int32");
+            initLevelAttrib2.DataType = Type.GetType("System.Single");
+            levelCPAttrib2.DataType = Type.GetType("System.Single");
+            cpSpentAttrib2.DataType = Type.GetType("System.Single");
+            currentLevelAttrib2.DataType = Type.GetType("System.Single");
+            attribute2DataTable.Columns.Add(typeAttrib2);
+            attribute2DataTable.Columns.Add(initLevelAttrib2);
+            attribute2DataTable.Columns.Add(levelCPAttrib2);
+            attribute2DataTable.Columns.Add(cpSpentAttrib2);
+            attribute2DataTable.Columns.Add(currentLevelAttrib2);
+            attribute2DataTable.Columns.Add(descriptionAttrib2);
+            dgAttributesTwo.DataContext = attributeDataTable;
+
+            //Skills
+            DataColumn typeSkills = new DataColumn("Type");
+            DataColumn levelPPSkills = new DataColumn("LevelPP");
+            DataColumn sacSkills = new DataColumn("SAC");
+            DataColumn ppSkills = new DataColumn("PP");
+            DataColumn initLevelSkills = new DataColumn("InitLevel");
+            DataColumn resistLCSkills = new DataColumn("ResistLC");
+            DataColumn lastUsedSkills = new DataColumn("LastUsed");
+            DataColumn descriptionSkills = new DataColumn("Description");
+            typeSkills.DataType = Type.GetType("System.Int32");
+            levelPPSkills.DataType = Type.GetType("System.Single");
+            sacSkills.DataType = Type.GetType("System.Single");
+            ppSkills.DataType = Type.GetType("System.Single");
+            initLevelSkills.DataType = Type.GetType("System.Single");
+            resistLCSkills.DataType = Type.GetType("System.Single");
+            lastUsedSkills.DataType = Type.GetType("System.Single");
+            skillsDataTable.Columns.Add(typeSkills);
+            skillsDataTable.Columns.Add(levelPPSkills);
+            skillsDataTable.Columns.Add(sacSkills);
+            skillsDataTable.Columns.Add(ppSkills);
+            skillsDataTable.Columns.Add(initLevelSkills);
+            skillsDataTable.Columns.Add(resistLCSkills);
+            skillsDataTable.Columns.Add(lastUsedSkills);
+            skillsDataTable.Columns.Add(descriptionSkills);
+            dgSkills.DataContext = skillsDataTable;
 
         }
 
@@ -270,6 +350,7 @@ namespace WeenieFab
             stringDataTable.Clear();
             didDataTable.Clear();
             spellDataTable.Clear();
+            attributeDataTable.Clear();
         }
         public void ClearAllDataGrids()
         {
@@ -294,7 +375,7 @@ namespace WeenieFab
         }
         public void ClearAllFields()
         {
-            string clearContents = "";
+            // string clearContents = "";
 
             tbWCID.Text = "";
             tbWeenieName.Text = "";

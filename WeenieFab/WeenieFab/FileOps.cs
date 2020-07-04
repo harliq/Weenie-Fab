@@ -23,7 +23,7 @@ namespace WeenieFab
             if (result == true)
             {
                 ClearAllDataTables();
-                ClearAllDataGrids();
+                //ClearAllDataGrids();
                 ClearAllFields();
                 ResetIndexAllDataGrids();
                 ReadSQLFile(ofd.FileName);
@@ -70,12 +70,14 @@ namespace WeenieFab
             string line;
 
             // Regex Patterns
-            var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*$";
-            var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*$";
-            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*$";
-            var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ ]*)'\)\s*\/\*\s*(.*)\s*\*\/.*$";
-            var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*$";
-
+            var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*.*$";
+            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$";
+            var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ ]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
+            var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
+            var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
+            var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
 
             using (StreamReader sr = new StreamReader(filepath))
             {
@@ -145,14 +147,26 @@ namespace WeenieFab
                     else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
                     {
                         attributeBlob = ReadBlob(sr);
+
+                        attributeDataTable = DecodeSql.DecodeAttribute(attributeBlob, attribPattern);
+                        attributeDataTable.AcceptChanges();
+                        dgAttributes.DataContext = attributeDataTable;
+                        
                     }
                     else if (line.Contains("weenie_properties_attribute_2nd`"))
                     {
                         attributeTwoBlob = ReadBlob(sr);
+                        attribute2DataTable = DecodeSql.DecodeAttributeTwo(attributeTwoBlob, attrib2Pattern);
+                        attribute2DataTable.AcceptChanges();
+                        dgAttributesTwo.DataContext = attribute2DataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_skill`"))
                     {
                         skillsBlob = ReadBlob(sr);
+
+                        skillsDataTable = DecodeSql.DecodeSkills(skillsBlob, skillsPattern);
+                        skillsDataTable.AcceptChanges();
+                        dgSkills.DataContext = skillsDataTable;
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_body_part`"))
                     {
