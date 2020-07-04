@@ -151,7 +151,7 @@ namespace WeenieFab
                         attributeDataTable = DecodeSql.DecodeAttribute(attributeBlob, attribPattern);
                         attributeDataTable.AcceptChanges();
                         dgAttributes.DataContext = attributeDataTable;
-                        
+                        updateAttribs();
                     }
                     else if (line.Contains("weenie_properties_attribute_2nd`"))
                     {
@@ -159,6 +159,7 @@ namespace WeenieFab
                         attribute2DataTable = DecodeSql.DecodeAttributeTwo(attributeTwoBlob, attrib2Pattern);
                         attribute2DataTable.AcceptChanges();
                         dgAttributesTwo.DataContext = attribute2DataTable;
+                        updateAttribs2();
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_skill`"))
                     {
@@ -167,6 +168,7 @@ namespace WeenieFab
                         skillsDataTable = DecodeSql.DecodeSkills(skillsBlob, skillsPattern);
                         skillsDataTable.AcceptChanges();
                         dgSkills.DataContext = skillsDataTable;
+                        // dgSkills.Items.Refresh();
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_body_part`"))
                     {

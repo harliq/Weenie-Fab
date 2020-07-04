@@ -208,7 +208,7 @@ namespace WeenieFab
             attribute2DataTable.Columns.Add(cpSpentAttrib2);
             attribute2DataTable.Columns.Add(currentLevelAttrib2);
             attribute2DataTable.Columns.Add(descriptionAttrib2);
-            dgAttributesTwo.DataContext = attributeDataTable;
+            dgAttributesTwo.DataContext = attribute2DataTable;
 
             //Skills
             DataColumn typeSkills = new DataColumn("Type");
@@ -288,6 +288,13 @@ namespace WeenieFab
             cbDiDProps.ItemsSource = DiDList;
             cbDiDProps.SelectedIndex = 1;
 
+            List<string> SkillList = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\SkillTypes.txt"))
+            {
+                SkillList.Add(line);
+            }
+            cbSkillType.ItemsSource = SkillList;
+            cbSkillType.SelectedIndex = 6;
         }
 
         public void CreateWeenieTypeList()
@@ -351,6 +358,8 @@ namespace WeenieFab
             didDataTable.Clear();
             spellDataTable.Clear();
             attributeDataTable.Clear();
+            attribute2DataTable.Clear();
+            skillsDataTable.Clear();
         }
         public void ClearAllDataGrids()
         {
@@ -386,6 +395,7 @@ namespace WeenieFab
             tbDiDValue.Text = "";
             tbSpellId.Text = "";
             tbSpellValue.Text = "";
+            tbSkillLevel.Text = "";
 
             //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
             //rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
@@ -400,7 +410,11 @@ namespace WeenieFab
             cbFloatProps.SelectedIndex = 1;
             cbStringProps.SelectedIndex = 1;
             cbDiDProps.SelectedIndex = 1;
-            
+            cbSkillType.SelectedIndex = 1;
+
+            ClearAttributeFields();
+            ClearAttribute2Fields();
+
         }
         public void MiscSettings()
         {

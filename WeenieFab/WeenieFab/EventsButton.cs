@@ -59,8 +59,9 @@ namespace WeenieFab
 
                 // integerDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
                 integerDataTable.Rows.Add(dr);
-                integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
-                dgInt32.ItemsSource = integerDataTable.DefaultView;
+                //integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
+                //dgInt32.ItemsSource = integerDataTable.DefaultView;
+                integerDataTable.DefaultView.Sort = "Property ASC";
                 dgInt32.Items.Refresh();
             }
         }           
@@ -127,8 +128,9 @@ namespace WeenieFab
                 // integer64DataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
 
                 integer64DataTable.Rows.Add(dr);
-                integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
-                dgInt64.ItemsSource = integer64DataTable.DefaultView;
+                //integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
+                //dgInt64.ItemsSource = integer64DataTable.DefaultView;
+                integer64DataTable.DefaultView.Sort = "Property ASC";
                 dgInt64.Items.Refresh();
                 
             }
@@ -195,8 +197,9 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 boolDataTable.Rows.Add(dr);
-                boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
-                dgBool.ItemsSource = boolDataTable.DefaultView;
+                //boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
+                //dgBool.ItemsSource = boolDataTable.DefaultView;
+                boolDataTable.DefaultView.Sort = "Property ASC";
                 dgBool.Items.Refresh();
 
             }
@@ -263,8 +266,9 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 floatDataTable.Rows.Add(dr);
-                floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
-                dgFloat.ItemsSource = floatDataTable.DefaultView;
+                //floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
+                //dgFloat.ItemsSource = floatDataTable.DefaultView;
+                floatDataTable.DefaultView.Sort = "Property ASC";
                 dgFloat.Items.Refresh();
             }
         }
@@ -328,8 +332,9 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 stringDataTable.Rows.Add(dr);
-                stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
-                dgString.ItemsSource = stringDataTable.DefaultView;
+                //stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
+                //dgString.ItemsSource = stringDataTable.DefaultView;
+                stringDataTable.DefaultView.Sort = "Property ASC";
                 dgString.Items.Refresh();
             }
         }
@@ -395,8 +400,9 @@ namespace WeenieFab
                 // boolDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
 
                 didDataTable.Rows.Add(dr);
-                didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
-                dgDiD.ItemsSource = didDataTable.DefaultView;
+                //didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
+                //dgDiD.ItemsSource = didDataTable.DefaultView;
+                didDataTable.DefaultView.Sort = "Property ASC";
                 dgDiD.Items.Refresh();
 
                 
@@ -462,8 +468,9 @@ namespace WeenieFab
                 dr[2] = "Test"; //description[1];
 
                 spellDataTable.Rows.Add(dr);
-                spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                dgSpell.ItemsSource = spellDataTable.DefaultView;
+                //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                //dgSpell.ItemsSource = spellDataTable.DefaultView;
+                spellDataTable.DefaultView.Sort = "Property ASC";
                 dgSpell.Items.Refresh();
             }
         }
@@ -509,6 +516,347 @@ namespace WeenieFab
             }
         }
 
+        // Attributes and Skills Tab
+        // Attributes
+        private void btnAttribDefaults_Click(object sender, RoutedEventArgs e)
+        {
+            attributeDataTable.Clear();
+            
+            
+            for (int i = 1; i < 7; i++)
+            {
+                DataRow attribRow = attributeDataTable.NewRow();
+
+                if (i == 1)
+                {
+                    attribRow[0] = 1;
+                    attribRow[4] = "Strength";
+                }
+                else if (i == 2)
+                {
+                    attribRow[0] = 2;
+                    attribRow[4] = "Endurance";
+                }
+                else if (i == 3)
+                {
+                    attribRow[0] = 3;
+                    attribRow[4] = "Quickness";
+                }
+                else if (i == 4)
+                {
+                    attribRow[0] = 4;
+                    attribRow[4] = "Coordination";
+                }
+                else if (i == 5)
+                {
+                    attribRow[0] = 5;
+                    attribRow[4] = "Focus";
+                }
+                else if (i == 6)
+                {
+                    attribRow[0] = 6;
+                    attribRow[4] = "Self";
+                }
+
+                attribRow[1] = 200;
+                attribRow[2] = 0;
+                attribRow[3] = 0;
+
+                attributeDataTable.Rows.Add(attribRow);
+                
+            }
+
+            dgAttributes.Items.Refresh();
+            updateAttribs();
+
+        }
+
+        private void btnAttribUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            attributeDataTable.Clear();
+
+            for (int i = 1; i < 7; i++)
+            {
+                DataRow attribRow = attributeDataTable.NewRow();
+
+                if (i == 1)
+                {
+                    attribRow[0] = 1;
+                    attribRow[1] = ConvertToInteger(tbAttribStrength.Text);
+                    attribRow[4] = "Strength";                  
+                }
+                else if (i == 2)
+                {
+                    attribRow[0] = 2;
+                    attribRow[1] = ConvertToInteger(tbAttribEndurance.Text);
+                    attribRow[4] = "Endurance";
+                }
+                else if (i == 3)
+                {
+                    attribRow[0] = 3;
+                    attribRow[1] = ConvertToInteger(tbAttribQuickness.Text);
+                    attribRow[4] = "Quickness";
+                }
+                else if (i == 4)
+                {
+                    attribRow[0] = 4;
+                    attribRow[1] = ConvertToInteger(tbAttribCoordination.Text);
+                    attribRow[4] = "Coordination";
+                }
+                else if (i == 5)
+                {
+                    attribRow[0] = 5;
+                    attribRow[1] = ConvertToInteger(tbAttribFocus.Text);
+                    attribRow[4] = "Focus";
+                }
+                else if (i == 6)
+                {
+                    attribRow[0] = 6;
+                    attribRow[1] = ConvertToInteger(tbAttribSelf.Text);
+                    attribRow[4] = "Self";
+                }
+               
+                attribRow[2] = 0;
+                attribRow[3] = 0;
+
+                attributeDataTable.Rows.Add(attribRow);
+            }
+        }
+
+        private void btnAttribClear_Click(object sender, RoutedEventArgs e)
+        {
+            attributeDataTable.Clear();
+            ClearAttributeFields();
+
+            //tbAttribStrength.Text = "";
+            //tbAttribEndurance.Text = "";
+            //tbAttribQuickness.Text = "";
+            //tbAttribCoordination.Text = "";
+            //tbAttribFocus.Text = "";
+            //tbAttribSelf.Text = "";
+        }
+
+        // Attributes 2 - Health, Stamina, Mana
+        private void btnAttrib2Defaults_Click(object sender, RoutedEventArgs e)
+        {
+            attribute2DataTable.Clear();
+
+            for (int i = 1; i < 4; i++)
+            {
+                DataRow attrib2Row = attribute2DataTable.NewRow();
+
+                if (i == 1)
+                {
+                    attrib2Row[0] = 1;
+                    attrib2Row[1] = 200;
+                    attrib2Row[4] = 300;
+                    attrib2Row[5] = "MaxHealth";
+                }
+                else if (i == 2)
+                {
+                    attrib2Row[0] = 3;
+                    attrib2Row[1] = 200;
+                    attrib2Row[4] = 400;
+                    attrib2Row[5] = "MaxStamina";
+                }
+                else if (i == 3)
+                {
+                    attrib2Row[0] = 5;
+                    attrib2Row[1] = 200;
+                    attrib2Row[4] = 400;
+                    attrib2Row[5] = "MaxMana";
+                }
+
+                attrib2Row[2] = 0;
+                attrib2Row[3] = 0;
+
+                attribute2DataTable.Rows.Add(attrib2Row);
+            }
+            dgAttributesTwo.Items.Refresh();
+            updateAttribs2();
+
+        }
+
+        private void btnAttrib2Update_Click(object sender, RoutedEventArgs e)
+        {
+            attribute2DataTable.Clear();
+
+            for (int i = 1; i < 4; i++)
+            {
+                DataRow attrib2Row = attribute2DataTable.NewRow();
+
+                if (i == 1)
+                {
+                    attrib2Row[0] = 1;
+                    attrib2Row[1] = ConvertToInteger(tbHealthInitLevel.Text);
+                    attrib2Row[4] = ConvertToInteger(tbHealthCurrentLevel.Text);
+                    attrib2Row[5] = "MaxHealth";
+                }
+                else if (i == 2)
+                {
+                    attrib2Row[0] = 3;
+                    attrib2Row[1] = ConvertToInteger(tbStaminaInitLevel.Text);
+                    attrib2Row[4] = ConvertToInteger(tbStaminaCurrentLevel.Text);
+                    attrib2Row[5] = "MaxStamina";
+                }
+                else if (i == 3)
+                {
+                    attrib2Row[0] = 5;
+                    attrib2Row[1] = ConvertToInteger(tbManaInitLevel.Text);
+                    attrib2Row[4] = ConvertToInteger(tbManaCurrentLevel.Text);
+                    attrib2Row[5] = "MaxMana";
+                }
+
+                attrib2Row[2] = 0;
+                attrib2Row[3] = 0;
+
+                attribute2DataTable.Rows.Add(attrib2Row);
+            }
+        }
+
+        private void btnAttrib2Clear_Click(object sender, RoutedEventArgs e)
+        {
+
+            attribute2DataTable.Clear();
+            ClearAttribute2Fields();
+
+            //tbHealthCurrentLevel.Text = "";
+            //tbHealthInitLevel.Text = "";
+            //tbStaminaCurrentLevel.Text = "";
+            //tbStaminaInitLevel.Text = "";
+            //tbManaCurrentLevel.Text = "";
+            //tbManaInitLevel.Text = "";
+
+        }
+        // Skills
+        private void btnSkillsAdd_Click(object sender, RoutedEventArgs e)
+        {
+            // Search for duplicate skill
+            if (SearchForDuplicateProps(skillsDataTable, cbSkillType.SelectedIndex))
+            {
+                MessageBox.Show("Skill Already Exits");
+            }
+            else
+            {
+                // Pad 20 Left Skill, Pad 12 Right Spec/Train
+                string[] tdescription = cbSkillType.Text.Split(" ");
+                string trainSpec ="";
+                if (rdbSpec.IsChecked == true)
+                    trainSpec = "Specialized";
+                else
+                    trainSpec = "Trained";
+                string description = tdescription[1].PadRight(20, ' ') + trainSpec.PadLeft(12, ' ');
+
+                DataRow dr = skillsDataTable.NewRow();
+                dr[0] = ConvertToInteger(cbSkillType.SelectedIndex.ToString());
+                dr[1] = 0;
+                if (rdbSpec.IsChecked == true)
+                    dr[2] = 3;
+                else
+                    dr[2] = 2;
+                dr[3] = 0;
+                dr[4] = ConvertToInteger(tbSkillLevel.Text);
+                dr[5] = 0;
+                dr[6] = 0;
+                dr[7] = description;
+
+                skillsDataTable.Rows.Add(dr);
+                // skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
+                skillsDataTable.DefaultView.Sort = "Type ASC";
+                // dgSkills.ItemsSource = skillsDataTable.DefaultView;
+                dgSkills.Items.Refresh();
+            }
+        }
+
+        private void btnSkillsUpdate_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgSkills.SelectedIndex;
+            if (index < 0)
+            {
+                MessageBox.Show("Please Select a row");
+                return;
+            }
+
+            try
+            {
+                DataGridRow currentRowIndex = dgSkills.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = skillsDataTable.Rows[currentRowIndex.GetIndex()];
+
+                string[] tdescription = cbSkillType.Text.Split(" ");
+                string trainSpec = "";
+                if (rdbSpec.IsChecked == true)
+                    trainSpec = "Specialized";
+                else
+                    trainSpec = "Trained";
+                string description = tdescription[1].PadRight(20, ' ') + trainSpec.PadLeft(12, ' ');
+
+                dr[0] = ConvertToInteger(cbSkillType.SelectedIndex.ToString());
+                dr[1] = 0;
+                if (rdbSpec.IsChecked == true)
+                    dr[2] = 3;
+                else
+                    dr[2] = 2;
+                dr[3] = 0;
+                dr[4] = ConvertToInteger(tbSkillLevel.Text);
+                dr[5] = 0;
+                dr[6] = 0;
+                dr[7] = description;
+
+                skillsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+
+
+            //skillsDataTable.Rows.Add(dr);
+            //skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
+            //dgSkills.ItemsSource = skillsDataTable.DefaultView;
+            //dgSkills.Items.Refresh();
+        }
+
+        private void btnSkillsRemove_Click(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgSkills.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgSkills.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = skillsDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                skillsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+
+
+        }
+
+
+        // Clear Attrib Fields
+        public void ClearAttributeFields()
+        {
+            tbAttribStrength.Text = "";
+            tbAttribEndurance.Text = "";
+            tbAttribQuickness.Text = "";
+            tbAttribCoordination.Text = "";
+            tbAttribFocus.Text = "";
+            tbAttribSelf.Text = "";
+        }
+
+        public void ClearAttribute2Fields()
+        {
+            tbHealthCurrentLevel.Text = "";
+            tbHealthInitLevel.Text = "";
+            tbStaminaCurrentLevel.Text = "";
+            tbStaminaInitLevel.Text = "";
+            tbManaCurrentLevel.Text = "";
+            tbManaInitLevel.Text = "";
+        }
+
 
         // Converter
         private DataRow ConvertToIntRow(string property, string propertyValue, string description)
@@ -533,7 +881,6 @@ namespace WeenieFab
 
             return tdr;
         }
-
 
     }
 }
