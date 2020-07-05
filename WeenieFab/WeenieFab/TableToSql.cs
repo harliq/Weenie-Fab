@@ -9,7 +9,7 @@ namespace WeenieFab
     {
         public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
-            dt.Clear();
+            // dt.Clear();
             string sqltext = "";
             
             int counter = 1;
@@ -20,17 +20,18 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (counter == 1)
-                        sqltext += $" ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */\n";
                     else
                     {
-                        if (counter == rowcount - 1)
-                            sqltext += $"     , ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */;\n";
-                        else if (counter == rowcount)
-                            sqltext += "";
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */;\n";
+                        //else if (counter == rowcount)
+                        //    sqltext += "";
                         else
-                            sqltext += $"     , ({wcid}, {row[0],3}, {row[1],10}) /* {row[2]} - */\n";
-
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */\n";
                     }
                     counter++;
                 }
@@ -45,7 +46,7 @@ namespace WeenieFab
 
         public static string ConvertStringTable(DataTable dt, string wcid, string header)
         {
-            dt.Clear();
+            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -57,17 +58,18 @@ namespace WeenieFab
                 foreach (DataRow row in dt.Rows)
                 {
                     string sValue = "'" + row[1] + "'";
-                    if (counter == 1)
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],3}, {sValue,1}) /* {row[2]} */;\n";
+                    else if (counter == 1)
                         sqltext += $" ({wcid},{row[0],3}, {sValue,1}) /* {row[2]} */\n";
                     else
                     {
-                        if (counter == rowcount - 1)
+                        if (counter == rowcount)
                             sqltext += $"     , ({wcid},{row[0],3}, {sValue,1}) /* {row[2]} */;\n";
-                        else if (counter == rowcount)
-                            sqltext += "";
+                        //else if (counter == rowcount -1)
+                        //    sqltext += "";
                         else
                             sqltext += $"     , ({wcid},{row[0],3}, {sValue,1}) /* {row[2]} */\n";
-
                     }
                     counter++;
                 }
@@ -80,14 +82,9 @@ namespace WeenieFab
             return sqltext;
         }
 
-
-
-
-
-
         public static string ConvertAttributeTable(DataTable dt, string wcid, string header)
         {
-            dt.Clear();
+            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -99,15 +96,15 @@ namespace WeenieFab
                 foreach (DataRow row in dt.Rows)
                 {
                     if (counter == 1)
-                        sqltext += $" ({wcid},{row[0],3},{row[1],1},{row[2],1},{row[3],1}) /* {row[4]} - */\n";
+                        sqltext += $" ({wcid},{row[0],4},{row[1],4},{row[2],2},{row[3],2}) /* {row[4]} */\n";
                     else
                     {
-                        if (counter == rowcount - 1)
-                            sqltext += $"     , ({wcid},{row[0],3},{row[1],1},{row[2],1},{row[3],1}) /* {row[4]} - */;\n";
-                        else if (counter == rowcount)
-                            sqltext += "";
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],4},{row[2],2},{row[3],2}) /* {row[4]} */;\n";
+                        //else if (counter == rowcount)
+                        //    sqltext += "";
                         else
-                            sqltext += $"     , ({wcid},{row[0],3},{row[1],1},{row[2],1},{row[3],1}) /* {row[4]} - */\n";
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],4},{row[2],2},{row[3],2}) /* {row[4]} */\n";
 
                     }
                     counter++;
