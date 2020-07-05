@@ -8,45 +8,6 @@ namespace WeenieFab
 {
     public static class DecodeSql
     {
-
-        //public static DataTable DecodeInt32(string integerblob)
-        //{
-        //    //  RegEx Pattern
-        //    // \((\d+),\s*(\d+),\s*(\d+)\).*$
-        //    // var intDataTable = DataTable;
-
-        //    DataTable tempDataTable = new DataTable();
-
-        //    DataColumn property = new DataColumn("Property");
-        //    DataColumn value = new DataColumn("Value");
-        //    DataColumn descript = new DataColumn("Description");
-
-        //    property.DataType = System.Type.GetType("System.Int32");
-        //    value.DataType = System.Type.GetType("System.Int32");
-
-        //    tempDataTable.Columns.Add(property);
-        //    tempDataTable.Columns.Add(value);
-        //    tempDataTable.Columns.Add(descript);
-
-        //    var pattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/$";
-
-        //    foreach (var blobLine in integerblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
-        //    {
-        //        var match = Regex.Match(blobLine, pattern);
-
-        //        DataRow dr = tempDataTable.NewRow();
-
-        //        dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
-        //        dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
-        //        dr[2] = match.Groups[4];
-        //        tempDataTable.Rows.Add(dr);
-                
-        //    }
-        //    // string Nothing = "";
-        //    return tempDataTable;
-        //}
-        
-
         public static DataTable DecodeThreeValuesInt(string integerblob, string pattern)
         {
             DataTable tempDataTable = new DataTable();
@@ -173,18 +134,9 @@ namespace WeenieFab
         }
         public static DataTable DecodeAttribute(string attribblob, string pattern)
         {
-            //DataTable tempDataTable = new DataTable();
+
             DataTable tempDataTable = MainWindow.attributeDataTable.Clone();
             tempDataTable.Clear();
-            //DataColumn propertyInt = new DataColumn("Property");
-            //DataColumn valueString = new DataColumn("Value");
-            //DataColumn descript = new DataColumn("Description");
-            //propertyInt.DataType = Type.GetType("System.Int32");
-            //valueString.DataType = Type.GetType("System.String");
-
-            //tempDataTable.Columns.Add(propertyInt);
-            //tempDataTable.Columns.Add(valueString);
-            //tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in attribblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {

@@ -25,7 +25,6 @@ namespace WeenieFab
         {
             InitializeComponent();
             LoadPaths();
-
         }
 
         private void LoadPaths()
@@ -38,22 +37,6 @@ namespace WeenieFab
 
         private void btnSetSqlPath_Click(object sender, RoutedEventArgs e)
         {
-
-
-            //FolderBrowserDialog fbd = new FolderBrowserDialog();
-            
-            //    System.Windows.Forms.DialogResult result = fbd.ShowDialog();
-                    
-            //    if (result == System.Windows.Forms.DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-            //    {
-            //        // Options.
-                
-            //        //string[] files = Directory.GetFiles(fbd.SelectedPath);
-
-            //        //System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
-            //    }
-            
-               // Options
 
         }
 
@@ -70,104 +53,6 @@ namespace WeenieFab
         {
             this.Close();
         }
-
-
-        //private FolderBrowserDialog folderBrowserDialog1;
-        //private OpenFileDialog openFileDialog1;
-
-        ////private RichTextBox richTextBox1;
-
-        ////private MainMenu mainMenu1;
-        //private MenuItem fileMenuItem, openMenuItem;
-        //private MenuItem folderMenuItem, closeMenuItem;
-
-        //private string openFileName, folderName;
-
-        //private bool fileOpened = false;
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //// Bring up a dialog to open a file.
-        //private void openMenuItem_Click(object sender, System.EventArgs e)
-        //{
-        //    // If a file is not opened, then set the initial directory to the
-        //    // FolderBrowserDialog.SelectedPath value.
-        //    if (!fileOpened)
-        //    {
-        //        openFileDialog1.InitialDirectory = folderBrowserDialog1.SelectedPath;
-        //        openFileDialog1.FileName = null;
-        //    }
-
-        //    // Display the openFile dialog.
-        //    bool? result = openFileDialog1.ShowDialog()
-        //    if (result = true)
-        //    {
-        //        openFileName = openFileDialog1.FileName;
-        //        try
-        //        {
-
-        //        }
-        //        catch (Exception exp)
-        //        {
-        //            System.Windows.MessageBox.Show("An error occurred while attempting to load the file. The error is:"
-        //                            + System.Environment.NewLine + exp.ToString() + System.Environment.NewLine);
-        //            fileOpened = false;
-        //        }
-
-        //    }
-
-        //    // Cancel button was pressed.
-        //    else if (result == DialogResult.Cancel)
-        //    {
-        //        return;
-        //    }
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // FolderBrowserDialog fbd = new FolderBrowserDialog();
-
-        // if (fbd.ShowDialog.)
-
-
-
-        //using (var fbd = new FolderBrowserDialog())
-        //{
-        //    DialodigResult result = fbd.ShowDialog();
-
-        //    if (result == DialogResult. && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
-        //    {
-        //        string[] files = Directory.GetFiles(fbd.SelectedPath);
-
-        //        System.Windows.Forms.MessageBox.Show("Files found: " + files.Length.ToString(), "Message");
-        //    }
-        //}
     }
-
-
 
 }

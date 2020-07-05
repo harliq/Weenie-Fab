@@ -260,8 +260,6 @@ namespace WeenieFab
             createListDataTable.Columns.Add(tryToBondCreateList);
             createListDataTable.Columns.Add(descriptionCreateList);
             dgCreateItems.DataContext = createListDataTable;
-
-
         }
 
         public void CreateComboBoxLists()
@@ -325,8 +323,7 @@ namespace WeenieFab
 
         public void CreateWeenieTypeList()
         {
-            // string filepath = "WeenieTypes.txt";
-            // string path = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
+
             string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
 
 
@@ -430,9 +427,6 @@ namespace WeenieFab
             tbCreateItemsStackSize.Text = "";
             tbCreateItemsWCID.Text = "";
 
-            //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
-            //rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
-
             rtbEmoteScript.Document.Blocks.Clear();
             rtbBodyParts.Document.Blocks.Clear();
 
@@ -455,7 +449,5 @@ namespace WeenieFab
             rtbEmoteScript.Document.PageWidth = 2000;
 
         }
-
-
     }
 }

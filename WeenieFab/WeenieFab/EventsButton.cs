@@ -46,9 +46,7 @@ namespace WeenieFab
             winOptions.Owner = this;
             winOptions.Show();
 
-
         }
-
 
         // Integer 32
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
@@ -66,10 +64,8 @@ namespace WeenieFab
                 dr[1] = ConvertToInteger(tbValue.Text);
                 dr[2] = description[1];
 
-                // integerDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
                 integerDataTable.Rows.Add(dr);
-                //integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
-                //dgInt32.ItemsSource = integerDataTable.DefaultView;
+
                 integerDataTable.DefaultView.Sort = "Property ASC";
                 dgInt32.Items.Refresh();
             }
@@ -134,11 +130,7 @@ namespace WeenieFab
                 dr[1] = ConvertToInteger(tb64Value.Text);
                 dr[2] = description[1];
 
-                // integer64DataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
-
                 integer64DataTable.Rows.Add(dr);
-                //integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
-                //dgInt64.ItemsSource = integer64DataTable.DefaultView;
                 integer64DataTable.DefaultView.Sort = "Property ASC";
                 dgInt64.Items.Refresh();
                 
@@ -199,15 +191,9 @@ namespace WeenieFab
                 DataRow dr = boolDataTable.NewRow();
                 dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
                 dr[1] = rbTrue.IsChecked;
-                //if (rbTrue.IsChecked == true)
-                //    dr[1] = "True";
-                //else
-                //    dr[1] = "False";
                 dr[2] = description[1];
 
                 boolDataTable.Rows.Add(dr);
-                //boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
-                //dgBool.ItemsSource = boolDataTable.DefaultView;
                 boolDataTable.DefaultView.Sort = "Property ASC";
                 dgBool.Items.Refresh();
 
@@ -230,10 +216,6 @@ namespace WeenieFab
 
                 dr[0] = ConvertToInteger(cbBoolProps.SelectedIndex.ToString());
                 dr[1] = rbTrue.IsChecked;
-                //if (rbTrue.IsChecked == true)
-                //    dr[1] = "True";
-                //else
-                //    dr[1] = "False";
                 dr[2] = description[1];
 
                 boolDataTable.AcceptChanges();
@@ -275,8 +257,6 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 floatDataTable.Rows.Add(dr);
-                //floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
-                //dgFloat.ItemsSource = floatDataTable.DefaultView;
                 floatDataTable.DefaultView.Sort = "Property ASC";
                 dgFloat.Items.Refresh();
             }
@@ -341,8 +321,6 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 stringDataTable.Rows.Add(dr);
-                //stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
-                //dgString.ItemsSource = stringDataTable.DefaultView;
                 stringDataTable.DefaultView.Sort = "Property ASC";
                 dgString.Items.Refresh();
             }
@@ -389,7 +367,6 @@ namespace WeenieFab
             }
         }
 
-
         // DiD
         private void btnAddDiD_Click(object sender, RoutedEventArgs e)
         {
@@ -406,15 +383,10 @@ namespace WeenieFab
                 dr[1] = ConvertToInteger(tbDiDValue.Text);
                 dr[2] = description[1];
 
-                // boolDataTable.Rows.Add(ConvertToIntRow(cbInt32Props.SelectedIndex.ToString(), tbValue.Text, description[1]));
-
                 didDataTable.Rows.Add(dr);
-                //didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
-                //dgDiD.ItemsSource = didDataTable.DefaultView;
                 didDataTable.DefaultView.Sort = "Property ASC";
                 dgDiD.Items.Refresh();
-
-                
+              
             }
         }
         private void btnUpdateDiD_Click(object sender, RoutedEventArgs e)
@@ -637,12 +609,6 @@ namespace WeenieFab
             attributeDataTable.Clear();
             ClearAttributeFields();
 
-            //tbAttribStrength.Text = "";
-            //tbAttribEndurance.Text = "";
-            //tbAttribQuickness.Text = "";
-            //tbAttribCoordination.Text = "";
-            //tbAttribFocus.Text = "";
-            //tbAttribSelf.Text = "";
         }
 
         // Attributes 2 - Health, Stamina, Mana
@@ -729,13 +695,6 @@ namespace WeenieFab
             attribute2DataTable.Clear();
             ClearAttribute2Fields();
 
-            //tbHealthCurrentLevel.Text = "";
-            //tbHealthInitLevel.Text = "";
-            //tbStaminaCurrentLevel.Text = "";
-            //tbStaminaInitLevel.Text = "";
-            //tbManaCurrentLevel.Text = "";
-            //tbManaInitLevel.Text = "";
-
         }
         // Skills
         private void btnSkillsAdd_Click(object sender, RoutedEventArgs e)
@@ -819,10 +778,6 @@ namespace WeenieFab
             }
 
 
-            //skillsDataTable.Rows.Add(dr);
-            //skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
-            //dgSkills.ItemsSource = skillsDataTable.DefaultView;
-            //dgSkills.Items.Refresh();
         }
 
         private void btnSkillsRemove_Click(object sender, RoutedEventArgs e)
@@ -847,14 +802,7 @@ namespace WeenieFab
         // Create Items
         private void btnAddCreateItem_Click(object sender, RoutedEventArgs e)
         {
-            // search for duplicate property
-            //if (SearchForDuplicateProps(createListDataTable, tbSpellId.ToString()))
-            //{
-            //    MessageBox.Show("Property Already Exits");
-            //}
-            //else
-            //{
-                // string[] description = cbBoolProps.Text.Split(" ");
+
 
             DataRow dr = createListDataTable.NewRow();
             dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
@@ -866,22 +814,12 @@ namespace WeenieFab
             dr[6] = tbCreateItemsDescription.Text;
 
             createListDataTable.Rows.Add(dr);
-            //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-            // dgCreateItems.ItemsSource = createListDataTable.DefaultView;
-            //spellDataTable.DefaultView.Sort = "Property ASC";
-            
-            // dgCreateItems.Items.Refresh();
-            
-            //}
+
         }
         private void btnUpdateCreateItem_Click(object sender, RoutedEventArgs e)
         {
             var index = dgCreateItems.SelectedIndex;
-            //if (index < 0)
-            //{
-            //    MessageBox.Show("Please Select a row");
-            //    return;
-            //}
+
             try
             {
                 DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;

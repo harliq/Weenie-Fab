@@ -13,7 +13,6 @@ namespace WeenieFab
 {
     public partial class MainWindow
     {
-
         public void OpenFile() 
         {
             OpenFileDialog ofd = new OpenFileDialog();
@@ -46,11 +45,8 @@ namespace WeenieFab
 
             if (result == true)
             {
-
                 WriteSQLFile(sfd.FileName);
-
             }
-
         }
         
         public void ReadSQLFile(string filepath)
@@ -70,7 +66,6 @@ namespace WeenieFab
             string spellBookBlob = "";
             string emoteBlob = "";
             string createListBlob = "";
-
             string line;
 
             // Regex Patterns
@@ -270,7 +265,6 @@ namespace WeenieFab
 
             // Emotes
 
-
         }
 
         public static string ReadBlob(StreamReader sr)
@@ -291,8 +285,6 @@ namespace WeenieFab
                     blob += tLine +"\r\n";
                 }
             }
-            // Test to see if this removes the extra blank - Nope, need to revert;
-            // string finalblob = Regex.Replace(blob, @"^\s+$[\r\n]*", string.Empty, RegexOptions.Multiline);
             return blob;
         }
 
@@ -300,7 +292,6 @@ namespace WeenieFab
         {
             string blob = "";
             string line;
-            // string tLine;
 
             while ((line = sr.ReadLine()) != null)
             {
@@ -311,7 +302,6 @@ namespace WeenieFab
                     blob += line + "\r\n";
                 }
             }
-            // Test to see if this removes the extra blank - Nope, need to revert;
             
             return blob;
         }
@@ -319,25 +309,19 @@ namespace WeenieFab
         {
             emoteBlob = "";
             createListBlob = "";
-            
-            // string blob = "";
+
             string line;
-            // string tLine;
 
             while ((line = sr.ReadLine()) != null)
             {
                 if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
                     createListBlob = ReadBlob(sr);
-                // return blob;
-
                 else
                 {
                     emoteBlob += line + "\r\n";
                 }
             }
-            // Test to see if this removes the extra blank - Nope, need to revert;
 
-            // return blob;
         }
     }
 }
