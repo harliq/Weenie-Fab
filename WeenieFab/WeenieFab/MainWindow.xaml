@@ -105,7 +105,7 @@
                         <Button x:Name="btnUpdateFloat" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateFloat_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="String" Margin="-2,-2,-2,0" VerticalAlignment="Top">
+                <TabItem Header="String" Margin="-2,-2,-2,0" VerticalAlignment="Stretch">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
