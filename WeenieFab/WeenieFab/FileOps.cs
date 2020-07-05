@@ -6,6 +6,8 @@ using System.Windows.Media.TextFormatting;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using Microsoft.Win32;
+using System.ComponentModel;
+using WeenieFab.Properties;
 
 namespace WeenieFab
 {
@@ -17,7 +19,7 @@ namespace WeenieFab
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Open Weenie File";
             ofd.Filter = "SQL files|*.sql";
-            ofd.InitialDirectory = @"C:\Ace";
+            ofd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
             Nullable<bool> result = ofd.ShowDialog();
 
             if (result == true)
@@ -27,7 +29,7 @@ namespace WeenieFab
                 ClearAllFields();
                 ResetIndexAllDataGrids();
                 ReadSQLFile(ofd.FileName);
-
+                
             }
         }
 
@@ -38,7 +40,7 @@ namespace WeenieFab
             sfd.Title = "Save Weenie File";
             sfd.Filter = "SQL files|*.sql";
             sfd.FileName = tbWCID.Text + $".sql";
-            sfd.InitialDirectory = @"C:\Ace";
+            sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
 
             Nullable<bool> result = sfd.ShowDialog();
 

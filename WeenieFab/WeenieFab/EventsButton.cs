@@ -40,6 +40,15 @@ namespace WeenieFab
         {
             SaveFile();
         }
+        private void btnOptions_Click(object sender, RoutedEventArgs e)
+        {
+            Options winOptions = new Options();
+            winOptions.Owner = this;
+            winOptions.Show();
+
+
+        }
+
 
         // Integer 32
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)

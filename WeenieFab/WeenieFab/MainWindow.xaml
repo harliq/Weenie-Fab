@@ -289,7 +289,7 @@
             <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click"/>
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click"/>
-            <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click"/>
         </ToolBar>
 
 
