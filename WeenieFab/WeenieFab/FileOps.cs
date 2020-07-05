@@ -286,7 +286,9 @@ namespace WeenieFab
 
 
             // Create Items
-            header = $"INSERT INTO `weenie_properties_d_i_d` (`object_Id`, `type`, `value`)";
+            header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
+            body += TableToSql.ConvertCreateItemsTable(createListDataTable, tbWCID.Text, header);
+
 
             File.WriteAllText(filename, body);
         }
