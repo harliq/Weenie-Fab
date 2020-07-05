@@ -49,6 +49,7 @@ namespace WeenieFab
             CreateDataTable();
             ClearAllDataTables();
             ClearAllDataGrids();
+            ClearAllFields();
             MiscSettings();
         }
 
