@@ -1,4 +1,6 @@
 ### WeenieFab is a editor for AC emu weenie files.
+Built on .Net Core and WPF.
+
 Download the beta on the releases page.
 [WeenieFab Releases](https://github.com/harliq/Weenie-Fab/releases/)
 
