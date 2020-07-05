@@ -38,7 +38,7 @@ namespace WeenieFab
         public static DataTable attributeDataTable = new DataTable();
         public static DataTable attribute2DataTable = new DataTable();
         public static DataTable skillsDataTable = new DataTable();
-
+        public static DataTable createListDataTable = new DataTable();
 
 
         public MainWindow()
@@ -210,7 +210,7 @@ namespace WeenieFab
             attribute2DataTable.Columns.Add(descriptionAttrib2);
             dgAttributesTwo.DataContext = attribute2DataTable;
 
-            //Skills
+            //Skills - TODO: need to fix some of the types
             DataColumn typeSkills = new DataColumn("Type");
             DataColumn levelPPSkills = new DataColumn("LevelPP");
             DataColumn sacSkills = new DataColumn("SAC");
@@ -235,6 +235,32 @@ namespace WeenieFab
             skillsDataTable.Columns.Add(lastUsedSkills);
             skillsDataTable.Columns.Add(descriptionSkills);
             dgSkills.DataContext = skillsDataTable;
+
+            // Create List
+            DataColumn destTypeCreateList = new DataColumn("DestinationType");
+            DataColumn wcidCreateList = new DataColumn("WCID");
+            DataColumn stackSizeCreateList = new DataColumn("StackSize");
+            DataColumn paletteCreateList = new DataColumn("Palette");
+            DataColumn shadeCreateList = new DataColumn("Shade");
+            DataColumn tryToBondCreateList = new DataColumn("DropRate");
+            DataColumn descriptionCreateList = new DataColumn("Description");
+
+            destTypeCreateList.DataType = Type.GetType("System.Int32");
+            wcidCreateList.DataType = Type.GetType("System.Int32");
+            stackSizeCreateList.DataType = Type.GetType("System.Int32");
+            paletteCreateList.DataType = Type.GetType("System.Int32");
+            shadeCreateList.DataType = Type.GetType("System.Int32");
+            tryToBondCreateList.DataType = Type.GetType("System.Single");
+
+            createListDataTable.Columns.Add(destTypeCreateList);
+            createListDataTable.Columns.Add(wcidCreateList);
+            createListDataTable.Columns.Add(stackSizeCreateList);
+            createListDataTable.Columns.Add(paletteCreateList);
+            createListDataTable.Columns.Add(shadeCreateList);
+            createListDataTable.Columns.Add(tryToBondCreateList);
+            createListDataTable.Columns.Add(descriptionCreateList);
+
+
 
         }
 

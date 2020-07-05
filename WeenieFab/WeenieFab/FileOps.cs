@@ -69,6 +69,8 @@ namespace WeenieFab
             string bodyPartBlob = "";
             string spellBookBlob = "";
             string emoteBlob = "";
+            string createListBlob = "";
+
             string line;
 
             // Regex Patterns
@@ -80,6 +82,7 @@ namespace WeenieFab
             var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
+            var createlistPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
 
             using (StreamReader sr = new StreamReader(filepath))
             {
@@ -204,6 +207,16 @@ namespace WeenieFab
                         rtbEmoteScript.Document.Blocks.Clear();
                         //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emoteBlob)));
                         rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+                    }
+                    else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                    {
+                        createListBlob = ReadBlob(sr);
+
+                        spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
+                        spellDataTable.AcceptChanges();
+                        spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                        dgSpell.DataContext = spellDataTable;
+
                     }
                 }
                 sr.Close();
