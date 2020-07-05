@@ -844,6 +844,81 @@ namespace WeenieFab
 
         }
 
+        // Create Items
+        private void btnAddCreateItem_Click(object sender, RoutedEventArgs e)
+        {
+            // search for duplicate property
+            //if (SearchForDuplicateProps(createListDataTable, tbSpellId.ToString()))
+            //{
+            //    MessageBox.Show("Property Already Exits");
+            //}
+            //else
+            //{
+                // string[] description = cbBoolProps.Text.Split(" ");
+
+            DataRow dr = createListDataTable.NewRow();
+            dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
+            dr[1] = ConvertToInteger(tbCreateItemsWCID.Text);
+            dr[2] = ConvertToInteger(tbCreateItemsStackSize.Text);
+            dr[3] = ConvertToInteger(tbCreateItemsPalette.Text);
+            dr[4] = ConvertToFloat(tbCreateItemsDropRate.Text);
+            dr[5] = false;
+            dr[6] = tbCreateItemsDescription.Text;
+
+            createListDataTable.Rows.Add(dr);
+            //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+            // dgCreateItems.ItemsSource = createListDataTable.DefaultView;
+            //spellDataTable.DefaultView.Sort = "Property ASC";
+            
+            // dgCreateItems.Items.Refresh();
+            
+            //}
+        }
+        private void btnUpdateCreateItem_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgCreateItems.SelectedIndex;
+            //if (index < 0)
+            //{
+            //    MessageBox.Show("Please Select a row");
+            //    return;
+            //}
+            try
+            {
+                DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = createListDataTable.Rows[currentRowIndex.GetIndex()];
+
+                dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
+                dr[1] = ConvertToInteger(tbCreateItemsWCID.Text);
+                dr[2] = ConvertToInteger(tbCreateItemsStackSize.Text);
+                dr[3] = ConvertToInteger(tbCreateItemsPalette.Text);
+                dr[4] = ConvertToFloat(tbCreateItemsDropRate.Text);
+                dr[5] = false;
+                dr[6] = tbCreateItemsDescription.Text;
+
+                createListDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+        }
+        private void btnRemoveCreateItem_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgCreateItems.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = createListDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                createListDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+        }
+
+
 
         // Clear Attrib Fields
         public void ClearAttributeFields()

@@ -225,13 +225,13 @@ namespace WeenieFab
             }
             return tempDataTable;
         }
-        public static DataTable DecodeSkills(string attribblob, string pattern)
+        public static DataTable DecodeSkills(string blob, string pattern)
         {
 
             DataTable tempDataTable = MainWindow.skillsDataTable.Clone();
             tempDataTable.Clear();
 
-            foreach (var blobLine in attribblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
                 var match = Regex.Match(blobLine, pattern);
                 string description = match.Groups[9].ToString();
@@ -247,6 +247,39 @@ namespace WeenieFab
                 dr[6] = MainWindow.ConvertToInteger(match.Groups[8].ToString());
                 dr[7] = description.Trim();
                 
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+        public static DataTable DecodeCreateList(string blob, string pattern)
+        {
+
+            DataTable tempDataTable = MainWindow.createListDataTable.Clone();
+            tempDataTable.Clear();
+
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+
+                bool tf;
+
+                if (match.Groups[7].ToString() == "TRUE" || match.Groups[3].ToString() == "True" || match.Groups[3].ToString() == "true")
+                    tf = true;
+                else
+                    tf = false;
+
+                string description = match.Groups[8].ToString();
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[2] = MainWindow.ConvertToInteger(match.Groups[4].ToString());
+                dr[3] = MainWindow.ConvertToInteger(match.Groups[5].ToString());
+                dr[4] = MainWindow.ConvertToFloat(match.Groups[6].ToString());
+                dr[5] = tf;
+                dr[6] = description.Trim();
+
                 tempDataTable.Rows.Add(dr);
             }
             return tempDataTable;

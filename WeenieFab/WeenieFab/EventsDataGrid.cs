@@ -157,6 +157,33 @@ namespace WeenieFab
                 tbSkillLevel.Text = dr[4].ToString();
             }
         }
+        private void dgCreateList_RowSelected(object sender, RoutedEventArgs e)
+        {
+            var index = dgCreateItems.SelectedIndex;
+            DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > createListDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = createListDataTable.Rows[currentRowIndex.GetIndex()];
+
+                tbCreateItemsDestType.Text = dr[0].ToString();
+                tbCreateItemsWCID.Text = dr[1].ToString();
+                tbCreateItemsStackSize.Text = dr[2].ToString();
+                tbCreateItemsPalette.Text = dr[3].ToString();
+                tbCreateItemsDropRate.Text = dr[4].ToString();
+                tbCreateItemsDescription.Text = dr[6].ToString();
+
+                //cbSkillType.SelectedIndex = ConvertToInteger(dr[0].ToString());
+                //if (dr[2].ToString() == "3")
+                //    rdbSpec.IsChecked = true;
+                //else
+                //    rdbTrained.IsChecked = true;
+                //tbSkillLevel.Text = dr[4].ToString();
+            }
+        }
 
 
         // Update Attribs Events      

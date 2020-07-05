@@ -241,16 +241,16 @@ namespace WeenieFab
             DataColumn wcidCreateList = new DataColumn("WCID");
             DataColumn stackSizeCreateList = new DataColumn("StackSize");
             DataColumn paletteCreateList = new DataColumn("Palette");
-            DataColumn shadeCreateList = new DataColumn("Shade");
-            DataColumn tryToBondCreateList = new DataColumn("DropRate");
+            DataColumn shadeCreateList = new DataColumn("DropPercent");
+            DataColumn tryToBondCreateList = new DataColumn("TryToBond");
             DataColumn descriptionCreateList = new DataColumn("Description");
 
             destTypeCreateList.DataType = Type.GetType("System.Int32");
             wcidCreateList.DataType = Type.GetType("System.Int32");
             stackSizeCreateList.DataType = Type.GetType("System.Int32");
             paletteCreateList.DataType = Type.GetType("System.Int32");
-            shadeCreateList.DataType = Type.GetType("System.Int32");
-            tryToBondCreateList.DataType = Type.GetType("System.Single");
+            shadeCreateList.DataType = Type.GetType("System.Single");
+            tryToBondCreateList.DataType = Type.GetType("System.Boolean");
 
             createListDataTable.Columns.Add(destTypeCreateList);
             createListDataTable.Columns.Add(wcidCreateList);
@@ -259,7 +259,7 @@ namespace WeenieFab
             createListDataTable.Columns.Add(shadeCreateList);
             createListDataTable.Columns.Add(tryToBondCreateList);
             createListDataTable.Columns.Add(descriptionCreateList);
-
+            dgCreateItems.DataContext = createListDataTable;
 
 
         }
@@ -386,6 +386,7 @@ namespace WeenieFab
             attributeDataTable.Clear();
             attribute2DataTable.Clear();
             skillsDataTable.Clear();
+            createListDataTable.Clear();
         }
         public void ClearAllDataGrids()
         {
@@ -422,6 +423,12 @@ namespace WeenieFab
             tbSpellId.Text = "";
             tbSpellValue.Text = "";
             tbSkillLevel.Text = "";
+            tbCreateItemsDescription.Text = "";
+            tbCreateItemsDestType.Text = "";
+            tbCreateItemsDropRate.Text = "";
+            tbCreateItemsPalette.Text = "";
+            tbCreateItemsStackSize.Text = "";
+            tbCreateItemsWCID.Text = "";
 
             //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));
             //rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(clearContents)));

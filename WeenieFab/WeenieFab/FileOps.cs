@@ -76,13 +76,13 @@ namespace WeenieFab
             // Regex Patterns
             var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*.*$";
-            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$";
+            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$"; // Spells also uses same pattern.
             var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ ]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
-            var createlistPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
+            var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
 
             using (StreamReader sr = new StreamReader(filepath))
             {
@@ -193,7 +193,13 @@ namespace WeenieFab
                     }
                     else if (line.Contains("INSERT INTO `weenie_properties_emote_action`"))
                     {
-                        emoteBlob = ReadEmoteBlob(sr);
+                        // emoteBlob = ReadEmoteBlob(sr);
+                        ReadEmoteCreateListBlob(sr, out emoteBlob, out createListBlob);
+                        createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
+                        createListDataTable.AcceptChanges();
+                        dgCreateItems.DataContext = createListDataTable;
+                        dgCreateItems.Items.Refresh();
+
                         string tempES = "";
                         string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -205,19 +211,18 @@ namespace WeenieFab
                         }
 
                         rtbEmoteScript.Document.Blocks.Clear();
-                        //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emoteBlob)));
                         rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
                     }
-                    else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    {
-                        createListBlob = ReadBlob(sr);
+                    //else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                    //{
+                    //    createListBlob = ReadBlob(sr);
 
-                        spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
-                        spellDataTable.AcceptChanges();
-                        spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                        dgSpell.DataContext = spellDataTable;
+                    //    createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
+                    //    createListDataTable.AcceptChanges();
+                    //    // createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                    //    dgCreateItems.DataContext = createListDataTable;
 
-                    }
+                    //}
                 }
                 sr.Close();
             }
@@ -309,6 +314,30 @@ namespace WeenieFab
             // Test to see if this removes the extra blank - Nope, need to revert;
             
             return blob;
+        }
+        public static void ReadEmoteCreateListBlob(StreamReader sr, out string emoteBlob, out string createListBlob)
+        {
+            emoteBlob = "";
+            createListBlob = "";
+            
+            // string blob = "";
+            string line;
+            // string tLine;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                    createListBlob = ReadBlob(sr);
+                // return blob;
+
+                else
+                {
+                    emoteBlob += line + "\r\n";
+                }
+            }
+            // Test to see if this removes the extra blank - Nope, need to revert;
+
+            // return blob;
         }
     }
 }

@@ -18,12 +18,11 @@
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
                 <TabItem x:Name="tiInt32" Header="Integer32">
                     <Grid Background="#FFE5E5E5">
-
                         <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
-                        <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2"/>
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
-                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" DataGridCell.Selected="dgInt32_RowSelected">
+                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,150,202,71" AutoGenerateColumns="False" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" DataGridCell.Selected="dgInt32_RowSelected" MinWidth="5">
                             <DataGrid.RowStyle>
                                 <Style TargetType="{x:Type DataGridRow}">
                                     <Style.Triggers>
@@ -39,8 +38,8 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="8*"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
-                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Click="btnInt32Remove_Click" Width="100"/>
+                        <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
+                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Click="btnInt32Remove_Click" Width="100" Grid.ColumnSpan="2"/>
                         <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
                 </TabItem>
@@ -254,20 +253,35 @@
                 </TabItem>
                 <TabItem Header="CreateItems">
                     <Grid Background="#FFE5E5E5">
-                        <ComboBox x:Name="cbCreateItems" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="btnAddCreateItems" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
-                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgInt32_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+
+                        <Label Content="Description" HorizontalAlignment="Left" Margin="222,126,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="567,15,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
+                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="80,0,0,30" AutoGenerateColumns="False" DataGridCell.Selected="dgCreateList_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="900" MinHeight="380" VerticalAlignment="Bottom" HorizontalAlignment="Left" MaxWidth="997" MaxHeight="380" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
+                                <DataGridTextColumn Header="DestinationType" IsReadOnly="True" Binding="{Binding DestinationType}" Width="0.8*"/>
+                                <DataGridTextColumn Header="WCID" IsReadOnly="True"  Binding="{Binding WCID}" Width="0.5*"/>
+                                <DataGridTextColumn Header="StackSize" IsReadOnly="True"  Binding="{Binding StackSize}" Width="0.7*"/>
+                                <DataGridTextColumn Header="Palette" IsReadOnly="True"  Binding="{Binding Palette}" Width="0.7*"/>
+                                <DataGridTextColumn Header="DropPercent" IsReadOnly="True"  Binding="{Binding DropPercent}" Width="0.8*"/>
+                                <DataGridTextColumn Header="TryToBond" IsReadOnly="True"  Binding="{Binding TryToBond}" Width="0.6*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="2.9*"/>
+
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tbCreateItemsValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                        <Button x:Name="btnRemoveItems" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnInt32Remove_Click"/>
-                        <Button x:Name="btnUpdateCreateItems" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                        <TextBox x:Name="tbCreateItemsPalette" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="222,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                        <Button x:Name="btnAddCreateItems" Content="Add " HorizontalAlignment="Left" Margin="457,54,0,0" VerticalAlignment="Top" Width="100" Click="btnAddCreateItem_Click"/>
+                        <Button x:Name="btnUpdateCreateItems" Content="Update" HorizontalAlignment="Left" Margin="457,88,0,0" VerticalAlignment="Top" Click="btnUpdateCreateItem_Click" Width="100"/>
+                        <Button x:Name="btnRemoveItems" Content="Remove" HorizontalAlignment="Left" Margin="457,119,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveCreateItem_Click"/>
+                        <TextBox x:Name="tbCreateItemsDropRate" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="222,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                        <Label Content="Palette" HorizontalAlignment="Left" Margin="222,29,0,0" VerticalAlignment="Top"/>
+                        <Label Content="WCID" HorizontalAlignment="Left" Margin="92,79,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbCreateItemsDestType" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                        <TextBox x:Name="tbCreateItemsStackSize" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                        <TextBox x:Name="tbCreateItemsWCID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+                        <Label Content="Stack Size" HorizontalAlignment="Left" Margin="92,121,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Destination Type" HorizontalAlignment="Left" Margin="92,29,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbCreateItemsDescription" HorizontalAlignment="Left" Margin="222,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Grid.ColumnSpan="2"/>
+                        <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="222,79,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="Emotes" Height="22" Margin="-2,0,-2,0" VerticalAlignment="Bottom">
