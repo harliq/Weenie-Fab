@@ -9,7 +9,6 @@ namespace WeenieFab
     {
         public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
             
             int counter = 1;
@@ -28,8 +27,6 @@ namespace WeenieFab
                     {
                         if (counter == rowcount)
                             sqltext += $"     , ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */;\n";
-                        //else if (counter == rowcount)
-                        //    sqltext += "";
                         else
                             sqltext += $"     , ({wcid},{row[0],4},{row[1],11}) /* {row[2]} */\n";
                     }
@@ -46,7 +43,6 @@ namespace WeenieFab
 
         public static string ConvertStringTable(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -66,8 +62,6 @@ namespace WeenieFab
                     {
                         if (counter == rowcount)
                             sqltext += $"     , ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */;\n";
-                        //else if (counter == rowcount -1)
-                        //    sqltext += "";
                         else
                             sqltext += $"     , ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */\n";
                     }
@@ -84,7 +78,6 @@ namespace WeenieFab
 
         public static string ConvertAttributeTable(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -101,8 +94,6 @@ namespace WeenieFab
                     {
                         if (counter == rowcount)
                             sqltext += $"     , ({wcid},{row[0],4},{row[1],4},{row[2],2},{row[3],2}) /* {row[4]} */;\n";
-                        //else if (counter == rowcount)
-                        //    sqltext += "";
                         else
                             sqltext += $"     , ({wcid},{row[0],4},{row[1],4},{row[2],2},{row[3],2}) /* {row[4]} */\n";
 
@@ -121,7 +112,6 @@ namespace WeenieFab
         //  Attrib2 - Health, Stamina, Mana
         public static string ConvertAttribute2Table(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -155,7 +145,6 @@ namespace WeenieFab
 
         public static string ConvertSkillsTable(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;
@@ -204,7 +193,6 @@ namespace WeenieFab
         }
         public static string ConvertSpellTable(DataTable dt, string wcid, string header)
         {
-            // dt.Clear();
             string sqltext = "";
 
             int counter = 1;

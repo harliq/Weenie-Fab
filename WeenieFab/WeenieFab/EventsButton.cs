@@ -180,7 +180,7 @@ namespace WeenieFab
         // Boolean
         private void btnAddBool_Click(object sender, RoutedEventArgs e)
         {
-            // search for duplicate property
+
             if (SearchForDuplicateProps(boolDataTable, cbBoolProps.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
@@ -243,7 +243,7 @@ namespace WeenieFab
         // Float
         private void btnAddFloat_Click(object sender, RoutedEventArgs e)
         {
-            // search for duplicate property
+
             if (SearchForDuplicateProps(floatDataTable, cbBoolProps.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
@@ -304,7 +304,6 @@ namespace WeenieFab
         }
 
         // Strings
-
         private void btnAddString_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
@@ -430,7 +429,6 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
 
         // Spell
         private void btnAddSpell_Click(object sender, RoutedEventArgs e)
@@ -649,7 +647,6 @@ namespace WeenieFab
             }
             dgAttributesTwo.Items.Refresh();
             updateAttribs2();
-
         }
 
         private void btnAttrib2Update_Click(object sender, RoutedEventArgs e)
@@ -777,12 +774,10 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
             }
 
-
         }
 
         private void btnSkillsRemove_Click(object sender, RoutedEventArgs e)
         {
-
             var index = dgSkills.SelectedIndex;
             try
             {
@@ -795,14 +790,11 @@ namespace WeenieFab
             {
                 MessageBox.Show("You can not delete that row!");
             }
-
-
         }
 
         // Create Items
         private void btnAddCreateItem_Click(object sender, RoutedEventArgs e)
         {
-
 
             DataRow dr = createListDataTable.NewRow();
             dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
@@ -856,8 +848,6 @@ namespace WeenieFab
             }
         }
 
-
-
         // Clear Attrib Fields
         public void ClearAttributeFields()
         {
@@ -878,7 +868,6 @@ namespace WeenieFab
             tbManaCurrentLevel.Text = "";
             tbManaInitLevel.Text = "";
         }
-
 
         // Converter
         private DataRow ConvertToIntRow(string property, string propertyValue, string description)
@@ -903,6 +892,5 @@ namespace WeenieFab
 
             return tdr;
         }
-
     }
 }

@@ -186,10 +186,10 @@ namespace WeenieFab
                         dgSpell.DataContext = spellDataTable;
 
                     }
-                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`"))
+                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") || line.Contains("INSERT INTO `weenie_properties_emote`"))
                     {
                         // emoteBlob = ReadEmoteBlob(sr);
-                        ReadEmoteCreateListBlob(sr, out emoteBlob, out createListBlob);
+                        ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
                         createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
                         createListDataTable.AcceptChanges();
                         dgCreateItems.DataContext = createListDataTable;
@@ -275,15 +275,28 @@ namespace WeenieFab
 
             // Body Parts
             header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";            
-            string richTextBoxContents = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
-            body += TableToSql.ConvertBodyTable(richTextBoxContents, tbWCID.Text, header);
+            string bodyparts = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
+            body += TableToSql.ConvertBodyTable(bodyparts, tbWCID.Text, header);
 
             // Spells
             header = $"INSERT INTO `weenie_properties_spell_book` (`object_Id`, `spell`, `probability`)";
             body += TableToSql.ConvertSpellTable(spellDataTable, tbWCID.Text, header);
 
             // Emotes
+            string tempES = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
+            string[] saES = tempES.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            int tWCID = ConvertToInteger(tbWCID.Text);
+            string finalEmotes = "";
 
+            // var eslist = EmoteScriptLib.Converter.es2sql(saES, ConvertToInteger(tbWCID.Text));
+            var eslist = EmoteScriptLib.Converter.es2sql(saES, (uint)tWCID);
+
+            foreach (var emoteline in eslist)
+            {
+                finalEmotes += emoteline + "\r\n";
+            }
+
+            body += finalEmotes;
 
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
@@ -331,9 +344,9 @@ namespace WeenieFab
             
             return blob;
         }
-        public static void ReadEmoteCreateListBlob(StreamReader sr, out string emoteBlob, out string createListBlob)
+        public static void ReadEmoteCreateListBlob(string readline, StreamReader sr, out string emoteBlob, out string createListBlob)
         {
-            emoteBlob = "";
+            emoteBlob = readline + "\r\n";
             createListBlob = "";
 
             string line;
