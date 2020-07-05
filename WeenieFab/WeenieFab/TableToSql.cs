@@ -186,8 +186,6 @@ namespace WeenieFab
             }
             return sqltext;
         }
-
-
         public static string ConvertBodyTable(string bodyparts, string wcid, string header)
         {
             int counter = 0;
@@ -201,9 +199,40 @@ namespace WeenieFab
                     sqltext += $"     , {blobLine}\n";
                 counter++;
             }
-            // sqltext += $"\n";
+            sqltext += $"\n";
             return sqltext;
         }
+        public static string ConvertSpellTable(DataTable dt, string wcid, string header)
+        {
+            // dt.Clear();
+            string sqltext = "";
 
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],6},{row[1],7}) /* {row[2]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],6},{row[1],7}) /* {row[2]} */\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],6},{row[1],7}) /* {row[2]} */;\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],6},{row[1],7}) /* {row[2]} */\n";
+                    }
+                    counter++;
+                }
+            }
+            //if (rowcount > 0)
+            //    sqltext += $"\n";
+
+            return sqltext;
+        }
     }
 }
