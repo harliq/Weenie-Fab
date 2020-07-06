@@ -8,6 +8,7 @@ using System.Windows.Documents;
 using Microsoft.Win32;
 using System.ComponentModel;
 using WeenieFab.Properties;
+using EmoteScriptLib;
 
 namespace WeenieFab
 {
