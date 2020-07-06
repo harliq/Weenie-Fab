@@ -16,6 +16,46 @@
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
+                <TabControl.Resources>
+                    <Style TargetType="{x:Type TabItem}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TabItem}">
+                                    <Grid>
+                                        <Border Name="Border" Background="#FFC7C7C7" Margin="2,2,0,0" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="5">
+                                            <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,2,2,2" RecognizesAccessKey="True"/>
+                                        </Border>
+                                        <Rectangle Height="5" Width="80" Margin="0,0,0,0" Stroke="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" StrokeThickness="0" Fill="#FFE5E5E5"/>
+                                    </Grid>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsSelected" Value="True">
+                                            <Setter TargetName="Border" Property="Background" Value="#FFE5E5E5" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="HeaderTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <ContentPresenter Content="{TemplateBinding Content}">
+                                        <ContentPresenter.LayoutTransform>
+                                            <RotateTransform Angle="0" />
+                                        </ContentPresenter.LayoutTransform>
+                                    </ContentPresenter>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Background" Value="#FF6E6C67" />
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="Margin" Value="0" />
+                        <Setter Property="Padding" Value="0" />
+                        <Setter Property="FontSize" Value="12" />
+                        <Setter Property="VerticalAlignment" Value="Top" />
+                        <Setter Property="HorizontalAlignment" Value="Right" />
+                        <Setter Property="UseLayoutRounding" Value="False" />
+                    </Style>
+                </TabControl.Resources>
                 <TabItem x:Name="tiInt32" Header="Integer32">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2"/>
@@ -105,7 +145,7 @@
                         <Button x:Name="btnUpdateFloat" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateFloat_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="String" Margin="-2,-2,-2,0" VerticalAlignment="Stretch">
+                <TabItem Header="String">
                     <Grid Background="#FFE5E5E5">
                         <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
@@ -141,7 +181,7 @@
                         <Button x:Name="btnUpdateDiD" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateDiD_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Attributes/Skills">
+                <TabItem Header="Attribs/Skills">
                     <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.482,0.5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
@@ -296,7 +336,7 @@
                         <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="222,79,0,0" VerticalAlignment="Top"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Emotes" Height="22" Margin="-2,0,-2,0" VerticalAlignment="Bottom">
+                <TabItem Header="Emotes">
                     <Grid Background="#FFE5E5E5">
                         <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="#FFECE7DD" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
                             <FlowDocument>
