@@ -4,6 +4,7 @@ using System.Data;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Documents;
 
 namespace WeenieFab
 {
@@ -846,6 +847,41 @@ namespace WeenieFab
             {
                 MessageBox.Show("You can not delete that row!");
             }
+        }
+
+        // ES Tab
+        private void btnLoadES_Click(object sender, RoutedEventArgs e)
+        {
+            string emotescript = OpenESFile();
+            rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emotescript)));
+            
+        }
+
+        private void btnSaveES_Click(object sender, RoutedEventArgs e)
+        {
+
+            string emotescript = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
+            SaveESFile(emotescript);
+ 
+        }
+
+        private void btnClearES_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Warning;
+            MessageBoxResult result = MessageBox.Show("Clear the current Emote Script?", "WARNING!", buttons, icon);
+            if (result == MessageBoxResult.Yes)
+            {
+                rtbEmoteScript.Document.Blocks.Clear();
+ 
+            }
+            else if (result == MessageBoxResult.No)
+            {
+            }
+            else
+            {
+            }
+
         }
 
         // Clear Attrib Fields

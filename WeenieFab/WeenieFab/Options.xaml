@@ -5,14 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Options" Height="253" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner">
+        Title="Options" Height="253" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
     <Grid x:Name="WindowOptions">
         <Label Content="Default SQL Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-        <Label Content="Default JSON Path" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <Label Content="Default JSON Path" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
+        <Label Content="Default EmoteScript Path" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbDefaultSqlPath" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380" Grid.ColumnSpan="2"/>
+        <TextBox x:Name="tbDefaultJsonPath" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380"/>
+        <TextBox x:Name="tbDefaultESPath" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380"/>
+        <CheckBox x:Name="chkbAutoLoadEsFiles" Content="Auto Load ES Files" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" IsChecked="True" MinWidth="120" MinHeight="16"/>
         <Button x:Name="btnSetSqlPath" Content="Set Path" HorizontalAlignment="Right" Margin="0,35,10,0" VerticalAlignment="Top" MinWidth="80" Grid.Column="1" Click="btnSetSqlPath_Click"/>
-        <TextBox x:Name="tbDefaultJsonPath" HorizontalAlignment="Left" Margin="10,97,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380" Grid.ColumnSpan="2"/>
-        <Button x:Name="btnSetJsonPath" Content="Set Path" HorizontalAlignment="Right" Margin="0,96,10,0" VerticalAlignment="Top" MinWidth="80" Grid.Column="1"/>
+        <Button x:Name="btnSetJsonPath" Content="Set Path" HorizontalAlignment="Right" Margin="0,90,10,0" VerticalAlignment="Top" MinWidth="80"/>
+        <Button x:Name="btnSetESPath" Content="Set Path" HorizontalAlignment="Left" Margin="410,139,0,0" VerticalAlignment="Top" MinWidth="80" Visibility="Visible"/>
         <Button x:Name="btnOk" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom" MinWidth="80" Margin="0,0,110,10" IsDefault="True" Click="btnOK_Click" />
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Right" VerticalAlignment="Bottom" MinWidth="80" Margin="0,0,10,10" IsCancel="True" Click="btnCancel_Click" />
 

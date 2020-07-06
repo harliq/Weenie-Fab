@@ -219,6 +219,22 @@ namespace WeenieFab
 
                     //}
                 }
+
+                if (WeenieFabUser.Default.AutoLoadESFiles == true)
+                {
+                    string esfile = WeenieFabUser.Default.DefaultESPath + @"\" + tbWCID.Text +".es";
+                    if (File.Exists(esfile) == true)
+                    {
+                        string esdata = File.ReadAllText(esfile);
+                        rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(esdata)));
+                    }
+
+                }
+                
+                
+                
+
+
                 sr.Close();
             }
         }
@@ -360,6 +376,40 @@ namespace WeenieFab
                 {
                     emoteBlob += line + "\r\n";
                 }
+            }
+
+        }
+
+        public static string OpenESFile()
+        {
+            string esdata = "";
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Title = "Open EmoteScript File";
+            ofd.Filter = "ES files|*.es";
+            ofd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+                esdata = File.ReadAllText(ofd.FileName);
+            }
+
+            return esdata;
+        }
+        public void SaveESFile(string esdata)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Title = "Save EmoteScript File";
+            sfd.Filter = "ES files|*.es";
+            sfd.FileName = tbWCID.Text + $".es";
+            sfd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+
+            Nullable<bool> result = sfd.ShowDialog();
+
+            if (result == true)
+            {
+                File.WriteAllText(sfd.FileName, esdata);
             }
 
         }
