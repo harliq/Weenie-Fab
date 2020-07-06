@@ -133,6 +133,7 @@ namespace WeenieFab
                 // cbSpellProps.SelectedIndex = cbindex;
                 tbSpellId.Text = dr[0].ToString();
                 tbSpellValue.Text = dr[1].ToString();
+                tbSpellDescription.Text = dr[2].ToString();
             }
         }
 

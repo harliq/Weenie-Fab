@@ -235,18 +235,12 @@
                 </TabItem>
                 <TabItem Header="SpellBook">
                     <Grid Background="#FFE5E5E5">
-                        <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="245,15,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell ID" HorizontalAlignment="Left" Margin="85,15,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="85,65,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell Name Search" HorizontalAlignment="Left" Margin="600,114,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="85,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="245,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106"/>
-                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="85,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="395"/>
-                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="85,114,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click"/>
-                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="210,114,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="350,114,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click"/>
-                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="600,140,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="300" MaxWidth="300"/>
-                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="400" Margin="600,170,0,0" MinWidth="300" MinHeight="350" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="625,135,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,185,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell Name Search" HorizontalAlignment="Left" Margin="80,77,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="86,105,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="350" MaxWidth="350"/>
+                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="150" Margin="85,135,0,0" MinWidth="300" MinHeight="150" HorizontalAlignment="Left" VerticalAlignment="Top">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Spell ID" Width="50" DisplayMemberBinding="{Binding SpellID}"/>
@@ -254,7 +248,13 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="80,140,0,10" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="400" MaxWidth="400" GridLinesVisibility="Horizontal" Background="#FFEDFCFF">
+                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="466,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="625,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106"/>
+                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="466,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="350" MaxWidth="350"/>
+                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,241,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click"/>
+                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,241,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
+                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,241,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click"/>
+                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,300,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="200" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="198" VerticalAlignment="Top">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.5*"/>
                                 <DataGridTextColumn Header="Probability" IsReadOnly="True"  Binding="{Binding Value}" Width="1.7*"/>
