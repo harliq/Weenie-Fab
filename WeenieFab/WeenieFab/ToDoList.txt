@@ -1,7 +1,6 @@
 ** To Finish Milestone 1 **
 *Priority*
-Add Spell Search
-Add Spell Description
+
 
 * Polish *
 Basic ToolTips
@@ -11,15 +10,32 @@ UnSavedChanges Global
 Code Cleanup/Organization
 Add about page
 
+
 *Optimize*
 Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
-Figure out how to search spells
 Auto generate file name on save
-Create Install Package
+
+
+**Rip Suggestion, have it combine any existing ES files instead of reading emotes from .sql;
+
+**Future Features**
+
+Defaults for a new weenie (IE a quick wizard dialog)
+Auto Convert Json Files
+Auto Calculations for Skills/Health
+Body Parts Table
+Auto Calculate Body Parts
+MarkDown for ES in WeenieFab
+
+
 
 **Completed**
+#Done-Add Spell Search
+#Done-Add Spell Description
+#Done-Fix RichTextBox Tab
+#Done-Create Install Package (using Publish and just zipping the file).
 #Done-Add Attrib2 Write
 #Done-Add Skill Write
 #Done-Add ES convert to sql write

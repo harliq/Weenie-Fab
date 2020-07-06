@@ -40,6 +40,7 @@ namespace WeenieFab
         public static DataTable skillsDataTable = new DataTable();
         public static DataTable createListDataTable = new DataTable();
 
+        
 
         public MainWindow()
         {
@@ -48,9 +49,11 @@ namespace WeenieFab
             CreateComboBoxLists();
             CreateDataTable();
             ClearAllDataTables();
-            ClearAllDataGrids();
             ClearAllFields();
             MiscSettings();
+
+            CreateSpellList();
+
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
@@ -321,6 +324,32 @@ namespace WeenieFab
             cbSkillType.ItemsSource = SkillList;
             cbSkillType.SelectedIndex = 6;
         }
+        // Testing Search
+        public void CreateSpellList()
+        {
+            List<SpellNames> listSpellNames = new List<SpellNames>();
+
+            foreach (string line in File.ReadLines(@"TypeLists\SpellNames.txt"))
+            {
+                string[] spellData = line.Split(",");
+
+                listSpellNames.Add(new SpellNames { SpellID = ConvertToInteger(spellData[0]), SpellName = spellData[1] });
+            }
+            lvSpellsList.ItemsSource = listSpellNames;
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource);
+            view.Filter = SpellFilter;
+        }
+        private bool SpellFilter(object spellname)
+        {
+            if (String.IsNullOrEmpty(tbSpellSearch.Text))
+                return true;
+            else
+                return ((spellname as SpellNames).SpellName.IndexOf(tbSpellSearch.Text, StringComparison.OrdinalIgnoreCase) >= 0);
+        }
+        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource).Refresh();
+        }
 
         public void CreateWeenieTypeList()
         {
@@ -371,7 +400,6 @@ namespace WeenieFab
         }
 
         // UI Stuff
-
         public void ClearAllDataTables()
         {
             integerDataTable.Clear();
@@ -386,30 +414,13 @@ namespace WeenieFab
             skillsDataTable.Clear();
             createListDataTable.Clear();
         }
-        public void ClearAllDataGrids()
-        {
-            //dgInt32.Items.Clear();
-            //dgInt64.Items.Clear();
-            //dgBool.Items.Clear();
-            //dgFloat.Items.Clear();
-            //dgString.Items.Clear();
-            //dgDiD.Items.Clear();
-            //dgSpell.Items.Clear();
-        }
         public void ResetIndexAllDataGrids()
         {
             dgInt32.SelectedIndex = -1;
 
-            //dgInt64.Items.Clear();
-            //dgBool.Items.Clear();
-            //dgFloat.Items.Clear();
-            //dgString.Items.Clear();
-            //dgDiD.Items.Clear();
-            //dgSpell.Items.Clear();
         }
         public void ClearAllFields()
         {
-            // string clearContents = "";
 
             tbWCID.Text = "";
             tbWeenieName.Text = "";
@@ -449,6 +460,11 @@ namespace WeenieFab
             rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             rtbEmoteScript.Document.PageWidth = 2000;
 
+        }
+
+        private void lvSpellsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Don't think I need this anymore.
         }
     }
 }
