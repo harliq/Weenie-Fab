@@ -76,9 +76,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="EmoteScriptLib">
-      <HintPath>libs\EmoteScriptLib.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
