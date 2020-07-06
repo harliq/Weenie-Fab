@@ -19,6 +19,7 @@ Auto generate file name on save
 
 
 **Rip Suggestion, have it combine any existing ES files instead of reading emotes from .sql;
+**Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 
 **Future Features**
 

@@ -298,15 +298,44 @@
                 </TabItem>
                 <TabItem Header="Emotes" Height="22" Margin="-2,0,-2,0" VerticalAlignment="Bottom">
                     <Grid Background="#FFE5E5E5">
-                        <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="#FFECE7DD" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,0,10" MinHeight="2" AcceptsTab="True" IsTabStop="False">
+                        <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="#FFECE7DD" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
-                        <Label Content="Emote Script" HorizontalAlignment="Center" Margin="0,3,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center"/>
-
+                        <Label Content="Emote Script" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center"/>
+                        <Button x:Name="btnLoadES" Content="Load Emote Script" HorizontalAlignment="Right" Margin="0,10,145,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnLoadES_Click">
+                            <Button.Effect>
+                                <DropShadowEffect/>
+                            </Button.Effect>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="btnSaveES" Content="Save Emote Script" HorizontalAlignment="Right" Margin="0,10,20,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnSaveES_Click">
+                            <Button.Effect>
+                                <DropShadowEffect/>
+                            </Button.Effect>
+                            <Button.Resources>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                        </Button>
+                        <Button x:Name="btnClearES" Content="Clear Emote Script" HorizontalAlignment="Right" Margin="0,10,270,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="106" Height="25" Click="btnClearES_Click">
+                            <Button.Resources>
+                                <Style TargetType="{x:Type Border}">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Button.Resources>
+                            <Button.Effect>
+                                <DropShadowEffect/>
+                            </Button.Effect>
+                        </Button>
                     </Grid>
                 </TabItem>
             </TabControl>

@@ -46,5 +46,29 @@ namespace WeenieFab.Properties {
                 this["DefaultJsonPath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\")]
+        public string DefaultESPath {
+            get {
+                return ((string)(this["DefaultESPath"]));
+            }
+            set {
+                this["DefaultESPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoLoadESFiles {
+            get {
+                return ((bool)(this["AutoLoadESFiles"]));
+            }
+            set {
+                this["AutoLoadESFiles"] = value;
+            }
+        }
     }
 }
