@@ -155,6 +155,17 @@ namespace WeenieFab
                 tbSkillLevel.Text = dr[4].ToString();
             }
         }
+        private void lvSpellNames_RowSelected(object sender, RoutedEventArgs e)
+        {
+
+            //if (lvSpellsList.SelectedIndex >= 0)
+            //{
+            //    var spellInfo = lvSpellsList.Items.GetItemAt(lvSpellsList.SelectedIndex) as DataRowView;
+
+            //    tbSpellId.Text = (string)spellInfo["SpellID"];
+            //    tbSpellDescription.Text = (string)spellInfo["SpellName"];
+            //}
+        }
         private void dgCreateList_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgCreateItems.SelectedIndex;

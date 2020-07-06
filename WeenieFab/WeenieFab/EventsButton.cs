@@ -444,7 +444,7 @@ namespace WeenieFab
                 DataRow dr = spellDataTable.NewRow();
                 dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text); // Spell Probablilty
-                dr[2] = "Test"; //description[1];
+                dr[2] = tbSpellDescription.Text;
 
                 spellDataTable.Rows.Add(dr);
                 //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
