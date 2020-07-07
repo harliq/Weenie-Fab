@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -53,7 +54,7 @@ namespace WeenieFab
             MiscSettings();
 
             CreateSpellList();
-
+            GetVersion();
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
@@ -466,7 +467,15 @@ namespace WeenieFab
         {
             // Don't think I need this anymore.
         }
+        private void GetVersion()
+        {
 
+            System.Reflection.Assembly executingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+            var fileVersionInfo = FileVersionInfo.GetVersionInfo(executingAssembly.Location);
+            var version = fileVersionInfo.FileVersion;
+
+            lblVersion.Content = "Version " + version;
+        }
 
     }
 }

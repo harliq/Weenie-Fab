@@ -1,0 +1,3 @@
+WeenieFab Wiki,https://github.com/harliq/Weenie-Fab/wiki
+ACE,https://github.com/ACEmulator/ACE
+PCAP Weenies Finder,https://github.com/ACEmulator/ACE-PCAP-Exports/find/master
