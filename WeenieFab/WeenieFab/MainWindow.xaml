@@ -1616,13 +1616,13 @@
     </Window.Resources>
 
     <Grid Background="#FFDEE2FF">
-
         <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="267">
             <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click" MinWidth="60"/>
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60"/>
             <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60"/>
         </ToolBar>
+
 
         <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
         <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
