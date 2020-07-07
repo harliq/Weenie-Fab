@@ -48,6 +48,16 @@ namespace WeenieFab
             winOptions.Show();
 
         }
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+
+            Help winHelp = new Help();
+            winHelp.Owner = this;
+            winHelp.Show();
+
+        }
+
+
         // Form Buttons
         // Integer 32
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)

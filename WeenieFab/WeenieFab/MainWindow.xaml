@@ -28,7 +28,7 @@
         <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
         <!--Light Silver-->
         <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
-        
+
 
         <!--Button Colors.-->
         <!-- White -->
@@ -37,7 +37,7 @@
         <Color x:Key="ControlMediumColor">#FFACC4EC</Color>
         <!-- Dark Purple -->
         <Color x:Key="ControlDarkColor">#FFd2a728</Color>
-        
+
 
         <!--Mouse Over Colors-->
         <!-- Golden Rod-->
@@ -52,7 +52,7 @@
         <Color x:Key="GlyphColor">#FF444444</Color>
         <!-- ???? -->
         <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
-        
+
 
         <!--Border colors-->
         <!-- Silver -->
@@ -76,7 +76,7 @@
         <Color x:Key="DefaultBorderBrushLightBrush">White</Color>
         <!-- Black -->
         <Color x:Key="DefaultBorderBrushDarkColor">Black</Color>
-        
+
 
         <!--Control-specific resources.-->
         <!-- Lilac -->
@@ -88,7 +88,7 @@
 
         <!-- Med Light Purple -->
         <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
-        
+
 
 
 
@@ -1616,11 +1616,12 @@
     </Window.Resources>
 
     <Grid Background="#FFDEE2FF">
-        <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="267">
+        <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="395">
             <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click" MinWidth="60"/>
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60"/>
             <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60"/>
+            <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnHelp_Click" MinWidth="60"/>
         </ToolBar>
 
 
@@ -2009,6 +2010,7 @@
                 </TabItem>
             </TabControl>
         </Grid>
+        <Label x:Name="lblVersion" Content="Version: 0.0.0.0" HorizontalAlignment="Right" Margin="0,1,10,0" VerticalAlignment="Top" FontWeight="Bold"/>
     </Grid>
 
 </Window>
