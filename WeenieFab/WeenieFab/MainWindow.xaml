@@ -6,6 +6,240 @@
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
         Title="Weenie Fab" Height="750" Width="1200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/weeniefactoryicon.ico">
+
+
+    <Window.Resources>
+        <!--Control colors.-->
+        <Color x:Key="WindowColor">#FFE8EDF9</Color>
+        <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
+        <Color x:Key="ContentAreaColorDark">#FF7381F9</Color>
+
+        <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
+        <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
+        <Color x:Key="DisabledForegroundColor">#FF888888</Color>
+
+        <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+        <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
+
+        <!--Button Colors.-->
+        <Color x:Key="ControlLightColor">White</Color>
+        <Color x:Key="ControlMediumColor">#FFACC4EC</Color>
+        <Color x:Key="ControlDarkColor">#FF211AA9</Color>
+
+        <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
+        <Color x:Key="ControlPressedColor">#FF211AA9</Color>
+
+
+        <Color x:Key="GlyphColor">#FF444444</Color>
+        <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
+
+        <!--Border colors-->
+        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+        <Color x:Key="BorderMediumColor">#FF888888</Color>
+        <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="PressedBorderLightColor">#FF888888</Color>
+        <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
+        <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
+
+
+        <Color x:Key="DefaultBorderBrushLightBrush">White</Color>
+        <Color x:Key="DefaultBorderBrushDarkColor">Black</Color>
+
+        <!--Control-specific resources.-->
+        <Color x:Key="HeaderTopColor">#FFC5CBF9</Color>
+        <Color x:Key="DatagridCurrentCellBorderColor">Black</Color>
+        <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
+
+        <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
+
+        <LinearGradientBrush x:Key="MenuPopupBrush"
+                     EndPoint="0.5,1"
+                     StartPoint="0.5,0">
+            <GradientStop Color="{DynamicResource ControlLightColor}"
+                Offset="0" />
+            <GradientStop Color="{DynamicResource ControlMediumColor}"
+                Offset="0.5" />
+            <GradientStop Color="{DynamicResource ControlLightColor}"
+                Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
+                     StartPoint="0,0"
+                     EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#000000FF"
+                    Offset="0" />
+                    <GradientStop Color="#600000FF"
+                    Offset="0.4" />
+                    <GradientStop Color="#600000FF"
+                    Offset="0.6" />
+                    <GradientStop Color="#000000FF"
+                    Offset="1" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <!-- FocusVisual -->
+
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Margin="2"
+                     StrokeThickness="1"
+                     Stroke="#60000000"
+                     StrokeDashArray="1 2" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Button -->
+        <Style TargetType="Button">
+            <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+            <Setter Property="FocusVisualStyle"
+          Value="{StaticResource ButtonFocusVisual}" />
+            <Setter Property="MinHeight"
+          Value="23" />
+            <Setter Property="MinWidth"
+          Value="75" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border TextBlock.Foreground="{TemplateBinding Foreground}"
+                x:Name="Border"
+                CornerRadius="2"
+                BorderThickness="1">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0.0" />
+                                            <GradientStop Color="{DynamicResource BorderDarkColor}"  Offset="1.0" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                                    <GradientStop Color="{DynamicResource ControlLightColor}"
+                            Offset="0" />
+                                    <GradientStop Color="{DynamicResource ControlMediumColor}"
+                            Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.5" />
+                                        <VisualTransition GeneratedDuration="0"
+                                  To="Pressed" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource ControlMouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource ControlPressedColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource PressedBorderDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource PressedBorderLightColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledControlDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames
+                      Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledForegroundColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledBorderDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter Margin="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefault"
+                   Value="true">
+
+                                <Setter TargetName="Border"
+                    Property="BorderBrush">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="0,1">
+                                            <GradientBrush.GradientStops>
+                                                <GradientStopCollection>
+                                                    <GradientStop Color="{DynamicResource DefaultBorderBrushLightBrush}" Offset="0.0" />
+                                                    <GradientStop Color="{DynamicResource DefaultBorderBrushDarkColor}" Offset="1.0" />
+                                                </GradientStopCollection>
+                                            </GradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+
+
+    </Window.Resources>
+
     <Grid Background="#FFDEE2FF">
 
         <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
@@ -22,14 +256,29 @@
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type TabItem}">
                                     <Grid>
-                                        <Border Name="Border" Background="#FFC7C7C7" Margin="2,2,0,0" BorderBrush="Black" BorderThickness="1,1,1,1" CornerRadius="5">
+                                        <Border Name="Border" Margin="2,2,0,0" BorderBrush="Lavender" BorderThickness="1,1,1,1" CornerRadius="5">
+                                            <Border.Background>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FFBDD2E6"/>
+                                                    <GradientStop Color="White" Offset="1"/>
+                                                </LinearGradientBrush>
+                                            </Border.Background>
                                             <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,2,2,2" RecognizesAccessKey="True"/>
                                         </Border>
-                                        <Rectangle Height="5" Width="80" Margin="0,0,0,0" Stroke="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" StrokeThickness="0" Fill="#FFE5E5E5"/>
+                                        <!-- Bottom of Tab-->
+                                        <Rectangle Height="5" Width="80" Margin="0,0,0,0" Stroke="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" StrokeThickness="0" Fill="#FFE4F0F7"/>
                                     </Grid>
                                     <ControlTemplate.Triggers>
+                                        <!-- Selected Tab-->
                                         <Trigger Property="IsSelected" Value="True">
-                                            <Setter TargetName="Border" Property="Background" Value="#FFE5E5E5" />
+                                            <Setter TargetName="Border" Property="Background" >
+                                                <Setter.Value>
+                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                        <GradientStop Color="#FFD3AC28"/>
+                                                        <GradientStop Color="#FFE4F0F7" Offset="0.8"/>
+                                                    </LinearGradientBrush>
+                                                </Setter.Value>
+                                            </Setter>
                                         </Trigger>
                                     </ControlTemplate.Triggers>
                                 </ControlTemplate>
@@ -46,7 +295,7 @@
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Setter Property="Background" Value="#FF6E6C67" />
+                        <Setter Property="Background" Value="#FFC5C5C5" />
                         <Setter Property="Height" Value="30" />
                         <Setter Property="Margin" Value="0" />
                         <Setter Property="Padding" Value="0" />
@@ -57,7 +306,7 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem x:Name="tiInt32" Header="Integer32">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2"/>
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
@@ -84,7 +333,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Integer 64">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="165*"/>
@@ -105,8 +354,8 @@
                         <Label Content="Value" HorizontalAlignment="Left" Margin="64,83,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
-                <TabItem Header="Boolean">
-                    <Grid Background="#FFE5E5E5">
+                <TabItem Header="Boolean" Background="#FFE1E8F5">
+                    <Grid Background="#FFE1E8F5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="88*"/>
                             <ColumnDefinition Width="1095*"/>
@@ -128,7 +377,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Float">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <ComboBox x:Name="cbFloatProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
                         <Label Content="Decimal" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Float" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
@@ -146,7 +395,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="String">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
@@ -164,7 +413,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Data ID">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <ComboBox x:Name="cbDiDProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Data ID" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
@@ -182,7 +431,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Attribs/Skills">
-                    <Grid Background="#FFE5E5E5" RenderTransformOrigin="0.482,0.5">
+                    <Grid Background="#FFE1E8F5" RenderTransformOrigin="0.482,0.5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="5*" />
@@ -262,9 +511,9 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="BodyParts">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
 
-                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="#FFECE7DD" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False">
+                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>
@@ -274,7 +523,7 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="SpellBook">
-                    <Grid Background="#FFE5E5E5">
+                    <Grid Background="#FFE1E8F5">
                         <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="625,135,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,185,0,0" VerticalAlignment="Top"/>
@@ -303,8 +552,8 @@
                         </DataGrid>
                     </Grid>
                 </TabItem>
-                <TabItem Header="CreateItems">
-                    <Grid Background="#FFE5E5E5">
+                <TabItem Header="CreateItems" Background="#FFE1E8F5">
+                    <Grid Background="#FFE1E8F5">
 
                         <Label Content="Description" HorizontalAlignment="Left" Margin="222,126,0,0" VerticalAlignment="Top"/>
                         <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="567,15,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
@@ -337,8 +586,8 @@
                     </Grid>
                 </TabItem>
                 <TabItem Header="Emotes">
-                    <Grid Background="#FFE5E5E5">
-                        <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="#FFECE7DD" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
+                    <Grid Background="#FFE1E8F5">
+                        <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="White" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>
