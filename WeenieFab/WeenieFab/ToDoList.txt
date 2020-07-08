@@ -1,15 +1,15 @@
 ** To Finish Milestone 1 **
 *Priority*
+Add Books Table
+Add Generator Table
+Add Instance ID's (IID)
 
+redo Read Sql?? (Basically the way I handle reading emotes)
 
 * Polish *
-Basic ToolTips
-
 FileName Global
 UnSavedChanges Global
 Code Cleanup/Organization
-
-
 
 *Optimize*
 Used Cloned Tables instead of creating new ones (Partially Done)
@@ -23,16 +23,16 @@ Destination DropDown (Create Items)
 **Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 
 **Future Features**
-
+After MileStone.
 Defaults for a new weenie (IE a quick wizard dialog)
 Auto Convert Json Files
-
 Auto Calculate Body Parts
 MarkDown for ES in WeenieFab
 
 
 
 **Completed**
+#Done-ToolTips
 #Done-Auto Calculate Skills
 
 #Done-Auto Calculate Health,Stamina,Mana

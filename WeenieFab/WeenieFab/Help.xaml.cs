@@ -56,6 +56,7 @@ namespace WeenieFab
             try
             {
                 Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));
+                // Process.Start(new ProcessStartInfo("start", fullUrl));
             }
             catch (Exception)
             {

@@ -277,7 +277,7 @@
 
         <Label x:Name="lblWeenieFab" Content="Weenie Fab" HorizontalAlignment="Center" Margin="0,15,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="By HarliQuinn.   EmoteScript Provided by gmriggs" HorizontalAlignment="Center" Margin="0,40,0,0" VerticalAlignment="Top" Height="52" HorizontalContentAlignment="Center"/>
-        <ListView x:Name="lvResources" MaxWidth="450" MaxHeight="250" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="550" MinHeight="250" Margin="0,120,0,0" Grid.ColumnSpan="2">
+        <ListView x:Name="lvResources" MaxWidth="450" MaxHeight="250" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="550" MinHeight="250" Margin="0,120,0,0" Grid.ColumnSpan="2" ToolTip="Click Website to go there">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Website" Width="150" DisplayMemberBinding="{Binding Website}"/>
@@ -296,7 +296,7 @@
             </ListView.View>
         </ListView>
         <Label Content="Resources" HorizontalAlignment="Center" Margin="0,90,0,0" VerticalAlignment="Top" FontSize="14"/>
-        <Button Content="OK" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,18" MinWidth="50" Click="Button_Click"/>
+        <Button Content="OK" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,18" MinWidth="50" Click="Button_Click" ToolTip="Close the Window, now that your curiosity has been satisfied"/>
 
     </Grid>
 </Window>

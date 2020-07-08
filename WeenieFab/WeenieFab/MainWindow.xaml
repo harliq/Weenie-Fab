@@ -1617,20 +1617,20 @@
 
     <Grid Background="#FFDEE2FF">
         <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="395">
-            <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click" MinWidth="60"/>
-            <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60"/>
-            <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60"/>
-            <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60"/>
-            <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnHelp_Click" MinWidth="60"/>
+            <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click" MinWidth="60" ToolTip="New Blank Weenie"/>
+            <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60" ToolTip="Open Existing Weenie"/>
+            <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60" ToolTip="Save Weenie"/>
+            <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60" ToolTip="Set Options"/>
+            <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnHelp_Click" MinWidth="60" ToolTip="Your just curious now..."/>
         </ToolBar>
 
 
         <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
         <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18"/>
-        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18"/>
-        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233"/>
+        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18" ToolTip="WCID for this weenie"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18" ToolTip="Name of Weenie"/>
+        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233" ToolTip="Select the Type of Weenie"/>
 
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
@@ -1695,12 +1695,12 @@
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Integer 32" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2"/>
-                        <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click"/>
-                        <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Click="btnInt32Remove_Click" Width="100" Grid.ColumnSpan="2"/>
-                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,150,202,71" AutoGenerateColumns="False" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" DataGridCell.Selected="dgInt32_RowSelected" MinWidth="5">
+                        <ComboBox x:Name="cbInt32Props" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding Path=dInt}" Width="547" Grid.ColumnSpan="2" ToolTip="Select the Property You wish to Add/Change"/>
+                        <TextBox x:Name="tbValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="Property value"/>
+                        <Button x:Name="btnAddInt32" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt32_Click" ToolTip="Add property"/>
+                        <Button x:Name="btnUpdateInt32" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt32_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property"/>
+                        <Button x:Name="btnInt32Remove" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Click="btnInt32Remove_Click" Width="100" Grid.ColumnSpan="2" ToolTip="Remove selected property"/>
+                        <DataGrid x:Name="dgInt32" ItemsSource="{Binding}" Margin="92,150,202,71" AutoGenerateColumns="False" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" DataGridCell.Selected="dgInt32_RowSelected" MinWidth="5" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="1*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="1*"></DataGridTextColumn>
@@ -1715,19 +1715,19 @@
                             <ColumnDefinition Width="4*"/>
                             <ColumnDefinition Width="165*"/>
                         </Grid.ColumnDefinitions>
-                        <ComboBox x:Name="cbInt64Props" HorizontalAlignment="Left" Margin="64,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1"/>
+                        <ComboBox x:Name="cbInt64Props" HorizontalAlignment="Left" Margin="64,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1" ToolTip="Select the Property You wish to Add/Change"/>
                         <Label Content="Integer 64" HorizontalAlignment="Left" Margin="64,25,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                        <Button x:Name="btnAddInt64" Content="Add " HorizontalAlignment="Left" Margin="287,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt64_Click" Grid.Column="1"/>
-                        <DataGrid x:Name="dgInt64" ItemsSource="{Binding}" Margin="64,137,202,70" AutoGenerateColumns="False" DataGridCell.Selected="dgInt64_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
+                        <Button x:Name="btnAddInt64" Content="Add " HorizontalAlignment="Left" Margin="287,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddInt64_Click" Grid.Column="1" ToolTip="Add property"/>
+                        <DataGrid x:Name="dgInt64" ItemsSource="{Binding}" Margin="64,137,202,70" AutoGenerateColumns="False" DataGridCell.Selected="dgInt64_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <TextBox x:Name="tb64Value" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="64,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1"/>
-                        <Button x:Name="btnRemoveInt64" Content="Remove" HorizontalAlignment="Left" Margin="510,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveInt64_Click" Grid.Column="1"/>
-                        <Button x:Name="btnUpdateInt64" Content="Update" HorizontalAlignment="Left" Margin="398,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt64_Click" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1"/>
+                        <TextBox x:Name="tb64Value" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="64,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Grid.Column="1" ToolTip="Property Value"/>
+                        <Button x:Name="btnRemoveInt64" Content="Remove" HorizontalAlignment="Left" Margin="510,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveInt64_Click" Grid.Column="1" ToolTip="Remove selected property"/>
+                        <Button x:Name="btnUpdateInt64" Content="Update" HorizontalAlignment="Left" Margin="398,104,0,0" VerticalAlignment="Top" Click="btnUpdateInt64_Click" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1" ToolTip="Update selected property"/>
                         <Label Content="Value" HorizontalAlignment="Left" Margin="64,83,0,0" VerticalAlignment="Top" Grid.Column="1"/>
                     </Grid>
                 </TabItem>
@@ -1738,13 +1738,13 @@
                             <ColumnDefinition Width="1095*"/>
                         </Grid.ColumnDefinitions>
                         <Label Content="Boolean" HorizontalAlignment="Left" Margin="4,25,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-                        <ComboBox x:Name="cbBoolProps" HorizontalAlignment="Left" Margin="4,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1"/>
-                        <RadioButton x:Name="rbTrue" Content="True" HorizontalAlignment="Left" Margin="4,110,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
-                        <RadioButton x:Name="rbFalse" Content="False" HorizontalAlignment="Left" Margin="75,110,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1"/>
-                        <Button x:Name="btnAddBool" Content="Add " HorizontalAlignment="Left" Margin="227,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddBool_Click" Grid.Column="1"/>
-                        <Button x:Name="btnUpdateBool" Content="Update" HorizontalAlignment="Left" Margin="338,104,0,0" VerticalAlignment="Top" Click="btnUpdateBool_Click" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1"/>
-                        <Button x:Name="btnRemoveBool" Content="Remove" HorizontalAlignment="Left" Margin="450,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveBool_Click" Grid.Column="1"/>
-                        <DataGrid x:Name="dgBool" ItemsSource="{Binding}" Margin="4,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgBool_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1">
+                        <ComboBox x:Name="cbBoolProps" HorizontalAlignment="Left" Margin="4,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" Grid.Column="1" ToolTip="Select the property you wish to Add/Change"/>
+                        <RadioButton x:Name="rbTrue" Content="True" HorizontalAlignment="Left" Margin="4,110,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1" ToolTip="Property = True"/>
+                        <RadioButton x:Name="rbFalse" Content="False" HorizontalAlignment="Left" Margin="75,110,0,0" VerticalAlignment="Top" FontSize="14" Grid.Column="1" ToolTip="Property = False"/>
+                        <Button x:Name="btnAddBool" Content="Add " HorizontalAlignment="Left" Margin="227,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddBool_Click" Grid.Column="1" ToolTip="Add property"/>
+                        <Button x:Name="btnUpdateBool" Content="Update" HorizontalAlignment="Left" Margin="338,104,0,0" VerticalAlignment="Top" Click="btnUpdateBool_Click" Width="100" RenderTransformOrigin="1.465,0.555" Grid.Column="1" ToolTip="Update selected property"/>
+                        <Button x:Name="btnRemoveBool" Content="Remove" HorizontalAlignment="Left" Margin="450,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveBool_Click" Grid.Column="1" ToolTip="Remove selected property"/>
+                        <DataGrid x:Name="dgBool" ItemsSource="{Binding}" Margin="4,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgBool_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" Grid.Column="1" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
@@ -1757,12 +1757,12 @@
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Decimal" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Float" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbFloatProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <TextBox x:Name="tbFloatValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                        <Button x:Name="btnAddFloat" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddFloat_Click"/>
-                        <Button x:Name="btnUpdateFloat" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateFloat_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnRemoveFloat" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveFloat_Click"/>
-                        <DataGrid x:Name="dgFloat" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgFloat_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <ComboBox x:Name="cbFloatProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" ToolTip="Select the Property you wish to Add/Change"/>
+                        <TextBox x:Name="tbFloatValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="Float Value (you can use decimals)"/>
+                        <Button x:Name="btnAddFloat" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddFloat_Click" ToolTip="Add property"/>
+                        <Button x:Name="btnUpdateFloat" Content="Update" HorizontalAlignment="Left" Margin="426,104,0,0" VerticalAlignment="Top" Click="btnUpdateFloat_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property"/>
+                        <Button x:Name="btnRemoveFloat" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveFloat_Click" ToolTip="Remove selected property"/>
+                        <DataGrid x:Name="dgFloat" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgFloat_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
@@ -1775,12 +1775,12 @@
                     <Grid Background="#FFE1E8F5">
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                        <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click"/>
-                        <Button x:Name="btnUpdateString" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateString_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnRemoveString" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveString_Click"/>
-                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgString_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" ToolTip="Select the Property You wish to Add/Change"/>
+                        <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="String Text"/>
+                        <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click" ToolTip="Add property"/>
+                        <Button x:Name="btnUpdateString" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateString_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property"/>
+                        <Button x:Name="btnRemoveString" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveString_Click" ToolTip="Remove selected property"/>
+                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgString_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
@@ -1793,12 +1793,12 @@
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Data ID" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbDiDProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547"/>
-                        <TextBox x:Name="tbDiDValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200"/>
-                        <Button x:Name="btnAddDiD" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddDiD_Click"/>
-                        <Button x:Name="btnUpdateDiD" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateDiD_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnRemoveDiD" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveDiD_Click"/>
-                        <DataGrid x:Name="dgDiD" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgDiD_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9">
+                        <ComboBox x:Name="cbDiDProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" ToolTip="Select the Property You wish to Add/Change"/>
+                        <TextBox x:Name="tbDiDValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="DID value"/>
+                        <Button x:Name="btnAddDiD" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddDiD_Click" ToolTip="Add property"/>
+                        <Button x:Name="btnUpdateDiD" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateDiD_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property"/>
+                        <Button x:Name="btnRemoveDiD" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveDiD_Click" ToolTip="Remove selected property"/>
+                        <DataGrid x:Name="dgDiD" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgDiD_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
@@ -1832,34 +1832,34 @@
                         <Label Content="Skill Type" HorizontalAlignment="Left" Margin="55,30,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="340,385,0,0" VerticalAlignment="Top"/>
                         <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top" Grid.Column="2"/>
-                        <TextBox x:Name="tbAttribStrength" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbAttribEndurance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbAttribCoordination" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbAttribFocus" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbAttribSelf" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Button x:Name="btnAttribDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,120,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="btnAttribDefaults_Click"/>
-                        <Button x:Name="btnAttribUpdate" Content="Update" HorizontalAlignment="Left" Margin="305,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttribUpdate_Click"/>
-                        <Button x:Name="btnAttribClear" Content="Clear" HorizontalAlignment="Left" Margin="410,155,0,0" VerticalAlignment="Top" Width="80" Click="btnAttribClear_Click"/>
-                        <CheckBox x:Name="chkbAutoHealth" Content="Auto Calculate" Checked="chkbAutoHealth_Changed" Unchecked="chkbAutoHealth_Changed" HorizontalAlignment="Left" Margin="345,377,0,0" VerticalAlignment="Top" IsChecked="True"/>
-                        <TextBox x:Name="tbHealthInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <TextBox x:Name="tbStaminaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <TextBox x:Name="tbManaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <TextBox x:Name="tbHealthCurrentLevel" TextChanged="tbHealthCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="220,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <TextBox x:Name="tbStaminaCurrentLevel" TextChanged="tbStaminaCurrentLevel_TextChanged"  PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <TextBox x:Name="tbManaCurrentLevel" TextChanged="tbManaCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60"/>
-                        <Button x:Name="btnAttrib2Defaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,415,0,0" VerticalAlignment="Top" Width="100" Click="btnAttrib2Defaults_Click"/>
-                        <Button x:Name="btnAttrib2Update" Content="Update" HorizontalAlignment="Left" Margin="305,445,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttrib2Update_Click" />
-                        <Button x:Name="btnAttrib2Clear" Content="Clear" HorizontalAlignment="Left" Margin="410,445,0,0" VerticalAlignment="Top" Width="80" Click="btnAttrib2Clear_Click"/>
-                        <ComboBox x:Name="cbSkillType" SelectionChanged="cbSkillType_SelectionChanged" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220"/>
-                        <RadioButton x:Name="rdbSpec" Content="Specialized" Grid.Column="1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-                        <RadioButton x:Name="rdbTrained" Content="Trained" Grid.Column="1" HorizontalAlignment="Left" Margin="190,100,0,0" VerticalAlignment="Top" FontWeight="Bold" IsChecked="True"/>
-                        <TextBox x:Name="tbSkillLevel" IsReadOnly="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="55,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-                        <TextBox x:Name="tbSkillFinalLevel" IsEnabled="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" TextChanged="tbSkillFinalLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
-                        <Button x:Name="btnSkillsAdd" Content="Add" HorizontalAlignment="Left" Margin="295,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsAdd_Click"/>
-                        <Button x:Name="btnSkillsUpdate" Content="Update" HorizontalAlignment="Left" Margin="385,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsUpdate_Click"/>
-                        <Button x:Name="btnSkillsRemove" Content="Remove" HorizontalAlignment="Left" Margin="475,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsRemove_Click"/>
-                        <CheckBox x:Name="chkbSkillCalc" Checked="chkbSkillCalc_Changed" Unchecked="chkbSkillCalc_Changed" Content="Auto Calculate Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" IsChecked="True"/>
+                        <TextBox x:Name="tbAttribStrength" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Strength"/>
+                        <TextBox x:Name="tbAttribEndurance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Endurance"/>
+                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Quickness"/>
+                        <TextBox x:Name="tbAttribCoordination" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Coordination"/>
+                        <TextBox x:Name="tbAttribFocus" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Focus"/>
+                        <TextBox x:Name="tbAttribSelf" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Self (Willpower)"/>
+                        <Button x:Name="btnAttribDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,120,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="btnAttribDefaults_Click" ToolTip="Set Basic Defaults"/>
+                        <Button x:Name="btnAttribUpdate" Content="Update" HorizontalAlignment="Left" Margin="305,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttribUpdate_Click" ToolTip="Update all Attributes"/>
+                        <Button x:Name="btnAttribClear" Content="Clear" HorizontalAlignment="Left" Margin="410,155,0,0" VerticalAlignment="Top" Width="80" Click="btnAttribClear_Click" ToolTip="Clear all Attributes"/>
+                        <CheckBox x:Name="chkbAutoHealth" Content="Auto Calculate" Checked="chkbAutoHealth_Changed" Unchecked="chkbAutoHealth_Changed" HorizontalAlignment="Left" Margin="345,377,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want Weenie Fab to auto calcutate values"/>
+                        <TextBox x:Name="tbHealthInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Health Amount to add to Endurance (Endurance /2)"/>
+                        <TextBox x:Name="tbStaminaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Stamina Amount to add to Endurance (Endurance)"/>
+                        <TextBox x:Name="tbManaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Mana Amount to add to Self (Self)"/>
+                        <TextBox x:Name="tbHealthCurrentLevel" TextChanged="tbHealthCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="220,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Health (includes Endurance Attribute)"/>
+                        <TextBox x:Name="tbStaminaCurrentLevel" TextChanged="tbStaminaCurrentLevel_TextChanged"  PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Stamina (includes Endurance Attribute)"/>
+                        <TextBox x:Name="tbManaCurrentLevel" TextChanged="tbManaCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Mana (includes Self Attribute)"/>
+                        <Button x:Name="btnAttrib2Defaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,415,0,0" VerticalAlignment="Top" Width="100" Click="btnAttrib2Defaults_Click" ToolTip="Set Basic Defaults"/>
+                        <Button x:Name="btnAttrib2Update" Content="Update" HorizontalAlignment="Left" Margin="305,445,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttrib2Update_Click" ToolTip="Update Health/Stamina/Mana values" />
+                        <Button x:Name="btnAttrib2Clear" Content="Clear" HorizontalAlignment="Left" Margin="410,445,0,0" VerticalAlignment="Top" Width="80" Click="btnAttrib2Clear_Click" ToolTip="Clear Health/Stamina/Mana Values"/>
+                        <ComboBox x:Name="cbSkillType" SelectionChanged="cbSkillType_SelectionChanged" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220" ToolTip="Select the Skill you wish to Add/Change"/>
+                        <RadioButton x:Name="rdbSpec" Content="Specialized" Grid.Column="1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" FontWeight="Bold" ToolTip="Select if you want skill Specialized"/>
+                        <RadioButton x:Name="rdbTrained" Content="Trained" Grid.Column="1" HorizontalAlignment="Left" Margin="190,100,0,0" VerticalAlignment="Top" FontWeight="Bold" IsChecked="True" ToolTip="Select if you want skill Trained"/>
+                        <TextBox x:Name="tbSkillLevel" IsReadOnly="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="55,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2" ToolTip="Skill Level (Attributes not inculded)"/>
+                        <TextBox x:Name="tbSkillFinalLevel" IsEnabled="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" TextChanged="tbSkillFinalLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2" ToolTip="Set the final Skill level you want.  Skill Level will be calculted if you have option enabled."/>
+                        <Button x:Name="btnSkillsAdd" Content="Add" HorizontalAlignment="Left" Margin="295,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsAdd_Click" ToolTip="Add Skill"/>
+                        <Button x:Name="btnSkillsUpdate" Content="Update" HorizontalAlignment="Left" Margin="385,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsUpdate_Click" ToolTip="Update Skill"/>
+                        <Button x:Name="btnSkillsRemove" Content="Remove" HorizontalAlignment="Left" Margin="475,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsRemove_Click" ToolTip="Remove Skill"/>
+                        <CheckBox x:Name="chkbSkillCalc" Checked="chkbSkillCalc_Changed" Unchecked="chkbSkillCalc_Changed" Content="Auto Calculate Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want WeenieFab to do the calcs for you"/>
 
                         <DataGrid x:Name="dgAttributes" ItemsSource="{Binding}" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" AutoGenerateColumns="False" Margin="85,185,0,0" HorizontalAlignment="Left" Width="406" Height="160" VerticalAlignment="Top" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
@@ -1880,7 +1880,7 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="2.9*"></DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <DataGrid x:Name="dgSkills" ItemsSource="{Binding}" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" AutoGenerateColumns="False" Margin="55,180,0,0" VerticalAlignment="Top" Height="398" Grid.Column="2" HorizontalAlignment="Left" Width="500" DataGridCell.Selected="dgSkills_RowSelected">
+                        <DataGrid x:Name="dgSkills" ItemsSource="{Binding}" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" AutoGenerateColumns="False" Margin="55,180,0,0" VerticalAlignment="Top" Height="398" Grid.Column="2" HorizontalAlignment="Left" Width="500" DataGridCell.Selected="dgSkills_RowSelected" ToolTip="Select a skill to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Type" IsReadOnly="True" Binding="{Binding Path=Type}" Width="0.7*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="LevelPP" IsReadOnly="True"  Binding="{Binding Path=LevelPP}" Width="1*"></DataGridTextColumn>
@@ -1912,8 +1912,8 @@
                         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,185,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell Name Search" HorizontalAlignment="Left" Margin="80,77,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="86,105,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="350" MaxWidth="350"/>
-                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="150" Margin="85,135,0,0" MinWidth="300" MinHeight="150" HorizontalAlignment="Left" VerticalAlignment="Top">
+                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="86,105,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="350" MaxWidth="350" ToolTip="Type in the name of the Spell"/>
+                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="150" Margin="85,135,0,0" MinWidth="300" MinHeight="150" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Select Spell">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Spell ID" Width="50" DisplayMemberBinding="{Binding SpellID}"/>
@@ -1921,13 +1921,13 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="466,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="625,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106"/>
-                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="466,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="350" MaxWidth="350"/>
-                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,241,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click"/>
-                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,241,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555"/>
-                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,241,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click"/>
-                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,300,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="200" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="198" VerticalAlignment="Top">
+                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="466,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Spell ID"/>
+                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="625,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" ToolTip="How often will a spell be cast"/>
+                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="466,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="350" MaxWidth="350" ToolTip="The name of the spell"/>
+                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,241,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click" ToolTip="Add spell"/>
+                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,241,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected spell"/>
+                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,241,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click" ToolTip="Remove selected spell"/>
+                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,300,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="200" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="198" VerticalAlignment="Top" ToolTip="Select a spell to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.5*"/>
                                 <DataGridTextColumn Header="Probability" IsReadOnly="True"  Binding="{Binding Value}" Width="1.7*"/>
@@ -1939,24 +1939,24 @@
                 <TabItem Header="CreateItems" Background="#FFE1E8F5">
                     <Grid Background="#FFE1E8F5">
 
-                        <Label Content="Description" HorizontalAlignment="Left" Margin="222,126,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Description" HorizontalAlignment="Left" Margin="222,131,0,0" VerticalAlignment="Top"/>
                         <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="567,15,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
-                        <Label Content="Palette" HorizontalAlignment="Left" Margin="222,29,0,0" VerticalAlignment="Top"/>
-                        <Label Content="WCID" HorizontalAlignment="Left" Margin="92,79,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Stack Size" HorizontalAlignment="Left" Margin="92,121,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Destination Type" HorizontalAlignment="Left" Margin="92,29,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="222,79,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbCreateItemsDestType" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="tbCreateItemsPalette" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="222,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="tbCreateItemsWCID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="tbCreateItemsDropRate" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="222,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="tbCreateItemsStackSize" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
-                        <TextBox x:Name="tbCreateItemsDescription" HorizontalAlignment="Left" Margin="222,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Grid.ColumnSpan="2"/>
-                        <Button x:Name="btnAddCreateItems" Content="Add " HorizontalAlignment="Left" Margin="457,54,0,0" VerticalAlignment="Top" Width="100" Click="btnAddCreateItem_Click"/>
-                        <Button x:Name="btnUpdateCreateItems" Content="Update" HorizontalAlignment="Left" Margin="457,88,0,0" VerticalAlignment="Top" Click="btnUpdateCreateItem_Click" Width="100"/>
-                        <Button x:Name="btnRemoveItems" Content="Remove" HorizontalAlignment="Left" Margin="457,119,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveCreateItem_Click"/>
+                        <Label Content="Palette" HorizontalAlignment="Left" Margin="222,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="WCID" HorizontalAlignment="Left" Margin="92,84,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Stack Size" HorizontalAlignment="Left" Margin="92,131,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Destination Type" HorizontalAlignment="Left" Margin="92,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="222,84,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbCreateItemsDestType" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Destination Value"/>
+                        <TextBox x:Name="tbCreateItemsPalette" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="222,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Palette value"/>
+                        <TextBox x:Name="tbCreateItemsWCID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="WCID of Item to create"/>
+                        <TextBox x:Name="tbCreateItemsDropRate" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="222,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="How often will this item drop"/>
+                        <TextBox x:Name="tbCreateItemsStackSize" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="How many (if Stackable)"/>
+                        <TextBox x:Name="tbCreateItemsDescription" HorizontalAlignment="Left" Margin="222,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Grid.ColumnSpan="2" ToolTip="Name of item to create"/>
+                        <Button x:Name="btnAddCreateItems" Content="Add " HorizontalAlignment="Left" Margin="457,54,0,0" VerticalAlignment="Top" Width="100" Click="btnAddCreateItem_Click" ToolTip="Add item"/>
+                        <Button x:Name="btnUpdateCreateItems" Content="Update" HorizontalAlignment="Left" Margin="457,88,0,0" VerticalAlignment="Top" Click="btnUpdateCreateItem_Click" Width="100" ToolTip="Update selected item"/>
+                        <Button x:Name="btnRemoveItems" Content="Remove" HorizontalAlignment="Left" Margin="457,119,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveCreateItem_Click" ToolTip="Remove selected item"/>
 
-                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="80,0,0,30" AutoGenerateColumns="False" DataGridCell.Selected="dgCreateList_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="900" MinHeight="380" VerticalAlignment="Bottom" HorizontalAlignment="Left" MaxWidth="997" MaxHeight="380" Grid.ColumnSpan="2">
+                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="80,0,0,30" AutoGenerateColumns="False" DataGridCell.Selected="dgCreateList_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="900" MinHeight="380" VerticalAlignment="Bottom" HorizontalAlignment="Left" MaxWidth="997" MaxHeight="380" Grid.ColumnSpan="2" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="DestinationType" IsReadOnly="True" Binding="{Binding DestinationType}" Width="0.8*"/>
                                 <DataGridTextColumn Header="WCID" IsReadOnly="True"  Binding="{Binding WCID}" Width="0.5*"/>
@@ -1975,7 +1975,7 @@
                 <TabItem Header="Emotes">
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Emote Script" HorizontalAlignment="Left" Margin="0,3,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="16" HorizontalContentAlignment="Center"/>
-                        <Button x:Name="btnClearES" Content="Clear Emote Script" HorizontalAlignment="Right" Margin="0,10,270,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="106" Height="25" Click="btnClearES_Click">
+                        <Button x:Name="btnClearES" Content="Clear Emote Script" HorizontalAlignment="Right" Margin="0,10,270,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="106" Height="25" Click="btnClearES_Click" ToolTip="Clears all emote text">
                             <Button.Resources>
                                 <Style TargetType="{x:Type Border}">
                                     <Setter Property="CornerRadius" Value="5"/>
@@ -1985,7 +1985,7 @@
                                 <DropShadowEffect/>
                             </Button.Effect>
                         </Button>
-                        <Button x:Name="btnLoadES" Content="Load Emote Script" HorizontalAlignment="Right" Margin="0,10,145,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnLoadES_Click">
+                        <Button x:Name="btnLoadES" Content="Load Emote Script" HorizontalAlignment="Right" Margin="0,10,145,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnLoadES_Click" ToolTip="Load an ES File">
                             <Button.Effect>
                                 <DropShadowEffect/>
                             </Button.Effect>
@@ -1995,7 +1995,7 @@
                                 </Style>
                             </Button.Resources>
                         </Button>
-                        <Button x:Name="btnSaveES" Content="Save Emote Script" HorizontalAlignment="Right" Margin="0,10,20,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnSaveES_Click">
+                        <Button x:Name="btnSaveES" Content="Save Emote Script" HorizontalAlignment="Right" Margin="0,10,20,0" VerticalAlignment="Top" OpacityMask="#FFE01313" Background="#FFE0FDFC" Width="105" Height="25" Click="btnSaveES_Click" ToolTip="Saves an ES File">
                             <Button.Effect>
                                 <DropShadowEffect/>
                             </Button.Effect>
