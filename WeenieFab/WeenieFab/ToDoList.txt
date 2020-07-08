@@ -16,8 +16,9 @@ Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
 Auto generate file name on save
-
-
+Auto Calculate Skills
+Body Parts Table
+Destination DropDown (Create Items)
 
 **Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 
@@ -25,8 +26,7 @@ Auto generate file name on save
 
 Defaults for a new weenie (IE a quick wizard dialog)
 Auto Convert Json Files
-Auto Calculate Skills
-Body Parts Table
+
 Auto Calculate Body Parts
 MarkDown for ES in WeenieFab
 
