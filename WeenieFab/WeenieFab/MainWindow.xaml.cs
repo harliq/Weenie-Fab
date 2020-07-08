@@ -524,5 +524,149 @@ namespace WeenieFab
                 tbManaInitLevel.Text = (finalMana - attribSelf).ToString();
             }
         }
+
+        private void chkbSkillCalc_Changed(object sender, RoutedEventArgs e)
+        {
+            if (chkbAutoHealth.IsChecked == true)
+            {
+                WeenieFabUser.Default.AutoCalcSkill = true;
+                WeenieFabUser.Default.Save();
+            }
+            else
+            {
+                WeenieFabUser.Default.AutoCalcSkill = false;
+                WeenieFabUser.Default.Save();
+                
+            }
+        }
+
+        private void tbSkillFinalLevel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            AutoSkillCalc();
+        }
+        private void cbSkillType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Not sure if I want to do this or not.  Will leave out for now, unless it is asked for. HQ 7/8
+            // AutoSkillCalc();
+        }
+        public void AutoSkillCalc()
+        {
+            // Skill Formulas based on Attribs
+
+            int strength = ConvertToInteger(tbAttribStrength.Text);
+            int endur = ConvertToInteger(tbAttribEndurance.Text);
+            int coord = ConvertToInteger(tbAttribCoordination.Text);
+            int quick = ConvertToInteger(tbAttribQuickness.Text);
+            int focus = ConvertToInteger(tbAttribFocus.Text);
+            int self = ConvertToInteger(tbAttribSelf.Text);
+
+
+            if (WeenieFabUser.Default.AutoCalcSkill == true)
+            {
+                switch (cbSkillType.SelectedIndex)
+                {
+
+                    case 6:  // MeleeD
+                    case 46: // Finesse Weapons
+                    case 51: // Sneak Attack
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 3)).ToString();
+                        break;
+                    case 7:  // MissileD
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 5)).ToString();
+                        break;
+                    case 14:  // Arcane Lore
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - (focus / 3)).ToString();
+                        break;
+                    case 15:  // Magic D
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 7)).ToString();
+                        break; 
+                    case 16:  // Mana C
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 6)).ToString();
+                        break;
+                    case 18:  // Item Appraisal - Item Tink
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 2)).ToString();
+                        break;
+                    case 19:  // Personal Appraisal - Assess Persoon
+                    case 20:  // Deception
+                    case 27:  // Creature Appraisal - Asses Creature
+                    case 35:  // Leadership
+                    case 36:  // Loyalty
+                    case 40:  // Salvaging
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
+                        break;
+                    case 21:  // Healing
+                    case 23:  // Lockpick
+                    case 37:  // Fletching
+                    case 38:  // Alchemy
+                    case 39:  // Cooking
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 3)).ToString();
+                        break;
+                    case 22:  // Jump
+                    case 48:  // Shield
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 2)).ToString();
+                        break;
+                    case 24:  // Run
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - quick).ToString();
+                        break;
+                    case 28:  // Weapon Appraisal - Weapon Tink
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + strength) / 2)).ToString();
+                        break;
+                    case 29:  // Armor Appraisal - Armor Tink
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + endur) / 2)).ToString();
+                        break;
+                    case 30:  // Magic Item Appraisal - Magic Item Tink
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - focus).ToString();
+                        break;
+                    case 31:  // Creature Magic
+                    case 32:  // Item Magic
+                    case 33:  // Life Magic
+                    case 34:  // War Magic
+                    case 43:  // Void Magic
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 4)).ToString();
+                        break;
+                    case 41:  // Two Hand
+                    case 44:  // Heavy Weapons
+                    case 45:  // Light Weapons
+                    case 52:  // Dirty Fighting
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 3)).ToString();
+                        break;
+                    case 47:  // Missile Weapons
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - coord / 2).ToString();
+                        break;
+                    case 49:  // Dual Wield
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((coord * 2) / 3)).ToString();
+                        break;
+                    case 50:  // Recklessness
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + quick) / 3)).ToString();
+                        break;
+                    case 54:  // Summoning
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((endur + self) / 3)).ToString();
+                        break;
+                    // Ignored (Unused)
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 17:
+                    case 25:
+                    case 26:
+                    case 42:
+                    case 53:
+                    default:
+                        break;
+                }
+            }
+
+        }
+
+
     }
 }

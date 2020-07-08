@@ -16,7 +16,7 @@ Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
 Auto generate file name on save
-Auto Calculate Skills
+
 Body Parts Table
 Destination DropDown (Create Items)
 
@@ -33,6 +33,8 @@ MarkDown for ES in WeenieFab
 
 
 **Completed**
+#Done-Auto Calculate Skills
+
 #Done-Auto Calculate Health,Stamina,Mana
 #Done-UI design
 #Done-TabStops
