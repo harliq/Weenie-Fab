@@ -19,6 +19,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WeenieFab.Properties;
 using Path = System.IO.Path;
 
 namespace WeenieFab
@@ -460,6 +461,9 @@ namespace WeenieFab
         {
             rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
             rtbEmoteScript.Document.PageWidth = 2000;
+            if (WeenieFabUser.Default.AutoCalcHealth == true)
+                chkbAutoHealth.IsChecked = true;
+
 
         }
 
@@ -477,5 +481,48 @@ namespace WeenieFab
             lblVersion.Content = "Version " + version;
         }
 
+        private void chkbAutoHealth_Changed(object sender, RoutedEventArgs e)
+        {
+            if (chkbAutoHealth.IsChecked == true)
+            {
+                WeenieFabUser.Default.AutoCalcHealth = true;
+                WeenieFabUser.Default.Save();
+            }
+            else
+            {
+                WeenieFabUser.Default.AutoCalcHealth = false;
+                WeenieFabUser.Default.Save();
+            }
+        }
+
+        private void tbHealthCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (WeenieFabUser.Default.AutoCalcHealth == true)
+            {
+                int attribEndurance = ConvertToInteger(tbAttribEndurance.Text) / 2;
+                int finalHealth = ConvertToInteger(tbHealthCurrentLevel.Text);
+                tbHealthInitLevel.Text = (finalHealth - attribEndurance).ToString();
+            }          
+        }
+
+        private void tbStaminaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (WeenieFabUser.Default.AutoCalcHealth == true)
+            {
+                int attribEndurance = ConvertToInteger(tbAttribEndurance.Text);
+                int finalStamina = ConvertToInteger(tbStaminaCurrentLevel.Text);
+                tbStaminaInitLevel.Text = (finalStamina - attribEndurance).ToString();
+            }
+        }
+
+        private void tbManaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (WeenieFabUser.Default.AutoCalcHealth == true)
+            {
+                int attribSelf = ConvertToInteger(tbAttribSelf.Text);
+                int finalMana = ConvertToInteger(tbManaCurrentLevel.Text);
+                tbManaInitLevel.Text = (finalMana - attribSelf).ToString();
+            }
+        }
     }
 }
