@@ -70,5 +70,17 @@ namespace WeenieFab.Properties {
                 this["AutoLoadESFiles"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoCalcHealth {
+            get {
+                return ((bool)(this["AutoCalcHealth"]));
+            }
+            set {
+                this["AutoCalcHealth"] = value;
+            }
+        }
     }
 }
