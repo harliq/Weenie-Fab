@@ -82,5 +82,17 @@ namespace WeenieFab.Properties {
                 this["AutoCalcHealth"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool AutoCalcSkill {
+            get {
+                return ((bool)(this["AutoCalcSkill"]));
+            }
+            set {
+                this["AutoCalcSkill"] = value;
+            }
+        }
     }
 }

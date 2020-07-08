@@ -1828,8 +1828,10 @@
                         <Label Content="Current Level" HorizontalAlignment="Left" Margin="210,370,0,0" VerticalAlignment="Top"/>
                         <Label Content="Skills" HorizontalAlignment="Center" Margin="0,4,0,0" VerticalAlignment="Top" FontWeight="Bold" Grid.Column="2"/>
                         <Label Content="Skill Level" HorizontalAlignment="Left" Margin="55,125,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                        <Label Content="Skill Final Level" HorizontalAlignment="Left" Margin="165,125,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <Label Content="Skill Type" HorizontalAlignment="Left" Margin="55,30,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="340,385,0,0" VerticalAlignment="Top"/>
+                        <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <TextBox x:Name="tbAttribStrength" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
                         <TextBox x:Name="tbAttribEndurance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
                         <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
@@ -1849,13 +1851,15 @@
                         <Button x:Name="btnAttrib2Defaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,415,0,0" VerticalAlignment="Top" Width="100" Click="btnAttrib2Defaults_Click"/>
                         <Button x:Name="btnAttrib2Update" Content="Update" HorizontalAlignment="Left" Margin="305,445,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttrib2Update_Click" />
                         <Button x:Name="btnAttrib2Clear" Content="Clear" HorizontalAlignment="Left" Margin="410,445,0,0" VerticalAlignment="Top" Width="80" Click="btnAttrib2Clear_Click"/>
-                        <ComboBox x:Name="cbSkillType" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220"/>
+                        <ComboBox x:Name="cbSkillType" SelectionChanged="cbSkillType_SelectionChanged" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220"/>
                         <RadioButton x:Name="rdbSpec" Content="Specialized" Grid.Column="1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                         <RadioButton x:Name="rdbTrained" Content="Trained" Grid.Column="1" HorizontalAlignment="Left" Margin="190,100,0,0" VerticalAlignment="Top" FontWeight="Bold" IsChecked="True"/>
-                        <TextBox x:Name="tbSkillLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="55,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Grid.Column="2"/>
+                        <TextBox x:Name="tbSkillLevel" IsReadOnly="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="55,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
+                        <TextBox x:Name="tbSkillFinalLevel" IsEnabled="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" TextChanged="tbSkillFinalLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="170,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2"/>
                         <Button x:Name="btnSkillsAdd" Content="Add" HorizontalAlignment="Left" Margin="295,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsAdd_Click"/>
                         <Button x:Name="btnSkillsUpdate" Content="Update" HorizontalAlignment="Left" Margin="385,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsUpdate_Click"/>
                         <Button x:Name="btnSkillsRemove" Content="Remove" HorizontalAlignment="Left" Margin="475,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsRemove_Click"/>
+                        <CheckBox x:Name="chkbSkillCalc" Checked="chkbSkillCalc_Changed" Unchecked="chkbSkillCalc_Changed" Content="Auto Calculate Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" IsChecked="True"/>
 
                         <DataGrid x:Name="dgAttributes" ItemsSource="{Binding}" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" AutoGenerateColumns="False" Margin="85,185,0,0" HorizontalAlignment="Left" Width="406" Height="160" VerticalAlignment="Top" Grid.ColumnSpan="2">
                             <DataGrid.Columns>
