@@ -187,39 +187,63 @@ namespace WeenieFab
                         dgSpell.DataContext = spellDataTable;
 
                     }
-                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") || line.Contains("INSERT INTO `weenie_properties_emote`"))
+                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") ||
+                             line.Contains("INSERT INTO `weenie_properties_emote`") ||
+                             line.Contains("SET @parent_id = LAST_INSERT_ID()"))
                     {
+
+                        emoteBlob += ReadEmoteBlob(line, sr);
+
                         // emoteBlob = ReadEmoteBlob(sr);
-                        ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
+                        //ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
+
+                        //createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
+                        //createListDataTable.AcceptChanges();
+                        //dgCreateItems.DataContext = createListDataTable;
+                        //dgCreateItems.Items.Refresh();
+
+                        //string tempES = "";
+                        //string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                        //var es = EmoteScriptLib.Converter.sql2es(emotes);
+
+                        //foreach (var esline in es)
+                        //{
+                        //    tempES += esline + "\r\n";
+                        //}
+
+                        //rtbEmoteScript.Document.Blocks.Clear();
+                        //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+                    }
+                    else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                    {
+
+                        createListBlob = ReadBlob(sr);
+
                         createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
                         createListDataTable.AcceptChanges();
                         dgCreateItems.DataContext = createListDataTable;
                         dgCreateItems.Items.Refresh();
 
-                        string tempES = "";
-                        string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                        //createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
+                        //createListDataTable.AcceptChanges();
+                        //// createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                        //dgCreateItems.DataContext = createListDataTable;
 
-                        var es = EmoteScriptLib.Converter.sql2es(emotes);
-
-                        foreach (var esline in es)
-                        {
-                            tempES += esline + "\r\n";
-                        }
-
-                        rtbEmoteScript.Document.Blocks.Clear();
-                        rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
                     }
-                    //else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    //{
-                    //    createListBlob = ReadBlob(sr);
-
-                    //    createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
-                    //    createListDataTable.AcceptChanges();
-                    //    // createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                    //    dgCreateItems.DataContext = createListDataTable;
-
-                    //}
                 }
+
+                string tempES = "";
+                string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                var es = EmoteScriptLib.Converter.sql2es(emotes);
+
+                foreach (var esline in es)
+                {
+                    tempES += esline + "\r\n";
+                }
+                rtbEmoteScript.Document.Blocks.Clear();
+                rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
 
                 if (WeenieFabUser.Default.AutoLoadESFiles == true)
                 {
@@ -229,12 +253,7 @@ namespace WeenieFab
                         string esdata = File.ReadAllText(esfile);
                         rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(esdata)));
                     }
-
                 }
-                
-                
-                
-
 
                 sr.Close();
             }
@@ -345,40 +364,45 @@ namespace WeenieFab
             return blob;
         }
 
-        public static string ReadEmoteBlob(StreamReader sr)
+        public static string ReadEmoteBlob(string readline, StreamReader sr)
         {
-            string blob = "";
-            string line;
-
-            while ((line = sr.ReadLine()) != null)
-            {
-                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    return blob;
-                else
-                {
-                    blob += line + "\r\n";
-                }
-            }
-            
-            return blob;
-        }
-        public static void ReadEmoteCreateListBlob(string readline, StreamReader sr, out string emoteBlob, out string createListBlob)
-        {
-            emoteBlob = readline + "\r\n";
-            createListBlob = "";
+            string emoteBlob = readline + "\r\n";
+            // createListBlob = "";
 
             string line;
 
             while ((line = sr.ReadLine()) != null)
             {
-                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    createListBlob = ReadBlob(sr);
+                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                //    createListBlob = ReadBlob(sr);
+                if (line == "" || line == "\t" || line == "\r\n")
+                    return emoteBlob;
                 else
                 {
                     emoteBlob += line + "\r\n";
                 }
             }
+            return emoteBlob;
+        }
+        public static string ReadEmoteCreateListBlob(string readline, StreamReader sr)
+        {
+            string emoteBlob = readline + "\r\n";
+            // createListBlob = "";
 
+            string line;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                //    createListBlob = ReadBlob(sr);
+                if (line == "" || line == "\t" || line == "\r\n")
+                    return emoteBlob;
+                else
+                {
+                    emoteBlob += line + "\r\n";
+                }
+            }
+            return emoteBlob;
         }
 
         public static string OpenESFile()
