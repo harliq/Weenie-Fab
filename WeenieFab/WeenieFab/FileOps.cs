@@ -248,7 +248,7 @@ namespace WeenieFab
 
             // Header
             string header = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text} \n\n";
-            string body = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text} \n\n";
+            string body = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text}; \n\n";
 
             // WeenieType
             body += $"INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)\n";
