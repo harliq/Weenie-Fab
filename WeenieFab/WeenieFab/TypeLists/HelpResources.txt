@@ -1,4 +1,5 @@
 WeenieFab Wiki,https://github.com/harliq/Weenie-Fab/wiki
 ACE,https://github.com/ACEmulator/ACE
-Dynamic PCAP'd Weenies,https://github.com/ACEmulator/ACE-PCAP-Dynamics-Exports
-
+Dynamic PCAP'd Weenie Finder,https://github.com/ACEmulator/ACE-PCAP-Dynamics-Exports/find/trims
+Weenie Properties Spreadsheet,https://docs.google.com/spreadsheets/d/1zubQEJaFsaMMNgyHF0DaPv0-VK80-uxK4Peuz3kUdGM/edit#gid=1691309931
+LSD Spell Book,https://docs.google.com/spreadsheets/d/1qQBNdNneoLIv66WUMFAScfvVpJhNpbTZ9Tn526o2vKg/edit#gid=61737657

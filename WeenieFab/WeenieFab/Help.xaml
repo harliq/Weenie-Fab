@@ -280,8 +280,8 @@
         <ListView x:Name="lvResources" MaxWidth="450" MaxHeight="250" VerticalAlignment="Top" HorizontalAlignment="Center" MinWidth="550" MinHeight="250" Margin="0,120,0,0" Grid.ColumnSpan="2" ToolTip="Click Website to go there">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Website" Width="150" DisplayMemberBinding="{Binding Website}"/>
-                    <GridViewColumn Header="Address" Width="400">
+                    <GridViewColumn Header="Website" Width="200" DisplayMemberBinding="{Binding Website}"/>
+                    <GridViewColumn Header="Address" Width="350">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
