@@ -1625,12 +1625,12 @@
         </ToolBar>
 
 
-        <Label x:Name="lblWCID" Content="WCID" HorizontalAlignment="Left" Margin="23,48,0,0" VerticalAlignment="Top" Height="25" Width="40"/>
-        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="166,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="447,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="64,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18" ToolTip="WCID for this weenie"/>
-        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="255,52,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="187" Height="18" ToolTip="Name of Weenie"/>
-        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="536,51,0,0" VerticalAlignment="Top" Width="233" ToolTip="Select the Type of Weenie"/>
+        <Label x:Name="lblWCID" Content="WCID:" HorizontalAlignment="Left" Margin="100,48,0,0" VerticalAlignment="Top" Height="25" Width="45"/>
+        <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="235,48,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
+        <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="655,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
+        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="150,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18" ToolTip="WCID for this weenie"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="325,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="20" ToolTip="Name of Weenie" MaxWidth="353" MinWidth="300"/>
+        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="735,50,0,0" VerticalAlignment="Top" Width="233" ToolTip="Select the Type of Weenie" MinWidth="250"/>
 
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0,33,0,0">
@@ -1775,16 +1775,16 @@
                     <Grid Background="#FFE1E8F5">
                         <Label Content="String" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
                         <Label Content="Strings" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="547" ToolTip="Select the Property You wish to Add/Change"/>
-                        <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="String Text"/>
-                        <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click" ToolTip="Add property"/>
-                        <Button x:Name="btnUpdateString" Content="Update" HorizontalAlignment="Left" Margin="427,104,0,0" VerticalAlignment="Top" Click="btnUpdateString_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property"/>
-                        <Button x:Name="btnRemoveString" Content="Remove" HorizontalAlignment="Left" Margin="538,104,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveString_Click" ToolTip="Remove selected property"/>
-                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,137,202,71" AutoGenerateColumns="False" DataGridCell.Selected="dgString_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change">
+                        <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="398" ToolTip="Select the Property You wish to Add/Change"/>
+                        <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" ToolTip="String Text" MaxWidth="500" MinWidth="900"/>
+                        <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="95,142,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click" ToolTip="Add property" Padding="0,3,0,0"/>
+                        <Button x:Name="btnUpdateString" Content="Update" HorizontalAlignment="Left" Margin="205,142,0,0" VerticalAlignment="Top" Click="btnUpdateString_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property" Padding="0,3,0,0"/>
+                        <Button x:Name="btnRemoveString" Content="Remove" HorizontalAlignment="Left" Margin="315,142,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveString_Click" ToolTip="Remove selected property" Padding="0,3,0,0"/>
+                        <DataGrid x:Name="dgString" ItemsSource="{Binding}" Margin="92,180,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgString_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" MaxWidth="900" HorizontalAlignment="Left" VerticalAlignment="Top" MaxHeight="450" MinWidth="900" MinHeight="350">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Property}" Width="1*"/>
-                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Value}" Width="1*"/>
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="8*"/>
+                                <DataGridTextColumn Header="String" IsReadOnly="True"  Binding="{Binding Value}" Width="6.5*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="2.5*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>
