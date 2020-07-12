@@ -80,6 +80,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\ACData\ACDataLib\ACDataLib.csproj" />
     <ProjectReference Include="..\..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj" />
   </ItemGroup>
 
