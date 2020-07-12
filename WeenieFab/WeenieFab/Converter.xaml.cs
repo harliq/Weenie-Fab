@@ -1,4 +1,5 @@
 ﻿using Microsoft.Win32;
+using Ookii.Dialogs.Wpf;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -76,6 +77,19 @@ namespace WeenieFab
                 
             }
             MessageBox.Show($"{c} files were converted.");
+        }
+
+        private void btnChangeFolder_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
+            fbd.Description = "Please select folder for Converted JSON Files.";
+            fbd.UseDescriptionForTitle = true; // This applies to the Vista style dialog only, not the old dialog.
+            if (!VistaFolderBrowserDialog.IsVistaFolderDialogSupported)
+                MessageBox.Show(this, "Because you are not using Windows Vista or later, the regular folder browser dialog will be used. Please use Windows Vista to see the new dialog.", "Sample folder browser dialog");
+            if ((bool)fbd.ShowDialog(this))
+            {
+                tbConvertFilePath.Text = fbd.SelectedPath;
+            }
         }
     }
 }

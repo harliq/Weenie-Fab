@@ -80,6 +80,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Ookii.Dialogs.Wpf.NETCore" Version="2.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\ACData\ACDataLib\ACDataLib.csproj" />
     <ProjectReference Include="..\..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj" />
   </ItemGroup>
