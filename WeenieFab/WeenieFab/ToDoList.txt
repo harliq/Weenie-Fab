@@ -25,13 +25,14 @@ Destination DropDown (Create Items)
 **Future Features**
 After MileStone.
 Defaults for a new weenie (IE a quick wizard dialog)
-Auto Convert Json Files
+**  Have to wait for ACData to be fixed. Auto Convert Json Files
 Auto Calculate Body Parts
 MarkDown for ES in WeenieFab
 
 
 
 **Completed**
+#Done-Added JSON Converter
 #Done-ToolTips
 #Done-Auto Calculate Skills
 

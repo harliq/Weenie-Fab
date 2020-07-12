@@ -9,6 +9,8 @@ using Microsoft.Win32;
 using System.ComponentModel;
 using WeenieFab.Properties;
 using EmoteScriptLib;
+using System.Windows;
+using System.Reflection;
 
 namespace WeenieFab
 {
@@ -18,18 +20,90 @@ namespace WeenieFab
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Open Weenie File";
-            ofd.Filter = "SQL files|*.sql";
+            ofd.Filter = "All Weenie Types|*.sql;*.json|SQL files|*.sql|JSON files|*.json";
             ofd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
             Nullable<bool> result = ofd.ShowDialog();
 
             if (result == true)
             {
-                ClearAllDataTables();
-                //ClearAllDataGrids();
-                ClearAllFields();
-                ResetIndexAllDataGrids();
-                ReadSQLFile(ofd.FileName);
-                
+                string ext = Path.GetExtension(ofd.FileName);
+
+                //  Opening a JSON file is going to depend on if ACData is fixed for strings. 
+                //  I have tried to work around what ACData does by attempting to do a temp file (didn't work issue with the way it handles strings),
+                //  AND at this point, ACData also changes the file name from the default JSON name.  This causes an issue.  So disabling it for now.  
+                //  Will revisit down the road.
+
+                if (ext == ".json")
+                {
+
+                    // string[] acdatatest;
+                    // ACDataLib.Converter.Convert(jfileinfo,directoryInfo);
+                    // ACDataLib.Converter.Convert(jfileinfo, directoryInfo);
+
+
+
+                    ////string jsonData = File.ReadAllText(ofd.FileName);
+                    //////string tempJson = "";
+                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                    ////bool convertResult = ACDataLib.Converter.Convert(json, ACDataLib.FileFormat.JSON);
+                    ////var tempjson = ACDataLib.Converter.Output;
+
+                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
+
+                    ////File.WriteAllText(jsonFilePath, tempjson);
+
+                    ////string jsonData = File.ReadAllText(ofd.FileName);
+
+                    ////string tempJson = "";
+                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+
+                    ////foreach (var jsonLine in jsonData)
+                    ////{
+                    ////    tempJson += jsonLine + "\r\n";
+                    ////}
+
+                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
+                    ////ACDataLib.Converter.json2sql(ofd.FileName, json, jsonFilePath));
+
+                    FileInfo jfileinfo = new FileInfo(ofd.FileName);
+                    DirectoryInfo directoryInfo = new DirectoryInfo(WeenieFabUser.Default.DefaultSqlPath);
+                    MessageBox.Show("Json import not supported yet.  Please use converter.");
+
+
+                    // *--- Area to uncomment for when it works --- *
+                    ////ClearAllDataTables();
+
+                    ////ClearAllFields();
+                    ////ResetIndexAllDataGrids();
+
+                    ////ACDataLib.Converter.json2sql(jfileinfo, null, directoryInfo);
+
+
+                    //string sqlfilename = ofd.SafeFileName.Replace(".json", ".sql");
+
+                    ////  Have to do all of this because ACData adds a zero infront of wcid (I am guessing it's padding zeros upto 5 places)
+                    //string[] tsqlfilename = sqlfilename.Split(" ");
+                    //string fmt = "00000.##";
+                    //string twcid = ConvertToInteger(tsqlfilename[0]).ToString(fmt);
+                    //sqlfilename = sqlfilename.Replace(tsqlfilename[0], twcid);
+
+
+                    ////ReadSQLFile(WeenieFabUser.Default.DefaultSqlPath + @"\" + sqlfilename);
+
+
+                }
+                else if (ext == ".sql")
+                {
+                    ClearAllDataTables();
+                    //ClearAllDataGrids();
+                    ClearAllFields();
+                    ResetIndexAllDataGrids();
+                    ReadSQLFile(ofd.FileName);
+                }
+                else
+                    MessageBox.Show("File Extension Not Reconized");
             }
         }
 
@@ -80,165 +154,195 @@ namespace WeenieFab
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
 
-            using (StreamReader sr = new StreamReader(filepath))
+            try
             {
-                while ((line = sr.ReadLine()) != null) 
+
+
+                using (StreamReader sr = new StreamReader(filepath))
                 {
+                    while ((line = sr.ReadLine()) != null)
+                    {
 
-                    if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
-                    {
-                        wcidblob += sr.ReadLine();
-                        string pattern = @"VALUES \s*\((\d+), '([\w -]*[a-zA-Z])?',\s*(\d+).*$";
-                        var match = Regex.Match(wcidblob, pattern);
-                        tbWCID.Text = match.Groups[1].ToString();
-                        tbWeenieName.Text = match.Groups[2].ToString();
-                        cbWeenieType.SelectedIndex = int.Parse(match.Groups[3].ToString());
-
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
-                    {
-                        
-                        int32Blob = ReadBlob(sr);
-                        integerDataTable = DecodeSql.DecodeThreeValuesInt(int32Blob,intPattern);
-                        integerDataTable.AcceptChanges();
-                        integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
-                        dgInt32.DataContext = integerDataTable;
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
-                    {
-                        int64Blob = ReadBlob(sr);
-                        integer64DataTable = DecodeSql.DecodeThreeValuesInt(int64Blob,intPattern);
-                        integer64DataTable.AcceptChanges();
-                        integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
-                        dgInt64.DataContext = integer64DataTable;
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)"))
-                    {
-                        boolBlob = ReadBlob(sr);
-                        boolDataTable = DecodeSql.DecodeThreeValuesBool(boolBlob, boolPattern);
-                        boolDataTable.AcceptChanges();
-                        boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
-                        dgBool.DataContext = boolDataTable;
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)"))
-                    {
-                        floatBlob = ReadBlob(sr);
-                        floatDataTable = DecodeSql.DecodeThreeValuesFloat(floatBlob, floatPattern);
-                        floatDataTable.AcceptChanges();
-                        floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
-                        dgFloat.DataContext = floatDataTable;
-
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_string` (`object_Id`, `type`, `value`)"))
-                    {
-                        stringBlob = ReadBlob(sr);
-                        stringDataTable = DecodeSql.DecodeThreeValuesString(stringBlob, stringPattern);
-                        stringDataTable.AcceptChanges();
-                        stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
-                        dgString.DataContext = stringDataTable;
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
-                    {
-                        didBlob = ReadBlob(sr);
-                        didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
-                        didDataTable.AcceptChanges();
-                        didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
-                        dgDiD.DataContext = didDataTable;
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
-                    {
-                        attributeBlob = ReadBlob(sr);
-
-                        attributeDataTable = DecodeSql.DecodeAttribute(attributeBlob, attribPattern);
-                        attributeDataTable.AcceptChanges();
-                        dgAttributes.DataContext = attributeDataTable;
-                        updateAttribs();
-                    }
-                    else if (line.Contains("weenie_properties_attribute_2nd`"))
-                    {
-                        attributeTwoBlob = ReadBlob(sr);
-                        attribute2DataTable = DecodeSql.DecodeAttributeTwo(attributeTwoBlob, attrib2Pattern);
-                        attribute2DataTable.AcceptChanges();
-                        dgAttributesTwo.DataContext = attribute2DataTable;
-                        updateAttribs2();
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_skill`"))
-                    {
-                        skillsBlob = ReadBlob(sr);
-
-                        skillsDataTable = DecodeSql.DecodeSkills(skillsBlob, skillsPattern);
-                        skillsDataTable.AcceptChanges();
-                        dgSkills.DataContext = skillsDataTable;
-                        // dgSkills.Items.Refresh();
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_body_part`"))
-                    {
-                        bodyPartBlob = ReadBlob(sr);
-                        rtbBodyParts.Document.Blocks.Clear();
-                        rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyPartBlob)));
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_spell_book`"))
-                    {
-                        spellBookBlob = ReadBlob(sr);
-
-                        spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
-                        spellDataTable.AcceptChanges();
-                        spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                        dgSpell.DataContext = spellDataTable;
-
-                    }
-                    else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") || line.Contains("INSERT INTO `weenie_properties_emote`"))
-                    {
-                        // emoteBlob = ReadEmoteBlob(sr);
-                        ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
-                        createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
-                        createListDataTable.AcceptChanges();
-                        dgCreateItems.DataContext = createListDataTable;
-                        dgCreateItems.Items.Refresh();
-
-                        string tempES = "";
-                        string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                        var es = EmoteScriptLib.Converter.sql2es(emotes);
-
-                        foreach (var esline in es)
+                        if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
                         {
-                            tempES += esline + "\r\n";
+                            wcidblob += sr.ReadLine();
+                            string pattern = @"VALUES \s*\((\d+), '([\w -]*[a-zA-Z])?',\s*(\d+).*$";
+                            var match = Regex.Match(wcidblob, pattern);
+                            tbWCID.Text = match.Groups[1].ToString();
+                            tbWeenieName.Text = match.Groups[2].ToString();
+                            cbWeenieType.SelectedIndex = int.Parse(match.Groups[3].ToString());
+
                         }
+                        else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
+                        {
 
-                        rtbEmoteScript.Document.Blocks.Clear();
-                        rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+                            int32Blob = ReadBlob(sr);
+                            integerDataTable = DecodeSql.DecodeThreeValuesInt(int32Blob, intPattern);
+                            integerDataTable.AcceptChanges();
+                            integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
+                            dgInt32.DataContext = integerDataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
+                        {
+                            int64Blob = ReadBlob(sr);
+                            integer64DataTable = DecodeSql.DecodeThreeValuesInt(int64Blob, intPattern);
+                            integer64DataTable.AcceptChanges();
+                            integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
+                            dgInt64.DataContext = integer64DataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)"))
+                        {
+                            boolBlob = ReadBlob(sr);
+                            boolDataTable = DecodeSql.DecodeThreeValuesBool(boolBlob, boolPattern);
+                            boolDataTable.AcceptChanges();
+                            boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
+                            dgBool.DataContext = boolDataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)"))
+                        {
+                            floatBlob = ReadBlob(sr);
+                            floatDataTable = DecodeSql.DecodeThreeValuesFloat(floatBlob, floatPattern);
+                            floatDataTable.AcceptChanges();
+                            floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
+                            dgFloat.DataContext = floatDataTable;
+
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_string` (`object_Id`, `type`, `value`)"))
+                        {
+                            stringBlob = ReadBlob(sr);
+                            stringDataTable = DecodeSql.DecodeThreeValuesString(stringBlob, stringPattern);
+                            stringDataTable.AcceptChanges();
+                            stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
+                            dgString.DataContext = stringDataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
+                        {
+                            didBlob = ReadBlob(sr);
+                            didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
+                            didDataTable.AcceptChanges();
+                            didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
+                            dgDiD.DataContext = didDataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
+                        {
+                            attributeBlob = ReadBlob(sr);
+
+                            attributeDataTable = DecodeSql.DecodeAttribute(attributeBlob, attribPattern);
+                            attributeDataTable.AcceptChanges();
+                            dgAttributes.DataContext = attributeDataTable;
+                            updateAttribs();
+                        }
+                        else if (line.Contains("weenie_properties_attribute_2nd`"))
+                        {
+                            attributeTwoBlob = ReadBlob(sr);
+                            attribute2DataTable = DecodeSql.DecodeAttributeTwo(attributeTwoBlob, attrib2Pattern);
+                            attribute2DataTable.AcceptChanges();
+                            dgAttributesTwo.DataContext = attribute2DataTable;
+                            updateAttribs2();
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_skill`"))
+                        {
+                            skillsBlob = ReadBlob(sr);
+
+                            skillsDataTable = DecodeSql.DecodeSkills(skillsBlob, skillsPattern);
+                            skillsDataTable.AcceptChanges();
+                            dgSkills.DataContext = skillsDataTable;
+                            // dgSkills.Items.Refresh();
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_body_part`"))
+                        {
+                            bodyPartBlob = ReadBlob(sr);
+                            rtbBodyParts.Document.Blocks.Clear();
+                            rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyPartBlob)));
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_spell_book`"))
+                        {
+                            spellBookBlob = ReadBlob(sr);
+
+                            spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
+                            spellDataTable.AcceptChanges();
+                            spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                            dgSpell.DataContext = spellDataTable;
+
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") ||
+                                 line.Contains("INSERT INTO `weenie_properties_emote`") ||
+                                 line.Contains("SET @parent_id = LAST_INSERT_ID()"))
+                        {
+
+                            emoteBlob += ReadEmoteBlob(line, sr);
+
+                            // emoteBlob = ReadEmoteBlob(sr);
+                            //ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
+
+                            //createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
+                            //createListDataTable.AcceptChanges();
+                            //dgCreateItems.DataContext = createListDataTable;
+                            //dgCreateItems.Items.Refresh();
+
+                            //string tempES = "";
+                            //string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                            //var es = EmoteScriptLib.Converter.sql2es(emotes);
+
+                            //foreach (var esline in es)
+                            //{
+                            //    tempES += esline + "\r\n";
+                            //}
+
+                            //rtbEmoteScript.Document.Blocks.Clear();
+                            //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                        {
+
+                            createListBlob = ReadBlob(sr);
+
+                            createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
+                            createListDataTable.AcceptChanges();
+                            dgCreateItems.DataContext = createListDataTable;
+                            dgCreateItems.Items.Refresh();
+
+                            //createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
+                            //createListDataTable.AcceptChanges();
+                            //// createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                            //dgCreateItems.DataContext = createListDataTable;
+
+                        }
                     }
-                    //else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    //{
-                    //    createListBlob = ReadBlob(sr);
 
-                    //    createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
-                    //    createListDataTable.AcceptChanges();
-                    //    // createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                    //    dgCreateItems.DataContext = createListDataTable;
+                    string tempES = "";
+                    string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-                    //}
-                }
+                    var es = EmoteScriptLib.Converter.sql2es(emotes);
 
-                if (WeenieFabUser.Default.AutoLoadESFiles == true)
-                {
-                    string esfile = WeenieFabUser.Default.DefaultESPath + @"\" + tbWCID.Text +".es";
-                    if (File.Exists(esfile) == true)
+                    foreach (var esline in es)
                     {
-                        string esdata = File.ReadAllText(esfile);
-                        rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(esdata)));
+                        tempES += esline + "\r\n";
+                    }
+                    rtbEmoteScript.Document.Blocks.Clear();
+                    rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
+
+                    if (WeenieFabUser.Default.AutoLoadESFiles == true)
+                    {
+                        string esfile = WeenieFabUser.Default.DefaultESPath + @"\" + tbWCID.Text + ".es";
+                        if (File.Exists(esfile) == true)
+                        {
+                            string esdata = File.ReadAllText(esfile);
+                            rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(esdata)));
+                        }
                     }
 
+                    sr.Close();
                 }
-                
-                
-                
-
-
-                sr.Close();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File Not Found", "Warning!");
+                // throw;
             }
         }
+     
 
 
         public void WriteSQLFile(string filename)
@@ -345,40 +449,45 @@ namespace WeenieFab
             return blob;
         }
 
-        public static string ReadEmoteBlob(StreamReader sr)
+        public static string ReadEmoteBlob(string readline, StreamReader sr)
         {
-            string blob = "";
-            string line;
-
-            while ((line = sr.ReadLine()) != null)
-            {
-                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    return blob;
-                else
-                {
-                    blob += line + "\r\n";
-                }
-            }
-            
-            return blob;
-        }
-        public static void ReadEmoteCreateListBlob(string readline, StreamReader sr, out string emoteBlob, out string createListBlob)
-        {
-            emoteBlob = readline + "\r\n";
-            createListBlob = "";
+            string emoteBlob = readline + "\r\n";
+            // createListBlob = "";
 
             string line;
 
             while ((line = sr.ReadLine()) != null)
             {
-                if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                    createListBlob = ReadBlob(sr);
+                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                //    createListBlob = ReadBlob(sr);
+                if (line == "" || line == "\t" || line == "\r\n")
+                    return emoteBlob;
                 else
                 {
                     emoteBlob += line + "\r\n";
                 }
             }
+            return emoteBlob;
+        }
+        public static string ReadEmoteCreateListBlob(string readline, StreamReader sr)
+        {
+            string emoteBlob = readline + "\r\n";
+            // createListBlob = "";
 
+            string line;
+
+            while ((line = sr.ReadLine()) != null)
+            {
+                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
+                //    createListBlob = ReadBlob(sr);
+                if (line == "" || line == "\t" || line == "\r\n")
+                    return emoteBlob;
+                else
+                {
+                    emoteBlob += line + "\r\n";
+                }
+            }
+            return emoteBlob;
         }
 
         public static string OpenESFile()

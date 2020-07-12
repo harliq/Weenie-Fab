@@ -1621,7 +1621,9 @@
             <Button x:Name="btnOpenSqlFile" Content="Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60" ToolTip="Open Existing Weenie"/>
             <Button x:Name="btnSaveSqlFile" Content="Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60" ToolTip="Save Weenie"/>
             <Button x:Name="btnOptions" Content="Options" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60" ToolTip="Set Options"/>
+            <Button x:Name="btnConverter" Content="Converter" Height="22" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" ToolTip="JSON File Converter"/>
             <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnHelp_Click" MinWidth="60" ToolTip="Your just curious now..."/>
+
         </ToolBar>
 
 

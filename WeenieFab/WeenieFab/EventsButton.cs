@@ -56,6 +56,12 @@ namespace WeenieFab
             winHelp.Show();
 
         }
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Converter winConverter = new Converter();
+            winConverter.Owner = this;
+            winConverter.Show();
+        }
 
 
         // Form Buttons
