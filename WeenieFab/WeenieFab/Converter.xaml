@@ -304,12 +304,12 @@
     </Window.Resources>
     <Grid Height="400" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Label Content="JSON Files to Convert" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="btnJsonFiles" Content="Select Files" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Margin="310,260,0,0" MinWidth="100" MinHeight="20" Click="btnJsonFiles_Click" Grid.ColumnSpan="2"/>
-        <TextBox x:Name="tbJsonFiles" HorizontalAlignment="Left" Margin="15,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" MinWidth="400" MaxWidth="400" MinHeight="200" MaxHeight="200" VerticalContentAlignment="Center"/>
-        <TextBox x:Name="tbConvertFilePath" HorizontalAlignment="Left" Margin="15,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="20" MinWidth="400" MaxWidth="400" Grid.ColumnSpan="2"/>
+        <Button x:Name="btnJsonFiles" Content="Select Files" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Margin="310,260,0,0" MinWidth="100" MinHeight="20" Click="btnJsonFiles_Click" Grid.ColumnSpan="2" ToolTip="Click to select JSON file(s) to convert"/>
+        <TextBox x:Name="tbJsonFiles" HorizontalAlignment="Left" Margin="15,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" MinWidth="400" MaxWidth="400" MinHeight="200" MaxHeight="200" VerticalContentAlignment="Center" ToolTip="Files to be converted from JSON to SQL"/>
+        <TextBox x:Name="tbConvertFilePath" HorizontalAlignment="Left" Margin="15,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="20" MinWidth="400" MaxWidth="400" Grid.ColumnSpan="2" ToolTip="Where the converted files will go"/>
         <Label Content="Export Folder (Defaults to your sql folder)" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
-        <Button Content="Convert JSON Files" HorizontalAlignment="Left" Margin="175,340,0,0" VerticalAlignment="Top" MinWidth="120" Click="Button_Click_1"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="310,340,0,0" VerticalAlignment="Top" MinWidth="100" Click="Button_Click" Grid.ColumnSpan="2"/>
+        <Button Content="Convert JSON Files" HorizontalAlignment="Left" Margin="175,340,0,0" VerticalAlignment="Top" MinWidth="120" Click="Button_Click_1" ToolTip="Click to start JSON File conversion"/>
+        <Button Content="Close" HorizontalAlignment="Left" Margin="310,340,0,0" VerticalAlignment="Top" MinWidth="100" Click="Button_Click" Grid.ColumnSpan="2" ToolTip="Close this window"/>
 
     </Grid>
 </Window>
