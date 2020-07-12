@@ -27,49 +27,71 @@ namespace WeenieFab
             if (result == true)
             {
                 string ext = Path.GetExtension(ofd.FileName);
+
+                //  Opening a JSON file is going to depend on if ACData is fixed for strings. 
+                //  I have tried to work around what ACData does by attempting to do a temp file (didn't work issue with the way it handles strings),
+                //  AND at this point, ACData also changes the file name from the default JSON name.  This causes an issue.  So disabling it for now.  
+                //  Will revisit down the road.
+
                 if (ext == ".json")
                 {
-                    FileInfo jfileinfo = new FileInfo(ofd.FileName);
-                    DirectoryInfo directoryInfo = new DirectoryInfo(WeenieFabUser.Default.DefaultSqlPath);
+
                     // string[] acdatatest;
                     // ACDataLib.Converter.Convert(jfileinfo,directoryInfo);
                     // ACDataLib.Converter.Convert(jfileinfo, directoryInfo);
 
-                    ACDataLib.Converter.json2sql(jfileinfo, null, directoryInfo);
 
-                    //string jsonData = File.ReadAllText(ofd.FileName);
+
+                    ////string jsonData = File.ReadAllText(ofd.FileName);
+                    //////string tempJson = "";
+                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+                    ////bool convertResult = ACDataLib.Converter.Convert(json, ACDataLib.FileFormat.JSON);
+                    ////var tempjson = ACDataLib.Converter.Output;
+
+                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
+
+                    ////File.WriteAllText(jsonFilePath, tempjson);
+
+                    ////string jsonData = File.ReadAllText(ofd.FileName);
+
                     ////string tempJson = "";
-                    //string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                    //bool convertResult = ACDataLib.Converter.Convert(json, ACDataLib.FileFormat.JSON);
-                    //var tempjson = ACDataLib.Converter.Output;
-
-                    //string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
-
-                    //File.WriteAllText(jsonFilePath, tempjson);
-
-                    //string jsonData = File.ReadAllText(ofd.FileName);
-
-                    //string tempJson = "";
-                    //string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
 
-                    //foreach (var jsonLine in jsonData)
-                    //{
-                    //    tempJson += jsonLine + "\r\n";
-                    //}
+                    ////foreach (var jsonLine in jsonData)
+                    ////{
+                    ////    tempJson += jsonLine + "\r\n";
+                    ////}
 
-                    //string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
-                    //ACDataLib.Converter.json2sql(ofd.FileName, json, jsonFilePath));
+                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
+                    ////ACDataLib.Converter.json2sql(ofd.FileName, json, jsonFilePath));
 
-                    MessageBox.Show("Json import not supported yet.");
-                    ClearAllDataTables();
-                    //ClearAllDataGrids();
-                    ClearAllFields();
-                    ResetIndexAllDataGrids();
-                    string sqlfilename = ofd.SafeFileName.Replace(".json", ".sql");
-                    // ReadSQLFile(WeenieFabUser.Default.DefaultSqlPath + @"\" + sqlfilename);
-                   
+                    FileInfo jfileinfo = new FileInfo(ofd.FileName);
+                    DirectoryInfo directoryInfo = new DirectoryInfo(WeenieFabUser.Default.DefaultSqlPath);
+                    MessageBox.Show("Json import not supported yet.  Please use converter.");
+
+
+                    // *--- Area to uncomment for when it works --- *
+                    ////ClearAllDataTables();
+
+                    ////ClearAllFields();
+                    ////ResetIndexAllDataGrids();
+
+                    ////ACDataLib.Converter.json2sql(jfileinfo, null, directoryInfo);
+
+
+                    //string sqlfilename = ofd.SafeFileName.Replace(".json", ".sql");
+
+                    ////  Have to do all of this because ACData adds a zero infront of wcid (I am guessing it's padding zeros upto 5 places)
+                    //string[] tsqlfilename = sqlfilename.Split(" ");
+                    //string fmt = "00000.##";
+                    //string twcid = ConvertToInteger(tsqlfilename[0]).ToString(fmt);
+                    //sqlfilename = sqlfilename.Replace(tsqlfilename[0], twcid);
+
+
+                    ////ReadSQLFile(WeenieFabUser.Default.DefaultSqlPath + @"\" + sqlfilename);
+
 
                 }
                 else if (ext == ".sql")
