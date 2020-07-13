@@ -41,6 +41,81 @@ namespace WeenieFab
             return sqltext;
         }
 
+        public static string ConvertBooleanTable(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tempTrueFalse = row[1].ToString();
+                    int padRight = 20 - tempTrueFalse.Length;
+                    // string finalTrueFalse = tempTrueFalse.PadRight(6).PadLeft(6);
+                    tempTrueFalse = tempTrueFalse.PadRight(5).PadLeft(6);
+
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],4},{tempTrueFalse}) /* {row[2]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],4},{tempTrueFalse}) /* {row[2]} */\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],4},{tempTrueFalse}) /* {row[2]} */;\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],4},{tempTrueFalse}) /* {row[2]} */\n";
+                    }
+                    counter++;
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
+            return sqltext;
+        }
+
+        public static string ConvertFloatTable(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],4},{row[1],8}) /* {row[2]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],4},{row[1],8}) /* {row[2]} */\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],8}) /* {row[2]} */;\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],4},{row[1],8}) /* {row[2]} */\n";
+                    }
+                    counter++;
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
+            return sqltext;
+        }
+
         public static string ConvertStringTable(DataTable dt, string wcid, string header)
         {
             string sqltext = "";
