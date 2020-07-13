@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Converter" Height="0" Width="0" ResizeMode="NoResize" MinWidth="450" MaxWidth="450" MinHeight="420" MaxHeight="420" Background="#FFE1E8F5" WindowStartupLocation="CenterScreen">
+        Title="Converter" Height="0" Width="0" ResizeMode="NoResize" MinWidth="450" MaxWidth="450" MinHeight="490" MaxHeight="490" Background="#FFE1E8F5" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <!--Control colors.-->
@@ -302,15 +302,96 @@
 
 
     </Window.Resources>
-    <Grid Height="400" Width="450" HorizontalAlignment="Left" VerticalAlignment="Top">
-        <Label Content="JSON Files to Convert" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-        <Button x:Name="btnJsonFiles" Content="Select Files" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Margin="156,250,0,0" MinWidth="120" MinHeight="25" Click="btnJsonFiles_Click" ToolTip="Click to select JSON file(s) to convert"/>
-        <TextBox x:Name="tbJsonFiles" HorizontalAlignment="Left" Margin="15,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" MinWidth="400" MaxWidth="400" MinHeight="200" MaxHeight="200" VerticalContentAlignment="Center" ToolTip="Files to be converted from JSON to SQL"/>
-        <TextBox x:Name="tbConvertFilePath" HorizontalAlignment="Left" Margin="15,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="20" MinWidth="400" MaxWidth="400" Grid.ColumnSpan="2" ToolTip="Where the converted files will go"/>
-        <Label Content="Export Folder (Defaults to your sql folder)" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
-        <Button Content="Convert JSON Files" HorizontalAlignment="Left" Margin="156,340,0,0" VerticalAlignment="Top" MinWidth="120" Click="Button_Click_1" ToolTip="Click to start JSON File conversion"/>
-        <Button Content="Close" HorizontalAlignment="Left" Margin="314,340,0,0" VerticalAlignment="Top" MinWidth="100" Click="Button_Click" ToolTip="Close this window"/>
-        <Button x:Name="btnChangeFolder" Content="Change Folder" HorizontalAlignment="Left" Margin="18,339,0,0" VerticalAlignment="Top" MinWidth="100" MaxWidth="100" ToolTip="Change Export Folder" Click="btnChangeFolder_Click"/>
+    <Grid VerticalAlignment="Top" Height="450">
+
+
+        <TabControl x:Name="tabControl" Margin="0,30
+                    ,0,0">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type TabItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TabItem}">
+                                <Grid>
+                                    <Border Name="Border" Margin="2,2,0,0" BorderBrush="Lavender" BorderThickness="1,1,1,1" CornerRadius="5">
+                                        <Border.Background>
+                                            <!-- Unselected Tab Color -->
+                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                <GradientStop Color="#FF315b81"/>
+                                                <GradientStop Color="White" Offset="1"/>
+                                            </LinearGradientBrush>
+                                        </Border.Background>
+                                        <ContentPresenter x:Name="ContentSite" ContentSource="Header" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="2,2,2,2" RecognizesAccessKey="True"/>
+                                    </Border>
+                                    <!-- Bottom of Tab-->
+                                    <Rectangle Height="5" Width="100" Margin="0,0,0,0" Stroke="Black" VerticalAlignment="Bottom" HorizontalAlignment="Right" StrokeThickness="0" Fill="#FFE4F0F7"/>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <!-- Selected Tab-->
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" >
+                                            <Setter.Value>
+                                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                    <GradientStop Color="#FF99b3ff"/>
+                                                    <GradientStop Color="#FFE4F0F7" Offset="0.8"/>
+                                                </LinearGradientBrush>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="HeaderTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <ContentPresenter Content="{TemplateBinding Content}">
+                                    <ContentPresenter.LayoutTransform>
+                                        <RotateTransform Angle="0" />
+                                    </ContentPresenter.LayoutTransform>
+                                </ContentPresenter>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Background" Value="#FFC5C5C5" />
+                    <Setter Property="Height" Value="30" />
+                    <Setter Property="Margin" Value="0" />
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="FontSize" Value="12" />
+                    <Setter Property="FontWeight" Value="DemiBold"/>
+                    <Setter Property="VerticalAlignment" Value="Top" />
+                    <Setter Property="HorizontalAlignment" Value="Right" />
+                    <Setter Property="UseLayoutRounding" Value="False" />
+                </Style>
+            </TabControl.Resources>
+            <TabItem x:Name="tijsonconverter" Header="JSON -> SQL">
+                <Grid Background="#FFE1E8F5">
+                    <Label Content="JSON Files to Convert" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Button x:Name="btnJsonFiles" Content="Select JSON Files" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Margin="156,250,0,0" MinWidth="120" MinHeight="25" Click="btnJsonFiles_Click" ToolTip="Click to select JSON file(s) to convert"/>
+                    <TextBox x:Name="tbJsonFiles" HorizontalAlignment="Left" Margin="15,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" MinWidth="400" MaxWidth="400" MinHeight="200" MaxHeight="200" VerticalContentAlignment="Top" ToolTip="Files to be converted from JSON to SQL"/>
+                    <TextBox x:Name="tbConvertFilePath" HorizontalAlignment="Left" Margin="15,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="25" MinWidth="400" MaxWidth="400" Grid.ColumnSpan="2" ToolTip="Where the converted files will go"/>
+                    <Label Content="Export Folder (Defaults to your sql folder)" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+                    <Button Content="Convert JSON Files" HorizontalAlignment="Left" Margin="156,340,0,0" VerticalAlignment="Top" MinWidth="120" Click="Button_Click_1" ToolTip="Click to start JSON File conversion"/>
+                    <Button Content="Close" HorizontalAlignment="Left" Margin="314,340,0,0" VerticalAlignment="Top" MinWidth="100" Click="Button_Click" ToolTip="Close this window"/>
+                    <Button x:Name="btnChangeFolder" Content="Change Folder" HorizontalAlignment="Left" Margin="18,340,0,0" VerticalAlignment="Top" MinWidth="100" MaxWidth="100" ToolTip="Change Export Folder" Click="btnChangeFolder_Click"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="SQL -> JSON">
+                <Grid Background="#FFE1E8F5">
+                    <Label Content="SQL Files to Convert" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+                    <Button x:Name="btnSQLFiles" Content="Select SQL Files" HorizontalAlignment="Left" VerticalAlignment="Top" Width="0" Margin="156,250,0,0" MinWidth="120" MinHeight="25" ToolTip="Click to select SQL file(s) to convert" Click="btnSQLFiles_Click"/>
+                    <TextBox x:Name="tbSqlFiles" HorizontalAlignment="Left" Margin="15,40,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" MinWidth="400" MaxWidth="400" MinHeight="200" MaxHeight="200" VerticalContentAlignment="Top" ToolTip="Files to be converted from SQL to JSON"/>
+                    <TextBox x:Name="tbConvertSqlFilePath" HorizontalAlignment="Left" Margin="15,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="25" MinWidth="400" MaxWidth="400" Grid.ColumnSpan="2" ToolTip="Where the converted files will go"/>
+                    <Label Content="Export Folder (Defaults to your json folder)" HorizontalAlignment="Left" Margin="10,280,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="btnConvertSqlFiles" Content="Convert SQL Files" HorizontalAlignment="Left" Margin="156,340,0,0" VerticalAlignment="Top" MinWidth="120" ToolTip="Click to start SQL File conversion" Click="btnConvertSqlFiles_Click"/>
+                    <Button x:Name="btnCloseConverter" Content="Close" HorizontalAlignment="Left" Margin="314,340,0,0" VerticalAlignment="Top" MinWidth="100" ToolTip="Close this window" Click="btnCloseConverter_Click"/>
+                    <Button x:Name="btnChangeJSONFolder" Content="Change Folder" HorizontalAlignment="Left" Margin="18,340,0,0" VerticalAlignment="Top" MinWidth="100" Click="btnChangeJSONFolder_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Label Content="Converters from ACData by gmriggs" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Padding="5,-8,5,5"/>
+
 
     </Grid>
+
 </Window>
