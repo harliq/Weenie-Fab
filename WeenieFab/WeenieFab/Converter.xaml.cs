@@ -25,6 +25,7 @@ namespace WeenieFab
         {
             InitializeComponent();
             tbConvertFilePath.Text = WeenieFabUser.Default.DefaultSqlPath;
+            tbConvertSqlFilePath.Text = WeenieFabUser.Default.DefaultJsonPath;
         }
 
         private void btnJsonFiles_Click(object sender, RoutedEventArgs e)
@@ -90,6 +91,73 @@ namespace WeenieFab
             {
                 tbConvertFilePath.Text = fbd.SelectedPath;
             }
+        }
+
+        // SQL -> JSON Converter Tab
+        private void btnSQLFiles_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.Multiselect = true;
+            ofd.Title = "Select SQL Files to Convert";
+            ofd.Filter = "SQL files|*.sql";
+            ofd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+            Nullable<bool> result = ofd.ShowDialog();
+
+            if (result == true)
+            {
+                foreach (String filename in ofd.FileNames)
+                {
+                    tbSqlFiles.Text += filename + "\r\n";
+                }
+
+            }
+        }
+
+        private void btnChangeJSONFolder_Click(object sender, RoutedEventArgs e)
+        {
+            VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
+            fbd.Description = "Please select folder for Converted SQL Files.";
+            fbd.UseDescriptionForTitle = true; // This applies to the Vista style dialog only, not the old dialog.
+            if (!VistaFolderBrowserDialog.IsVistaFolderDialogSupported)
+                MessageBox.Show(this, "Because you are not using Windows Vista or later, the regular folder browser dialog will be used. Please use Windows Vista to see the new dialog.", "Sample folder browser dialog");
+            if ((bool)fbd.ShowDialog(this))
+            {
+                tbConvertSqlFilePath.Text = fbd.SelectedPath;
+            }
+        }
+
+        private void btnConvertSqlFiles_Click(object sender, RoutedEventArgs e)
+        {
+
+            string sqlConvertFiles = tbSqlFiles.Text;
+            string[] tempSqlFiles = sqlConvertFiles.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+
+            int c = 0;
+            foreach (var fileLine in tempSqlFiles)
+            {
+                c++;
+
+                FileInfo sqlfileinfo = new FileInfo(fileLine);
+                DirectoryInfo directoryInfo = new DirectoryInfo(tbConvertSqlFilePath.Text);
+
+                try
+                {
+                    ACDataLib.Converter.sql2json(sqlfileinfo, null, directoryInfo);
+                }
+                catch (Exception)
+                {
+
+
+                }
+
+            }
+            MessageBox.Show($"{c} files were converted.");
+
+        }
+
+        private void btnCloseConverter_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
