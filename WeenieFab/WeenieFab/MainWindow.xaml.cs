@@ -79,7 +79,10 @@ namespace WeenieFab
             foreach (DataRow row in tempTable.Rows)
             {
                 if (row[0].ToString() == searchProp)
+                {
                     found = true;
+                    return found;
+                }
                 else
                     found = false;
             }
@@ -87,11 +90,11 @@ namespace WeenieFab
             return found;
         }
 
-        internal class FoundItem
-        {
-            public int RecordID { get; set; }
-            public string RecordName { get; set; }
-        }
+        //internal class FoundItem
+        //{
+        //    public int RecordID { get; set; }
+        //    public string RecordName { get; set; }
+        //}
 
         public void CreateDataTable()
         {
