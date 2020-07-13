@@ -147,7 +147,8 @@ namespace WeenieFab
             var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*.*$";
             var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$"; // Spells also uses same pattern.
-            var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ .!?]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
+            var stringPattern = @"\((\d+),\s*(\d+),\s*'(.*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
+            // var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ .!?]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";

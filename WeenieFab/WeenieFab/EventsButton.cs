@@ -69,7 +69,7 @@ namespace WeenieFab
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
         {
             // search for duplicate property
-            if (SearchForDuplicateProps(integerDataTable, cbInt32Props.SelectedIndex))
+            if (SearchForDuplicateProps(integerDataTable, cbInt32Props.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
@@ -83,7 +83,9 @@ namespace WeenieFab
 
                 integerDataTable.Rows.Add(dr);
 
-                integerDataTable.DefaultView.Sort = "Property ASC";
+                //integerDataTable.DefaultView.Sort = "Property ASC";
+                integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
+                dgInt32.DataContext = integerDataTable.DefaultView;
                 dgInt32.Items.Refresh();
             }
         }           
@@ -148,8 +150,18 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 integer64DataTable.Rows.Add(dr);
-                integer64DataTable.DefaultView.Sort = "Property ASC";
+                integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
+                dgInt64.DataContext = integer64DataTable.DefaultView;
                 dgInt64.Items.Refresh();
+
+
+                //integer64DataTable.Rows.Add(dr);
+                //integer64DataTable.DefaultView.Sort = "Property ASC";
+                //dgInt64.Items.Refresh();
+
+
+
+
                 
             }
         }
@@ -211,8 +223,12 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 boolDataTable.Rows.Add(dr);
-                boolDataTable.DefaultView.Sort = "Property ASC";
+                boolDataTable = ResortDataTable(boolDataTable, "Property", "ASC");
+                dgBool.DataContext = boolDataTable.DefaultView;
                 dgBool.Items.Refresh();
+
+                //boolDataTable.DefaultView.Sort = "Property ASC";
+                //dgBool.Items.Refresh();
 
             }
         }
@@ -261,7 +277,7 @@ namespace WeenieFab
         private void btnAddFloat_Click(object sender, RoutedEventArgs e)
         {
 
-            if (SearchForDuplicateProps(floatDataTable, cbBoolProps.SelectedIndex.ToString()))
+            if (SearchForDuplicateProps(floatDataTable, cbFloatProps.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
@@ -274,7 +290,11 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 floatDataTable.Rows.Add(dr);
-                floatDataTable.DefaultView.Sort = "Property ASC";
+                floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
+                dgFloat.DataContext = floatDataTable.DefaultView;
+
+
+                //floatDataTable.DefaultView.Sort = "Property ASC";
                 dgFloat.Items.Refresh();
             }
         }
@@ -337,7 +357,11 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 stringDataTable.Rows.Add(dr);
-                stringDataTable.DefaultView.Sort = "Property ASC";
+
+                stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
+                dgString.DataContext = stringDataTable.DefaultView;
+
+                //stringDataTable.DefaultView.Sort = "Property ASC";
                 dgString.Items.Refresh();
             }
         }
@@ -400,7 +424,10 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 didDataTable.Rows.Add(dr);
-                didDataTable.DefaultView.Sort = "Property ASC";
+                didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
+                dgDiD.DataContext = didDataTable.DefaultView;
+
+                // didDataTable.DefaultView.Sort = "Property ASC";
                 dgDiD.Items.Refresh();
               
             }
@@ -466,7 +493,7 @@ namespace WeenieFab
                 spellDataTable.Rows.Add(dr);
                 //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
                 //dgSpell.ItemsSource = spellDataTable.DefaultView;
-                spellDataTable.DefaultView.Sort = "Property ASC";
+                //spellDataTable.DefaultView.Sort = "Property ASC";
                 dgSpell.Items.Refresh();
             }
         }
@@ -714,7 +741,7 @@ namespace WeenieFab
         private void btnSkillsAdd_Click(object sender, RoutedEventArgs e)
         {
             // Search for duplicate skill
-            if (SearchForDuplicateProps(skillsDataTable, cbSkillType.SelectedIndex))
+            if (SearchForDuplicateProps(skillsDataTable, cbSkillType.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Skill Already Exits");
             }
@@ -743,8 +770,12 @@ namespace WeenieFab
                 dr[7] = description;
 
                 skillsDataTable.Rows.Add(dr);
+
+                skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
+                dgSkills.DataContext = skillsDataTable.DefaultView;
+
                 // skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
-                skillsDataTable.DefaultView.Sort = "Type ASC";
+                // skillsDataTable.DefaultView.Sort = "Type ASC";
                 // dgSkills.ItemsSource = skillsDataTable.DefaultView;
                 dgSkills.Items.Refresh();
             }
