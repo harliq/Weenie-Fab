@@ -899,9 +899,59 @@ namespace WeenieFab
         // BodyParts
         private void btnAddBodyPart_Click(object sender, RoutedEventArgs e)
         {
+            //// search for duplicate Body
+            //if (SearchForDuplicateProps(didDataTable, cbDiDProps.SelectedIndex.ToString()))
+            //{
+            //    MessageBox.Show("Property Already Exits");
+            //}
+            //else
+            //{
+
+            //}
+
+
+            string[] bodyPartDescription = cbBodyPart.Text.Split(" ");
+            string[] damageType = cbBodyPartDamageType.Text.Split(" ");
+
+            DataRow dr = bodypartsDataTable.NewRow();
+
+            dr[0] = ConvertToInteger(bodyPartDescription[0].ToString());
+            dr[1] = ConvertToInteger(damageType[0].ToString());
+            dr[2] = ConvertToInteger(tbBodyPartDamageValue.Text);
+            dr[3] = ConvertToFloat(tbBodyPartDamageVariance.Text);
+            dr[4] = ConvertToInteger(tbBodyPartArmorLevel.Text);
+            dr[5] = ConvertToInteger(tbBodyPartBase_Height.Text);
+
+            dr[6] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
+            dr[7] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
+            dr[8] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
+
+            dr[9] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
+            dr[10] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
+            dr[11] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
+
+            dr[12] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
+            dr[13] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
+            dr[14] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
+
+            dr[15] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
+            dr[16] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
+            dr[17] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+
+            dr[18] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
+
+            // dr[2] = description[1];
+
+            bodypartsDataTable.Rows.Add(dr);
+            
+            dgBodyParts.DataContext = bodypartsDataTable.DefaultView;
+
+            // didDataTable.DefaultView.Sort = "Property ASC";
+            dgBodyParts.Items.Refresh();
+
+
 
         }
-
         private void btnUpdateBodyPart_Click(object sender, RoutedEventArgs e)
         {
 

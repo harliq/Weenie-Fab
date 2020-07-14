@@ -275,8 +275,75 @@ namespace WeenieFab
             DataColumn damageType = new DataColumn("DamageType");
             DataColumn damageValue = new DataColumn("Damage");
             DataColumn damageVariance = new DataColumn("DamageVariance");
+            DataColumn armorLevel = new DataColumn("ArmorLevel");
+            DataColumn baseHeight = new DataColumn("Height");
+            
+            DataColumn hlfQuad = new DataColumn("HLF");
+            DataColumn mlfQuad = new DataColumn("MLF");
+            DataColumn llfQuad = new DataColumn("LLF");
 
+            DataColumn hrfQuad = new DataColumn("HRF");
+            DataColumn mrfQuad = new DataColumn("MRF");
+            DataColumn lrfQuad = new DataColumn("LRF");
 
+            DataColumn hlbQuad = new DataColumn("HLB");
+            DataColumn mlbQuad = new DataColumn("MLB");
+            DataColumn llbQuad = new DataColumn("LLB");
+
+            DataColumn hrbQuad = new DataColumn("HRB");
+            DataColumn mrbQuad = new DataColumn("MRB");
+            DataColumn lrbQuad = new DataColumn("LRB");
+
+            DataColumn descriptionBodyParts = new DataColumn("Description");
+
+            bodyPart.DataType = Type.GetType("System.Int32");
+            damageType.DataType = Type.GetType("System.Int32");
+            damageValue.DataType = Type.GetType("System.Int32");
+            damageVariance.DataType = Type.GetType("System.Single");
+            armorLevel.DataType = Type.GetType("System.Int32");
+            baseHeight.DataType = Type.GetType("System.Int32");
+
+            hlfQuad.DataType = Type.GetType("System.Single");
+            mlfQuad.DataType = Type.GetType("System.Single");
+            llfQuad.DataType = Type.GetType("System.Single");
+
+            hrfQuad.DataType = Type.GetType("System.Single");
+            mrfQuad.DataType = Type.GetType("System.Single");
+            lrfQuad.DataType = Type.GetType("System.Single");
+
+            hlbQuad.DataType = Type.GetType("System.Single");
+            mlbQuad.DataType = Type.GetType("System.Single");
+            llbQuad.DataType = Type.GetType("System.Single");
+
+            hrbQuad.DataType = Type.GetType("System.Single");
+            mrbQuad.DataType = Type.GetType("System.Single");
+            lrbQuad.DataType = Type.GetType("System.Single");
+
+            bodypartsDataTable.Columns.Add(bodyPart);
+            bodypartsDataTable.Columns.Add(damageType);
+            bodypartsDataTable.Columns.Add(damageValue);
+            bodypartsDataTable.Columns.Add(damageVariance);
+            bodypartsDataTable.Columns.Add(armorLevel);
+            bodypartsDataTable.Columns.Add(baseHeight);
+
+            bodypartsDataTable.Columns.Add(hlfQuad);
+            bodypartsDataTable.Columns.Add(mlfQuad);
+            bodypartsDataTable.Columns.Add(llfQuad);
+
+            bodypartsDataTable.Columns.Add(hrfQuad);
+            bodypartsDataTable.Columns.Add(mrfQuad);
+            bodypartsDataTable.Columns.Add(lrfQuad);
+
+            bodypartsDataTable.Columns.Add(hlbQuad);
+            bodypartsDataTable.Columns.Add(mlbQuad);
+            bodypartsDataTable.Columns.Add(llbQuad);
+
+            bodypartsDataTable.Columns.Add(hrbQuad);
+            bodypartsDataTable.Columns.Add(mrbQuad);
+            bodypartsDataTable.Columns.Add(lrbQuad);
+
+            bodypartsDataTable.Columns.Add(descriptionBodyParts);
+            dgBodyParts.DataContext = bodypartsDataTable;
 
         }
 
