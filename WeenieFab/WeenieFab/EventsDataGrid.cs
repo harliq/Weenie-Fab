@@ -258,7 +258,6 @@ namespace WeenieFab
                         break;
                 }
 
-
                 //cbBodyPartDamageType.SelectedIndex = ConvertToInteger(dr[1].ToString());
 
                 tbBodyPartDamageValue.Text = dr[2].ToString();
@@ -278,15 +277,11 @@ namespace WeenieFab
                 tbBodyPartQuadMiddleLB.Text = dr[13].ToString();
                 tbBodyPartQuadLowLB.Text = dr[14].ToString();
 
-                tbBodyPartQuadHighRB.Text = dr[16].ToString();
-                tbBodyPartQuadMiddleRB.Text = dr[17].ToString();
-                tbBodyPartQuadLowRB.Text = dr[18].ToString();
+                tbBodyPartQuadHighRB.Text = dr[15].ToString();
+                tbBodyPartQuadMiddleRB.Text = dr[16].ToString();
+                tbBodyPartQuadLowRB.Text = dr[17].ToString();
 
             }
-
-
-
-
 
         }
 
