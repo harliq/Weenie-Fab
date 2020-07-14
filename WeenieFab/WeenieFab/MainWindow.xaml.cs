@@ -59,6 +59,7 @@ namespace WeenieFab
             GetVersion();
 
             btnGenerateBodyTable.Visibility = Visibility.Hidden;
+            rtbBodyParts.Visibility = Visibility.Hidden;
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
