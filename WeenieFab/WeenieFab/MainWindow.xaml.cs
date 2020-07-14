@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -41,7 +42,7 @@ namespace WeenieFab
         public static DataTable attribute2DataTable = new DataTable();
         public static DataTable skillsDataTable = new DataTable();
         public static DataTable createListDataTable = new DataTable();
-
+        public static DataTable bodypartsDataTable = new DataTable();
         
 
         public MainWindow()
@@ -56,6 +57,9 @@ namespace WeenieFab
 
             CreateSpellList();
             GetVersion();
+
+            btnGenerateBodyTable.Visibility = Visibility.Hidden;
+            rtbBodyParts.Visibility = Visibility.Hidden;
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
@@ -269,6 +273,82 @@ namespace WeenieFab
             createListDataTable.Columns.Add(tryToBondCreateList);
             createListDataTable.Columns.Add(descriptionCreateList);
             dgCreateItems.DataContext = createListDataTable;
+
+            // Body Parts
+            DataColumn bodyPart = new DataColumn("BodyPart");
+            DataColumn damageType = new DataColumn("DamageType");
+            DataColumn damageValue = new DataColumn("Damage");
+            DataColumn damageVariance = new DataColumn("DamageVariance");
+            DataColumn armorLevel = new DataColumn("ArmorLevel");
+            DataColumn baseHeight = new DataColumn("Height");
+            
+            DataColumn hlfQuad = new DataColumn("HLF");
+            DataColumn mlfQuad = new DataColumn("MLF");
+            DataColumn llfQuad = new DataColumn("LLF");
+
+            DataColumn hrfQuad = new DataColumn("HRF");
+            DataColumn mrfQuad = new DataColumn("MRF");
+            DataColumn lrfQuad = new DataColumn("LRF");
+
+            DataColumn hlbQuad = new DataColumn("HLB");
+            DataColumn mlbQuad = new DataColumn("MLB");
+            DataColumn llbQuad = new DataColumn("LLB");
+
+            DataColumn hrbQuad = new DataColumn("HRB");
+            DataColumn mrbQuad = new DataColumn("MRB");
+            DataColumn lrbQuad = new DataColumn("LRB");
+
+            DataColumn descriptionBodyParts = new DataColumn("Description");
+
+            bodyPart.DataType = Type.GetType("System.Int32");
+            damageType.DataType = Type.GetType("System.Int32");
+            damageValue.DataType = Type.GetType("System.Int32");
+            damageVariance.DataType = Type.GetType("System.Single");
+            armorLevel.DataType = Type.GetType("System.Int32");
+            baseHeight.DataType = Type.GetType("System.Int32");
+
+            hlfQuad.DataType = Type.GetType("System.Single");
+            mlfQuad.DataType = Type.GetType("System.Single");
+            llfQuad.DataType = Type.GetType("System.Single");
+
+            hrfQuad.DataType = Type.GetType("System.Single");
+            mrfQuad.DataType = Type.GetType("System.Single");
+            lrfQuad.DataType = Type.GetType("System.Single");
+
+            hlbQuad.DataType = Type.GetType("System.Single");
+            mlbQuad.DataType = Type.GetType("System.Single");
+            llbQuad.DataType = Type.GetType("System.Single");
+
+            hrbQuad.DataType = Type.GetType("System.Single");
+            mrbQuad.DataType = Type.GetType("System.Single");
+            lrbQuad.DataType = Type.GetType("System.Single");
+
+            bodypartsDataTable.Columns.Add(bodyPart);
+            bodypartsDataTable.Columns.Add(damageType);
+            bodypartsDataTable.Columns.Add(damageValue);
+            bodypartsDataTable.Columns.Add(damageVariance);
+            bodypartsDataTable.Columns.Add(armorLevel);
+            bodypartsDataTable.Columns.Add(baseHeight);
+
+            bodypartsDataTable.Columns.Add(hlfQuad);
+            bodypartsDataTable.Columns.Add(mlfQuad);
+            bodypartsDataTable.Columns.Add(llfQuad);
+
+            bodypartsDataTable.Columns.Add(hrfQuad);
+            bodypartsDataTable.Columns.Add(mrfQuad);
+            bodypartsDataTable.Columns.Add(lrfQuad);
+
+            bodypartsDataTable.Columns.Add(hlbQuad);
+            bodypartsDataTable.Columns.Add(mlbQuad);
+            bodypartsDataTable.Columns.Add(llbQuad);
+
+            bodypartsDataTable.Columns.Add(hrbQuad);
+            bodypartsDataTable.Columns.Add(mrbQuad);
+            bodypartsDataTable.Columns.Add(lrbQuad);
+
+            bodypartsDataTable.Columns.Add(descriptionBodyParts);
+            dgBodyParts.DataContext = bodypartsDataTable;
+
         }
 
         public void CreateComboBoxLists()
@@ -328,6 +408,23 @@ namespace WeenieFab
             }
             cbSkillType.ItemsSource = SkillList;
             cbSkillType.SelectedIndex = 6;
+
+            List<string> BodyParts = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\BodyParts.txt"))
+            {
+                BodyParts.Add(line);
+            }
+            cbBodyPart.ItemsSource = BodyParts;
+            cbBodyPart.SelectedIndex = 0;
+
+            List<string> DamageTypes = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\DamageTypes.txt"))
+            {
+                DamageTypes.Add(line);
+            }
+            cbBodyPartDamageType.ItemsSource = DamageTypes;
+            cbBodyPartDamageType.SelectedIndex = 1;
+
         }
         // Testing Search
         public void CreateSpellList()
@@ -418,6 +515,7 @@ namespace WeenieFab
             attribute2DataTable.Clear();
             skillsDataTable.Clear();
             createListDataTable.Clear();
+            bodypartsDataTable.Clear();
         }
         public void ResetIndexAllDataGrids()
         {
@@ -444,6 +542,27 @@ namespace WeenieFab
             tbCreateItemsStackSize.Text = "";
             tbCreateItemsWCID.Text = "";
 
+            tbBodyPartDamageValue.Text = "";
+            tbBodyPartDamageVariance.Text = "";
+            tbBodyPartArmorLevel.Text = "";
+            tbBodyPartBase_Height.Text = "";
+
+            tbBodyPartQuadHighLF.Text = "";
+            tbBodyPartQuadMiddleLF.Text = "";
+            tbBodyPartQuadLowLF.Text = "";
+
+            tbBodyPartQuadHighRF.Text = "";
+            tbBodyPartQuadMiddleRF.Text = "";
+            tbBodyPartQuadLowRF.Text = "";
+
+            tbBodyPartQuadHighLB.Text = "";
+            tbBodyPartQuadMiddleLB.Text = "";
+            tbBodyPartQuadLowLB.Text = "";
+
+            tbBodyPartQuadHighRB.Text = "";
+            tbBodyPartQuadMiddleRB.Text = "";
+            tbBodyPartQuadLowRB.Text = "";
+
             rtbEmoteScript.Document.Blocks.Clear();
             rtbBodyParts.Document.Blocks.Clear();
 
@@ -455,6 +574,9 @@ namespace WeenieFab
             cbStringProps.SelectedIndex = 1;
             cbDiDProps.SelectedIndex = 1;
             cbSkillType.SelectedIndex = 1;
+            cbBodyPart.SelectedIndex = 0;
+            cbBodyPartDamageType.SelectedIndex = 1;
+
 
             ClearAttributeFields();
             ClearAttribute2Fields();
@@ -670,6 +792,16 @@ namespace WeenieFab
 
         }
 
+        private void btnGenerateBodyTable_Click(object sender, RoutedEventArgs e)
+        {
+            string header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
+
+            string bodyparts = TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
+            rtbBodyParts.Document.Blocks.Clear();
+            rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyparts)));
+        }
+
 
     }
+
 }

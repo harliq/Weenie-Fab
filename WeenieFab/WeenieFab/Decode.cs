@@ -236,5 +236,55 @@ namespace WeenieFab
             }
             return tempDataTable;
         }
+        public static DataTable DecodeBodyPart(string blob, string pattern)
+        {
+
+            DataTable tempDataTable = MainWindow.bodypartsDataTable.Clone();
+            tempDataTable.Clear();
+
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+
+                string description = match.Groups[28].ToString();
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[2] = MainWindow.ConvertToInteger(match.Groups[4].ToString());
+                
+                dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
+
+                dr[4] = MainWindow.ConvertToInteger(match.Groups[6].ToString());
+
+                dr[5] = MainWindow.ConvertToInteger(match.Groups[15].ToString());
+
+                // Start Float Quads
+
+                dr[6] = MainWindow.ConvertToFloat(match.Groups[16].ToString());
+                dr[7] = MainWindow.ConvertToFloat(match.Groups[17].ToString());
+                dr[8] = MainWindow.ConvertToFloat(match.Groups[18].ToString());
+
+                dr[9] = MainWindow.ConvertToFloat(match.Groups[19].ToString());
+                dr[10] = MainWindow.ConvertToFloat(match.Groups[20].ToString());
+                dr[11] = MainWindow.ConvertToFloat(match.Groups[21].ToString());
+
+                dr[12] = MainWindow.ConvertToFloat(match.Groups[22].ToString());
+                dr[13] = MainWindow.ConvertToFloat(match.Groups[23].ToString());
+                dr[14] = MainWindow.ConvertToFloat(match.Groups[24].ToString());
+
+                dr[15] = MainWindow.ConvertToFloat(match.Groups[25].ToString());
+                dr[16] = MainWindow.ConvertToFloat(match.Groups[26].ToString());
+                dr[17] = MainWindow.ConvertToFloat(match.Groups[27].ToString());
+
+                dr[18] = description.Trim();
+
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+
+
     }
 }

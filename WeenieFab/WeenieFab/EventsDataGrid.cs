@@ -195,6 +195,95 @@ namespace WeenieFab
             }
         }
 
+        private void dgBodyParts_RowSelected(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgBodyParts.SelectedIndex;
+            DataGridRow currentRowIndex = dgBodyParts.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > bodypartsDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = bodypartsDataTable.Rows[currentRowIndex.GetIndex()];
+                //int cbindex = 0;
+                //Int32.TryParse(dr[0].ToString(), out cbindex);
+
+                cbBodyPart.SelectedIndex = ConvertToInteger(dr[0].ToString());
+                int damageType = ConvertToInteger(dr[1].ToString());
+
+                switch (damageType)
+                {
+                    case 0:
+                        cbBodyPartDamageType.SelectedIndex = 0;
+                        break;
+                    case 1:
+                        cbBodyPartDamageType.SelectedIndex = 1;
+                        break;
+                    case 2:
+                        cbBodyPartDamageType.SelectedIndex = 2;
+                        break;
+                    case 4:
+                        cbBodyPartDamageType.SelectedIndex = 3;
+                        break;
+                    case 8:
+                        cbBodyPartDamageType.SelectedIndex = 4;
+                        break;
+                    case 16:
+                        cbBodyPartDamageType.SelectedIndex = 5;
+                        break;
+                    case 32:
+                        cbBodyPartDamageType.SelectedIndex = 6;
+                        break;
+                    case 64:
+                        cbBodyPartDamageType.SelectedIndex = 7;
+                        break;
+                    case 128:
+                        cbBodyPartDamageType.SelectedIndex = 8;
+                        break;
+                    case 256:
+                        cbBodyPartDamageType.SelectedIndex = 9;
+                        break;
+                    case 512:
+                        cbBodyPartDamageType.SelectedIndex = 10;
+                        break;
+                    case 1024:
+                        cbBodyPartDamageType.SelectedIndex = 11;
+                        break;
+                    case 268435456:
+                        cbBodyPartDamageType.SelectedIndex = 12;
+                        break;
+                    default:
+                        break;
+                }
+
+                //cbBodyPartDamageType.SelectedIndex = ConvertToInteger(dr[1].ToString());
+
+                tbBodyPartDamageValue.Text = dr[2].ToString();
+                tbBodyPartDamageVariance.Text = dr[3].ToString();
+                tbBodyPartArmorLevel.Text = dr[4].ToString();
+                tbBodyPartBase_Height.Text = dr[5].ToString();
+
+                tbBodyPartQuadHighLF.Text = dr[6].ToString();
+                tbBodyPartQuadMiddleLF.Text = dr[7].ToString();
+                tbBodyPartQuadLowLF.Text = dr[8].ToString();
+
+                tbBodyPartQuadHighRF.Text = dr[9].ToString();
+                tbBodyPartQuadMiddleRF.Text = dr[10].ToString();
+                tbBodyPartQuadLowRF.Text = dr[11].ToString();
+
+                tbBodyPartQuadHighLB.Text = dr[12].ToString();
+                tbBodyPartQuadMiddleLB.Text = dr[13].ToString();
+                tbBodyPartQuadLowLB.Text = dr[14].ToString();
+
+                tbBodyPartQuadHighRB.Text = dr[15].ToString();
+                tbBodyPartQuadMiddleRB.Text = dr[16].ToString();
+                tbBodyPartQuadLowRB.Text = dr[17].ToString();
+
+            }
+
+        }
 
         // Update Attribs Events      
         private void updateAttribs()  // Updates Attribs - May need a better way to do this.

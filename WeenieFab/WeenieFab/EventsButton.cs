@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -895,6 +896,116 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
+
+        // BodyParts
+        private void btnAddBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+
+            string[] bodyPartDescription = cbBodyPart.Text.Split(" ");
+            string[] damageType = cbBodyPartDamageType.Text.Split(" ");
+
+            DataRow dr = bodypartsDataTable.NewRow();
+
+            dr[0] = ConvertToInteger(bodyPartDescription[0].ToString());
+            dr[1] = ConvertToInteger(damageType[0].ToString());
+            dr[2] = ConvertToInteger(tbBodyPartDamageValue.Text);
+            dr[3] = ConvertToFloat(tbBodyPartDamageVariance.Text);
+            dr[4] = ConvertToInteger(tbBodyPartArmorLevel.Text);
+            dr[5] = ConvertToInteger(tbBodyPartBase_Height.Text);
+
+            dr[6] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
+            dr[7] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
+            dr[8] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
+
+            dr[9] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
+            dr[10] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
+            dr[11] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
+
+            dr[12] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
+            dr[13] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
+            dr[14] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
+
+            dr[15] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
+            dr[16] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
+            dr[17] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+
+            dr[18] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
+
+            bodypartsDataTable.Rows.Add(dr);
+            
+            dgBodyParts.DataContext = bodypartsDataTable.DefaultView;
+            dgBodyParts.Items.Refresh();
+        }
+        private void btnUpdateBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            var index = dgBodyParts.SelectedIndex;
+
+            try
+            {
+                DataGridRow currentRowIndex = dgBodyParts.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = bodypartsDataTable.Rows[currentRowIndex.GetIndex()];
+
+                string[] bodyPartDescription = cbBodyPart.Text.Split(" ");
+                string[] damageType = cbBodyPartDamageType.Text.Split(" ");
+
+                dr[0] = ConvertToInteger(bodyPartDescription[0].ToString());
+                dr[1] = ConvertToInteger(damageType[0].ToString());
+                dr[2] = ConvertToInteger(tbBodyPartDamageValue.Text);
+                dr[3] = ConvertToFloat(tbBodyPartDamageVariance.Text);
+                dr[4] = ConvertToInteger(tbBodyPartArmorLevel.Text);
+                dr[5] = ConvertToInteger(tbBodyPartBase_Height.Text);
+
+                dr[6] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
+                dr[7] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
+                dr[8] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
+
+                dr[9] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
+                dr[10] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
+                dr[11] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
+
+                dr[12] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
+                dr[13] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
+                dr[14] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
+
+                dr[15] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
+                dr[16] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
+                dr[17] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+
+                dr[18] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
+
+
+                bodypartsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+
+
+        }
+
+        private void btnRemoveBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgBodyParts.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgBodyParts.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = bodypartsDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                bodypartsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+        }
+        private void btnBodyPartHelpWiki_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/ACEmulator/ACE/wiki/How-Body-Parts-Work"));
+        }
+
 
         // ES Tab
         private void btnLoadES_Click(object sender, RoutedEventArgs e)
