@@ -5,8 +5,6 @@ Add Generator Table
 Add Instance ID's (IID)
 Add Positions Table
 
-
-
 * Polish *
 FileName Global
 UnSavedChanges Global
@@ -17,8 +15,6 @@ Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
 Auto generate file name on save
-
-Body Parts Table
 Destination DropDown (Create Items)
 
 **Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
@@ -33,6 +29,8 @@ MarkDown for ES in WeenieFab
 
 
 **Completed**
+#Done-Body Parts Table
+#Done-Added SQL to JSON converter.
 #Done-Added way for browsing folders. (used Ookii netCORE dialogs).
 #Done redo Read Sql?? (Basically the way I handle reading emotes)
 
