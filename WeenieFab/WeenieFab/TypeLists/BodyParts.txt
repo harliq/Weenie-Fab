@@ -1,0 +1,28 @@
+0 Head
+1 Chest
+2 Abdomen
+3 UpperArm
+4 LowerArm
+5 Hand
+6 UpperLeg
+7 LowerLeg
+8 Foot
+9 Horn
+10 FrontLeg
+11 *Skip - DO NOT USE
+12 FrontFoot
+13 RearLeg
+14 *Skip - DO NOT USE
+15 RearFoot
+16 Torso
+17 Tail
+18 Arm
+19 Leg
+20 Claw
+21 Wings
+22 Breath
+23 Tentacle
+24 UpperTentacle
+25 LowerTentacle
+26 Cloak
+27 NumParts

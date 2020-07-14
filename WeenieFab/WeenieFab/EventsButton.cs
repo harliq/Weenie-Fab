@@ -896,6 +896,24 @@ namespace WeenieFab
             }
         }
 
+        // BodyParts
+        private void btnAddBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnUpdateBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnRemoveBodyPart_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
         // ES Tab
         private void btnLoadES_Click(object sender, RoutedEventArgs e)
         {

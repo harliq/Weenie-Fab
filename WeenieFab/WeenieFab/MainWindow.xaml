@@ -1899,13 +1899,90 @@
                 <TabItem Header="BodyParts">
                     <Grid Background="#FFE1E8F5">
 
-                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False">
+                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False" VerticalAlignment="Bottom" MinHeight="200" MaxHeight="200">
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text=""/>
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
+                        <ComboBox x:Name="cbBodyPart" HorizontalAlignment="Left" Margin="20,45,0,0" VerticalAlignment="Top" Width="120" MinWidth="200"/>
+                        <Label Content="Body Part" HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartArmorLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="800,45,0,0" Text="ArmorLevel" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Base Armor Level" HorizontalAlignment="Left" Margin="800,20,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Damage Type" HorizontalAlignment="Left" Margin="250,20,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartDamageValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="500,45,0,0" Text="DamageValue" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Damage Value" HorizontalAlignment="Left" Margin="500,20,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
+                        <Label Content="Damage Variance" HorizontalAlignment="Left" Margin="650,20,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
+                        <TextBox x:Name="tbBodyPartDamageVariance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="650,45,0,0" Text="DamageVariance" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <ComboBox x:Name="cbBodyPartDamageType" HorizontalAlignment="Left" Margin="250,45,0,0" VerticalAlignment="Top" Width="120" MinWidth="200"/>
+                        <TextBox x:Name="tbBodyPartBase_Height" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="950,45,0,0" Text="Base Height" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+                        <Label Content="Base Height" HorizontalAlignment="Left" Margin="950,20,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadHighLF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="50,145,0,0" Text="High" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" MinWidth="50"/>
+                        <Label Content="High" HorizontalAlignment="Left" Margin="50,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleLF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="120,145,0,0" Text="Middle" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Middle" HorizontalAlignment="Left" Margin="120,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadLowLF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="190,145,0,0" Text="Low" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Low" HorizontalAlignment="Left" Margin="190,120,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Left Front Quadrant" HorizontalAlignment="Left" Margin="77,95,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <TextBox x:Name="tbBodyPartQuadHighRF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="290,145,0,0" Text="High" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="High" HorizontalAlignment="Left" Margin="290,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleRF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="360,145,0,0" Text="Middle" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Middle" HorizontalAlignment="Left" Margin="360,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadLowRF" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="430,145,0,0" Text="Low" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Low" HorizontalAlignment="Left" Margin="430,120,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Right Front Quadrant" HorizontalAlignment="Left" Margin="313,90,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <TextBox x:Name="tbBodyPartQuadHighLB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="710,145,0,0" Text="High" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="High" HorizontalAlignment="Left" Margin="709,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleLB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="780,145,0,0" Text="Middle" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Middle" HorizontalAlignment="Left" Margin="780,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadLowLB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="850,145,0,0" Text="Low" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Low" HorizontalAlignment="Left" Margin="851,120,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Left Back Quadrant" HorizontalAlignment="Left" Margin="741,90,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <TextBox x:Name="tbBodyPartQuadHighRB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="940,145,0,0" Text="High" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="High" HorizontalAlignment="Left" Margin="939,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleRB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="1010,145,0,0" Text="Middle" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Middle" HorizontalAlignment="Left" Margin="1010,120,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbBodyPartQuadLowRB" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="1080,145,0,0" Text="Low" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="Low" HorizontalAlignment="Left" Margin="1081,120,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Right Back Quadrant" HorizontalAlignment="Left" Margin="964,90,0,0" VerticalAlignment="Top" FontSize="14"/>
+
+
+                        <DataGrid x:Name="dgBodyParts" ItemsSource="{Binding}" Margin="0,217,0,0" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="1100" MinHeight="150" VerticalAlignment="Top" HorizontalAlignment="Center" MaxWidth="1100" MaxHeight="150" ToolTip="Select a body part to edit/change">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="BodyPart" IsReadOnly="True" Binding="{Binding DestinationType}" Width="0.6*"/>
+                                <DataGridTextColumn Header="DamageType" IsReadOnly="True"  Binding="{Binding WCID}" Width="0.8*"/>
+                                <DataGridTextColumn Header="Damage" IsReadOnly="True"  Binding="{Binding StackSize}" Width="0.5*"/>
+                                <DataGridTextColumn Header="Variance" IsReadOnly="True"  Binding="{Binding Palette}" Width="0.5*"/>
+                                <DataGridTextColumn Header="ArmorLevel" IsReadOnly="True"  Binding="{Binding DropPercent}" Width="0.7*"/>
+                                <DataGridTextColumn Header="Height" IsReadOnly="True"  Binding="{Binding TryToBond}" Width="0.5*"/>
+
+                                <DataGridTextColumn Header="HLF" IsReadOnly="True"  Binding="{Binding HLF}" Width="0.3*"/>
+                                <DataGridTextColumn Header="MLF" IsReadOnly="True"  Binding="{Binding MLF}" Width="0.3*"/>
+                                <DataGridTextColumn Header="LLF" IsReadOnly="True"  Binding="{Binding LLF}" Width="0.3*"/>
+
+                                <DataGridTextColumn Header="HRF" IsReadOnly="True"  Binding="{Binding HRF}" Width="0.3*"/>
+                                <DataGridTextColumn Header="MRF" IsReadOnly="True"  Binding="{Binding MRF}" Width="0.3*"/>
+                                <DataGridTextColumn Header="LRF" IsReadOnly="True"  Binding="{Binding LRF}" Width="0.3*"/>
+
+                                <DataGridTextColumn Header="HLB" IsReadOnly="True"  Binding="{Binding HLB}" Width="0.3*"/>
+                                <DataGridTextColumn Header="MLB" IsReadOnly="True"  Binding="{Binding MLB}" Width="0.3*"/>
+                                <DataGridTextColumn Header="LLB" IsReadOnly="True"  Binding="{Binding LLB}" Width="0.3*"/>
+
+                                <DataGridTextColumn Header="HRB" IsReadOnly="True"  Binding="{Binding HRB}" Width="0.3*"/>
+                                <DataGridTextColumn Header="MRB" IsReadOnly="True"  Binding="{Binding MRB}" Width="0.3*"/>
+                                <DataGridTextColumn Header="LRB" IsReadOnly="True"  Binding="{Binding LRB}" Width="0.3*"/>
+
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="1.3*"/>
+
+                            </DataGrid.Columns>
+                        </DataGrid>
+                        <Button x:Name="btnAddBodyPart" Content="Add" HorizontalAlignment="Left" Margin="562,94,0,0" VerticalAlignment="Top" Click="btnAddBodyPart_Click"/>
+                        <Button x:Name="btnUpdateBodyPart" Content="Update" HorizontalAlignment="Left" Margin="562,124,0,0" VerticalAlignment="Top" Click="btnUpdateBodyPart_Click"/>
+                        <Button x:Name="btnRemoveBodyPart" Content="Remove" HorizontalAlignment="Left" Margin="562,154,0,0" VerticalAlignment="Top" Click="btnRemoveBodyPart_Click"/>
+
+
+
                     </Grid>
                 </TabItem>
                 <TabItem Header="SpellBook">

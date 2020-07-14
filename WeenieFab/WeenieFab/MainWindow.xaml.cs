@@ -41,7 +41,7 @@ namespace WeenieFab
         public static DataTable attribute2DataTable = new DataTable();
         public static DataTable skillsDataTable = new DataTable();
         public static DataTable createListDataTable = new DataTable();
-
+        public static DataTable bodypartsDataTable = new DataTable();
         
 
         public MainWindow()
@@ -269,6 +269,15 @@ namespace WeenieFab
             createListDataTable.Columns.Add(tryToBondCreateList);
             createListDataTable.Columns.Add(descriptionCreateList);
             dgCreateItems.DataContext = createListDataTable;
+
+            // Body Parts
+            DataColumn bodyPart = new DataColumn("BodyPart");
+            DataColumn damageType = new DataColumn("DamageType");
+            DataColumn damageValue = new DataColumn("Damage");
+            DataColumn damageVariance = new DataColumn("DamageVariance");
+
+
+
         }
 
         public void CreateComboBoxLists()
@@ -328,6 +337,23 @@ namespace WeenieFab
             }
             cbSkillType.ItemsSource = SkillList;
             cbSkillType.SelectedIndex = 6;
+
+            List<string> BodyParts = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\BodyParts.txt"))
+            {
+                BodyParts.Add(line);
+            }
+            cbBodyPart.ItemsSource = BodyParts;
+            cbBodyPart.SelectedIndex = 1;
+
+            List<string> DamageTypes = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\DamageTypes.txt"))
+            {
+                DamageTypes.Add(line);
+            }
+            cbBodyPartDamageType.ItemsSource = DamageTypes;
+            cbBodyPartDamageType.SelectedIndex = 1;
+
         }
         // Testing Search
         public void CreateSpellList()

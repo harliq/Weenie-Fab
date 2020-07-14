@@ -13,7 +13,9 @@
     <None Remove="StringMap\SpellName.txt" />
     <None Remove="StringMap\WeenieClassName.txt" />
     <None Remove="StringMap\WeenieName.txt" />
+    <None Remove="TypeLists\BodyParts.txt" />
     <None Remove="TypeLists\BoolTypes.txt" />
+    <None Remove="TypeLists\DamageTypes.txt" />
     <None Remove="TypeLists\DiDTypes.txt" />
     <None Remove="TypeLists\FloatTypes.txt" />
     <None Remove="TypeLists\HelpResources.txt" />
@@ -44,7 +46,13 @@
     <Content Include="StringMap\WeenieName.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="TypeLists\BodyParts.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="TypeLists\BoolTypes.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\DamageTypes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TypeLists\DiDTypes.txt">

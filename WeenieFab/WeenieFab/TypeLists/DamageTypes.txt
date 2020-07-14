@@ -1,0 +1,13 @@
+0 Undef
+1 Slash
+2 Pierce
+4 Bludgeon
+8 Cold
+16 Fire
+32 Acid
+64 Electric
+128 Health
+256 Stamina
+512 Mana
+1024 Nether
+268435456 Base
