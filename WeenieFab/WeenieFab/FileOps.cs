@@ -154,6 +154,8 @@ namespace WeenieFab
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
+            var bodyPartsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\) \/\*(.*)\*\/*.*$";
+
 
             try
             {
@@ -167,11 +169,12 @@ namespace WeenieFab
                         if (line.Contains("INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)"))
                         {
                             wcidblob += sr.ReadLine();
-                            string pattern = @"VALUES \s*\((\d+), '([\w -]*[a-zA-Z])?',\s*(\d+).*$";
+                            //string pattern = @"VALUES \s*\((\d+), '([\w -]*[a-zA-Z])?',\s*(\d+).*$";
+                            string pattern = @"VALUES \s*\((\d+),\s*'(.*)',\s*(\d+).*$";
                             var match = Regex.Match(wcidblob, pattern);
                             tbWCID.Text = match.Groups[1].ToString();
                             tbWeenieName.Text = match.Groups[2].ToString();
-                            cbWeenieType.SelectedIndex = int.Parse(match.Groups[3].ToString());
+                            cbWeenieType.SelectedIndex = ConvertToInteger(match.Groups[3].ToString());
 
                         }
                         else if (line.Contains("INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)"))
@@ -255,6 +258,11 @@ namespace WeenieFab
                             bodyPartBlob = ReadBlob(sr);
                             rtbBodyParts.Document.Blocks.Clear();
                             rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyPartBlob)));
+
+                            bodypartsDataTable = DecodeSql.DecodeBodyPart(bodyPartBlob, bodyPartsPattern);
+                            bodypartsDataTable.AcceptChanges();
+                            dgBodyParts.DataContext = bodypartsDataTable;
+
                         }
                         else if (line.Contains("INSERT INTO `weenie_properties_spell_book`"))
                         {
@@ -337,9 +345,10 @@ namespace WeenieFab
                     sr.Close();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                MessageBox.Show("File Not Found", "Warning!");
+                // MessageBox.Show("File Not Found", "Warning!");
+                MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
                 // throw;
             }
         }

@@ -411,7 +411,7 @@ namespace WeenieFab
                 BodyParts.Add(line);
             }
             cbBodyPart.ItemsSource = BodyParts;
-            cbBodyPart.SelectedIndex = 1;
+            cbBodyPart.SelectedIndex = 0;
 
             List<string> DamageTypes = new List<string>();
             foreach (string line in File.ReadLines(@"TypeLists\DamageTypes.txt"))
@@ -511,6 +511,7 @@ namespace WeenieFab
             attribute2DataTable.Clear();
             skillsDataTable.Clear();
             createListDataTable.Clear();
+            bodypartsDataTable.Clear();
         }
         public void ResetIndexAllDataGrids()
         {
@@ -537,6 +538,27 @@ namespace WeenieFab
             tbCreateItemsStackSize.Text = "";
             tbCreateItemsWCID.Text = "";
 
+            tbBodyPartDamageValue.Text = "";
+            tbBodyPartDamageVariance.Text = "";
+            tbBodyPartArmorLevel.Text = "";
+            tbBodyPartBase_Height.Text = "";
+
+            tbBodyPartQuadHighLF.Text = "";
+            tbBodyPartQuadMiddleLF.Text = "";
+            tbBodyPartQuadLowLF.Text = "";
+
+            tbBodyPartQuadHighRF.Text = "";
+            tbBodyPartQuadMiddleRF.Text = "";
+            tbBodyPartQuadLowRF.Text = "";
+
+            tbBodyPartQuadHighLB.Text = "";
+            tbBodyPartQuadMiddleLB.Text = "";
+            tbBodyPartQuadLowLB.Text = "";
+
+            tbBodyPartQuadHighRB.Text = "";
+            tbBodyPartQuadMiddleRB.Text = "";
+            tbBodyPartQuadLowRB.Text = "";
+
             rtbEmoteScript.Document.Blocks.Clear();
             rtbBodyParts.Document.Blocks.Clear();
 
@@ -548,6 +570,9 @@ namespace WeenieFab
             cbStringProps.SelectedIndex = 1;
             cbDiDProps.SelectedIndex = 1;
             cbSkillType.SelectedIndex = 1;
+            cbBodyPart.SelectedIndex = 0;
+            cbBodyPartDamageType.SelectedIndex = 1;
+
 
             ClearAttributeFields();
             ClearAttribute2Fields();
