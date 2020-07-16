@@ -2103,20 +2103,20 @@
 
                 <TabItem Header="Book">
                     <Grid Background="#FFE1E8F5">
-                        <Label Content="Max Pages" HorizontalAlignment="Left" Margin="452,10,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Max Chars Page" HorizontalAlignment="Left" Margin="600,10,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbMaxPages" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="452,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <TextBox x:Name="tbMaxChars" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="602,35,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Button x:Name="btnAddBook" Content="Add Book" HorizontalAlignment="Left" Margin="455,80,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="btnUpateBook" Content="Update Book" HorizontalAlignment="Left" Margin="555,80,0,0" VerticalAlignment="Top"/>
-                        <Button x:Name="btnRemoveBook" Content="Remove Book" HorizontalAlignment="Left" Margin="655,80,0,0" VerticalAlignment="Top"/>
-                        <DataGrid x:Name="dgBookInfo" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="201" Margin="452,112,0,0" MaxWidth="300" MinHeight="100" MaxHeight="100">
+                        <Label Content="Max Pages" HorizontalAlignment="Left" Margin="507,80,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Max Chars Page" HorizontalAlignment="Left" Margin="610,82,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbMaxPages" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="500,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <TextBox x:Name="tbMaxChars" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="618,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <Button x:Name="btnAddBook" Content="Add Book" HorizontalAlignment="Left" Margin="453,140,0,0" VerticalAlignment="Top" MinWidth="85"/>
+                        <Button x:Name="btnUpateBook" Content="Update Book" HorizontalAlignment="Left" Margin="561,140,0,0" VerticalAlignment="Top" MinWidth="85"/>
+                        <Button x:Name="btnRemoveBook" Content="Remove Book" HorizontalAlignment="Left" Margin="666,140,0,0" VerticalAlignment="Top" MinWidth="85"/>
+                        <DataGrid x:Name="dgBookInfo" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="201" Margin="452,172,0,0" MaxWidth="300" MinHeight="80" MaxHeight="80">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Max Number of Pages" IsReadOnly="True" Binding="{Binding MaxPages}" Width="5*"/>
                                 <DataGridTextColumn Header="Max Chars per Page" IsReadOnly="True"  Binding="{Binding MaxChars}" Width="5*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <DataGrid x:Name="dgBookPages" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="800" Margin="250,378,0,0" MaxWidth="800" MinHeight="200" MaxHeight="200">
+                        <DataGrid x:Name="dgBookPages" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="800" Margin="250,428,0,0" MaxWidth="800" MinHeight="150" MaxHeight="150">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="PageID" IsReadOnly="True" Binding="{Binding pageIdBook}" Width="1*"/>
                                 <DataGridTextColumn Header="AuthorID" IsReadOnly="True"  Binding="{Binding authorIdBook}" Width="1*"/>
@@ -2126,16 +2126,21 @@
                                 <DataGridTextColumn Header="PageText" IsReadOnly="True"  Binding="{Binding pageTextBook}" Width="3.6*"/>
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Label Content="Page ID" HorizontalAlignment="Left" Margin="402,230,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbPageID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="402,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Label Content="Author ID" HorizontalAlignment="Left" Margin="502,230,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbAuthorID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="502,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Label Content="Author Name" HorizontalAlignment="Left" Margin="612,230,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbAuthorName" HorizontalAlignment="Left" Margin="612,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Label Content="Author Account" HorizontalAlignment="Left" Margin="722,230,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbAuthorAccount" HorizontalAlignment="Left" Margin="722,255,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
-                        <Label Content="Page Text" HorizontalAlignment="Left" Margin="252,280,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbAuthorAccount_Copy" HorizontalAlignment="Left" Margin="249,305,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="800" MinHeight="60"/>
+                        <Label Content="Page ID" HorizontalAlignment="Left" Margin="252,309,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbPageID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="252,334,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <Label Content="Author ID" HorizontalAlignment="Left" Margin="252,359,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbAuthorID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="252,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <Label Content="Author Name" HorizontalAlignment="Left" Margin="359,310,0,0" VerticalAlignment="Top" Height="25" Width="83"/>
+                        <TextBox x:Name="tbAuthorName" HorizontalAlignment="Left" Margin="362,335,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <Label Content="Author Account" HorizontalAlignment="Left" Margin="355,360,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbAuthorAccount" HorizontalAlignment="Left" Margin="362,385,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80"/>
+                        <Label Content="Page Text" HorizontalAlignment="Left" Margin="467,304,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbAuthorAccount_Copy" HorizontalAlignment="Left" Margin="469,331,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="80" MinWidth="450" MaxWidth="650"/>
+                        <Button x:Name="btnAddPage" Content="Add Page" HorizontalAlignment="Left" Margin="945,330,0,0" VerticalAlignment="Top" MinWidth="100"/>
+                        <Button x:Name="btnRemovePage" Content="Remove Page" HorizontalAlignment="Left" Margin="945,390,0,0" VerticalAlignment="Top" MinWidth="100"/>
+                        <Button x:Name="btnUpdatePage" Content="Update Page" HorizontalAlignment="Left" Margin="945,360,0,0" VerticalAlignment="Top" MinWidth="100"/>
+                        <Label Content="Create/Edit Page" HorizontalAlignment="Left" Margin="252,259,0,0" VerticalAlignment="Top" FontSize="14"/>
+                        <Label Content="Create/Edit Book" HorizontalAlignment="Left" Margin="252,9,0,0" VerticalAlignment="Top" FontSize="14"/>
 
                     </Grid>
                 </TabItem>
