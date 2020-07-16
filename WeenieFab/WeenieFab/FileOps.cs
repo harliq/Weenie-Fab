@@ -141,6 +141,9 @@ namespace WeenieFab
             string spellBookBlob = "";
             string emoteBlob = "";
             string createListBlob = "";
+            string bookInfoBlob = "";
+            string bookPageBlob = "";
+
             string line;
 
             // Regex Patterns
@@ -155,7 +158,8 @@ namespace WeenieFab
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
             var bodyPartsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\) \/\*(.*)\*\/*.*$";
-
+            var bookInfoPattern = @"\((\d+),\s*(\d+),\s*(\d+)\).*$";
+            var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*))'\).*$";
 
             try
             {
@@ -274,6 +278,27 @@ namespace WeenieFab
                             dgSpell.DataContext = spellDataTable;
 
                         }
+                        else if (line.Contains("INSERT INTO `weenie_properties_book`"))
+                        {
+                            bookInfoBlob = ReadBlob(sr);
+
+                            bookInfoDataTable = DecodeSql.DecodeBookInfo(bookInfoBlob, bookInfoPattern);
+                            bookInfoDataTable.AcceptChanges();
+                            // bookInfoDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                            dgBookInfo.DataContext = bookInfoDataTable;
+
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_book_page_data`"))
+                        {
+                            bookPageBlob = ReadBlob(sr);
+
+                            bookPagesDataTable = DecodeSql.DecodeBookPage(bookPageBlob, bookPagePattern);
+                            bookInfoDataTable.AcceptChanges();
+                            // bookInfoDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                            dgBookPages.DataContext = bookPagesDataTable;
+
+                        }
+
                         else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") ||
                                  line.Contains("INSERT INTO `weenie_properties_emote`") ||
                                  line.Contains("SET @parent_id = LAST_INSERT_ID()"))
@@ -349,7 +374,7 @@ namespace WeenieFab
             {
                 // MessageBox.Show("File Not Found", "Warning!");
                 MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
-                // throw;
+                //throw;
             }
         }
      

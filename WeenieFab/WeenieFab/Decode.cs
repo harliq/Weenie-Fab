@@ -59,7 +59,7 @@ namespace WeenieFab
             {
                 var match = Regex.Match(blobLine, pattern);
                 string description = match.Groups[4].ToString();
-                
+
                 DataRow dr = tempDataTable.NewRow();
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
@@ -156,7 +156,7 @@ namespace WeenieFab
         }
         public static DataTable DecodeAttributeTwo(string attribblob, string pattern)
         {
-            
+
             DataTable tempDataTable = MainWindow.attribute2DataTable.Clone();
             tempDataTable.Clear();
 
@@ -198,7 +198,7 @@ namespace WeenieFab
                 dr[5] = MainWindow.ConvertToInteger(match.Groups[7].ToString());
                 dr[6] = MainWindow.ConvertToInteger(match.Groups[8].ToString());
                 dr[7] = description.Trim();
-                
+
                 tempDataTable.Rows.Add(dr);
             }
             return tempDataTable;
@@ -253,7 +253,7 @@ namespace WeenieFab
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
                 dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
                 dr[2] = MainWindow.ConvertToInteger(match.Groups[4].ToString());
-                
+
                 dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
 
                 dr[4] = MainWindow.ConvertToInteger(match.Groups[6].ToString());
@@ -284,7 +284,53 @@ namespace WeenieFab
             }
             return tempDataTable;
         }
+        public static DataTable DecodeBookInfo(string blob, string pattern)
+        {
 
+            DataTable tempDataTable = MainWindow.bookInfoDataTable.Clone();
+            tempDataTable.Clear();
+
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+        public static DataTable DecodeBookPage(string blob, string pattern)
+        {
+
+            DataTable tempDataTable = MainWindow.bookPagesDataTable.Clone();
+            tempDataTable.Clear();
+
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                var match = Regex.Match(blobLine, pattern);
+
+                bool tf;
+
+                if (match.Groups[7].ToString() == "TRUE" || match.Groups[3].ToString() == "True" || match.Groups[3].ToString() == "true")
+                    tf = true;
+                else
+                    tf = false;
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[2] = match.Groups[4].ToString();
+                dr[3] = match.Groups[5].ToString();
+                dr[4] = tf;
+                dr[5] = match.Groups[8].ToString();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
 
     }
 }

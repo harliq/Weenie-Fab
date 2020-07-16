@@ -2113,17 +2113,17 @@
                         <DataGrid x:Name="dgBookInfo" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="201" Margin="452,172,0,0" MaxWidth="300" MinHeight="80" MaxHeight="80">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="Max Number of Pages" IsReadOnly="True" Binding="{Binding MaxPages}" Width="5*"/>
-                                <DataGridTextColumn Header="Max Chars per Page" IsReadOnly="True"  Binding="{Binding MaxChars}" Width="5*"/>
+                                <DataGridTextColumn Header="Max Chars per Page" IsReadOnly="True"  Binding="{Binding MaxCharsPage}" Width="5*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <DataGrid x:Name="dgBookPages" ItemsSource="{Binding}" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" ToolTip="Select a property to edit/change" HorizontalAlignment="Left" VerticalAlignment="Top" MinWidth="800" Margin="250,428,0,0" MaxWidth="800" MinHeight="150" MaxHeight="150">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="PageID" IsReadOnly="True" Binding="{Binding pageIdBook}" Width="1*"/>
-                                <DataGridTextColumn Header="AuthorID" IsReadOnly="True"  Binding="{Binding authorIdBook}" Width="1*"/>
-                                <DataGridTextColumn Header="AuthorName" IsReadOnly="True"  Binding="{Binding authorNameBook}" Width="1.5*"/>
-                                <DataGridTextColumn Header="AuthorAccount" IsReadOnly="True"  Binding="{Binding authorAccountBook}" Width="1.5*"/>
-                                <DataGridTextColumn Header="IgnoreAuthor" IsReadOnly="True"  Binding="{Binding ignoreAuthorBook}" Width="1.4*"/>
-                                <DataGridTextColumn Header="PageText" IsReadOnly="True"  Binding="{Binding pageTextBook}" Width="3.6*"/>
+                                <DataGridTextColumn Header="PageID" IsReadOnly="True" Binding="{Binding PageID}" Width="1*"/>
+                                <DataGridTextColumn Header="AuthorID" IsReadOnly="True"  Binding="{Binding AuthorID}" Width="1*"/>
+                                <DataGridTextColumn Header="AuthorName" IsReadOnly="True"  Binding="{Binding AuthorName}" Width="1.5*"/>
+                                <DataGridTextColumn Header="AuthorAccount" IsReadOnly="True"  Binding="{Binding AuthorAccount}" Width="1.5*"/>
+                                <DataGridTextColumn Header="IgnoreAuthor" IsReadOnly="True"  Binding="{Binding IgnoreAuthor}" Width="1.4*"/>
+                                <DataGridTextColumn Header="PageText" IsReadOnly="True"  Binding="{Binding PageText}" Width="3.6*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                         <Label Content="Page ID" HorizontalAlignment="Left" Margin="252,309,0,0" VerticalAlignment="Top"/>
