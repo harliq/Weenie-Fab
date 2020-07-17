@@ -45,6 +45,7 @@ namespace WeenieFab
         public static DataTable bodypartsDataTable = new DataTable();
         public static DataTable bookInfoDataTable = new DataTable();
         public static DataTable bookPagesDataTable = new DataTable();
+        public static DataTable iidDataTable = new DataTable();
 
         public MainWindow()
         {
@@ -109,6 +110,7 @@ namespace WeenieFab
             DataColumn propertyBool = new DataColumn("Property");
             DataColumn propertyString = new DataColumn("Property");
             DataColumn propertyDiD = new DataColumn("Property");
+
 
             propertyInt.DataType = Type.GetType("System.Int32");
             propertyInt64.DataType = Type.GetType("System.Int32");
@@ -175,6 +177,19 @@ namespace WeenieFab
             stringDataTable.Columns.Add(valueString);
             stringDataTable.Columns.Add(descriptionString);
             dgString.DataContext = stringDataTable;
+
+            // InstanceID Table
+            DataColumn propertyIID = new DataColumn("Property");
+            DataColumn valueIID = new DataColumn("Value");
+            DataColumn descriptionIID = new DataColumn("Description");
+
+            propertyIID.DataType = Type.GetType("System.Int32");
+            valueIID.DataType = Type.GetType("System.Int32");
+
+            iidDataTable.Columns.Add(propertyIID);
+            iidDataTable.Columns.Add(valueIID);
+            iidDataTable.Columns.Add(descriptionIID);
+            cbIidProps.DataContext = iidDataTable;
 
             //SpellBook
             DataColumn spellIdInt = new DataColumn("Property");
@@ -464,6 +479,14 @@ namespace WeenieFab
             cbBodyPartDamageType.ItemsSource = DamageTypes;
             cbBodyPartDamageType.SelectedIndex = 1;
 
+            List<string> InstanceTypes = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\InstanceIDTypes.txt"))
+            {
+                InstanceTypes.Add(line);
+            }
+            cbIidProps.ItemsSource = InstanceTypes;
+            cbIidProps.SelectedIndex = 1;
+
         }
         // Testing Search
         public void CreateSpellList()
@@ -557,6 +580,7 @@ namespace WeenieFab
             floatDataTable.Clear();
             stringDataTable.Clear();
             didDataTable.Clear();
+            iidDataTable.Clear();
             spellDataTable.Clear();
             attributeDataTable.Clear();
             attribute2DataTable.Clear();
@@ -620,6 +644,10 @@ namespace WeenieFab
             tbAuthorName.Text = "";
             tbPageText.Text = "";
             rdbBookFalse.IsChecked = true;
+
+            // IID
+            cbIidProps.SelectedIndex = 1;
+            tbiidValue.Text = "";
 
             // Rich Text Boxes
             rtbEmoteScript.Document.Blocks.Clear();

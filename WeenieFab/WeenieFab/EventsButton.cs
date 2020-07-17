@@ -477,6 +477,76 @@ namespace WeenieFab
             }
         }
 
+        // Instance ID
+        private void btnAddIid_Click(object sender, RoutedEventArgs e)
+        {
+            if (SearchForDuplicateProps(iidDataTable, cbIidProps.SelectedIndex.ToString()))
+            {
+                MessageBox.Show("Property Already Exits");
+            }
+            else
+            {
+                string[] description = cbIidProps.Text.Split(" ");
+                DataRow dr = iidDataTable.NewRow();
+                dr[0] = ConvertToInteger(cbIidProps.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbiidValue.Text);
+                dr[2] = description[1];
+
+                iidDataTable.Rows.Add(dr);
+                iidDataTable = ResortDataTable(iidDataTable, "Property", "ASC");
+                dgIid.DataContext = iidDataTable.DefaultView;
+
+                // didDataTable.DefaultView.Sort = "Property ASC";
+                dgIid.Items.Refresh();
+
+            }
+        }
+
+        private void btnUpdateIid_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgIid.SelectedIndex;
+            if (index < 0)
+            {
+                MessageBox.Show("Please Select a row");
+                return;
+            }
+            try
+            {
+                DataGridRow currentRowIndex = dgIid.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = iidDataTable.Rows[currentRowIndex.GetIndex()];
+
+                string[] description = cbIidProps.Text.Split(" ");
+
+                dr[0] = ConvertToInteger(cbIidProps.SelectedIndex.ToString());
+                dr[1] = ConvertToInteger(tbiidValue.Text);
+                dr[2] = description[1];
+
+                iidDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+        }
+
+        private void btnRemoveIid_Click(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgIid.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgIid.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = iidDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                iidDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+
+        }
+
         // Spell
         private void btnAddSpell_Click(object sender, RoutedEventArgs e)
         {
