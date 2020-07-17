@@ -1630,9 +1630,9 @@
         <Label x:Name="lblWCID" Content="WCID:" HorizontalAlignment="Left" Margin="100,48,0,0" VerticalAlignment="Top" Height="25" Width="45"/>
         <Label x:Name="lblWeenieName" Content="Weenie Name:" HorizontalAlignment="Left" Margin="235,48,0,0" VerticalAlignment="Top" Height="25" Width="90"/>
         <Label x:Name="lblWeenieType" Content="Weenie Type:" HorizontalAlignment="Left" Margin="655,48,0,0" VerticalAlignment="Top" Height="25" Width="84"/>
-        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="150,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="18" ToolTip="WCID for this weenie"/>
-        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="325,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="20" ToolTip="Name of Weenie" MaxWidth="353" MinWidth="300"/>
-        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="735,50,0,0" VerticalAlignment="Top" Width="233" ToolTip="Select the Type of Weenie" MinWidth="250"/>
+        <TextBox x:Name="tbWCID" HorizontalAlignment="Left" Margin="150,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="68" Height="0" ToolTip="WCID for this weenie" MinHeight="22" MaxHeight="22"/>
+        <TextBox x:Name="tbWeenieName" HorizontalAlignment="Left" Margin="325,50,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" Height="0" ToolTip="Name of Weenie" MaxWidth="353" MinWidth="300" MinHeight="22" MaxHeight="22"/>
+        <ComboBox x:Name="cbWeenieType" HorizontalAlignment="Left" Margin="735,50,0,0" VerticalAlignment="Top" Width="233" ToolTip="Select the Type of Weenie" MinWidth="250" MinHeight="22" MaxHeight="23"/>
 
         <Grid Margin="0,55,0,0" Grid.ColumnSpan="2">
             <TabControl x:Name="tabControl" Margin="0,33,0,0">

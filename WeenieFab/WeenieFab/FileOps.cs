@@ -11,6 +11,7 @@ using WeenieFab.Properties;
 using EmoteScriptLib;
 using System.Windows;
 using System.Reflection;
+using System.Data;
 
 namespace WeenieFab
 {
@@ -101,6 +102,8 @@ namespace WeenieFab
                     ClearAllFields();
                     ResetIndexAllDataGrids();
                     ReadSQLFile(ofd.FileName);
+                    Globals.WeenieFileName = ofd.FileName;
+                    this.Title = "WeenieFab - " + ofd.FileName;
                 }
                 else
                     MessageBox.Show("File Extension Not Reconized");
@@ -109,18 +112,24 @@ namespace WeenieFab
 
         public void SaveFile()
         {
+            string weenieName = GetSavedFileName(stringDataTable);
+            string weenieWCID = tbWCID.Text.PadLeft(5, '0');
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Save Weenie File";
             sfd.Filter = "SQL files|*.sql";
-            sfd.FileName = tbWCID.Text + $".sql";
+            sfd.FileName = $"{weenieWCID} {weenieName}.sql";
             sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
 
             Nullable<bool> result = sfd.ShowDialog();
 
+            
+
             if (result == true)
             {
                 WriteSQLFile(sfd.FileName);
+                Globals.WeenieFileName = sfd.FileName;
+                this.Title = "WeenieFab - " + sfd.FileName;
             }
         }
         
@@ -569,6 +578,27 @@ namespace WeenieFab
             {
                 File.WriteAllText(sfd.FileName, esdata);
             }
+
+        }
+        public static string GetSavedFileName(DataTable dt)
+        {
+            string weenieFN = "";
+
+            // DataTable dt = stringDataTable.Clone();
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string temp = row[0].ToString();
+
+                if (temp == "1")
+                    weenieFN = row[1].ToString();
+                else
+                {
+                }
+
+            }
+            return weenieFN;
 
         }
     }
