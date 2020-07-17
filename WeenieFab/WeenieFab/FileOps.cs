@@ -11,6 +11,7 @@ using WeenieFab.Properties;
 using EmoteScriptLib;
 using System.Windows;
 using System.Reflection;
+using System.Data;
 
 namespace WeenieFab
 {
@@ -101,6 +102,8 @@ namespace WeenieFab
                     ClearAllFields();
                     ResetIndexAllDataGrids();
                     ReadSQLFile(ofd.FileName);
+                    Globals.WeenieFileName = ofd.FileName;
+                    this.Title = "WeenieFab - " + ofd.FileName;
                 }
                 else
                     MessageBox.Show("File Extension Not Reconized");
@@ -109,18 +112,24 @@ namespace WeenieFab
 
         public void SaveFile()
         {
+            string weenieName = GetSavedFileName(stringDataTable);
+            string weenieWCID = tbWCID.Text.PadLeft(5, '0');
 
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Title = "Save Weenie File";
             sfd.Filter = "SQL files|*.sql";
-            sfd.FileName = tbWCID.Text + $".sql";
+            sfd.FileName = $"{weenieWCID} {weenieName}.sql";
             sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
 
             Nullable<bool> result = sfd.ShowDialog();
 
+            
+
             if (result == true)
             {
                 WriteSQLFile(sfd.FileName);
+                Globals.WeenieFileName = sfd.FileName;
+                this.Title = "WeenieFab - " + sfd.FileName;
             }
         }
         
@@ -372,8 +381,12 @@ namespace WeenieFab
             }
             catch (Exception ex)
             {
-                // MessageBox.Show("File Not Found", "Warning!");
-                MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
+                
+                LogError(ex);
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show("Issue with File. Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
+                //MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
                 //throw;
             }
         }
@@ -571,5 +584,56 @@ namespace WeenieFab
             }
 
         }
+        public static string GetSavedFileName(DataTable dt)
+        {
+            string weenieFN = "";
+
+            // DataTable dt = stringDataTable.Clone();
+
+
+            foreach (DataRow row in dt.Rows)
+            {
+                string temp = row[0].ToString();
+
+                if (temp == "1")
+                    weenieFN = row[1].ToString();
+                else
+                {
+                }
+
+            }
+            return weenieFN;
+
+        }
+        public static void LogError(Exception ex)
+        {
+            string errorfilepath = @"WeenieFabErrorLog.txt";
+            // string errorfilepath = @"\WeenieFabErrorLog.txt";
+            try
+            {
+                
+                using (StreamWriter writer = new StreamWriter(errorfilepath, true))
+                {
+                    writer.WriteLine("============================================================================");
+                    writer.WriteLine(DateTime.Now.ToString());
+                    writer.WriteLine("Error: " + ex.Message);
+                    writer.WriteLine("Source: " + ex.Source);
+                    writer.WriteLine("Stack: " + ex.StackTrace);
+                    if (ex.InnerException != null)
+                    {
+                        writer.WriteLine("Inner: " + ex.InnerException.Message);
+                        writer.WriteLine("Inner Stack: " + ex.InnerException.StackTrace);
+                    }
+                    writer.WriteLine("============================================================================");
+                    writer.WriteLine("");
+                    writer.Close();
+                }
+            }
+            catch (Exception logex)
+            {
+                MessageBox.Show($"{logex.Message} \n {logex.StackTrace} \n {logex.Source} \n {logex.TargetSite}");
+            }
+        }
     }
+
 }

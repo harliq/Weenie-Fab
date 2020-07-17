@@ -3,37 +3,34 @@
 Add Generator Table
 Add Instance ID's (IID)
 Add Positions Table
-Add Error Log
 
 * Polish *
-FileName Global
 Code Cleanup/Organization
-Body Part Tab stops
-
 
 *Optimize*
 Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
-Auto generate file name on save
-Destination DropDown (Create Items)
 
 
 
-**Future Features**
-**Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
-After MileStone.
+**Future Features** - After MileStone.
 Defaults for a new weenie (IE a quick wizard dialog)
-**  Have to wait for ACData to be fixed. Auto Convert Json Files
-Auto Calculate Body Parts
+**Have to wait for ACData to be fixed. Auto Convert Json Files
+**Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 MarkDown for ES in WeenieFab
 
 
-
 **Completed**
+#Done-NOT IMPLEMENTING Destination DropDown (Create Items) (to many variables)
+#Done-Add Error Log
+#Done-Auto generate file name on save
+#Done-Body Part Tab stops
+#Done-FileName Global
 #Done-Fixed Help Link to Weenie Repo
 #Done-Add Books Table
 #Done-Body Parts Table
+#Done-Auto Calculate Body Parts
 #Done-Added SQL to JSON converter.
 #Done-Added way for browsing folders. (used Ookii netCORE dialogs).
 #Done redo Read Sql?? (Basically the way I handle reading emotes)

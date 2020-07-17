@@ -23,11 +23,13 @@ namespace WeenieFab
                 SaveFile();
                 ClearAllDataTables();
                 ClearAllFields();
+                this.Title = "WeenieFab";
             }
             else if (result == MessageBoxResult.No)
             {
                 ClearAllDataTables();
                 ClearAllFields();
+                this.Title = "WeenieFab";
             }
             else
             {
