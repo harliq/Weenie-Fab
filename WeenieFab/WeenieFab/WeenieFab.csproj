@@ -16,7 +16,6 @@
     <None Remove="TypeLists\BodyParts.txt" />
     <None Remove="TypeLists\BoolTypes.txt" />
     <None Remove="TypeLists\DamageTypes.txt" />
-    <None Remove="TypeLists\DestinationTypes.txt" />
     <None Remove="TypeLists\DiDTypes.txt" />
     <None Remove="TypeLists\FloatTypes.txt" />
     <None Remove="TypeLists\HelpResources.txt" />
@@ -54,9 +53,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TypeLists\DamageTypes.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="TypeLists\DestinationTypes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TypeLists\DiDTypes.txt">

@@ -848,9 +848,7 @@ namespace WeenieFab
         {
 
             DataRow dr = createListDataTable.NewRow();
-
-            dr[0] = ConvertToInteger(cbDestinationType.SelectedIndex.ToString());
-            //dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
+            dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
             dr[1] = ConvertToInteger(tbCreateItemsWCID.Text);
             dr[2] = ConvertToInteger(tbCreateItemsStackSize.Text);
             dr[3] = ConvertToInteger(tbCreateItemsPalette.Text);
@@ -870,8 +868,7 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = createListDataTable.Rows[currentRowIndex.GetIndex()];
 
-                dr[0] = ConvertToInteger(cbDestinationType.SelectedIndex.ToString());
-                // dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
+                dr[0] = ConvertToInteger(tbCreateItemsDestType.Text);
                 dr[1] = ConvertToInteger(tbCreateItemsWCID.Text);
                 dr[2] = ConvertToInteger(tbCreateItemsStackSize.Text);
                 dr[3] = ConvertToInteger(tbCreateItemsPalette.Text);

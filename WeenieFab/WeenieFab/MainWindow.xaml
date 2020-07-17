@@ -2008,25 +2008,24 @@
                 <TabItem Header="CreateItems" Background="#FFE1E8F5">
                     <Grid Background="#FFE1E8F5">
 
-                        <Label Content="Description" HorizontalAlignment="Left" Margin="240,131,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Description" HorizontalAlignment="Left" Margin="222,131,0,0" VerticalAlignment="Top"/>
                         <Label Content="Create Items (Trophy)" HorizontalAlignment="Left" Margin="567,15,0,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Grid.ColumnSpan="2"/>
-                        <Label Content="Palette" HorizontalAlignment="Left" Margin="240,36,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Palette" HorizontalAlignment="Left" Margin="222,36,0,0" VerticalAlignment="Top"/>
                         <Label Content="WCID" HorizontalAlignment="Left" Margin="92,84,0,0" VerticalAlignment="Top"/>
                         <Label Content="Stack Size" HorizontalAlignment="Left" Margin="92,131,0,0" VerticalAlignment="Top"/>
                         <Label Content="Destination Type" HorizontalAlignment="Left" Margin="92,36,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="240,84,0,0" VerticalAlignment="Top"/>
-                        <ComboBox x:Name="cbDestinationType" HorizontalAlignment="Left" Margin="92,60,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="0" ToolTip="Select the Property You wish to Add/Change" MinWidth="120" MaxWidth="120"/>
-                        <TextBox x:Name="tbCreateItemsDestType" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="683,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Destination Value"/>
-                        <TextBox x:Name="tbCreateItemsPalette" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="240,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Palette value"/>
+                        <Label Content="Drop Probablity (Shade)" HorizontalAlignment="Left" Margin="222,84,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbCreateItemsDestType" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Destination Value"/>
+                        <TextBox x:Name="tbCreateItemsPalette" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="222,60,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Palette value"/>
                         <TextBox x:Name="tbCreateItemsWCID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="WCID of Item to create"/>
-                        <TextBox x:Name="tbCreateItemsDropRate" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="240,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="How often will this item drop"/>
+                        <TextBox x:Name="tbCreateItemsDropRate" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="222,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="How often will this item drop"/>
                         <TextBox x:Name="tbCreateItemsStackSize" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="How many (if Stackable)"/>
-                        <TextBox x:Name="tbCreateItemsDescription" HorizontalAlignment="Left" Margin="240,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" ToolTip="Name of item to create"/>
+                        <TextBox x:Name="tbCreateItemsDescription" HorizontalAlignment="Left" Margin="222,152,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="400" Grid.ColumnSpan="2" ToolTip="Name of item to create"/>
                         <Button x:Name="btnAddCreateItems" Content="Add " HorizontalAlignment="Left" Margin="457,54,0,0" VerticalAlignment="Top" Width="100" Click="btnAddCreateItem_Click" ToolTip="Add item"/>
                         <Button x:Name="btnUpdateCreateItems" Content="Update" HorizontalAlignment="Left" Margin="457,88,0,0" VerticalAlignment="Top" Click="btnUpdateCreateItem_Click" Width="100" ToolTip="Update selected item"/>
                         <Button x:Name="btnRemoveItems" Content="Remove" HorizontalAlignment="Left" Margin="457,119,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveCreateItem_Click" ToolTip="Remove selected item"/>
 
-                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="80,0,0,20" AutoGenerateColumns="False" DataGridCell.Selected="dgCreateList_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="900" MinHeight="370" VerticalAlignment="Bottom" HorizontalAlignment="Left" MaxWidth="997" MaxHeight="370" Grid.ColumnSpan="2" ToolTip="Select a property to edit/change">
+                        <DataGrid x:Name="dgCreateItems" ItemsSource="{Binding}" Margin="80,0,0,30" AutoGenerateColumns="False" DataGridCell.Selected="dgCreateList_RowSelected" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="900" MinHeight="380" VerticalAlignment="Bottom" HorizontalAlignment="Left" MaxWidth="997" MaxHeight="380" Grid.ColumnSpan="2" ToolTip="Select a property to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="DestinationType" IsReadOnly="True" Binding="{Binding DestinationType}" Width="0.8*"/>
                                 <DataGridTextColumn Header="WCID" IsReadOnly="True"  Binding="{Binding WCID}" Width="0.5*"/>
