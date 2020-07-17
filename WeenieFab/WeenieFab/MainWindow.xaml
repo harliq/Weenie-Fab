@@ -1898,56 +1898,51 @@
                 </TabItem>
                 <TabItem Header="BodyParts">
                     <Grid Background="#FFE1E8F5">
-
-                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False" VerticalAlignment="Bottom" MinHeight="130" MaxHeight="130">
-                            <FlowDocument>
-                                <Paragraph>
-                                    <Run Text=""/>
-                                </Paragraph>
-                            </FlowDocument>
-                        </RichTextBox>
-                        <ComboBox x:Name="cbBodyPart" HorizontalAlignment="Left" Margin="70,25,0,0" VerticalAlignment="Top" Width="120" MinWidth="200" ToolTip="Select Body Part"/>
                         <Label Content="Body Part" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartArmorLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="850,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body Part Base Armor Level"/>
                         <Label Content="Base Armor Level" HorizontalAlignment="Left" Margin="850,0,0,0" VerticalAlignment="Top"/>
                         <Label Content="Damage Type" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartDamageValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="550,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="How much damage body part does"/>
                         <Label Content="Damage Value" HorizontalAlignment="Left" Margin="550,0,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
                         <Label Content="Damage Variance" HorizontalAlignment="Left" Margin="700,0,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
-                        <TextBox x:Name="tbBodyPartDamageVariance" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="700,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body part damage variance"/>
-                        <ComboBox x:Name="cbBodyPartDamageType" HorizontalAlignment="Left" Margin="300,25,0,0" VerticalAlignment="Top" Width="120" MinWidth="200" ToolTip="Select Body Part Damage Type"/>
-                        <TextBox x:Name="tbBodyPartBase_Height" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="1000,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Height of the body part (1=High, 2=Middle, 3=Low)"/>
                         <Label Content="Body Part Height" HorizontalAlignment="Left" Margin="1000,0,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadHighLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="50,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" MinWidth="50"/>
                         <Label Content="High" HorizontalAlignment="Left" Margin="50,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadMiddleLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="120,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Middle" HorizontalAlignment="Left" Margin="120,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadLowLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="190,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Low" HorizontalAlignment="Left" Margin="190,90,0,0" VerticalAlignment="Top"/>
                         <Label Content="Left Front Quadrant" HorizontalAlignment="Left" Margin="77,65,0,0" VerticalAlignment="Top" FontSize="14"/>
-                        <TextBox x:Name="tbBodyPartQuadHighRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="290,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-                        <Label Content="High" HorizontalAlignment="Left" Margin="290,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadMiddleRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="360,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Middle" HorizontalAlignment="Left" Margin="360,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadLowRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="430,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Label Content="High" HorizontalAlignment="Left" Margin="290,90,0,0" VerticalAlignment="Top"/>
                         <Label Content="Low" HorizontalAlignment="Left" Margin="430,90,0,0" VerticalAlignment="Top"/>
                         <Label Content="Right Front Quadrant" HorizontalAlignment="Left" Margin="313,60,0,0" VerticalAlignment="Top" FontSize="14"/>
-                        <TextBox x:Name="tbBodyPartQuadHighLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="710,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="High" HorizontalAlignment="Left" Margin="709,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadMiddleLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="780,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Middle" HorizontalAlignment="Left" Margin="780,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadLowLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="850,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Low" HorizontalAlignment="Left" Margin="851,90,0,0" VerticalAlignment="Top"/>
                         <Label Content="Left Back Quadrant" HorizontalAlignment="Left" Margin="741,60,0,0" VerticalAlignment="Top" FontSize="14"/>
-                        <TextBox x:Name="tbBodyPartQuadHighRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="940,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="High" HorizontalAlignment="Left" Margin="939,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadMiddleRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1010,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Middle" HorizontalAlignment="Left" Margin="1010,90,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbBodyPartQuadLowRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1080,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <Label Content="Low" HorizontalAlignment="Left" Margin="1081,90,0,0" VerticalAlignment="Top"/>
                         <Label Content="Right Back Quadrant" HorizontalAlignment="Left" Margin="964,60,0,0" VerticalAlignment="Top" FontSize="14"/>
-
-
+                        <ComboBox x:Name="cbBodyPart" HorizontalAlignment="Left" Margin="70,25,0,0" VerticalAlignment="Top" Width="120" MinWidth="200" ToolTip="Select Body Part"/>
+                        <ComboBox x:Name="cbBodyPartDamageType" HorizontalAlignment="Left" Margin="300,25,0,0" VerticalAlignment="Top" Width="120" MinWidth="200" ToolTip="Select Body Part Damage Type"/>
+                        <TextBox x:Name="tbBodyPartDamageValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="550,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="How much damage body part does"/>
+                        <TextBox x:Name="tbBodyPartDamageVariance" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="700,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body part damage variance"/>
+                        <TextBox x:Name="tbBodyPartArmorLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="850,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body Part Base Armor Level"/>
+                        <TextBox x:Name="tbBodyPartBase_Height" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="1000,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Height of the body part (1=High, 2=Middle, 3=Low)"/>
+                        <TextBox x:Name="tbBodyPartQuadHighLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="50,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" MinWidth="50"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="120,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadLowLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="190,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadHighRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="290,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="360,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadLowRF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="430,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadHighLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="710,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="780,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadLowLB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="850,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadHighRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="940,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadMiddleRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1010,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <TextBox x:Name="tbBodyPartQuadLowRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1080,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+                        <Button x:Name="btnAddBodyPart" Content="Add" HorizontalAlignment="Left" Margin="466,145,0,0" VerticalAlignment="Top" Click="btnAddBodyPart_Click" ToolTip="Add Body Party"/>
+                        <Button x:Name="btnUpdateBodyPart" Content="Update" HorizontalAlignment="Left" Margin="561,145,0,0" VerticalAlignment="Top" Click="btnUpdateBodyPart_Click" ToolTip="Update Body Part"/>
+                        <Button x:Name="btnRemoveBodyPart" Content="Remove" HorizontalAlignment="Left" Margin="655,145,0,0" VerticalAlignment="Top" Click="btnRemoveBodyPart_Click" ToolTip="Remove Body Part"/>
+                        <Button x:Name="btnBodyPartHelpWiki" Content="Body Parts Help (wiki)" HorizontalAlignment="Center" Margin="0,104,0,0" VerticalAlignment="Top" Click="btnBodyPartHelpWiki_Click"/>
+                        <Button x:Name="btnGenerateBodyTable" Content="GenBodyTable" HorizontalAlignment="Left" Margin="342,147,0,0" VerticalAlignment="Top" Click="btnGenerateBodyTable_Click"/>
                         <DataGrid x:Name="dgBodyParts" ItemsSource="{Binding}" DataGridCell.Selected="dgBodyParts_RowSelected" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="1100" MinHeight="250" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="1100" MaxHeight="255" ToolTip="Select a body part to edit/change" Margin="40,180,0,0">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="BodyPart" IsReadOnly="True" Binding="{Binding BodyPart}" Width="0.6*"/>
@@ -1977,14 +1972,13 @@
 
                             </DataGrid.Columns>
                         </DataGrid>
-                        <Button x:Name="btnAddBodyPart" Content="Add" HorizontalAlignment="Left" Margin="466,145,0,0" VerticalAlignment="Top" Click="btnAddBodyPart_Click" ToolTip="Add Body Party"/>
-                        <Button x:Name="btnUpdateBodyPart" Content="Update" HorizontalAlignment="Left" Margin="561,145,0,0" VerticalAlignment="Top" Click="btnUpdateBodyPart_Click" ToolTip="Update Body Part"/>
-                        <Button x:Name="btnRemoveBodyPart" Content="Remove" HorizontalAlignment="Left" Margin="655,145,0,0" VerticalAlignment="Top" Click="btnRemoveBodyPart_Click" ToolTip="Remove Body Part"/>
-                        <Button x:Name="btnGenerateBodyTable" Content="GenBodyTable" HorizontalAlignment="Left" Margin="342,147,0,0" VerticalAlignment="Top" Click="btnGenerateBodyTable_Click"/>
-                        <Button x:Name="btnBodyPartHelpWiki" Content="Body Parts Help (wiki)" HorizontalAlignment="Center" Margin="0,104,0,0" VerticalAlignment="Top" Click="btnBodyPartHelpWiki_Click"/>
-
-
-
+                        <RichTextBox x:Name="rtbBodyParts" FontFamily="Courier New" FontSize="11" Grid.ColumnSpan="2" Background="White" HorizontalAlignment="Center" Margin="10,50,10,10" AcceptsTab="True" IsTabStop="False" VerticalAlignment="Bottom" MinHeight="130" MaxHeight="130">
+                            <FlowDocument>
+                                <Paragraph>
+                                    <Run Text=""/>
+                                </Paragraph>
+                            </FlowDocument>
+                        </RichTextBox>
                     </Grid>
                 </TabItem>
                 <TabItem Header="SpellBook">
