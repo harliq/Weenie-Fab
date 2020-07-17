@@ -381,8 +381,12 @@ namespace WeenieFab
             }
             catch (Exception ex)
             {
-                // MessageBox.Show("File Not Found", "Warning!");
-                MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
+                
+                LogError(ex);
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show("Issue with File. Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
+                //MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
                 //throw;
             }
         }
@@ -601,5 +605,35 @@ namespace WeenieFab
             return weenieFN;
 
         }
+        public static void LogError(Exception ex)
+        {
+            string errorfilepath = @"WeenieFabErrorLog.txt";
+            // string errorfilepath = @"\WeenieFabErrorLog.txt";
+            try
+            {
+                
+                using (StreamWriter writer = new StreamWriter(errorfilepath, true))
+                {
+                    writer.WriteLine("============================================================================");
+                    writer.WriteLine(DateTime.Now.ToString());
+                    writer.WriteLine("Error: " + ex.Message);
+                    writer.WriteLine("Source: " + ex.Source);
+                    writer.WriteLine("Stack: " + ex.StackTrace);
+                    if (ex.InnerException != null)
+                    {
+                        writer.WriteLine("Inner: " + ex.InnerException.Message);
+                        writer.WriteLine("Inner Stack: " + ex.InnerException.StackTrace);
+                    }
+                    writer.WriteLine("============================================================================");
+                    writer.WriteLine("");
+                    writer.Close();
+                }
+            }
+            catch (Exception logex)
+            {
+                MessageBox.Show($"{logex.Message} \n {logex.StackTrace} \n {logex.Source} \n {logex.TargetSite}");
+            }
+        }
     }
+
 }
