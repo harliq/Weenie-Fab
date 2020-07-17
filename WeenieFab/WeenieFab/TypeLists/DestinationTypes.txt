@@ -1,0 +1,11 @@
+0 Undef
+1 Contain
+2 Wield
+3 Shop
+4 Treasure
+5 HouseBuy
+6 HouseRent
+7 Checkpoint
+8 ContainTreasure
+9 WieldTreasure
+10 ShopTreasure

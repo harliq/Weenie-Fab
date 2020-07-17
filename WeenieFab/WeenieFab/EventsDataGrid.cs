@@ -179,7 +179,8 @@ namespace WeenieFab
             {
                 DataRow dr = createListDataTable.Rows[currentRowIndex.GetIndex()];
 
-                tbCreateItemsDestType.Text = dr[0].ToString();
+                cbDestinationType.SelectedIndex = ConvertToInteger(dr[0].ToString());
+                // tbCreateItemsDestType.Text = dr[0].ToString();
                 tbCreateItemsWCID.Text = dr[1].ToString();
                 tbCreateItemsStackSize.Text = dr[2].ToString();
                 tbCreateItemsPalette.Text = dr[3].ToString();

@@ -61,6 +61,7 @@ namespace WeenieFab
 
             btnGenerateBodyTable.Visibility = Visibility.Hidden;
             rtbBodyParts.Visibility = Visibility.Hidden;
+            tbCreateItemsDestType.Visibility = Visibility.Hidden;
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
@@ -464,403 +465,414 @@ namespace WeenieFab
             cbBodyPartDamageType.ItemsSource = DamageTypes;
             cbBodyPartDamageType.SelectedIndex = 1;
 
+            List<string> DestinationTypes = new List<string>();
+            foreach (string line in File.ReadLines(@"TypeLists\DestinationTypes.txt"))
+            {
+                DestinationTypes.Add(line);
+            }
+            cbDestinationType.ItemsSource = DestinationTypes;
+            cbDestinationType.SelectedIndex = 1;
+
         }
+        
+
         // Testing Search
         public void CreateSpellList()
-        {
-            List<SpellNames> listSpellNames = new List<SpellNames>();
-
-            foreach (string line in File.ReadLines(@"TypeLists\SpellNames.txt"))
             {
-                string[] spellData = line.Split(",");
+                List<SpellNames> listSpellNames = new List<SpellNames>();
 
-                listSpellNames.Add(new SpellNames { SpellID = ConvertToInteger(spellData[0]), SpellName = spellData[1] });
+                foreach (string line in File.ReadLines(@"TypeLists\SpellNames.txt"))
+                {
+                    string[] spellData = line.Split(",");
+
+                    listSpellNames.Add(new SpellNames { SpellID = ConvertToInteger(spellData[0]), SpellName = spellData[1] });
+                }
+                lvSpellsList.ItemsSource = listSpellNames;
+                CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource);
+                view.Filter = SpellFilter;
             }
-            lvSpellsList.ItemsSource = listSpellNames;
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource);
-            view.Filter = SpellFilter;
-        }
-        private bool SpellFilter(object spellname)
-        {
-            if (String.IsNullOrEmpty(tbSpellSearch.Text))
-                return true;
-            else
-                return ((spellname as SpellNames).SpellName.IndexOf(tbSpellSearch.Text, StringComparison.OrdinalIgnoreCase) >= 0);
-        }
-        private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource).Refresh();
-        }
-
-        public void CreateWeenieTypeList()
-        {
-
-            string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
-
-
-            List<string> weenieTypeList = new List<string>();
-            foreach (string line in File.ReadLines(filepath))
+            private bool SpellFilter(object spellname)
             {
-                weenieTypeList.Add(line);
+                if (String.IsNullOrEmpty(tbSpellSearch.Text))
+                    return true;
+                else
+                    return ((spellname as SpellNames).SpellName.IndexOf(tbSpellSearch.Text, StringComparison.OrdinalIgnoreCase) >= 0);
             }
-            cbWeenieType.ItemsSource = weenieTypeList;
-            cbWeenieType.SelectedIndex = 1;
-        }
+            private void txtFilter_TextChanged(object sender, TextChangedEventArgs e)
+            {
+                CollectionViewSource.GetDefaultView(lvSpellsList.ItemsSource).Refresh();
+            }
 
-        private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
-        private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = new Regex("[^0-9.-]+");
-            e.Handled = regex.IsMatch(e.Text);
-        }
+            public void CreateWeenieTypeList()
+            {
+
+                string filepath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"TypeLists\WeenieTypes.txt");
+
+
+                List<string> weenieTypeList = new List<string>();
+                foreach (string line in File.ReadLines(filepath))
+                {
+                    weenieTypeList.Add(line);
+                }
+                cbWeenieType.ItemsSource = weenieTypeList;
+                cbWeenieType.SelectedIndex = 1;
+            }
+
+            private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
+            {
+                Regex regex = new Regex("[^0-9]+");
+                e.Handled = regex.IsMatch(e.Text);
+            }
+            private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
+            {
+                Regex regex = new Regex("[^0-9.-]+");
+                e.Handled = regex.IsMatch(e.Text);
+            }
 
  
-        public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
-        {
-            dt.DefaultView.Sort = colName + " " + direction;
-            dt = dt.DefaultView.ToTable();
-            return dt;
-        }
-
-        public static int ConvertToInteger(string text)
-        {
-            int i = 0;
-            Int32.TryParse(text, out i);
-            return i;
-        }
-        public static uint ConvertToUInteger(string text)
-        {
-            uint i = 0;
-            i = Convert.ToUInt32(text, 32);
-            //Convert.ToUInt64(text,)
-            return i;
-        }
-
-
-        public static float ConvertToFloat(string text)
-        {
-            float i = 0f;
-            float.TryParse(text, out i);
-            return i;
-        }
-
-        // UI Stuff
-        public void ClearAllDataTables()
-        {
-            integerDataTable.Clear();
-            integer64DataTable.Clear();
-            boolDataTable.Clear();
-            floatDataTable.Clear();
-            stringDataTable.Clear();
-            didDataTable.Clear();
-            spellDataTable.Clear();
-            attributeDataTable.Clear();
-            attribute2DataTable.Clear();
-            skillsDataTable.Clear();
-            createListDataTable.Clear();
-            bodypartsDataTable.Clear();
-            bookInfoDataTable.Clear();
-            bookPagesDataTable.Clear();
-        }
-        public void ResetIndexAllDataGrids()
-        {
-            dgInt32.SelectedIndex = -1;
-
-        }
-        public void ClearAllFields()
-        {
-
-            tbWCID.Text = "";
-            tbWeenieName.Text = "";
-            tbValue.Text = "";
-            tb64Value.Text = "";
-            tbFloatValue.Text = "";
-            tbStringValue.Text = "";
-            tbDiDValue.Text = "";
-            tbSpellId.Text = "";
-            tbSpellValue.Text = "";
-            tbSkillLevel.Text = "";
-            tbCreateItemsDescription.Text = "";
-            tbCreateItemsDestType.Text = "";
-            tbCreateItemsDropRate.Text = "";
-            tbCreateItemsPalette.Text = "";
-            tbCreateItemsStackSize.Text = "";
-            tbCreateItemsWCID.Text = "";
-
-            tbBodyPartDamageValue.Text = "";
-            tbBodyPartDamageVariance.Text = "";
-            tbBodyPartArmorLevel.Text = "";
-            tbBodyPartBase_Height.Text = "";
-
-            tbBodyPartQuadHighLF.Text = "";
-            tbBodyPartQuadMiddleLF.Text = "";
-            tbBodyPartQuadLowLF.Text = "";
-
-            tbBodyPartQuadHighRF.Text = "";
-            tbBodyPartQuadMiddleRF.Text = "";
-            tbBodyPartQuadLowRF.Text = "";
-
-            tbBodyPartQuadHighLB.Text = "";
-            tbBodyPartQuadMiddleLB.Text = "";
-            tbBodyPartQuadLowLB.Text = "";
-
-            tbBodyPartQuadHighRB.Text = "";
-            tbBodyPartQuadMiddleRB.Text = "";
-            tbBodyPartQuadLowRB.Text = "";
-
-            // Books
-            tbMaxPages.Text = "";
-            tbMaxChars.Text = "";
-
-            tbPageID.Text = "";
-            tbAuthorName.Text = "";
-            tbPageText.Text = "";
-            rdbBookFalse.IsChecked = true;
-
-            // Rich Text Boxes
-            rtbEmoteScript.Document.Blocks.Clear();
-            rtbBodyParts.Document.Blocks.Clear();
-
-            cbWeenieType.SelectedIndex = 1;
-            cbInt32Props.SelectedIndex = 1;
-            cbInt64Props.SelectedIndex = 1;
-            cbBoolProps.SelectedIndex = 1;
-            cbFloatProps.SelectedIndex = 1;
-            cbStringProps.SelectedIndex = 1;
-            cbDiDProps.SelectedIndex = 1;
-            cbSkillType.SelectedIndex = 1;
-            cbBodyPart.SelectedIndex = 0;
-            cbBodyPartDamageType.SelectedIndex = 1;
-
-
-            ClearAttributeFields();
-            ClearAttribute2Fields();
-
-        }
-        public void MiscSettings()
-        {
-            rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
-            rtbEmoteScript.Document.PageWidth = 2000;
-            if (WeenieFabUser.Default.AutoCalcHealth == true)
-                chkbAutoHealth.IsChecked = true;
-
-
-        }
-
-        private void lvSpellsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Don't think I need this anymore.
-        }
-        private void GetVersion()
-        {
-
-            System.Reflection.Assembly executingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
-            var fileVersionInfo = FileVersionInfo.GetVersionInfo(executingAssembly.Location);
-            var version = fileVersionInfo.FileVersion;
-
-            lblVersion.Content = "Version " + version;
-        }
-
-        private void chkbAutoHealth_Changed(object sender, RoutedEventArgs e)
-        {
-            if (chkbAutoHealth.IsChecked == true)
+            public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
             {
-                WeenieFabUser.Default.AutoCalcHealth = true;
-                WeenieFabUser.Default.Save();
+                dt.DefaultView.Sort = colName + " " + direction;
+                dt = dt.DefaultView.ToTable();
+                return dt;
             }
-            else
+
+            public static int ConvertToInteger(string text)
             {
-                WeenieFabUser.Default.AutoCalcHealth = false;
-                WeenieFabUser.Default.Save();
+                int i = 0;
+                Int32.TryParse(text, out i);
+                return i;
             }
-        }
-
-        private void tbHealthCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (WeenieFabUser.Default.AutoCalcHealth == true)
+            public static uint ConvertToUInteger(string text)
             {
-                int attribEndurance = ConvertToInteger(tbAttribEndurance.Text) / 2;
-                int finalHealth = ConvertToInteger(tbHealthCurrentLevel.Text);
-                tbHealthInitLevel.Text = (finalHealth - attribEndurance).ToString();
-            }          
-        }
-
-        private void tbStaminaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (WeenieFabUser.Default.AutoCalcHealth == true)
-            {
-                int attribEndurance = ConvertToInteger(tbAttribEndurance.Text);
-                int finalStamina = ConvertToInteger(tbStaminaCurrentLevel.Text);
-                tbStaminaInitLevel.Text = (finalStamina - attribEndurance).ToString();
+                uint i = 0;
+                i = Convert.ToUInt32(text, 32);
+                //Convert.ToUInt64(text,)
+                return i;
             }
-        }
 
-        private void tbManaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (WeenieFabUser.Default.AutoCalcHealth == true)
+
+            public static float ConvertToFloat(string text)
             {
-                int attribSelf = ConvertToInteger(tbAttribSelf.Text);
-                int finalMana = ConvertToInteger(tbManaCurrentLevel.Text);
-                tbManaInitLevel.Text = (finalMana - attribSelf).ToString();
+                float i = 0f;
+                float.TryParse(text, out i);
+                return i;
             }
-        }
 
-        private void chkbSkillCalc_Changed(object sender, RoutedEventArgs e)
-        {
-            if (chkbAutoHealth.IsChecked == true)
+            // UI Stuff
+            public void ClearAllDataTables()
             {
-                WeenieFabUser.Default.AutoCalcSkill = true;
-                WeenieFabUser.Default.Save();
+                integerDataTable.Clear();
+                integer64DataTable.Clear();
+                boolDataTable.Clear();
+                floatDataTable.Clear();
+                stringDataTable.Clear();
+                didDataTable.Clear();
+                spellDataTable.Clear();
+                attributeDataTable.Clear();
+                attribute2DataTable.Clear();
+                skillsDataTable.Clear();
+                createListDataTable.Clear();
+                bodypartsDataTable.Clear();
+                bookInfoDataTable.Clear();
+                bookPagesDataTable.Clear();
             }
-            else
+            public void ResetIndexAllDataGrids()
             {
-                WeenieFabUser.Default.AutoCalcSkill = false;
-                WeenieFabUser.Default.Save();
-                
+                dgInt32.SelectedIndex = -1;
+
             }
-        }
-
-        private void tbSkillFinalLevel_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            AutoSkillCalc();
-        }
-        private void cbSkillType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            // Not sure if I want to do this or not.  Will leave out for now, unless it is asked for. HQ 7/8
-            // AutoSkillCalc();
-        }
-        public void AutoSkillCalc()
-        {
-            // Skill Formulas based on Attribs
-
-            int strength = ConvertToInteger(tbAttribStrength.Text);
-            int endur = ConvertToInteger(tbAttribEndurance.Text);
-            int coord = ConvertToInteger(tbAttribCoordination.Text);
-            int quick = ConvertToInteger(tbAttribQuickness.Text);
-            int focus = ConvertToInteger(tbAttribFocus.Text);
-            int self = ConvertToInteger(tbAttribSelf.Text);
-
-
-            if (WeenieFabUser.Default.AutoCalcSkill == true)
+            public void ClearAllFields()
             {
-                switch (cbSkillType.SelectedIndex)
+
+                tbWCID.Text = "";
+                tbWeenieName.Text = "";
+                tbValue.Text = "";
+                tb64Value.Text = "";
+                tbFloatValue.Text = "";
+                tbStringValue.Text = "";
+                tbDiDValue.Text = "";
+                tbSpellId.Text = "";
+                tbSpellValue.Text = "";
+                tbSkillLevel.Text = "";
+                tbCreateItemsDescription.Text = "";
+                tbCreateItemsDestType.Text = "";
+                tbCreateItemsDropRate.Text = "";
+                tbCreateItemsPalette.Text = "";
+                tbCreateItemsStackSize.Text = "";
+                tbCreateItemsWCID.Text = "";
+
+                tbBodyPartDamageValue.Text = "";
+                tbBodyPartDamageVariance.Text = "";
+                tbBodyPartArmorLevel.Text = "";
+                tbBodyPartBase_Height.Text = "";
+
+                tbBodyPartQuadHighLF.Text = "";
+                tbBodyPartQuadMiddleLF.Text = "";
+                tbBodyPartQuadLowLF.Text = "";
+
+                tbBodyPartQuadHighRF.Text = "";
+                tbBodyPartQuadMiddleRF.Text = "";
+                tbBodyPartQuadLowRF.Text = "";
+
+                tbBodyPartQuadHighLB.Text = "";
+                tbBodyPartQuadMiddleLB.Text = "";
+                tbBodyPartQuadLowLB.Text = "";
+
+                tbBodyPartQuadHighRB.Text = "";
+                tbBodyPartQuadMiddleRB.Text = "";
+                tbBodyPartQuadLowRB.Text = "";
+
+                // Books
+                tbMaxPages.Text = "";
+                tbMaxChars.Text = "";
+
+                tbPageID.Text = "";
+                tbAuthorName.Text = "";
+                tbPageText.Text = "";
+                rdbBookFalse.IsChecked = true;
+
+                // Rich Text Boxes
+                rtbEmoteScript.Document.Blocks.Clear();
+                rtbBodyParts.Document.Blocks.Clear();
+
+                cbWeenieType.SelectedIndex = 1;
+                cbInt32Props.SelectedIndex = 1;
+                cbInt64Props.SelectedIndex = 1;
+                cbBoolProps.SelectedIndex = 1;
+                cbFloatProps.SelectedIndex = 1;
+                cbStringProps.SelectedIndex = 1;
+                cbDiDProps.SelectedIndex = 1;
+                cbSkillType.SelectedIndex = 1;
+                cbBodyPart.SelectedIndex = 0;
+                cbBodyPartDamageType.SelectedIndex = 1;
+                cbDestinationType.SelectedIndex = 1;
+
+
+                ClearAttributeFields();
+                ClearAttribute2Fields();
+
+            }
+            public void MiscSettings()
+            {
+                rtbEmoteScript.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+                rtbEmoteScript.Document.PageWidth = 2000;
+                if (WeenieFabUser.Default.AutoCalcHealth == true)
+                    chkbAutoHealth.IsChecked = true;
+
+
+            }
+
+            private void lvSpellsList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                // Don't think I need this anymore.
+            }
+            private void GetVersion()
+            {
+
+                System.Reflection.Assembly executingAssembly = System.Reflection.Assembly.GetExecutingAssembly();
+                var fileVersionInfo = FileVersionInfo.GetVersionInfo(executingAssembly.Location);
+                var version = fileVersionInfo.FileVersion;
+
+                lblVersion.Content = "Version " + version;
+            }
+
+            private void chkbAutoHealth_Changed(object sender, RoutedEventArgs e)
+            {
+                if (chkbAutoHealth.IsChecked == true)
                 {
-
-                    case 6:  // MeleeD
-                    case 46: // Finesse Weapons
-                    case 51: // Sneak Attack
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 3)).ToString();
-                        break;
-                    case 7:  // MissileD
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 5)).ToString();
-                        break;
-                    case 14:  // Arcane Lore
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - (focus / 3)).ToString();
-                        break;
-                    case 15:  // Magic D
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 7)).ToString();
-                        break; 
-                    case 16:  // Mana C
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 6)).ToString();
-                        break;
-                    case 18:  // Item Appraisal - Item Tink
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 2)).ToString();
-                        break;
-                    case 19:  // Personal Appraisal - Assess Persoon
-                    case 20:  // Deception
-                    case 27:  // Creature Appraisal - Asses Creature
-                    case 35:  // Leadership
-                    case 36:  // Loyalty
-                    case 40:  // Salvaging
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
-                        break;
-                    case 21:  // Healing
-                    case 23:  // Lockpick
-                    case 37:  // Fletching
-                    case 38:  // Alchemy
-                    case 39:  // Cooking
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 3)).ToString();
-                        break;
-                    case 22:  // Jump
-                    case 48:  // Shield
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 2)).ToString();
-                        break;
-                    case 24:  // Run
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - quick).ToString();
-                        break;
-                    case 28:  // Weapon Appraisal - Weapon Tink
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + strength) / 2)).ToString();
-                        break;
-                    case 29:  // Armor Appraisal - Armor Tink
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + endur) / 2)).ToString();
-                        break;
-                    case 30:  // Magic Item Appraisal - Magic Item Tink
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - focus).ToString();
-                        break;
-                    case 31:  // Creature Magic
-                    case 32:  // Item Magic
-                    case 33:  // Life Magic
-                    case 34:  // War Magic
-                    case 43:  // Void Magic
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 4)).ToString();
-                        break;
-                    case 41:  // Two Hand
-                    case 44:  // Heavy Weapons
-                    case 45:  // Light Weapons
-                    case 52:  // Dirty Fighting
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 3)).ToString();
-                        break;
-                    case 47:  // Missile Weapons
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - coord / 2).ToString();
-                        break;
-                    case 49:  // Dual Wield
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((coord * 2) / 3)).ToString();
-                        break;
-                    case 50:  // Recklessness
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + quick) / 3)).ToString();
-                        break;
-                    case 54:  // Summoning
-                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((endur + self) / 3)).ToString();
-                        break;
-                    // Ignored (Unused)
-                    case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
-                    case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
-                    case 17:
-                    case 25:
-                    case 26:
-                    case 42:
-                    case 53:
-                    default:
-                        break;
+                    WeenieFabUser.Default.AutoCalcHealth = true;
+                    WeenieFabUser.Default.Save();
+                }
+                else
+                {
+                    WeenieFabUser.Default.AutoCalcHealth = false;
+                    WeenieFabUser.Default.Save();
                 }
             }
 
+            private void tbHealthCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+            {
+                if (WeenieFabUser.Default.AutoCalcHealth == true)
+                {
+                    int attribEndurance = ConvertToInteger(tbAttribEndurance.Text) / 2;
+                    int finalHealth = ConvertToInteger(tbHealthCurrentLevel.Text);
+                    tbHealthInitLevel.Text = (finalHealth - attribEndurance).ToString();
+                }          
+            }
+
+            private void tbStaminaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+            {
+                if (WeenieFabUser.Default.AutoCalcHealth == true)
+                {
+                    int attribEndurance = ConvertToInteger(tbAttribEndurance.Text);
+                    int finalStamina = ConvertToInteger(tbStaminaCurrentLevel.Text);
+                    tbStaminaInitLevel.Text = (finalStamina - attribEndurance).ToString();
+                }
+            }
+
+            private void tbManaCurrentLevel_TextChanged(object sender, TextChangedEventArgs e)
+            {
+                if (WeenieFabUser.Default.AutoCalcHealth == true)
+                {
+                    int attribSelf = ConvertToInteger(tbAttribSelf.Text);
+                    int finalMana = ConvertToInteger(tbManaCurrentLevel.Text);
+                    tbManaInitLevel.Text = (finalMana - attribSelf).ToString();
+                }
+            }
+
+            private void chkbSkillCalc_Changed(object sender, RoutedEventArgs e)
+            {
+                if (chkbAutoHealth.IsChecked == true)
+                {
+                    WeenieFabUser.Default.AutoCalcSkill = true;
+                    WeenieFabUser.Default.Save();
+                }
+                else
+                {
+                    WeenieFabUser.Default.AutoCalcSkill = false;
+                    WeenieFabUser.Default.Save();
+                
+                }
+            }
+
+            private void tbSkillFinalLevel_TextChanged(object sender, TextChangedEventArgs e)
+            {
+                AutoSkillCalc();
+            }
+            private void cbSkillType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                // Not sure if I want to do this or not.  Will leave out for now, unless it is asked for. HQ 7/8
+                // AutoSkillCalc();
+            }
+            public void AutoSkillCalc()
+            {
+                // Skill Formulas based on Attribs
+
+                int strength = ConvertToInteger(tbAttribStrength.Text);
+                int endur = ConvertToInteger(tbAttribEndurance.Text);
+                int coord = ConvertToInteger(tbAttribCoordination.Text);
+                int quick = ConvertToInteger(tbAttribQuickness.Text);
+                int focus = ConvertToInteger(tbAttribFocus.Text);
+                int self = ConvertToInteger(tbAttribSelf.Text);
+
+
+                if (WeenieFabUser.Default.AutoCalcSkill == true)
+                {
+                    switch (cbSkillType.SelectedIndex)
+                    {
+
+                        case 6:  // MeleeD
+                        case 46: // Finesse Weapons
+                        case 51: // Sneak Attack
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 3)).ToString();
+                            break;
+                        case 7:  // MissileD
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 5)).ToString();
+                            break;
+                        case 14:  // Arcane Lore
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - (focus / 3)).ToString();
+                            break;
+                        case 15:  // Magic D
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 7)).ToString();
+                            break; 
+                        case 16:  // Mana C
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 6)).ToString();
+                            break;
+                        case 18:  // Item Appraisal - Item Tink
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 2)).ToString();
+                            break;
+                        case 19:  // Personal Appraisal - Assess Persoon
+                        case 20:  // Deception
+                        case 27:  // Creature Appraisal - Asses Creature
+                        case 35:  // Leadership
+                        case 36:  // Loyalty
+                        case 40:  // Salvaging
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
+                            break;
+                        case 21:  // Healing
+                        case 23:  // Lockpick
+                        case 37:  // Fletching
+                        case 38:  // Alchemy
+                        case 39:  // Cooking
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + coord) / 3)).ToString();
+                            break;
+                        case 22:  // Jump
+                        case 48:  // Shield
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 2)).ToString();
+                            break;
+                        case 24:  // Run
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - quick).ToString();
+                            break;
+                        case 28:  // Weapon Appraisal - Weapon Tink
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + strength) / 2)).ToString();
+                            break;
+                        case 29:  // Armor Appraisal - Armor Tink
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + endur) / 2)).ToString();
+                            break;
+                        case 30:  // Magic Item Appraisal - Magic Item Tink
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - focus).ToString();
+                            break;
+                        case 31:  // Creature Magic
+                        case 32:  // Item Magic
+                        case 33:  // Life Magic
+                        case 34:  // War Magic
+                        case 43:  // Void Magic
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 4)).ToString();
+                            break;
+                        case 41:  // Two Hand
+                        case 44:  // Heavy Weapons
+                        case 45:  // Light Weapons
+                        case 52:  // Dirty Fighting
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 3)).ToString();
+                            break;
+                        case 47:  // Missile Weapons
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - coord / 2).ToString();
+                            break;
+                        case 49:  // Dual Wield
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((coord * 2) / 3)).ToString();
+                            break;
+                        case 50:  // Recklessness
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + quick) / 3)).ToString();
+                            break;
+                        case 54:  // Summoning
+                            tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((endur + self) / 3)).ToString();
+                            break;
+                        // Ignored (Unused)
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 4:
+                        case 5:
+                        case 8:
+                        case 9:
+                        case 10:
+                        case 11:
+                        case 12:
+                        case 13:
+                        case 17:
+                        case 25:
+                        case 26:
+                        case 42:
+                        case 53:
+                        default:
+                            break;
+                    }
+                }
+
+            }
+
+            private void btnGenerateBodyTable_Click(object sender, RoutedEventArgs e)
+            {
+                string header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
+
+                string bodyparts = TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
+                rtbBodyParts.Document.Blocks.Clear();
+                rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyparts)));
+            }
+
+
         }
-
-        private void btnGenerateBodyTable_Click(object sender, RoutedEventArgs e)
-        {
-            string header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
-
-            string bodyparts = TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
-            rtbBodyParts.Document.Blocks.Clear();
-            rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyparts)));
-        }
-
 
     }
-
-}
