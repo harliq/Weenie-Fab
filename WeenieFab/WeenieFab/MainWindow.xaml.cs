@@ -563,6 +563,8 @@ namespace WeenieFab
             skillsDataTable.Clear();
             createListDataTable.Clear();
             bodypartsDataTable.Clear();
+            bookInfoDataTable.Clear();
+            bookPagesDataTable.Clear();
         }
         public void ResetIndexAllDataGrids()
         {
@@ -610,6 +612,16 @@ namespace WeenieFab
             tbBodyPartQuadMiddleRB.Text = "";
             tbBodyPartQuadLowRB.Text = "";
 
+            // Books
+            tbMaxPages.Text = "";
+            tbMaxChars.Text = "";
+
+            tbPageID.Text = "";
+            tbAuthorName.Text = "";
+            tbPageText.Text = "";
+            rdbBookFalse.IsChecked = true;
+
+            // Rich Text Boxes
             rtbEmoteScript.Document.Blocks.Clear();
             rtbBodyParts.Document.Blocks.Clear();
 
