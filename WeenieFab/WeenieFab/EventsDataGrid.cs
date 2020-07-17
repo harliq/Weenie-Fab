@@ -326,6 +326,27 @@ namespace WeenieFab
 
 
         }
+        // Instance IDs
+        private void dgIid_RowSelected(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgIid.SelectedIndex;
+            DataGridRow currentRowIndex = dgIid.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > iidDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = iidDataTable.Rows[currentRowIndex.GetIndex()];
+                cbIidProps.SelectedIndex = ConvertToInteger(dr[0].ToString());
+                tbiidValue.Text = dr[1].ToString();
+            }
+
+        }
+
+
+
         // Update Attribs Events      
         private void updateAttribs()  // Updates Attribs - May need a better way to do this.
         {

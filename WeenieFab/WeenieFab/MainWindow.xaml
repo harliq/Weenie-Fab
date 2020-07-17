@@ -2086,6 +2086,22 @@
                 <TabItem Header="Instance ID">
                     <Grid Background="#FFE1E8F5">
 
+                        <Label Content="Value" HorizontalAlignment="Left" Margin="92,83,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Instance ID" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="cbIidProps" HorizontalAlignment="Left" Margin="92,56,0,0" VerticalAlignment="Top" Width="547" Grid.ColumnSpan="2" ToolTip="Select the Property You wish to Add/Change"/>
+                        <TextBox x:Name="tbiidValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="92,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" ToolTip="Property value"/>
+                        <Button x:Name="btnAddIid" Content="Add " HorizontalAlignment="Left" Margin="315,104,0,0" VerticalAlignment="Top" Width="100"  ToolTip="Add property" Click="btnAddIid_Click"/>
+                        <Button x:Name="btnUpdateIid" Content="Update" HorizontalAlignment="Left" Margin="425,104,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected property" Click="btnUpdateIid_Click"/>
+                        <Button x:Name="btnRemoveIid" Content="Remove" HorizontalAlignment="Left" Margin="535,104,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" ToolTip="Remove selected property" Click="btnRemoveIid_Click"/>
+                        <DataGrid x:Name="dgIid" DataGridCell.Selected="dgIid_RowSelected" ItemsSource="{Binding}" Margin="92,145,202,71" AutoGenerateColumns="False" Grid.ColumnSpan="2" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" MinWidth="5" ToolTip="Select a property to edit/change">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Property" IsReadOnly="True" Binding="{Binding Path=Property}" Width="1*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="1*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="8*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>                        
+                        
+                        
                     </Grid>
                 </TabItem>
 
