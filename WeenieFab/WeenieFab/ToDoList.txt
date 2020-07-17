@@ -1,14 +1,15 @@
 ** To Finish Milestone 1 **
 *Priority*
-Add Books Table
 Add Generator Table
 Add Instance ID's (IID)
 Add Positions Table
+Add Error Log
 
 * Polish *
 FileName Global
-UnSavedChanges Global
 Code Cleanup/Organization
+Body Part Tab stops
+
 
 *Optimize*
 Used Cloned Tables instead of creating new ones (Partially Done)
@@ -17,9 +18,10 @@ Used Cloned Tables instead of creating new ones (Partially Done)
 Auto generate file name on save
 Destination DropDown (Create Items)
 
-**Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
+
 
 **Future Features**
+**Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 After MileStone.
 Defaults for a new weenie (IE a quick wizard dialog)
 **  Have to wait for ACData to be fixed. Auto Convert Json Files
@@ -29,6 +31,8 @@ MarkDown for ES in WeenieFab
 
 
 **Completed**
+#Done-Fixed Help Link to Weenie Repo
+#Done-Add Books Table
 #Done-Body Parts Table
 #Done-Added SQL to JSON converter.
 #Done-Added way for browsing folders. (used Ookii netCORE dialogs).

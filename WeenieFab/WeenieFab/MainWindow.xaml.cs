@@ -43,7 +43,8 @@ namespace WeenieFab
         public static DataTable skillsDataTable = new DataTable();
         public static DataTable createListDataTable = new DataTable();
         public static DataTable bodypartsDataTable = new DataTable();
-        
+        public static DataTable bookInfoDataTable = new DataTable();
+        public static DataTable bookPagesDataTable = new DataTable();
 
         public MainWindow()
         {
@@ -349,6 +350,44 @@ namespace WeenieFab
             bodypartsDataTable.Columns.Add(descriptionBodyParts);
             dgBodyParts.DataContext = bodypartsDataTable;
 
+            // Book Properties
+            DataColumn maxPages = new DataColumn("MaxPages");
+            DataColumn maxCharsPage = new DataColumn("MaxCharsPage");
+
+            maxPages.DataType = Type.GetType("System.Int32");
+            maxCharsPage.DataType = Type.GetType("System.Int32");
+
+            bookInfoDataTable.Columns.Add(maxPages);
+            bookInfoDataTable.Columns.Add(maxCharsPage);
+
+            dgBookInfo.DataContext = bookInfoDataTable;
+
+            // Book Pages
+            DataColumn pageIdBook = new DataColumn("PageID");
+            DataColumn authorIdBook = new DataColumn("AuthorID");
+            DataColumn authorNameBook = new DataColumn("AuthorName");
+            DataColumn authorAccountBook = new DataColumn("AuthorAccount");
+            DataColumn ignoreAuthorBook = new DataColumn("IgnoreAuthor");
+            DataColumn pageTextBook = new DataColumn("PageText");
+
+            pageIdBook.DataType = Type.GetType("System.Int32");
+            // authorIdBook.DataType = Type.GetType("System.Single");
+            ignoreAuthorBook.DataType = Type.GetType("System.Boolean");
+
+            bookPagesDataTable.Columns.Add(pageIdBook);
+            bookPagesDataTable.Columns.Add(authorIdBook);
+            bookPagesDataTable.Columns.Add(authorNameBook);
+            bookPagesDataTable.Columns.Add(authorAccountBook);
+            bookPagesDataTable.Columns.Add(ignoreAuthorBook);
+            bookPagesDataTable.Columns.Add(pageTextBook);
+            
+            dgBookPages.DataContext = bookPagesDataTable;
+
+            // Generator
+
+
+            // Positions
+
         }
 
         public void CreateComboBoxLists()
@@ -493,6 +532,14 @@ namespace WeenieFab
             Int32.TryParse(text, out i);
             return i;
         }
+        public static uint ConvertToUInteger(string text)
+        {
+            uint i = 0;
+            i = Convert.ToUInt32(text, 32);
+            //Convert.ToUInt64(text,)
+            return i;
+        }
+
 
         public static float ConvertToFloat(string text)
         {

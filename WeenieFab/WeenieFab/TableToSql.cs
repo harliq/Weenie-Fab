@@ -11,7 +11,7 @@ namespace WeenieFab
         public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
             string sqltext = "";
-            
+
             int counter = 1;
             int rowcount = dt.Rows.Count;
 
@@ -49,7 +49,7 @@ namespace WeenieFab
             int counter = 1;
             int rowcount = dt.Rows.Count;
 
-            
+
 
             if (rowcount > 0)
             {
@@ -199,7 +199,7 @@ namespace WeenieFab
                 foreach (DataRow row in dt.Rows)
                 {
                     if (counter == 1)
-                        sqltext += $" ({wcid},{row[0],4},{row[1],6},{row[2],2},{row[3],2},{row[4],5}) /* {row[5]} */\n";                    
+                        sqltext += $" ({wcid},{row[0],4},{row[1],6},{row[2],2},{row[3],2},{row[4],5}) /* {row[5]} */\n";
                     else
                     {
                         if (counter == rowcount)
@@ -299,7 +299,7 @@ namespace WeenieFab
             return sqltext;
         }
         public static string ConvertCreateItemsTable(DataTable dt, string wcid, string header)
-        {            
+        {
             string sqltext = "";
 
             int counter = 1;
@@ -331,7 +331,7 @@ namespace WeenieFab
         }
         public static string ConvertBodyPart(DataTable dt, string wcid, string header)
         {
-            
+
 
             string sqltext = "";
 
@@ -350,7 +350,7 @@ namespace WeenieFab
                         sqltext += $" ({wcid},{row[0],3},{row[1],3},{row[2],3},{row[3],5},{row[4],5}," +   // 6 fields
                                    $"{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avsnether,5}," +   // 8 fields
                                    $"{row[5],2}," +
-                                   $"{row[6],5},{row[7],5},{row[8],5},{row[9],5},{row[10],5},{row[11],5}," + 
+                                   $"{row[6],5},{row[7],5},{row[8],5},{row[9],5},{row[10],5},{row[11],5}," +
                                    $"{row[12],5},{row[13],5},{row[14],5},{row[15],5},{row[16],5},{row[17],5})" +
                                    $" /* {row[18]} */\n";
                     else
@@ -381,8 +381,73 @@ namespace WeenieFab
             {
             }
             return sqltext;
+        }
+        public static string ConvertBookInfo(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
 
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
 
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],2},{row[1],5});\n";
+                    else
+                    {
+                    }
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
+            return sqltext;
+        }
+        public static string ConvertBookPages(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    string aName = "'" + row[2] + "'";
+                    string aAccount = "'" + row[3] + "'";
+                    string pageText = "'" + row[5] + "'";
+
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],2},{row[1],11}, {aName}, {aAccount}, {row[4]}, {pageText});\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],2},{row[1],11}, {aName}, {aAccount}, {row[4]}, {pageText})\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],2},{row[1],11}, {aName}, {aAccount}, {row[4]}, {pageText});\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],2},{row[1],11}, {aName}, {aAccount}, {row[4]}, {pageText})\n";
+
+                    }
+                    counter++;
+                }
+            }
+            //if (rowcount > 0)
+            //    sqltext += $"\n";
+            //else
+            //{
+            //}
+            return sqltext;
         }
     }
 }
