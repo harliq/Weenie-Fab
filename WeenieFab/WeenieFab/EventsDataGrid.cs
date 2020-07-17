@@ -284,7 +284,48 @@ namespace WeenieFab
             }
 
         }
+        // Books
+        private void dgBookInfo_RowSelected(object sender, RoutedEventArgs e)
+        {
+            var index = dgBookInfo.SelectedIndex;
+            DataGridRow currentRowIndex = dgBookInfo.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > bookInfoDataTable.Rows.Count)
+            {
 
+            }
+            else
+            {
+                DataRow dr = bookInfoDataTable.Rows[currentRowIndex.GetIndex()];
+                tbMaxPages.Text = dr[0].ToString();
+                tbMaxChars.Text = dr[1].ToString();
+            }
+        }
+
+        private void dgBookPages_RowSelected(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgBookPages.SelectedIndex;
+            DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > bookPagesDataTable.Rows.Count)
+            {
+
+            }
+            else
+            {
+                DataRow dr = bookPagesDataTable.Rows[currentRowIndex.GetIndex()];
+                tbPageID.Text = dr[0].ToString();
+                tbAuthorName.Text = dr[2].ToString();
+
+                if (dr[4].ToString() == "True")
+                    rdbBookTrue.IsChecked = true;
+                else
+                    rdbBookFalse.IsChecked = true;
+
+                tbPageText.Text = dr[5].ToString();
+            }
+
+
+        }
         // Update Attribs Events      
         private void updateAttribs()  // Updates Attribs - May need a better way to do this.
         {
@@ -331,6 +372,7 @@ namespace WeenieFab
                 i++;
             }
         }
+
 
 
     }

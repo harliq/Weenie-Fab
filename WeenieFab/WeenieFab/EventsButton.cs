@@ -1041,6 +1041,93 @@ namespace WeenieFab
             }
 
         }
+        // Book Tab
+        // Book
+        private void btnAddBook_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow dr = bookInfoDataTable.NewRow();
+            dr[0] = ConvertToInteger(tbMaxPages.Text);
+            dr[1] = ConvertToInteger(tbMaxChars.Text);
+            
+            bookInfoDataTable.Rows.Add(dr);
+        }
+
+        private void btnUpateBook_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgBookInfo.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgBookInfo.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = bookInfoDataTable.Rows[currentRowIndex.GetIndex()];
+
+                dr[0] = ConvertToInteger(tbMaxPages.Text);
+                dr[1] = ConvertToInteger(tbMaxChars.Text);
+
+                bookInfoDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+        }
+        private void btnRemoveBook_Click(object sender, RoutedEventArgs e)
+        {
+            bookInfoDataTable.Clear();
+        }
+        // Book Pages
+        private void btnAddPage_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow dr = bookPagesDataTable.NewRow();
+            dr[0] = ConvertToInteger(tbPageID.Text);
+            dr[1] = "4294967295";
+            dr[2] = tbAuthorName.Text;
+            dr[3] = "prewritten";
+            dr[4] = rdbBookTrue.IsChecked;
+            dr[5] = tbPageText.Text;
+
+            bookPagesDataTable.Rows.Add(dr);
+        }
+
+        private void btnUpdatePage_Click(object sender, RoutedEventArgs e)
+        {
+
+            var index = dgBookPages.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = bookPagesDataTable.Rows[currentRowIndex.GetIndex()];
+
+                dr[0] = ConvertToInteger(tbPageID.Text);
+                dr[1] = "4294967295";
+                dr[2] = tbAuthorName.Text;
+                dr[3] = "prewritten";
+                dr[4] = rdbBookTrue.IsChecked;
+                dr[5] = tbPageText.Text;
+
+                bookInfoDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("The row you selected is blank");
+            }
+
+        }
+
+        private void btnRemovePage_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgBookPages.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = bookPagesDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                bodypartsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+        }
 
         // Clear Attrib Fields
         public void ClearAttributeFields()

@@ -159,7 +159,7 @@ namespace WeenieFab
             var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
             var bodyPartsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\) \/\*(.*)\*\/*.*$";
             var bookInfoPattern = @"\((\d+),\s*(\d+),\s*(\d+)\).*$";
-            var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*))'\).*$";
+            var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*)).*$";
 
             try
             {
@@ -461,6 +461,16 @@ namespace WeenieFab
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
             body += TableToSql.ConvertCreateItemsTable(createListDataTable, tbWCID.Text, header);
+
+            // Book Info
+            header = $"INSERT INTO `weenie_properties_book` (`object_Id`, `max_Num_Pages`, `max_Num_Chars_Per_Page`)";
+            body += TableToSql.ConvertBookInfo(bookInfoDataTable, tbWCID.Text, header);
+
+            // Book Pages
+            header = $"INSERT INTO `weenie_properties_book_page_data` (`object_Id`, `page_Id`, `author_Id`, `author_Name`, `author_Account`, `ignore_Author`, `page_Text`)";
+            body += TableToSql.ConvertBookPages(bookPagesDataTable, tbWCID.Text, header);
+
+
 
 
             File.WriteAllText(filename, body);

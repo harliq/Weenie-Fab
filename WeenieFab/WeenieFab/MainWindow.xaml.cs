@@ -360,6 +360,7 @@ namespace WeenieFab
             bookInfoDataTable.Columns.Add(maxPages);
             bookInfoDataTable.Columns.Add(maxCharsPage);
 
+            dgBookInfo.DataContext = bookInfoDataTable;
 
             // Book Pages
             DataColumn pageIdBook = new DataColumn("PageID");
@@ -370,7 +371,7 @@ namespace WeenieFab
             DataColumn pageTextBook = new DataColumn("PageText");
 
             pageIdBook.DataType = Type.GetType("System.Int32");
-            authorIdBook.DataType = Type.GetType("System.Int32");
+            // authorIdBook.DataType = Type.GetType("System.Single");
             ignoreAuthorBook.DataType = Type.GetType("System.Boolean");
 
             bookPagesDataTable.Columns.Add(pageIdBook);
@@ -379,6 +380,8 @@ namespace WeenieFab
             bookPagesDataTable.Columns.Add(authorAccountBook);
             bookPagesDataTable.Columns.Add(ignoreAuthorBook);
             bookPagesDataTable.Columns.Add(pageTextBook);
+            
+            dgBookPages.DataContext = bookPagesDataTable;
 
             // Generator
 
@@ -529,6 +532,14 @@ namespace WeenieFab
             Int32.TryParse(text, out i);
             return i;
         }
+        public static uint ConvertToUInteger(string text)
+        {
+            uint i = 0;
+            i = Convert.ToUInt32(text, 32);
+            //Convert.ToUInt64(text,)
+            return i;
+        }
+
 
         public static float ConvertToFloat(string text)
         {

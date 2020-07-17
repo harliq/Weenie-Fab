@@ -308,8 +308,15 @@ namespace WeenieFab
             DataTable tempDataTable = MainWindow.bookPagesDataTable.Clone();
             tempDataTable.Clear();
 
-            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            string splitString = @"')";
+            blob = blob.Replace(";", "");
+
+            // foreach (var blobLine in blob.Split(new string[] splitString, StringSplitOptions.RemoveEmptyEntries))
+            foreach (var blobLine in blob.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries))
             {
+
+                if (blobLine == "\r\n")
+                    continue;
                 var match = Regex.Match(blobLine, pattern);
 
                 bool tf;
@@ -322,11 +329,11 @@ namespace WeenieFab
                 DataRow dr = tempDataTable.NewRow();
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
-                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[1] = match.Groups[3].ToString();
                 dr[2] = match.Groups[4].ToString();
                 dr[3] = match.Groups[5].ToString();
                 dr[4] = tf;
-                dr[5] = match.Groups[8].ToString();
+                dr[5] = match.Groups[7].ToString();
                 tempDataTable.Rows.Add(dr);
             }
             return tempDataTable;
