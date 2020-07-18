@@ -71,17 +71,19 @@ namespace WeenieFab
         }
         public static DataTable DecodeThreeValuesBool(string boolblob, string pattern)
         {
-            DataTable tempDataTable = new DataTable();
+            DataTable tempDataTable = MainWindow.boolDataTable.Clone();
+            tempDataTable.Clear();
+            //DataTable tempDataTable = new DataTable();
 
-            DataColumn propertyInt = new DataColumn("Property");
-            DataColumn valueBool = new DataColumn("Value");
-            DataColumn descript = new DataColumn("Description");
-            propertyInt.DataType = Type.GetType("System.Int32");
-            valueBool.DataType = Type.GetType("System.Boolean");
+            //DataColumn propertyInt = new DataColumn("Property");
+            //DataColumn valueBool = new DataColumn("Value");
+            //DataColumn descript = new DataColumn("Description");
+            //propertyInt.DataType = Type.GetType("System.Int32");
+            //valueBool.DataType = Type.GetType("System.Boolean");
 
-            tempDataTable.Columns.Add(propertyInt);
-            tempDataTable.Columns.Add(valueBool);
-            tempDataTable.Columns.Add(descript);
+            //tempDataTable.Columns.Add(propertyInt);
+            //tempDataTable.Columns.Add(valueBool);
+            //tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in boolblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
@@ -106,17 +108,20 @@ namespace WeenieFab
 
         public static DataTable DecodeThreeValuesString(string floatblob, string pattern)
         {
-            DataTable tempDataTable = new DataTable();
+            DataTable tempDataTable = MainWindow.stringDataTable.Clone();
+            tempDataTable.Clear();
 
-            DataColumn propertyInt = new DataColumn("Property");
-            DataColumn valueString = new DataColumn("Value");
-            DataColumn descript = new DataColumn("Description");
-            propertyInt.DataType = Type.GetType("System.Int32");
-            valueString.DataType = Type.GetType("System.String");
+            //DataTable tempDataTable = new DataTable();
 
-            tempDataTable.Columns.Add(propertyInt);
-            tempDataTable.Columns.Add(valueString);
-            tempDataTable.Columns.Add(descript);
+            //DataColumn propertyInt = new DataColumn("Property");
+            //DataColumn valueString = new DataColumn("Value");
+            //DataColumn descript = new DataColumn("Description");
+            //propertyInt.DataType = Type.GetType("System.Int32");
+            //valueString.DataType = Type.GetType("System.String");
+
+            //tempDataTable.Columns.Add(propertyInt);
+            //tempDataTable.Columns.Add(valueString);
+            //tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in floatblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
