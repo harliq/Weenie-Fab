@@ -196,7 +196,7 @@ namespace WeenieFab
                 dr[3] = MainWindow.ConvertToInteger(match.Groups[5].ToString());
                 dr[4] = MainWindow.ConvertToInteger(match.Groups[6].ToString());
                 dr[5] = MainWindow.ConvertToInteger(match.Groups[7].ToString());
-                dr[6] = MainWindow.ConvertToInteger(match.Groups[8].ToString());
+                dr[6] = match.Groups[8].ToString();
                 dr[7] = description.Trim();
 
                 tempDataTable.Rows.Add(dr);
@@ -338,6 +338,38 @@ namespace WeenieFab
             }
             return tempDataTable;
         }
+        public static DataTable DecodePositions(string blob, string pattern)
+        {
 
+            DataTable tempDataTable = MainWindow.positionsDataTable.Clone();
+            tempDataTable.Clear();
+
+            foreach (var blobLine in blob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (blobLine.Contains("teleloc"))
+                    break;
+                var match = Regex.Match(blobLine, pattern);              
+
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+
+                dr[2] = MainWindow.ConvertToFloat(match.Groups[4].ToString());
+                dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
+                dr[4] = MainWindow.ConvertToFloat(match.Groups[6].ToString());
+
+                dr[5] = MainWindow.ConvertToFloat(match.Groups[7].ToString());
+                dr[6] = MainWindow.ConvertToFloat(match.Groups[8].ToString());
+                dr[7] = MainWindow.ConvertToFloat(match.Groups[9].ToString());
+                dr[8] = MainWindow.ConvertToFloat(match.Groups[10].ToString());
+
+                dr[9] = match.Groups[11].ToString();
+
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+
+        }
     }
 }

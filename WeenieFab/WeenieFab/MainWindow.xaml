@@ -2099,9 +2099,9 @@
                                 <DataGridTextColumn Header="Value" IsReadOnly="True"  Binding="{Binding Path=Value}" Width="1*"></DataGridTextColumn>
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="8*"></DataGridTextColumn>
                             </DataGrid.Columns>
-                        </DataGrid>                        
-                        
-                        
+                        </DataGrid>
+
+
                     </Grid>
                 </TabItem>
 
@@ -2156,7 +2156,44 @@
 
                 <TabItem Header="Positions">
                     <Grid Background="#FFE1E8F5">
-
+                        <Label Content="Position Type" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Cell ID" HorizontalAlignment="Left" Margin="290,25,0,0" VerticalAlignment="Top"/>
+                        <Label Content="X Origin" HorizontalAlignment="Left" Margin="440,25,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Y Origin" HorizontalAlignment="Left" Margin="591,25,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Z Origin" HorizontalAlignment="Left" Margin="741,25,0,0" VerticalAlignment="Top"/>
+                        <Label Content="W Angle" HorizontalAlignment="Left" Margin="290,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="X Angle" HorizontalAlignment="Left" Margin="440,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Y Angle" HorizontalAlignment="Left" Margin="590,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Z Angle" HorizontalAlignment="Left" Margin="740,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Paste a LOC to use. - Example: 0x5945010A [28.638000 -59.181000 -24.000000] -0.707107 0.000000 0.000000 -0.707107 " HorizontalAlignment="Left" Margin="92,225,0,0" VerticalAlignment="Top"/>
+                        <ComboBox x:Name="cbPosition" HorizontalAlignment="Left" Margin="92,52,0,0" VerticalAlignment="Top" ToolTip="Select the Position You wish to Add/Change" MinWidth="165" MaxWidth="165"/>
+                        <TextBox x:Name="tbCellID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="290,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="LandBlock"/>
+                        <TextBox x:Name="tbOriginX" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="440,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="X Axis"/>
+                        <TextBox x:Name="tbOriginY" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="590,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="Y Axis"/>
+                        <TextBox x:Name="tbOriginZ" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="740,51,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="Z Axis"/>
+                        <TextBox x:Name="tbAngleW" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="290,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="W Axis"/>
+                        <TextBox x:Name="tbAngleX" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="440,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="X Axis"/>
+                        <TextBox x:Name="tbAngleY" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="590,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="Y Axis"/>
+                        <TextBox x:Name="tbAngleZ" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="740,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MaxWidth="120" MinWidth="120" ToolTip="Z Axis"/>
+                        <Button x:Name="btnAddPosition" Content="Add" HorizontalAlignment="Left" Margin="907,44,0,0" VerticalAlignment="Top" MinWidth="80" MaxWidth="100" MinHeight="25" MaxHeight="25" Click="btnAddPosition_Click" ToolTip="Add Position"/>
+                        <Button x:Name="btnUpdatePosition" Content="Update" HorizontalAlignment="Left" Margin="907,74,0,0" VerticalAlignment="Top" MinWidth="80" MaxWidth="100" MinHeight="25" MaxHeight="25" Click="btnUpdatePosition_Click" ToolTip="Update Position"/>
+                        <Button x:Name="btnRemovePosition" Content="Remove" HorizontalAlignment="Left" Margin="907,108,0,0" VerticalAlignment="Top" MinWidth="80" MaxWidth="100" MinHeight="25" MaxHeight="25" Click="btnRemovePosition_Click" ToolTip="Remove Position"/>
+                        <TextBox x:Name="tbPositionLoc" HorizontalAlignment="Left" Margin="92,254,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="650" ToolTip="Paste a Location"/>
+                        <Button x:Name="btnUseLoc" Content="Use This Location" HorizontalAlignment="Left" Margin="800,253,0,0" VerticalAlignment="Top" MinWidth="120" MaxWidth="120" Click="btnUseLoc_Click" ToolTip="Click to populate the above fields with the location you entered to the left"/>
+                        <DataGrid x:Name="dgPosition" DataGridCell.Selected="dgPosition_RowSelected" ItemsSource="{Binding}" Margin="92,300,202,71" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="False" CanUserSortColumns="False" MinWidth="900" ToolTip="Select a position to edit/change" MaxWidth="900" MinHeight="200" MaxHeight="200" HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Postion Type" IsReadOnly="True" Binding="{Binding Path=PositionType}" Width="0.9*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Cell ID" IsReadOnly="True"  Binding="{Binding Path=CellID}" Width="1.1*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="X Origin" IsReadOnly="True"  Binding="{Binding Path=OriginX}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Y Origin" IsReadOnly="True"  Binding="{Binding Path=OriginY}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Z Origin" IsReadOnly="True"  Binding="{Binding Path=OriginZ}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="W Angle" IsReadOnly="True"  Binding="{Binding Path=AngleW}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="X Angle" IsReadOnly="True"  Binding="{Binding Path=AngleX}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Y Angle" IsReadOnly="True"  Binding="{Binding Path=AngleY}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Z Angle" IsReadOnly="True"  Binding="{Binding Path=AngleZ}" Width="0.8*"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Path=Description}" Width="2.4*"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
                     </Grid>
                 </TabItem>
             </TabControl>

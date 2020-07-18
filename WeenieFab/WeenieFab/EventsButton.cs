@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
@@ -1199,6 +1200,90 @@ namespace WeenieFab
             {
                 MessageBox.Show("You can not delete that row!");
             }
+        }
+
+        // Positions Tab
+        private void btnAddPosition_Click(object sender, RoutedEventArgs e)
+        {
+            DataRow dr = positionsDataTable.NewRow();
+
+            string[] description = cbPosition.Text.Split(" ");
+
+            dr[0] = ConvertToInteger(cbPosition.SelectedIndex.ToString());
+
+            dr[1] = ConvertToInteger(tbCellID.Text);
+
+            dr[2] = ConvertToFloat(tbOriginX.Text);
+            dr[3] = ConvertToFloat(tbOriginY.Text);
+            dr[4] = ConvertToFloat(tbOriginZ.Text);
+
+            dr[5] = ConvertToFloat(tbAngleW.Text);
+            dr[6] = ConvertToFloat(tbAngleX.Text);
+            dr[7] = ConvertToFloat(tbAngleY.Text);
+            dr[8] = ConvertToFloat(tbAngleZ.Text);
+
+            dr[9] = description[1];         
+
+            positionsDataTable.Rows.Add(dr);
+        }
+        private void btnUpdatePosition_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgPosition.SelectedIndex;
+            DataGridRow currentRowIndex = dgPosition.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            DataRow dr = positionsDataTable.Rows[currentRowIndex.GetIndex()];
+
+            string[] description = cbPosition.Text.Split(" ");
+
+            dr[0] = ConvertToInteger(cbPosition.SelectedIndex.ToString());
+
+            dr[1] = ConvertToInteger(tbCellID.Text);
+
+            dr[2] = ConvertToFloat(tbOriginX.Text);
+            dr[3] = ConvertToFloat(tbOriginY.Text);
+            dr[4] = ConvertToFloat(tbOriginZ.Text);
+
+            dr[5] = ConvertToFloat(tbAngleW.Text);
+            dr[6] = ConvertToFloat(tbAngleX.Text);
+            dr[7] = ConvertToFloat(tbAngleY.Text);
+            dr[8] = ConvertToFloat(tbAngleZ.Text);
+
+            dr[9] = description[1];
+
+            positionsDataTable.AcceptChanges();
+
+        }
+        private void btnRemovePosition_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgPosition.SelectedIndex;
+            try
+            {
+                DataGridRow currentRowIndex = dgPosition.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = positionsDataTable.Rows[currentRowIndex.GetIndex()];
+                dr.Delete();
+                positionsDataTable.AcceptChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("You can not delete that row!");
+            }
+        }
+        private void btnUseLoc_Click(object sender, RoutedEventArgs e)
+        {
+            string rgxPattern = @"([a-zA-Z0-9]+) \[([-+]?[0-9]*\.[0-9]+|[0-9]+)\s([-+]?[0-9]*\.[0-9]+|[0-9]+)\s([-+]?[0-9]*\.[0-9]+|[0-9]+)\]\s([-+]?[0-9]*\.[0-9]+|[0-9]+)\s([-+]?[0-9]*\.[0-9]+|[0-9]+)\s([-+]?[0-9]*\.[0-9]+|[0-9]+)\s([-+]?[0-9]*\.[0-9]+|[0-9]+)$";
+
+            var match = Regex.Match(tbPositionLoc.Text, rgxPattern);
+            string tloc = match.Groups[1].ToString().Replace("0x", "");
+
+            int loc = int.Parse(tloc, System.Globalization.NumberStyles.HexNumber);
+
+            tbCellID.Text = loc.ToString();
+            tbOriginX.Text = match.Groups[2].ToString();
+            tbOriginY.Text = match.Groups[3].ToString();
+            tbOriginZ.Text = match.Groups[4].ToString();
+            tbAngleW.Text = match.Groups[5].ToString();
+            tbAngleX.Text = match.Groups[6].ToString();
+            tbAngleY.Text = match.Groups[7].ToString();
+            tbAngleZ.Text = match.Groups[8].ToString();           
         }
 
         // Clear Attrib Fields

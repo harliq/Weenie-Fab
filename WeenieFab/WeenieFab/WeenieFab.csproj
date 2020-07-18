@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.9.6.9</Version>
+    <Version>0.9.7.7</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,6 +22,7 @@
     <None Remove="TypeLists\InstanceIDTypes.txt" />
     <None Remove="TypeLists\Int32Types.txt" />
     <None Remove="TypeLists\Int64Types.txt" />
+    <None Remove="TypeLists\PositionTypes.txt" />
     <None Remove="TypeLists\SkillTypes.txt" />
     <None Remove="TypeLists\SpellNames.txt" />
     <None Remove="TypeLists\StringTypes.txt" />
@@ -71,6 +72,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TypeLists\Int64Types.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="TypeLists\PositionTypes.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="TypeLists\SkillTypes.txt">
