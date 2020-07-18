@@ -162,7 +162,7 @@ namespace WeenieFab
             ppSkills.DataType = Type.GetType("System.Single");
             initLevelSkills.DataType = Type.GetType("System.Single");
             resistLCSkills.DataType = Type.GetType("System.Single");
-            lastUsedSkills.DataType = Type.GetType("System.Single");
+            // lastUsedSkills.DataType = Type.GetType("System.Single");
             skillsDataTable.Columns.Add(typeSkills);
             skillsDataTable.Columns.Add(levelPPSkills);
             skillsDataTable.Columns.Add(sacSkills);

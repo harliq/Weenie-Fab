@@ -196,7 +196,7 @@ namespace WeenieFab
                 dr[3] = MainWindow.ConvertToInteger(match.Groups[5].ToString());
                 dr[4] = MainWindow.ConvertToInteger(match.Groups[6].ToString());
                 dr[5] = MainWindow.ConvertToInteger(match.Groups[7].ToString());
-                dr[6] = MainWindow.ConvertToInteger(match.Groups[8].ToString());
+                dr[6] = match.Groups[8].ToString();
                 dr[7] = description.Trim();
 
                 tempDataTable.Rows.Add(dr);
