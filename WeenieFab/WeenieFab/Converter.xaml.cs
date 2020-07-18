@@ -70,10 +70,13 @@ namespace WeenieFab
                 {
                     ACDataLib.Converter.json2sql(jfileinfo, null, directoryInfo);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    MainWindow.LogError(ex);
+                    MessageBoxButton buttons = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result = MessageBox.Show("Issue with File. Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
 
-                    
                 }
                 
             }
@@ -144,8 +147,13 @@ namespace WeenieFab
                 {
                     ACDataLib.Converter.sql2json(sqlfileinfo, null, directoryInfo);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
+                    MainWindow.LogError(ex);
+                    MessageBoxButton buttons = MessageBoxButton.OK;
+                    MessageBoxImage icon = MessageBoxImage.Error;
+                    MessageBoxResult result = MessageBox.Show("Issue with File. Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
+
                 }
 
             }
