@@ -146,15 +146,12 @@ namespace WeenieFab
                 }
                 catch (Exception)
                 {
-
-
                 }
 
             }
             MessageBox.Show($"{c} files were converted.");
 
         }
-
         private void btnCloseConverter_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

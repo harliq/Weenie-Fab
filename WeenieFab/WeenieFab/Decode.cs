@@ -311,7 +311,6 @@ namespace WeenieFab
             string splitString = @"')";
             blob = blob.Replace(";", "");
 
-            // foreach (var blobLine in blob.Split(new string[] splitString, StringSplitOptions.RemoveEmptyEntries))
             foreach (var blobLine in blob.Split(new string[] { splitString }, StringSplitOptions.RemoveEmptyEntries))
             {
 

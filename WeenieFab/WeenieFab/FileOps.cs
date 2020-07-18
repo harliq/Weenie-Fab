@@ -37,37 +37,6 @@ namespace WeenieFab
                 if (ext == ".json")
                 {
 
-                    // string[] acdatatest;
-                    // ACDataLib.Converter.Convert(jfileinfo,directoryInfo);
-                    // ACDataLib.Converter.Convert(jfileinfo, directoryInfo);
-
-
-
-                    ////string jsonData = File.ReadAllText(ofd.FileName);
-                    //////string tempJson = "";
-                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                    ////bool convertResult = ACDataLib.Converter.Convert(json, ACDataLib.FileFormat.JSON);
-                    ////var tempjson = ACDataLib.Converter.Output;
-
-                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
-
-                    ////File.WriteAllText(jsonFilePath, tempjson);
-
-                    ////string jsonData = File.ReadAllText(ofd.FileName);
-
-                    ////string tempJson = "";
-                    ////string[] json = jsonData.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-
-                    ////foreach (var jsonLine in jsonData)
-                    ////{
-                    ////    tempJson += jsonLine + "\r\n";
-                    ////}
-
-                    ////string jsonFilePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"json2sql.tmp");
-                    ////ACDataLib.Converter.json2sql(ofd.FileName, json, jsonFilePath));
-
                     FileInfo jfileinfo = new FileInfo(ofd.FileName);
                     DirectoryInfo directoryInfo = new DirectoryInfo(WeenieFabUser.Default.DefaultSqlPath);
                     MessageBox.Show("Json import not supported yet.  Please use converter.");
@@ -81,7 +50,6 @@ namespace WeenieFab
 
                     ////ACDataLib.Converter.json2sql(jfileinfo, null, directoryInfo);
 
-
                     //string sqlfilename = ofd.SafeFileName.Replace(".json", ".sql");
 
                     ////  Have to do all of this because ACData adds a zero infront of wcid (I am guessing it's padding zeros upto 5 places)
@@ -90,9 +58,7 @@ namespace WeenieFab
                     //string twcid = ConvertToInteger(tsqlfilename[0]).ToString(fmt);
                     //sqlfilename = sqlfilename.Replace(tsqlfilename[0], twcid);
 
-
                     ////ReadSQLFile(WeenieFabUser.Default.DefaultSqlPath + @"\" + sqlfilename);
-
 
                 }
                 else if (ext == ".sql")
@@ -100,7 +66,7 @@ namespace WeenieFab
                     ClearAllDataTables();
                     //ClearAllDataGrids();
                     ClearAllFields();
-                    ResetIndexAllDataGrids();
+                    //ResetIndexAllDataGrids();
                     ReadSQLFile(ofd.FileName);
                     Globals.WeenieFileName = ofd.FileName;
                     this.Title = "WeenieFab - " + ofd.FileName;
@@ -121,9 +87,7 @@ namespace WeenieFab
             sfd.FileName = $"{weenieWCID} {weenieName}.sql";
             sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
 
-            Nullable<bool> result = sfd.ShowDialog();
-
-            
+            Nullable<bool> result = sfd.ShowDialog();          
 
             if (result == true)
             {
@@ -176,8 +140,6 @@ namespace WeenieFab
 
             try
             {
-
-
                 using (StreamReader sr = new StreamReader(filepath))
                 {
                     while ((line = sr.ReadLine()) != null)
@@ -328,33 +290,9 @@ namespace WeenieFab
 
                         }
 
-                        else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") ||
-                                 line.Contains("INSERT INTO `weenie_properties_emote`") ||
-                                 line.Contains("SET @parent_id = LAST_INSERT_ID()"))
+                        else if (line.Contains("INSERT INTO `weenie_properties_emote_action`") || line.Contains("INSERT INTO `weenie_properties_emote`") || line.Contains("SET @parent_id = LAST_INSERT_ID()"))
                         {
-
                             emoteBlob += ReadEmoteBlob(line, sr);
-
-                            // emoteBlob = ReadEmoteBlob(sr);
-                            //ReadEmoteCreateListBlob(line, sr, out emoteBlob, out createListBlob);
-
-                            //createListDataTable = DecodeSql.DecodeCreateList(createListBlob, createListPattern);
-                            //createListDataTable.AcceptChanges();
-                            //dgCreateItems.DataContext = createListDataTable;
-                            //dgCreateItems.Items.Refresh();
-
-                            //string tempES = "";
-                            //string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
-
-                            //var es = EmoteScriptLib.Converter.sql2es(emotes);
-
-                            //foreach (var esline in es)
-                            //{
-                            //    tempES += esline + "\r\n";
-                            //}
-
-                            //rtbEmoteScript.Document.Blocks.Clear();
-                            //rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
                         }
                         else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
                         {
@@ -410,9 +348,6 @@ namespace WeenieFab
                 //throw;
             }
         }
-     
-
-
         public void WriteSQLFile(string filename)
         {
             string dateModified = string.Format("'{0:yyyy-MM-dd hh:mm:ss}'", DateTime.Now);
@@ -460,7 +395,6 @@ namespace WeenieFab
 
             // Body Parts
             header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
-
             body += TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
 
             //string bodyparts = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
@@ -511,9 +445,6 @@ namespace WeenieFab
             header = $"INSERT INTO `weenie_properties_book_page_data` (`object_Id`, `page_Id`, `author_Id`, `author_Name`, `author_Account`, `ignore_Author`, `page_Text`)";
             body += TableToSql.ConvertBookPages(bookPagesDataTable, tbWCID.Text, header);
 
-
-
-
             File.WriteAllText(filename, body);
         }
 
@@ -541,14 +472,11 @@ namespace WeenieFab
         public static string ReadEmoteBlob(string readline, StreamReader sr)
         {
             string emoteBlob = readline + "\r\n";
-            // createListBlob = "";
 
             string line;
 
             while ((line = sr.ReadLine()) != null)
             {
-                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                //    createListBlob = ReadBlob(sr);
                 if (line == "" || line == "\t" || line == "\r\n")
                     return emoteBlob;
                 else
@@ -561,14 +489,11 @@ namespace WeenieFab
         public static string ReadEmoteCreateListBlob(string readline, StreamReader sr)
         {
             string emoteBlob = readline + "\r\n";
-            // createListBlob = "";
 
             string line;
 
             while ((line = sr.ReadLine()) != null)
             {
-                //if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
-                //    createListBlob = ReadBlob(sr);
                 if (line == "" || line == "\t" || line == "\r\n")
                     return emoteBlob;
                 else
@@ -615,9 +540,6 @@ namespace WeenieFab
         public static string GetSavedFileName(DataTable dt)
         {
             string weenieFN = "";
-
-            // DataTable dt = stringDataTable.Clone();
-
 
             foreach (DataRow row in dt.Rows)
             {

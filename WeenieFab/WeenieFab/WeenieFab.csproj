@@ -8,8 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="libs\**" />
+    <EmbeddedResource Remove="libs\**" />
+    <None Remove="libs\**" />
+    <Page Remove="libs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="icon\weeniefactoryicon.ico" />
-    <None Remove="libs\EmoteScriptLib.dll" />
     <None Remove="StringMap\SpellName.txt" />
     <None Remove="StringMap\WeenieClassName.txt" />
     <None Remove="StringMap\WeenieName.txt" />
@@ -33,9 +39,6 @@
 
   <ItemGroup>
     <Content Include="icon\weeniefactoryicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="libs\EmoteScriptLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="StringMap\SpellName.txt">

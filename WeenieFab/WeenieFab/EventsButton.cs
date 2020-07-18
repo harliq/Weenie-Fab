@@ -40,7 +40,6 @@ namespace WeenieFab
         {
             OpenFile();
         }
-
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
             SaveFile();
@@ -50,15 +49,12 @@ namespace WeenieFab
             Options winOptions = new Options();
             winOptions.Owner = this;
             winOptions.Show();
-
         }
         private void btnHelp_Click(object sender, RoutedEventArgs e)
         {
-
             Help winHelp = new Help();
             winHelp.Owner = this;
             winHelp.Show();
-
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -66,8 +62,6 @@ namespace WeenieFab
             winConverter.Owner = this;
             winConverter.Show();
         }
-
-
         // Form Buttons
         // Integer 32
         private void btnAddInt32_Click(object sender, RoutedEventArgs e)
@@ -86,8 +80,6 @@ namespace WeenieFab
                 dr[2] = description[1];
 
                 integerDataTable.Rows.Add(dr);
-
-                //integerDataTable.DefaultView.Sort = "Property ASC";
                 integerDataTable = ResortDataTable(integerDataTable, "Property", "ASC");
                 dgInt32.DataContext = integerDataTable.DefaultView;
                 dgInt32.Items.Refresh();
@@ -131,7 +123,6 @@ namespace WeenieFab
                 integerDataTable.AcceptChanges();
                 dgInt32.Items.Refresh();
             }
- 
             catch (Exception)
             {
                 MessageBox.Show("The row you selected is blank");
@@ -140,7 +131,6 @@ namespace WeenieFab
         // Integer 64
         private void btnAddInt64_Click(object sender, RoutedEventArgs e)
         {
-            // search for duplicate property
             if (SearchForDuplicateProps(integer64DataTable, cbInt64Props.SelectedIndex.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
@@ -156,17 +146,7 @@ namespace WeenieFab
                 integer64DataTable.Rows.Add(dr);
                 integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
                 dgInt64.DataContext = integer64DataTable.DefaultView;
-                dgInt64.Items.Refresh();
-
-
-                //integer64DataTable.Rows.Add(dr);
-                //integer64DataTable.DefaultView.Sort = "Property ASC";
-                //dgInt64.Items.Refresh();
-
-
-
-
-                
+                dgInt64.Items.Refresh();               
             }
         }
         private void btnUpdateInt64_Click(object sender, RoutedEventArgs e)
@@ -231,9 +211,6 @@ namespace WeenieFab
                 dgBool.DataContext = boolDataTable.DefaultView;
                 dgBool.Items.Refresh();
 
-                //boolDataTable.DefaultView.Sort = "Property ASC";
-                //dgBool.Items.Refresh();
-
             }
         }
         private void btnUpdateBool_Click(object sender, RoutedEventArgs e)
@@ -296,9 +273,6 @@ namespace WeenieFab
                 floatDataTable.Rows.Add(dr);
                 floatDataTable = ResortDataTable(floatDataTable, "Property", "ASC");
                 dgFloat.DataContext = floatDataTable.DefaultView;
-
-
-                //floatDataTable.DefaultView.Sort = "Property ASC";
                 dgFloat.Items.Refresh();
             }
         }
@@ -364,8 +338,6 @@ namespace WeenieFab
 
                 stringDataTable = ResortDataTable(stringDataTable, "Property", "ASC");
                 dgString.DataContext = stringDataTable.DefaultView;
-
-                //stringDataTable.DefaultView.Sort = "Property ASC";
                 dgString.Items.Refresh();
             }
         }
@@ -410,7 +382,6 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
         // DiD
         private void btnAddDiD_Click(object sender, RoutedEventArgs e)
         {
@@ -430,10 +401,8 @@ namespace WeenieFab
                 didDataTable.Rows.Add(dr);
                 didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
                 dgDiD.DataContext = didDataTable.DefaultView;
-
-                // didDataTable.DefaultView.Sort = "Property ASC";
                 dgDiD.Items.Refresh();
-              
+             
             }
         }
         private void btnUpdateDiD_Click(object sender, RoutedEventArgs e)
@@ -477,7 +446,6 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
         // Instance ID
         private void btnAddIid_Click(object sender, RoutedEventArgs e)
         {
@@ -496,13 +464,10 @@ namespace WeenieFab
                 iidDataTable.Rows.Add(dr);
                 iidDataTable = ResortDataTable(iidDataTable, "Property", "ASC");
                 dgIid.DataContext = iidDataTable.DefaultView;
-
-                // didDataTable.DefaultView.Sort = "Property ASC";
                 dgIid.Items.Refresh();
 
             }
         }
-
         private void btnUpdateIid_Click(object sender, RoutedEventArgs e)
         {
             var index = dgIid.SelectedIndex;
@@ -529,7 +494,6 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
             }
         }
-
         private void btnRemoveIid_Click(object sender, RoutedEventArgs e)
         {
 
@@ -547,27 +511,21 @@ namespace WeenieFab
             }
 
         }
-
-        // Spell
+        // Spells Tab
         private void btnAddSpell_Click(object sender, RoutedEventArgs e)
         {
-            // search for duplicate property
             if (SearchForDuplicateProps(spellDataTable, tbSpellId.ToString()))
             {
                 MessageBox.Show("Property Already Exits");
             }
             else
             {
-                // string[] description = cbBoolProps.Text.Split(" ");
                 DataRow dr = spellDataTable.NewRow();
                 dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text); // Spell Probablilty
                 dr[2] = tbSpellDescription.Text;
 
                 spellDataTable.Rows.Add(dr);
-                //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                //dgSpell.ItemsSource = spellDataTable.DefaultView;
-                //spellDataTable.DefaultView.Sort = "Property ASC";
                 dgSpell.Items.Refresh();
             }
         }
@@ -584,11 +542,8 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgSpell.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = spellDataTable.Rows[currentRowIndex.GetIndex()];
 
-                // string[] description = cbSpellProps.Text.Split(" ");
-
                 dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text);
-                // dr[2] = description[1];
 
                 spellDataTable.AcceptChanges();
             }
@@ -612,13 +567,11 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
         // Attributes and Skills Tab
         // Attributes
         private void btnAttribDefaults_Click(object sender, RoutedEventArgs e)
         {
-            attributeDataTable.Clear();
-            
+            attributeDataTable.Clear();           
             
             for (int i = 1; i < 7; i++)
             {
@@ -659,15 +612,13 @@ namespace WeenieFab
                 attribRow[2] = 0;
                 attribRow[3] = 0;
 
-                attributeDataTable.Rows.Add(attribRow);
-                
+                attributeDataTable.Rows.Add(attribRow);               
             }
 
             dgAttributes.Items.Refresh();
             updateAttribs();
 
         }
-
         private void btnAttribUpdate_Click(object sender, RoutedEventArgs e)
         {
             attributeDataTable.Clear();
@@ -719,7 +670,6 @@ namespace WeenieFab
                 attributeDataTable.Rows.Add(attribRow);
             }
         }
-
         private void btnAttribClear_Click(object sender, RoutedEventArgs e)
         {
             attributeDataTable.Clear();
@@ -803,7 +753,6 @@ namespace WeenieFab
                 attribute2DataTable.Rows.Add(attrib2Row);
             }
         }
-
         private void btnAttrib2Clear_Click(object sender, RoutedEventArgs e)
         {
 
@@ -847,10 +796,6 @@ namespace WeenieFab
 
                 skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
                 dgSkills.DataContext = skillsDataTable.DefaultView;
-
-                // skillsDataTable = ResortDataTable(skillsDataTable, "Type", "ASC");
-                // skillsDataTable.DefaultView.Sort = "Type ASC";
-                // dgSkills.ItemsSource = skillsDataTable.DefaultView;
                 dgSkills.Items.Refresh();
             }
         }
@@ -897,7 +842,6 @@ namespace WeenieFab
             }
 
         }
-
         private void btnSkillsRemove_Click(object sender, RoutedEventArgs e)
         {
             var index = dgSkills.SelectedIndex;
@@ -913,7 +857,6 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
             }
         }
-
         // Create Items
         private void btnAddCreateItem_Click(object sender, RoutedEventArgs e)
         {
@@ -1055,10 +998,7 @@ namespace WeenieFab
             {
                 MessageBox.Show("The row you selected is blank");
             }
-
-
         }
-
         private void btnRemoveBodyPart_Click(object sender, RoutedEventArgs e)
         {
             var index = dgBodyParts.SelectedIndex;
@@ -1079,7 +1019,6 @@ namespace WeenieFab
             Process.Start(new ProcessStartInfo("cmd", $"/c start https://github.com/ACEmulator/ACE/wiki/How-Body-Parts-Work"));
         }
 
-
         // ES Tab
         private void btnLoadES_Click(object sender, RoutedEventArgs e)
         {
@@ -1087,7 +1026,6 @@ namespace WeenieFab
             rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emotescript)));
             
         }
-
         private void btnSaveES_Click(object sender, RoutedEventArgs e)
         {
 
@@ -1095,7 +1033,6 @@ namespace WeenieFab
             SaveESFile(emotescript);
  
         }
-
         private void btnClearES_Click(object sender, RoutedEventArgs e)
         {
             MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
@@ -1185,7 +1122,6 @@ namespace WeenieFab
             }
 
         }
-
         private void btnRemovePage_Click(object sender, RoutedEventArgs e)
         {
             var index = dgBookPages.SelectedIndex;

@@ -97,14 +97,6 @@ namespace WeenieFab
             return found;
         }
 
-        //internal class FoundItem
-        //{
-        //    public int RecordID { get; set; }
-        //    public string RecordName { get; set; }
-        //}
-
-
-
         public void CreateComboBoxLists()
         {
             List<string> integer32List = new List<string>();
@@ -248,8 +240,6 @@ namespace WeenieFab
             Regex regex = new Regex("[^0-9.-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
- 
         public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
         {
             dt.DefaultView.Sort = colName + " " + direction;
@@ -270,15 +260,12 @@ namespace WeenieFab
             //Convert.ToUInt64(text,)
             return i;
         }
-
-
         public static float ConvertToFloat(string text)
         {
             float i = 0f;
             float.TryParse(text, out i);
             return i;
         }
-
         // UI Stuff
         public void ClearAllDataTables()
         {

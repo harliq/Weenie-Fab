@@ -8,8 +8,6 @@ namespace WeenieFab
 {
     public partial class MainWindow : Window
     {
-
-
         public void CreateDataTable()
         {
             DataColumn propertyInt = new DataColumn("Property");
@@ -19,14 +17,12 @@ namespace WeenieFab
             DataColumn propertyString = new DataColumn("Property");
             DataColumn propertyDiD = new DataColumn("Property");
 
-
             propertyInt.DataType = Type.GetType("System.Int32");
             propertyInt64.DataType = Type.GetType("System.Int32");
             propertyFloat.DataType = Type.GetType("System.Int32");
             propertyBool.DataType = Type.GetType("System.Int32");
             propertyString.DataType = Type.GetType("System.Int32");
             propertyDiD.DataType = Type.GetType("System.Int32");
-
 
             DataColumn valueInt = new DataColumn("Value");
             DataColumn valueInt64 = new DataColumn("Value");
@@ -351,9 +347,5 @@ namespace WeenieFab
 
             dgPosition.DataContext = positionsDataTable;
         }
-
-
-
-
     }
 }

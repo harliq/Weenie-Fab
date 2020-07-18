@@ -23,11 +23,8 @@ namespace WeenieFab
         public Help()
         {
             InitializeComponent();
-            CreateResourceList();
-            
+            CreateResourceList();           
         }
-
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -48,15 +45,10 @@ namespace WeenieFab
         {
             var urlPart = ((Hyperlink)sender).NavigateUri;
             var fullUrl = urlPart.ToString();
-            // System.Diagnostics.Process.Start(new ProcessStartInfo("gooogle.com"));
-            // Process.Start(new ProcessStartInfo(fullUrl));
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}")); 
-            // Process.Start(new ProcessStartInfo(e.Uri.AbsoluteUri));
-           
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));           
             try
             {
                 Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));
-                // Process.Start(new ProcessStartInfo("start", fullUrl));
             }
             catch (Exception)
             {
@@ -64,8 +56,6 @@ namespace WeenieFab
                 throw;
             }
             e.Handled = true;
-
         }
-
     }
 }

@@ -9,25 +9,18 @@ namespace WeenieFab
     /// </summary>
     public partial class Options : Window
     {
-
         public Options()
         {
             InitializeComponent();
             LoadPaths();
         }
-
         private void LoadPaths()
         {
             tbDefaultSqlPath.Text = WeenieFabUser.Default.DefaultSqlPath;
             tbDefaultJsonPath.Text = WeenieFabUser.Default.DefaultJsonPath;
             tbDefaultESPath.Text = WeenieFabUser.Default.DefaultESPath;
             chkbAutoLoadEsFiles.IsChecked = WeenieFabUser.Default.AutoLoadESFiles;
-
-            // btnSetSqlPath.Visibility = Visibility.Hidden;
-            // btnSetJsonPath.Visibility = Visibility.Hidden;
-            // btnSetESPath.Visibility = Visibility.Hidden;
         }
-
         private void btnSetSqlPath_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
@@ -40,7 +33,6 @@ namespace WeenieFab
                 tbDefaultSqlPath.Text= fbd.SelectedPath;
             }
         }
-
         private void btnOK_Click(object sender, RoutedEventArgs e)
         {
             Properties.WeenieFabUser.Default.DefaultSqlPath = tbDefaultSqlPath.Text;
@@ -57,7 +49,6 @@ namespace WeenieFab
         {
             this.Close();
         }
-
         private void btnSetJsonPath_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
@@ -70,7 +61,6 @@ namespace WeenieFab
                 tbDefaultJsonPath.Text = fbd.SelectedPath;
             }
         }
-
         private void btnSetESPath_Click(object sender, RoutedEventArgs e)
         {
             VistaFolderBrowserDialog fbd = new VistaFolderBrowserDialog();
@@ -84,5 +74,4 @@ namespace WeenieFab
             }
         }
     }
-
 }

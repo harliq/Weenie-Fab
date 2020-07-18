@@ -48,9 +48,6 @@ namespace WeenieFab
 
             int counter = 1;
             int rowcount = dt.Rows.Count;
-
-
-
             if (rowcount > 0)
             {
                 sqltext = header + $"\nVALUES";
@@ -331,8 +328,6 @@ namespace WeenieFab
         }
         public static string ConvertBodyPart(DataTable dt, string wcid, string header)
         {
-
-
             string sqltext = "";
 
             int counter = 1;
