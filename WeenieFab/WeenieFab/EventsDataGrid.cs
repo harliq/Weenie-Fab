@@ -344,8 +344,30 @@ namespace WeenieFab
             }
 
         }
+        // Positions
+        private void dgPosition_RowSelected(object sender, RoutedEventArgs e)
+        {
+            var index = dgPosition.SelectedIndex;
+            DataGridRow currentRowIndex = dgPosition.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > positionsDataTable.Rows.Count)
+            {
+            }
+            else
+            {
+                DataRow dr = positionsDataTable.Rows[currentRowIndex.GetIndex()];
+                cbPosition.SelectedIndex = ConvertToInteger(dr[0].ToString());
+                
+                tbCellID.Text = dr[1].ToString();
+                tbOriginX.Text = dr[2].ToString();
+                tbOriginY.Text = dr[3].ToString(); 
+                tbOriginZ.Text = dr[4].ToString();
 
-
+                tbAngleW.Text = dr[5].ToString();
+                tbAngleX.Text = dr[6].ToString();
+                tbAngleY.Text = dr[7].ToString();
+                tbAngleZ.Text = dr[8].ToString();
+            }
+        }
 
         // Update Attribs Events      
         private void updateAttribs()  // Updates Attribs - May need a better way to do this.

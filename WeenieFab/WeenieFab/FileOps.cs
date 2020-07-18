@@ -153,7 +153,7 @@ namespace WeenieFab
             string createListBlob = "";
             string bookInfoBlob = "";
             string bookPageBlob = "";
-            
+            string positionsBlob = "";
 
             string line;
 
@@ -171,6 +171,7 @@ namespace WeenieFab
             var bodyPartsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\) \/\*(.*)\*\/*.*$";
             var bookInfoPattern = @"\((\d+),\s*(\d+),\s*(\d+)\).*$";
             var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*)).*$";
+            var positionsPatern = @"\((\d+),\s+(\d+),\s+(\d+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\)\s+\/\*(.*)\*\/*.*$";
 
             try
             {
@@ -249,6 +250,14 @@ namespace WeenieFab
                             iidDataTable.AcceptChanges();
                             iidDataTable = ResortDataTable(iidDataTable, "Property", "ASC");
                             dgIid.DataContext = iidDataTable;
+                        }
+                        else if (line.Contains("INSERT INTO `weenie_properties_position`"))
+                        {
+                            positionsBlob = ReadBlob(sr);
+                            positionsDataTable = DecodeSql.DecodePositions(positionsBlob, positionsPatern);
+                            positionsDataTable.AcceptChanges();
+                            positionsDataTable = ResortDataTable(positionsDataTable, "PositionType", "ASC");
+                            dgPosition.DataContext = positionsDataTable;
                         }
                         else if (line.Contains("INSERT INTO `weenie_properties_attribute`"))
                         {
@@ -443,6 +452,10 @@ namespace WeenieFab
             // IiD
             header = $"INSERT INTO `weenie_properties_i_i_d` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(iidDataTable, tbWCID.Text, header);
+
+            // Positions
+            header = $"INSERT INTO `weenie_properties_position` (`object_Id`, `position_Type`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)";
+            body += TableToSql.ConvertPositionTable(positionsDataTable, tbWCID.Text, header);
 
             // Body Parts
             header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";

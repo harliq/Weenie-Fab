@@ -415,8 +415,6 @@ namespace WeenieFab
             int counter = 1;
             int rowcount = dt.Rows.Count;
 
-            
-
             if (rowcount > 0)
             {
                 sqltext = header + $"\nVALUES";
@@ -447,6 +445,76 @@ namespace WeenieFab
             //else
             //{
             //}
+            return sqltext;
+        }
+        public static string ConvertPositionTable(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+
+                    int loc = MainWindow.ConvertToInteger(row[1].ToString());
+                    string locHex = loc.ToString("X");
+
+                    // string toriginX = string.Format("F6", row[2].ToString());
+                    float toriginX = MainWindow.ConvertToFloat(row[2].ToString());
+                    float toriginY = MainWindow.ConvertToFloat(row[3].ToString());
+                    float toriginZ = MainWindow.ConvertToFloat(row[4].ToString());
+
+                    float tAngleW = MainWindow.ConvertToFloat(row[5].ToString());
+                    float tAngleX = MainWindow.ConvertToFloat(row[6].ToString());
+                    float tAngleY = MainWindow.ConvertToFloat(row[7].ToString());
+                    float tAngleZ = MainWindow.ConvertToFloat(row[8].ToString());
+
+
+                    string originX = toriginX.ToString("F6");
+                    string originY = toriginY.ToString("F6");
+                    string originZ = toriginZ.ToString("F6");
+
+                    string angleW = tAngleW.ToString("F6");
+                    string angleX = tAngleX.ToString("F6");
+                    string angleY = tAngleY.ToString("F6");
+                    string angleZ = tAngleZ.ToString("F6");
+
+                    if (counter == 1 && counter == rowcount)
+                    {
+                        sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /*{row[9]}*/\n";
+                        sqltext += $"/* @teleloc 0x{locHex} [{originX} {originY} {originZ}] {angleW} {angleX} {angleY} {angleZ} */;\n";
+                    }
+                    else if (counter == 1)
+                    {
+                        sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /* {row[9]} */\n";
+                        sqltext += $"/* @teleloc 0x{locHex} [{row[2]} {row[3]} {row[4]}] {row[5]} {row[6]} {row[7]} {row[8]} */\n";
+                    }
+                    else
+                    {
+                        if (counter == rowcount)
+                        {
+                            sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /* {row[9]} */\n";
+                            sqltext += $"/* @teleloc 0x{locHex} [{row[2]} {row[3]} {row[4]}] {row[5]} {row[6]} {row[7]} {row[8]} */;\n";
+                        }
+                        else
+                        {
+                            sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /* {row[9]} */\n";
+                            sqltext += $"/* @teleloc 0x{locHex} [{row[2]} {row[3]} {row[4]}] {row[5]} {row[6]} {row[7]} {row[8]} */\n";
+                        }
+
+                    }
+                    counter++;
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
             return sqltext;
         }
     }
