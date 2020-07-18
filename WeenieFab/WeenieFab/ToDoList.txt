@@ -1,11 +1,9 @@
 ** To Finish Milestone 1 **
 *Priority*
 Add Generator Table
-Add Positions Table
 
 *Issues
-Found in Weenie 21383 Gaelan.sql
-The Last used is a double.  May just this a text field, because it really isn't use.
+
 
 * Polish *
 Code Cleanup/Organization
@@ -25,6 +23,8 @@ MarkDown for ES in WeenieFab
 
 
 **Completed**
+#Done-Add Positions Table
+#Done-Found in Weenie 21383 Gaelan.sql The Last used is a double.  May just this a text field, because it really isn't use.
 #Done-Added Instance ID's (IID)
 #Done-NOT IMPLEMENTING Destination DropDown (Create Items) (to many variables)
 #Done-Add Error Log
