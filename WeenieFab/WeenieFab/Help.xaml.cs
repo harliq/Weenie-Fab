@@ -50,10 +50,12 @@ namespace WeenieFab
             {
                 Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-                throw;
+                MainWindow.LogError(ex);
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show("ERROR!. Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
             }
             e.Handled = true;
         }
