@@ -308,9 +308,9 @@
         <Label Content="Default SQL Path" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
         <Label Content="Default JSON Path" HorizontalAlignment="Left" Margin="10,60,0,0" VerticalAlignment="Top"/>
         <Label Content="Default EmoteScript Path" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="tbDefaultSqlPath" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380" Grid.ColumnSpan="2" ToolTip="Set path to where your SQL files are"/>
-        <TextBox x:Name="tbDefaultJsonPath" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380" ToolTip="Set path to where your JSON files are"/>
-        <TextBox x:Name="tbDefaultESPath" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="380" ToolTip="Set path to where your Emote Script files are" MaxWidth="380" MaxHeight="20"/>
+        <TextBox x:Name="tbDefaultSqlPath" HorizontalAlignment="Left" Margin="10,36,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" MinWidth="375" Grid.ColumnSpan="2" ToolTip="Set path to where your SQL files are" MaxWidth="375" MaxHeight="20"/>
+        <TextBox x:Name="tbDefaultJsonPath" HorizontalAlignment="Left" Margin="10,91,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" MinWidth="375" ToolTip="Set path to where your JSON files are" MaxWidth="375" MaxHeight="20"/>
+        <TextBox x:Name="tbDefaultESPath" HorizontalAlignment="Left" Margin="10,140,0,0" TextWrapping="NoWrap" VerticalAlignment="Top" MinWidth="375" ToolTip="Set path to where your Emote Script files are" MaxWidth="375" MaxHeight="20"/>
         <CheckBox x:Name="chkbAutoLoadEsFiles" Content="Auto Load ES Files" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" IsChecked="True" MinWidth="120" MinHeight="16" ToolTip="Check if you want WeenieFab to auto load your Emote Script Files instead of the Emotes in the weenie"/>
         <Button x:Name="btnSetSqlPath" Content="Set Path" HorizontalAlignment="Right" Margin="0,35,10,0" VerticalAlignment="Top" MinWidth="80" Grid.Column="1" Click="btnSetSqlPath_Click" ToolTip="Select Default SQL Path"/>
         <Button x:Name="btnSetJsonPath" Content="Set Path" HorizontalAlignment="Right" Margin="0,90,10,0" VerticalAlignment="Top" MinWidth="80" Click="btnSetJsonPath_Click" ToolTip="Select Default JSON Path"/>

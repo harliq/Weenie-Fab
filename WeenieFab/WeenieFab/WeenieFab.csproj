@@ -19,6 +19,7 @@
     <None Remove="StringMap\SpellName.txt" />
     <None Remove="StringMap\WeenieClassName.txt" />
     <None Remove="StringMap\WeenieName.txt" />
+    <None Remove="StyleCop.Cache" />
     <None Remove="TypeLists\BodyParts.txt" />
     <None Remove="TypeLists\BoolTypes.txt" />
     <None Remove="TypeLists\DamageTypes.txt" />

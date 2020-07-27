@@ -456,7 +456,9 @@ namespace WeenieFab
 
             while ((line = sr.ReadLine()) != null) 
             {
-                if (line == "" || line == "\t" || line =="\r\n")                  
+                // Making this a little more tolerable of spaces and tabs being on blank line - This should help considerably.
+                
+                if (line == "" || line == "\r\n" || line == " " || line == "  " || line == "   " || line == "    " || line == "     " || line == "\t " || line == "\t")
                     return blob;
                 else
                 {

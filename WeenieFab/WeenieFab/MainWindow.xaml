@@ -1977,12 +1977,12 @@
                 </TabItem>
                 <TabItem Header="SpellBook">
                     <Grid Background="#FFE1E8F5">
-                        <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="625,135,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,185,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Spell Name Search" HorizontalAlignment="Left" Margin="80,77,0,0" VerticalAlignment="Top"/>
-                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="86,105,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="350" MaxWidth="350" ToolTip="Type in the name of the Spell"/>
-                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="150" Margin="85,135,0,0" MinWidth="300" MinHeight="150" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Select Spell">
+                        <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="625,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,85,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Spell Name Search" HorizontalAlignment="Left" Margin="80,7,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbSpellSearch" HorizontalAlignment="Left" Margin="86,35,0,0" TextChanged="txtFilter_TextChanged" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" MinWidth="350" MaxWidth="350" ToolTip="Type in the name of the Spell"/>
+                        <ListView x:Name="lvSpellsList" SelectionChanged="lvSpellsList_SelectionChanged" MaxWidth="350" MaxHeight="197" Margin="85,65,0,0" MinWidth="300" MinHeight="200" HorizontalAlignment="Left" VerticalAlignment="Top" ToolTip="Select Spell">
                             <ListView.View>
                                 <GridView>
                                     <GridViewColumn Header="Spell ID" Width="50" DisplayMemberBinding="{Binding SpellID}"/>
@@ -1990,13 +1990,13 @@
                                 </GridView>
                             </ListView.View>
                         </ListView>
-                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="466,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Spell ID"/>
-                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="625,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" ToolTip="How often will a spell be cast"/>
-                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="466,211,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="350" MaxWidth="350" ToolTip="The name of the spell"/>
-                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,241,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click" ToolTip="Add spell"/>
-                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,241,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected spell"/>
-                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,241,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click" ToolTip="Remove selected spell"/>
-                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,300,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="200" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="198" VerticalAlignment="Top" ToolTip="Select a spell to edit/change">
+                        <TextBox x:Name="tbSpellId" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellID}" HorizontalAlignment="Left" Margin="466,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Spell ID"/>
+                        <TextBox x:Name="tbSpellValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="625,110,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="106" ToolTip="How often will a spell be cast"/>
+                        <TextBox x:Name="tbSpellDescription" Text="{Binding ElementName=lvSpellsList, Path=SelectedItem.SpellName}" HorizontalAlignment="Left" Margin="466,161,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinWidth="350" MaxWidth="350" ToolTip="The name of the spell"/>
+                        <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,191,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click" ToolTip="Add spell"/>
+                        <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,191,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected spell"/>
+                        <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,191,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click" ToolTip="Remove selected spell"/>
+                        <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,290,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="275" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="400" VerticalAlignment="Top" ToolTip="Select a spell to edit/change">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.5*"/>
                                 <DataGridTextColumn Header="Probability" IsReadOnly="True"  Binding="{Binding Value}" Width="1.7*"/>
@@ -2130,7 +2130,7 @@
                         <TextBox x:Name="tbAuthorName" HorizontalAlignment="Left" Margin="235,273,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147" MinWidth="150" MaxWidth="150" ToolTip="Name of Author"/>
                         <RadioButton x:Name="rdbBookTrue" Content="True" HorizontalAlignment="Left" Margin="254,313,0,0" VerticalAlignment="Top" FontSize="12" ToolTip="Default should be False"/>
                         <RadioButton x:Name="rdbBookFalse" Content="False" HorizontalAlignment="Left" Margin="305,313,0,0" VerticalAlignment="Top" FontSize="12" ToolTip="Default should be False" IsChecked="True"/>
-                        <TextBox x:Name="tbPageText" HorizontalAlignment="Left" Margin="395,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="100" MinWidth="530" MaxWidth="530" MaxHeight="100" ToolTip="Enter in the page text"/>
+                        <TextBox x:Name="tbPageText" HorizontalAlignment="Left" Margin="395,234,0,0" TextWrapping="Wrap" VerticalAlignment="Top" MinHeight="100" MinWidth="530" MaxWidth="530" MaxHeight="100" ToolTip="Enter in the page text" AcceptsReturn="True" AcceptsTab="True"/>
                         <Button x:Name="btnAddPage" Content="Add Page" HorizontalAlignment="Left" Margin="945,233,0,0" VerticalAlignment="Top" MinWidth="100" Click="btnAddPage_Click" ToolTip="Add a Page"/>
                         <Button x:Name="btnUpdatePage" Content="Update Page" HorizontalAlignment="Left" Margin="945,271,0,0" VerticalAlignment="Top" MinWidth="100" Click="btnUpdatePage_Click" ToolTip="Update Page"/>
                         <Button x:Name="btnRemovePage" Content="Remove Page" HorizontalAlignment="Left" Margin="945,308,0,0" VerticalAlignment="Top" MinWidth="100" Click="btnRemovePage_Click" ToolTip="Remove Page"/>
