@@ -12,11 +12,11 @@ Code Cleanup/Organization
 Used Cloned Tables instead of creating new ones (Partially Done)
 
 * Misc *
-
+also along those lines, disallow adding more than 1 page with same id
 
 
 **Future Features** - After MileStone.
-Defaults for a new weenie (IE a quick wizard dialog)
+Defaults for a new weenie (IE a quick wizard dialog??)
 **Have to wait for ACData to be fixed. Auto Convert Json Files
 **Rip Wants Merge wennies (good idea, just gotta figure out how to do it).
 MarkDown for ES in WeenieFab
