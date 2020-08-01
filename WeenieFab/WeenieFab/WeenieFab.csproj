@@ -4,15 +4,22 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.9.7.7</Version>
+    <Version>0.9.8.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="libs\**" />
+    <EmbeddedResource Remove="libs\**" />
+    <None Remove="libs\**" />
+    <Page Remove="libs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="icon\weeniefactoryicon.ico" />
-    <None Remove="libs\EmoteScriptLib.dll" />
     <None Remove="StringMap\SpellName.txt" />
     <None Remove="StringMap\WeenieClassName.txt" />
     <None Remove="StringMap\WeenieName.txt" />
+    <None Remove="StyleCop.Cache" />
     <None Remove="TypeLists\BodyParts.txt" />
     <None Remove="TypeLists\BoolTypes.txt" />
     <None Remove="TypeLists\DamageTypes.txt" />
@@ -33,9 +40,6 @@
 
   <ItemGroup>
     <Content Include="icon\weeniefactoryicon.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="libs\EmoteScriptLib.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="StringMap\SpellName.txt">

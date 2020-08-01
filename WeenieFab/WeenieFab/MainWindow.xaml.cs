@@ -65,20 +65,6 @@ namespace WeenieFab
             rtbBodyParts.Visibility = Visibility.Hidden;
         }
 
-        private static bool SearchForDuplicateProps(DataTable tempTable, int searchProp)
-        {
-            bool found = false;
-
-            foreach (DataRow row in tempTable.Rows)
-            {
-                if (row[0].Equals(searchProp))
-                    found = true;
-                else
-                    found = false;
-            }
-
-            return found;
-        }
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
         {
             bool found = false;
@@ -96,14 +82,6 @@ namespace WeenieFab
 
             return found;
         }
-
-        //internal class FoundItem
-        //{
-        //    public int RecordID { get; set; }
-        //    public string RecordName { get; set; }
-        //}
-
-
 
         public void CreateComboBoxLists()
         {
@@ -237,7 +215,7 @@ namespace WeenieFab
             cbWeenieType.ItemsSource = weenieTypeList;
             cbWeenieType.SelectedIndex = 1;
         }
-
+        // Texbox Validations
         private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -248,15 +226,14 @@ namespace WeenieFab
             Regex regex = new Regex("[^0-9.-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
-
- 
+        // Data Table Sorting
         public static DataTable ResortDataTable(DataTable dt, string colName, string direction)
         {
             dt.DefaultView.Sort = colName + " " + direction;
             dt = dt.DefaultView.ToTable();
             return dt;
         }
-
+        // Text to Numeric Converters
         public static int ConvertToInteger(string text)
         {
             int i = 0;
@@ -266,19 +243,15 @@ namespace WeenieFab
         public static uint ConvertToUInteger(string text)
         {
             uint i = 0;
-            i = Convert.ToUInt32(text, 32);
-            //Convert.ToUInt64(text,)
+            i = Convert.ToUInt32(text, 32);            
             return i;
         }
-
-
         public static float ConvertToFloat(string text)
         {
             float i = 0f;
             float.TryParse(text, out i);
             return i;
         }
-
         // UI Stuff
         public void ClearAllDataTables()
         {
@@ -414,6 +387,7 @@ namespace WeenieFab
             lblVersion.Content = "Version " + version;
         }
 
+        // **Auto Calcs for Health/Stam/Mana and Skills**
         private void chkbAutoHealth_Changed(object sender, RoutedEventArgs e)
         {
             if (chkbAutoHealth.IsChecked == true)
@@ -599,7 +573,7 @@ namespace WeenieFab
             }
 
         }
-
+        // Not used currently (button is hidden) but have ideas for this.   Reuse  for importing body tables.
         private void btnGenerateBodyTable_Click(object sender, RoutedEventArgs e)
         {
             string header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";

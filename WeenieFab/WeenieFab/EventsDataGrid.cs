@@ -7,14 +7,12 @@ namespace WeenieFab
 {
     public partial class MainWindow : Window
     {
-
         private void dgInt32_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgInt32.SelectedIndex;
             DataGridRow currentRowIndex = dgInt32.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > integerDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -25,14 +23,12 @@ namespace WeenieFab
                 tbValue.Text = dr[1].ToString();
             }
         }
-
         private void dgInt64_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgInt64.SelectedIndex;
             DataGridRow currentRowIndex = dgInt64.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > integer64DataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -49,7 +45,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgBool.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > boolDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -69,7 +64,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgFloat.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > floatDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -87,7 +81,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgString.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > stringDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -105,7 +98,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgDiD.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > didDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -123,14 +115,10 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgSpell.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > spellDataTable.Rows.Count)
             {
-
             }
             else
             {
                 DataRow dr = spellDataTable.Rows[currentRowIndex.GetIndex()];
-                // int cbindex = 0;
-                // Int32.TryParse(dr[0].ToString(), out cbindex);
-                // cbSpellProps.SelectedIndex = cbindex;
                 tbSpellId.Text = dr[0].ToString();
                 tbSpellValue.Text = dr[1].ToString();
                 tbSpellDescription.Text = dr[2].ToString();
@@ -143,7 +131,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgSkills.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > skillsDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -156,24 +143,12 @@ namespace WeenieFab
                 tbSkillLevel.Text = dr[4].ToString();
             }
         }
-        private void lvSpellNames_RowSelected(object sender, RoutedEventArgs e)
-        {
-
-            //if (lvSpellsList.SelectedIndex >= 0)
-            //{
-            //    var spellInfo = lvSpellsList.Items.GetItemAt(lvSpellsList.SelectedIndex) as DataRowView;
-
-            //    tbSpellId.Text = (string)spellInfo["SpellID"];
-            //    tbSpellDescription.Text = (string)spellInfo["SpellName"];
-            //}
-        }
         private void dgCreateList_RowSelected(object sender, RoutedEventArgs e)
         {
             var index = dgCreateItems.SelectedIndex;
             DataGridRow currentRowIndex = dgCreateItems.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > createListDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -185,34 +160,20 @@ namespace WeenieFab
                 tbCreateItemsPalette.Text = dr[3].ToString();
                 tbCreateItemsDropRate.Text = dr[4].ToString();
                 tbCreateItemsDescription.Text = dr[6].ToString();
-
-                //cbSkillType.SelectedIndex = ConvertToInteger(dr[0].ToString());
-                //if (dr[2].ToString() == "3")
-                //    rdbSpec.IsChecked = true;
-                //else
-                //    rdbTrained.IsChecked = true;
-                //tbSkillLevel.Text = dr[4].ToString();
             }
         }
-
         private void dgBodyParts_RowSelected(object sender, RoutedEventArgs e)
         {
-
             var index = dgBodyParts.SelectedIndex;
             DataGridRow currentRowIndex = dgBodyParts.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > bodypartsDataTable.Rows.Count)
             {
-
             }
             else
             {
                 DataRow dr = bodypartsDataTable.Rows[currentRowIndex.GetIndex()];
-                //int cbindex = 0;
-                //Int32.TryParse(dr[0].ToString(), out cbindex);
-
                 cbBodyPart.SelectedIndex = ConvertToInteger(dr[0].ToString());
                 int damageType = ConvertToInteger(dr[1].ToString());
-
                 switch (damageType)
                 {
                     case 0:
@@ -258,8 +219,6 @@ namespace WeenieFab
                         break;
                 }
 
-                //cbBodyPartDamageType.SelectedIndex = ConvertToInteger(dr[1].ToString());
-
                 tbBodyPartDamageValue.Text = dr[2].ToString();
                 tbBodyPartDamageVariance.Text = dr[3].ToString();
                 tbBodyPartArmorLevel.Text = dr[4].ToString();
@@ -280,9 +239,7 @@ namespace WeenieFab
                 tbBodyPartQuadHighRB.Text = dr[15].ToString();
                 tbBodyPartQuadMiddleRB.Text = dr[16].ToString();
                 tbBodyPartQuadLowRB.Text = dr[17].ToString();
-
             }
-
         }
         // Books
         private void dgBookInfo_RowSelected(object sender, RoutedEventArgs e)
@@ -291,7 +248,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgBookInfo.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > bookInfoDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -300,7 +256,6 @@ namespace WeenieFab
                 tbMaxChars.Text = dr[1].ToString();
             }
         }
-
         private void dgBookPages_RowSelected(object sender, RoutedEventArgs e)
         {
 
@@ -308,7 +263,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > bookPagesDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -323,8 +277,6 @@ namespace WeenieFab
 
                 tbPageText.Text = dr[5].ToString();
             }
-
-
         }
         // Instance IDs
         private void dgIid_RowSelected(object sender, RoutedEventArgs e)
@@ -334,7 +286,6 @@ namespace WeenieFab
             DataGridRow currentRowIndex = dgIid.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
             if (index + 1 > iidDataTable.Rows.Count)
             {
-
             }
             else
             {
@@ -342,7 +293,6 @@ namespace WeenieFab
                 cbIidProps.SelectedIndex = ConvertToInteger(dr[0].ToString());
                 tbiidValue.Text = dr[1].ToString();
             }
-
         }
         // Positions
         private void dgPosition_RowSelected(object sender, RoutedEventArgs e)
@@ -368,7 +318,6 @@ namespace WeenieFab
                 tbAngleZ.Text = dr[8].ToString();
             }
         }
-
         // Update Attribs Events      
         private void updateAttribs()  // Updates Attribs - May need a better way to do this.
         {
@@ -411,12 +360,8 @@ namespace WeenieFab
                     tbManaInitLevel.Text = row[1].ToString();
                     tbManaCurrentLevel.Text = row[4].ToString();
                 }
-
                 i++;
             }
         }
-
-
-
     }
 }
