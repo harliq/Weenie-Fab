@@ -384,7 +384,7 @@ namespace WeenieFab
             var fileVersionInfo = FileVersionInfo.GetVersionInfo(executingAssembly.Location);
             var version = fileVersionInfo.FileVersion;
 
-            lblVersion.Content = "Version " + version;
+            
             txtblockVersion.Text = "Version " + version;
         }
 
