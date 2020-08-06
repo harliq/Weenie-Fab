@@ -210,7 +210,7 @@ namespace WeenieFab
                         else if (line.Contains("INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)"))
                         {
                             int64Blob = ReadBlob(sr);
-                            integer64DataTable = DecodeSql.DecodeThreeValuesInt(int64Blob, intPattern);
+                            integer64DataTable = DecodeSql.DecodeInt64(int64Blob, intPattern);
                             integer64DataTable.AcceptChanges();
                             integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
                             dgInt64.DataContext = integer64DataTable;
