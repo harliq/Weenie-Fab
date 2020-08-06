@@ -35,6 +35,9 @@ namespace WeenieFab
             else
             {
             }
+
+            txtBlockFileStatus.Text = "New File not saved";
+            Globals.WeenieFileName = "";
         }
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +45,17 @@ namespace WeenieFab
         }
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
+            ProgressBarAnimation();
             SaveFile();
+
+            ProgressBarClearAnimation();
+
+        }
+        private void btnSaveAsSqlFile_Click(object sender, RoutedEventArgs e)
+        {
+            
+            SaveFileAs();
+            ProgressBarClearAnimation();
         }
         private void btnOptions_Click(object sender, RoutedEventArgs e)
         {

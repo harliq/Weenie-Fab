@@ -12,6 +12,10 @@ using EmoteScriptLib;
 using System.Windows;
 using System.Reflection;
 using System.Data;
+using System.Threading;
+using System.Windows.Media.Animation;
+using System.Windows.Controls;
+using System.Threading.Tasks;
 
 namespace WeenieFab
 {
@@ -70,6 +74,8 @@ namespace WeenieFab
                     ReadSQLFile(ofd.FileName);
                     Globals.WeenieFileName = ofd.FileName;
                     this.Title = "WeenieFab - " + ofd.FileName;
+                    //var dateTime = DateTime.Now;
+                    txtBlockFileStatus.Text = "File Not saved ";
                 }
                 else
                     MessageBox.Show("File Extension Not Reconized");
@@ -77,6 +83,37 @@ namespace WeenieFab
         }
 
         public void SaveFile()
+        {
+            //string weenieName = GetSavedFileName(stringDataTable);
+            //string weenieWCID = tbWCID.Text.PadLeft(5, '0');
+
+            //SaveFileDialog sfd = new SaveFileDialog();
+            //sfd.Title = "Save Weenie File";
+            //sfd.Filter = "SQL files|*.sql";
+            //sfd.FileName = $"{weenieWCID} {weenieName}.sql";
+            //sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+
+            //Nullable<bool> result = sfd.ShowDialog();          
+
+            //if (result == true)
+            //{
+            //    WriteSQLFile(sfd.FileName);
+            //    Globals.WeenieFileName = sfd.FileName;
+            //    this.Title = "WeenieFab - " + sfd.FileName;
+            //}
+
+            if (Globals.WeenieFileName == "" || Globals.WeenieFileName == null)
+                SaveFileAs();
+            else
+            {
+                WriteSQLFile(Globals.WeenieFileName);
+                var dateTime = DateTime.Now;
+                txtBlockFileStatus.Text = "File Saved @ " + dateTime.ToString("hh:mm tt MM/dd/yyyy");
+            }
+            
+        }
+
+        public void SaveFileAs()
         {
             string weenieName = GetSavedFileName(stringDataTable);
             string weenieWCID = tbWCID.Text.PadLeft(5, '0');
@@ -87,16 +124,21 @@ namespace WeenieFab
             sfd.FileName = $"{weenieWCID} {weenieName}.sql";
             sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
 
-            Nullable<bool> result = sfd.ShowDialog();          
+            Nullable<bool> result = sfd.ShowDialog();
 
             if (result == true)
             {
+                ProgressBarAnimation();
                 WriteSQLFile(sfd.FileName);
                 Globals.WeenieFileName = sfd.FileName;
                 this.Title = "WeenieFab - " + sfd.FileName;
+                var dateTime = DateTime.Now;
+                txtBlockFileStatus.Text = "File Saved @ " + dateTime.ToString("hh:mm tt MM/dd/yyyy");
             }
+
         }
-        
+
+
         public void ReadSQLFile(string filepath)
         {
             // string headerblob = "";
@@ -132,7 +174,7 @@ namespace WeenieFab
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\) \/\*(.*)\*\/*.*$";
             //var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
-            var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
+            var createListPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(-?\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([a-zA-Z0-9_ ]*)\) \/\*(.*)\*\/*.*$";
             var bodyPartsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\) \/\*(.*)\*\/*.*$";
             var bookInfoPattern = @"\((\d+),\s*(\d+),\s*(\d+)\).*$";
             var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*)).*$";
@@ -349,14 +391,14 @@ namespace WeenieFab
             }
         }
         public void WriteSQLFile(string filename)
-        {
+        {           
             string dateModified = string.Format("'{0:yyyy-MM-dd hh:mm:ss}'", DateTime.Now);
             string[] weenieTypeDescription = cbWeenieType.Text.Split(" ");
 
             // Header
             string header = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text} \n\n";
-            string body = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text}; \n\n";
-
+            string body = $"DELETE FROM `weenie` WHERE `class_Id` = {tbWCID.Text};\n\n";
+           
             // WeenieType
             body += $"INSERT INTO `weenie` (`class_Id`, `class_Name`, `type`, `last_Modified`)\n";
             body += $"VALUES ({tbWCID.Text}, '{tbWeenieName.Text}', {cbWeenieType.SelectedIndex}, {dateModified}) /* {weenieTypeDescription[1]} */;\n\n";
@@ -364,7 +406,7 @@ namespace WeenieFab
             // Integer32
             header = $"INSERT INTO `weenie_properties_int` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integerDataTable, tbWCID.Text, header);
-
+            
             // Integer64
             header = $"INSERT INTO `weenie_properties_int64` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(integer64DataTable, tbWCID.Text, header);
@@ -372,7 +414,7 @@ namespace WeenieFab
             // Boolean
             header = $"INSERT INTO `weenie_properties_bool` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertBooleanTable(boolDataTable, tbWCID.Text, header);
-
+            
             // Float
             header = $"INSERT INTO `weenie_properties_float` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertFloatTable(floatDataTable, tbWCID.Text, header);
@@ -388,7 +430,7 @@ namespace WeenieFab
             // IiD
             header = $"INSERT INTO `weenie_properties_i_i_d` (`object_Id`, `type`, `value`)";
             body += TableToSql.ConvertTriValueTable(iidDataTable, tbWCID.Text, header);
-
+            
             // Positions
             header = $"INSERT INTO `weenie_properties_position` (`object_Id`, `position_Type`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)";
             body += TableToSql.ConvertPositionTable(positionsDataTable, tbWCID.Text, header);
@@ -400,7 +442,7 @@ namespace WeenieFab
             //string bodyparts = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
             //if (bodyparts != "")
             //    body += TableToSql.ConvertBodyTable(bodyparts, tbWCID.Text, header);
-
+            
             // Attributes
             header = $"INSERT INTO `weenie_properties_attribute` (`object_Id`, `type`, `init_Level`, `level_From_C_P`, `c_P_Spent`)";
             body += TableToSql.ConvertAttributeTable(attributeDataTable, tbWCID.Text, header);
@@ -412,7 +454,7 @@ namespace WeenieFab
             // Skills
             header = $"INSERT INTO `weenie_properties_skill` (`object_Id`, `type`, `level_From_P_P`, `s_a_c`, `p_p`, `init_Level`, `resistance_At_Last_Check`, `last_Used_Time`)";
             body += TableToSql.ConvertSkillsTable(skillsDataTable, tbWCID.Text, header);
-
+            
             // Spells
             header = $"INSERT INTO `weenie_properties_spell_book` (`object_Id`, `spell`, `probability`)";
             body += TableToSql.ConvertSpellTable(spellDataTable, tbWCID.Text, header);
@@ -432,7 +474,7 @@ namespace WeenieFab
             }
 
             body += finalEmotes;
-
+            
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
             body += TableToSql.ConvertCreateItemsTable(createListDataTable, tbWCID.Text, header);
@@ -446,6 +488,7 @@ namespace WeenieFab
             body += TableToSql.ConvertBookPages(bookPagesDataTable, tbWCID.Text, header);
 
             File.WriteAllText(filename, body);
+
         }
 
         public static string ReadBlob(StreamReader sr)
@@ -585,6 +628,24 @@ namespace WeenieFab
             {
                 MessageBox.Show($"{logex.Message} \n {logex.StackTrace} \n {logex.Source} \n {logex.TargetSite}");
             }
+        }
+        private void ProgressBarAnimation()
+        {
+
+            txtBlockProgressBar.Text = "Saving File...";
+            Duration duration = new Duration(TimeSpan.FromSeconds(0.1));
+            DoubleAnimation doubleanimation = new DoubleAnimation(100.0, duration);            
+            pgBarOne.BeginAnimation(ProgressBar.ValueProperty, doubleanimation);
+
+        }
+        private async void ProgressBarClearAnimation()
+        {
+
+            await Task.Delay(1000);
+
+            txtBlockProgressBar.Text = "";
+            pgBarOne.BeginAnimation(ProgressBar.ValueProperty, null);
+
         }
     }
 
