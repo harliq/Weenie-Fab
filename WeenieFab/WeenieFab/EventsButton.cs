@@ -47,13 +47,10 @@ namespace WeenieFab
         {
             ProgressBarAnimation();
             SaveFile();
-
             ProgressBarClearAnimation();
-
         }
         private void btnSaveAsSqlFile_Click(object sender, RoutedEventArgs e)
-        {
-            
+        {          
             SaveFileAs();
             ProgressBarClearAnimation();
         }
@@ -108,9 +105,10 @@ namespace WeenieFab
                 dr.Delete();
                 integerDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
             dgInt32.Items.Refresh();
         }
@@ -136,9 +134,10 @@ namespace WeenieFab
                 integerDataTable.AcceptChanges();
                 dgInt32.Items.Refresh();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         // Integer 64
@@ -177,15 +176,20 @@ namespace WeenieFab
 
                 string[] description = cbInt64Props.Text.Split(" ");
 
+                decimal test = ConvertToDecimal(tb64Value.Text);
+
                 dr[0] = ConvertToInteger(cbInt64Props.SelectedIndex.ToString());
-                dr[1] = ConvertToInteger(tb64Value.Text);
+                dr[1] = ConvertToDecimal(tb64Value.Text);
                 dr[2] = description[1];
 
                 integer64DataTable.AcceptChanges();
+                dgInt64.Items.Refresh();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
+                // MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
             }
         }
         private void btnRemoveInt64_Click(object sender, RoutedEventArgs e)
@@ -198,9 +202,10 @@ namespace WeenieFab
                 dr.Delete();
                 integer64DataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // Boolean
@@ -247,9 +252,10 @@ namespace WeenieFab
 
                 boolDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveBool_Click(object sender, RoutedEventArgs e)
@@ -262,9 +268,10 @@ namespace WeenieFab
                 dr.Delete();
                 boolDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // Float
@@ -310,9 +317,10 @@ namespace WeenieFab
 
                 floatDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveFloat_Click(object sender, RoutedEventArgs e)
@@ -325,9 +333,10 @@ namespace WeenieFab
                 dr.Delete();
                 floatDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
 
@@ -375,9 +384,10 @@ namespace WeenieFab
 
                 stringDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveString_Click(object sender, RoutedEventArgs e)
@@ -390,9 +400,10 @@ namespace WeenieFab
                 dr.Delete();
                 stringDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // DiD
@@ -439,9 +450,10 @@ namespace WeenieFab
 
                 didDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveDiD_Click(object sender, RoutedEventArgs e)
@@ -454,9 +466,10 @@ namespace WeenieFab
                 dr.Delete();
                 didDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // Instance ID
@@ -502,9 +515,10 @@ namespace WeenieFab
 
                 iidDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveIid_Click(object sender, RoutedEventArgs e)
@@ -518,9 +532,10 @@ namespace WeenieFab
                 dr.Delete();
                 iidDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
 
         }
@@ -557,12 +572,15 @@ namespace WeenieFab
 
                 dr[0] = ConvertToInteger(tbSpellId.Text);
                 dr[1] = ConvertToFloat(tbSpellValue.Text);
+                dr[2] = tbSpellDescription.Text;
 
                 spellDataTable.AcceptChanges();
+                dgSpell.Items.Refresh();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveSpell_Click(object sender, RoutedEventArgs e)
@@ -575,9 +593,10 @@ namespace WeenieFab
                 dr.Delete();
                 spellDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // Attributes and Skills Tab
@@ -849,9 +868,10 @@ namespace WeenieFab
 
                 skillsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
 
         }
@@ -865,9 +885,10 @@ namespace WeenieFab
                 dr.Delete();
                 skillsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         // Create Items
@@ -905,9 +926,10 @@ namespace WeenieFab
 
                 createListDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveCreateItem_Click(object sender, RoutedEventArgs e)
@@ -920,9 +942,10 @@ namespace WeenieFab
                 dr.Delete();
                 createListDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
 
@@ -1007,9 +1030,10 @@ namespace WeenieFab
 
                 bodypartsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveBodyPart_Click(object sender, RoutedEventArgs e)
@@ -1022,9 +1046,10 @@ namespace WeenieFab
                 dr.Delete();
                 bodypartsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         private void btnBodyPartHelpWiki_Click(object sender, RoutedEventArgs e)
@@ -1088,9 +1113,10 @@ namespace WeenieFab
 
                 bookInfoDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
         }
         private void btnRemoveBook_Click(object sender, RoutedEventArgs e)
@@ -1129,9 +1155,10 @@ namespace WeenieFab
 
                 bookInfoDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
+                LogError(ex);
             }
 
         }
@@ -1145,9 +1172,10 @@ namespace WeenieFab
                 dr.Delete();
                 bodypartsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
 
@@ -1211,9 +1239,10 @@ namespace WeenieFab
                 dr.Delete();
                 positionsDataTable.AcceptChanges();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 MessageBox.Show("You can not delete that row!");
+                LogError(ex);
             }
         }
         private void btnUseLoc_Click(object sender, RoutedEventArgs e)

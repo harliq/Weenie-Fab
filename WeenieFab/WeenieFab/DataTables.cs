@@ -32,7 +32,7 @@ namespace WeenieFab
             DataColumn valueDiD = new DataColumn("Value");
 
             valueInt.DataType = Type.GetType("System.Int32");
-            valueInt64.DataType = Type.GetType("System.Int32");
+            valueInt64.DataType = Type.GetType("System.Decimal");
             valueFloat.DataType = Type.GetType("System.Single");
             valueBool.DataType = Type.GetType("System.Boolean");
             valueString.DataType = Type.GetType("System.String");

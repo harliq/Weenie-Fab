@@ -252,6 +252,12 @@ namespace WeenieFab
             float.TryParse(text, out i);
             return i;
         }
+        public static decimal ConvertToDecimal(string text)
+        {
+            decimal i = 0;
+            decimal.TryParse(text, out i);
+            return i;
+        }
         // UI Stuff
         public void ClearAllDataTables()
         {
