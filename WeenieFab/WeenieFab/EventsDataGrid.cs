@@ -2,6 +2,7 @@
 using System.Data;
 using System.Windows;
 using System.Windows.Controls;
+using WeenieFab.Properties;
 
 namespace WeenieFab
 {
@@ -141,6 +142,7 @@ namespace WeenieFab
                 else
                     rdbTrained.IsChecked = true;
                 tbSkillLevel.Text = dr[4].ToString();
+                SelectedFinalSkillCalc();
             }
         }
         private void dgCreateList_RowSelected(object sender, RoutedEventArgs e)
@@ -361,6 +363,122 @@ namespace WeenieFab
                     tbManaCurrentLevel.Text = row[4].ToString();
                 }
                 i++;
+            }
+        }
+        public void SelectedFinalSkillCalc()
+        {
+            // Skill Formulas based on Attribs
+
+            int strength = ConvertToInteger(tbAttribStrength.Text);
+            int endur = ConvertToInteger(tbAttribEndurance.Text);
+            int coord = ConvertToInteger(tbAttribCoordination.Text);
+            int quick = ConvertToInteger(tbAttribQuickness.Text);
+            int focus = ConvertToInteger(tbAttribFocus.Text);
+            int self = ConvertToInteger(tbAttribSelf.Text);
+
+
+            if (WeenieFabUser.Default.AutoCalcSkill == true)
+            {
+                switch (cbSkillType.SelectedIndex)
+                {
+
+                    case 6:  // MeleeD
+                    case 46: // Finesse Weapons
+                    case 51: // Sneak Attack
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((quick + coord) / 3)).ToString();
+                        break;
+                    case 7:  // MissileD
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((quick + coord) / 5)).ToString();
+                        break;
+                    case 14:  // Arcane Lore
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + (focus / 3)).ToString();
+                        break;
+                    case 15:  // Magic D
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + self) / 7)).ToString();
+                        break;
+                    case 16:  // Mana C
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + self) / 6)).ToString();
+                        break;
+                    case 18:  // Item Appraisal - Item Tink
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + coord) / 2)).ToString();
+                        break;
+                    case 19:  // Personal Appraisal - Assess Persoon
+                    case 20:  // Deception
+                    case 27:  // Creature Appraisal - Asses Creature
+                    case 35:  // Leadership
+                    case 36:  // Loyalty
+                    case 40:  // Salvaging
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
+                        break;
+                    case 21:  // Healing
+                    case 23:  // Lockpick
+                    case 37:  // Fletching
+                    case 38:  // Alchemy
+                    case 39:  // Cooking
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + coord) / 3)).ToString();
+                        break;
+                    case 22:  // Jump
+                    case 48:  // Shield
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((strength + coord) / 2)).ToString();
+                        break;
+                    case 24:  // Run
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + quick).ToString();
+                        break;
+                    case 28:  // Weapon Appraisal - Weapon Tink
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + strength) / 2)).ToString();
+                        break;
+                    case 29:  // Armor Appraisal - Armor Tink
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + endur) / 2)).ToString();
+                        break;
+                    case 30:  // Magic Item Appraisal - Magic Item Tink
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + focus).ToString();
+                        break;
+                    case 31:  // Creature Magic
+                    case 32:  // Item Magic
+                    case 33:  // Life Magic
+                    case 34:  // War Magic
+                    case 43:  // Void Magic
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + self) / 4)).ToString();
+                        break;
+                    case 41:  // Two Hand
+                    case 44:  // Heavy Weapons
+                    case 45:  // Light Weapons
+                    case 52:  // Dirty Fighting
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((strength + coord) / 3)).ToString();
+                        break;
+                    case 47:  // Missile Weapons
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + coord / 2).ToString();
+                        break;
+                    case 49:  // Dual Wield
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((coord * 2) / 3)).ToString();
+                        break;
+                    case 50:  // Recklessness
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((strength + quick) / 3)).ToString();
+                        break;
+                    case 54:  // Summoning
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((endur + self) / 3)).ToString();
+                        break;
+                    // Ignored (Unused)
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 8:
+                    case 9:
+                    case 10:
+                    case 11:
+                    case 12:
+                    case 13:
+                    case 17:
+                    case 25:
+                    case 26:
+                    case 42:
+                    case 53:
+                    default:
+                        break;
+                }
             }
         }
     }
