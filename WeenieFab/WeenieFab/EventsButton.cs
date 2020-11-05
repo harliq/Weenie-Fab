@@ -1061,6 +1061,7 @@ namespace WeenieFab
         private void btnLoadES_Click(object sender, RoutedEventArgs e)
         {
             string emotescript = OpenESFile();
+            rtbEmoteScript.Document.Blocks.Clear();
             rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emotescript)));
             
         }
