@@ -1616,13 +1616,14 @@
     </Window.Resources>
 
     <Grid Background="#FFDEE2FF">
-        <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="475">
+        <ToolBar HorizontalAlignment="Left" Height="33" VerticalAlignment="Top" Background="#FFDBE1E8" Width="512">
             <Button x:Name="btnNew" Content="_New" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnNew_Click" MinWidth="60" ToolTip="New Blank Weenie"/>
             <Button x:Name="btnOpenSqlFile" Content="_Open" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOpenSqlFile_Click" MinWidth="60" ToolTip="Open Existing Weenie"/>
             <Button x:Name="btnSaveSqlFile" Content="_Save" VerticalAlignment="Top" Click="btnSaveSqlFile_Click" MinWidth="60" ToolTip="Save Weenie"/>
             <Button x:Name="btnSaveAsSqlFile" Content="Save _As" VerticalAlignment="Top" MinWidth="60" ToolTip="Save Weenie As" Click="btnSaveAsSqlFile_Click"/>
             <Button x:Name="btnOptions" Content="O_ptions" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnOptions_Click" MinWidth="60" ToolTip="Set Options"/>
             <Button x:Name="btnConverter" Content="_Converter" Height="22" Width="60" HorizontalAlignment="Left" VerticalAlignment="Top" Click="Button_Click" ToolTip="JSON File Converter"/>
+            <Button x:Name="btnLootProfiler" Content="_LootProfiler" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnLootProfiler_Click" MinWidth="60" ToolTip="Death Treasure Loot Profiler"/>
             <Button x:Name="btnHelp" Content="_Help" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnHelp_Click" MinWidth="60" ToolTip="Your just curious now..."/>
 
         </ToolBar>
