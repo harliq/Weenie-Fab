@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="LootProfiler" Height="650" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFE1E8F5">
+        Title="LootProfiler" Height="800" Width="800" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFE1E8F5">
     <Window.Resources>
         <!--Control colors.-->
         <Color x:Key="WindowColor">#FFE8EDF9</Color>
@@ -305,49 +305,60 @@
 
     <Grid>
         <Label Content="Death Treasure DID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Tier" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Loot Qualtiy Mod" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Unknown Chances" HorizontalAlignment="Left" Margin="10,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Tier" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Loot Qualtiy Mod" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Unknown Chances" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <TextBox x:Name="tbDeathTreasureDID" HorizontalAlignment="Left" Margin="10,30,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbTier" HorizontalAlignment="Left" Margin="150,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbLootQualityMod" HorizontalAlignment="Left" Margin="150,110,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbUnknownChances" HorizontalAlignment="Left" Margin="150,140,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="tbDeathTreasureDID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbTier" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbLootQualityMod" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="150,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbUnknownChances" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,110,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
 
-        <Label Content="Item Chance" HorizontalAlignment="Left" Margin="10,180,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Item Min Amount" HorizontalAlignment="Left" Margin="10,210,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Item Max Amount" HorizontalAlignment="Left" Margin="10,240,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Item Treasure Type" HorizontalAlignment="Left" Margin="10,270,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        
-        <TextBox x:Name="tbItemChance" HorizontalAlignment="Left" Margin="150,180,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbItemMinAmount" HorizontalAlignment="Left" Margin="150,210,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbItemMaxAmount" HorizontalAlignment="Left" Margin="150,240,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbItemTreasureType" HorizontalAlignment="Left" Margin="150,270,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Item Chance" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Min Amount" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Max Amount" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Treasure Type" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label Content="Magic Item Chance" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Magic Item Min Amount" HorizontalAlignment="Left" Margin="10,340,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Magic Item Max Amount" HorizontalAlignment="Left" Margin="10,370,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Magic Item Treasure Type" HorizontalAlignment="Left" Margin="10,400,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,200,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,230,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="cbItemTreasureType" SelectionChanged="cbItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="150,260,0,0" VerticalAlignment="Top" Width="100"/>
 
-        <TextBox x:Name="tbMagicItemChance" HorizontalAlignment="Left" Margin="180,310,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbMagicItemMinAmount" HorizontalAlignment="Left" Margin="180,340,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbMagicItemMaxAmount" HorizontalAlignment="Left" Margin="180,370,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbMagicItemTreasureType" HorizontalAlignment="Left" Margin="180,400,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Magic Item Chance" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Min Amount" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Max Amount" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Treasure Type" HorizontalAlignment="Left" Margin="10,420,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
-        <Label Content="Mundane Item Chance" HorizontalAlignment="Left" Margin="10,440,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Mundane Item Min Amount" HorizontalAlignment="Left" Margin="10,470,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Mundane Item Max Amount" HorizontalAlignment="Left" Margin="10,500,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Mundane Item Treasure Type" HorizontalAlignment="Left" Margin="10,530,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbMagicItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,330,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbMagicItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,360,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbMagicItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,390,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="cbMagicItemTreasureType" SelectionChanged="cbMagicItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="180,420,0,0" VerticalAlignment="Top" Width="100"/>
 
-        <TextBox x:Name="tbMundaneItemChance" HorizontalAlignment="Left" Margin="200,440,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbMundaneItemMinAmount" HorizontalAlignment="Left" Margin="200,470,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <TextBox x:Name="tbMundaneItemMaxAmount" HorizontalAlignment="Left" Margin="200,500,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <ComboBox x:Name="cbMundaneItemTreasureType" HorizontalAlignment="Left" Margin="200,530,0,0" VerticalAlignment="Top" Width="120"/>
-        
-        <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="450,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileOpen_Click"/>
-        <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="550,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileSave_Click"/>
-        <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Left" Margin="650,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileClose_Click"/>
+        <Label Content="Mundane Item Chance" HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Min Amount" HorizontalAlignment="Left" Margin="10,550,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Max Amount" HorizontalAlignment="Left" Margin="10,580,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Treasure Type" HorizontalAlignment="Left" Margin="10,610,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Last Modifed:" HorizontalAlignment="Left" Margin="10,700,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
+        <TextBox x:Name="tbMundaneItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,520,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbMundaneItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,550,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbMundaneItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,580,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <ComboBox x:Name="cbMundaneItemTreasureType" SelectionChanged="cbMundaneItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="200,610,0,0" VerticalAlignment="Top" Width="100"/>
+
+        <TextBox x:Name="tbLastModifed" HorizontalAlignment="Left" Margin="100,700,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" IsEnabled="False"/>
+
+        <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="450,695,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileOpen_Click"/>
+        <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="550,695,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileSave_Click"/>
+        <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Left" Margin="650,695,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileClose_Click"/>
+
+        <Label Content="Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbItemTreasureChance" HorizontalAlignment="Left" Margin="350,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="130" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
+
+        <Label Content="Magic Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,300,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbMagicItemTreasureChance" HorizontalAlignment="Left" Margin="350,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="143" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
+
+        <Label Content="Mundane Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,489,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbMundaneItemTreasureChance" HorizontalAlignment="Left" Margin="350,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="130" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
 
     </Grid>
 </Window>

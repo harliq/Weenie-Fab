@@ -4,7 +4,7 @@ using System.Text;
 
 namespace WeenieFab
 {
-    class DeathTreasure
+   public class DeathTreasure
     {
         public int ID { get; set; }
         public int DTdid { get; set; }
