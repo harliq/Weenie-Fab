@@ -344,8 +344,8 @@
         <TextBox x:Name="tbMundaneItemMaxAmount" HorizontalAlignment="Left" Margin="200,500,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <ComboBox x:Name="cbMundaneItemTreasureType" HorizontalAlignment="Left" Margin="200,530,0,0" VerticalAlignment="Top" Width="120"/>
         
-        <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="450,575,0,0" VerticalAlignment="Top" Width="85" Height="25"/>
-        <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="550,575,0,0" VerticalAlignment="Top" Width="85" Height="25"/>
+        <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="450,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileOpen_Click"/>
+        <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="550,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileSave_Click"/>
         <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Left" Margin="650,575,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileClose_Click"/>
 
 
