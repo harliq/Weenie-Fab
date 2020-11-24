@@ -60,17 +60,26 @@ namespace WeenieFab
             winOptions.Owner = this;
             winOptions.Show();
         }
-        private void btnHelp_Click(object sender, RoutedEventArgs e)
-        {
-            Help winHelp = new Help();
-            winHelp.Owner = this;
-            winHelp.Show();
-        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Converter winConverter = new Converter();
             winConverter.Owner = this;
             winConverter.Show();
+        }
+
+        private void btnLootProfiler_Click(object sender, RoutedEventArgs e)
+        {
+
+            LootProfiler lootProfiler = new LootProfiler();
+            lootProfiler.Owner = this;
+            lootProfiler.Show();
+        }
+
+        private void btnHelp_Click(object sender, RoutedEventArgs e)
+        {
+            Help winHelp = new Help();
+            winHelp.Owner = this;
+            winHelp.Show();
         }
         // Form Buttons
         // Integer 32

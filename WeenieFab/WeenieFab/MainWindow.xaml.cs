@@ -590,7 +590,6 @@ namespace WeenieFab
             rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyparts)));
         }
 
-
     }
 
 }

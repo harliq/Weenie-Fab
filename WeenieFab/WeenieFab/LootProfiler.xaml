@@ -1,0 +1,368 @@
+﻿<Window x:Class="WeenieFab.LootProfiler"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WeenieFab"
+        mc:Ignorable="d"
+        Title="LootProfiler" Height="780" Width="650" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFE1E8F5" Icon="/lp_icon.ico">
+    <Window.Resources>
+        <!--Control colors.-->
+        <Color x:Key="WindowColor">#FFE8EDF9</Color>
+        <Color x:Key="ContentAreaColorLight">#FFC5CBF9</Color>
+        <Color x:Key="ContentAreaColorDark">#FF7381F9</Color>
+
+        <Color x:Key="DisabledControlLightColor">#FFE8EDF9</Color>
+        <Color x:Key="DisabledControlDarkColor">#FFC5CBF9</Color>
+        <Color x:Key="DisabledForegroundColor">#FF888888</Color>
+
+        <Color x:Key="SelectedBackgroundColor">#FFC5CBF9</Color>
+        <Color x:Key="SelectedUnfocusedColor">#FFDDDDDD</Color>
+
+        <Color x:Key="ControlLightColor">White</Color>
+        <Color x:Key="ControlMediumColor">#FF7381F9</Color>
+        <Color x:Key="ControlDarkColor">#FF211AA9</Color>
+
+        <Color x:Key="ControlMouseOverColor">#FF3843C4</Color>
+        <Color x:Key="ControlPressedColor">#FF211AA9</Color>
+
+
+        <Color x:Key="GlyphColor">#FF444444</Color>
+        <Color x:Key="GlyphMouseOver">sc#1, 0.004391443, 0.002428215, 0.242281124</Color>
+
+        <!--Border colors-->
+        <Color x:Key="BorderLightColor">#FFCCCCCC</Color>
+        <Color x:Key="BorderMediumColor">#FF888888</Color>
+        <Color x:Key="BorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="PressedBorderLightColor">#FF888888</Color>
+        <Color x:Key="PressedBorderDarkColor">#FF444444</Color>
+
+        <Color x:Key="DisabledBorderLightColor">#FFAAAAAA</Color>
+        <Color x:Key="DisabledBorderDarkColor">#FF888888</Color>
+
+
+        <Color x:Key="DefaultBorderBrushLightBrush">White</Color>
+        <Color x:Key="DefaultBorderBrushDarkColor">Black</Color>
+
+        <!--Control-specific resources.-->
+        <Color x:Key="HeaderTopColor">#FFC5CBF9</Color>
+        <Color x:Key="DatagridCurrentCellBorderColor">Black</Color>
+        <Color x:Key="SliderTrackDarkColor">#FFC5CBF9</Color>
+
+        <Color x:Key="NavButtonFrameColor">#FF3843C4</Color>
+
+        <LinearGradientBrush x:Key="MenuPopupBrush"
+                     EndPoint="0.5,1"
+                     StartPoint="0.5,0">
+            <GradientStop Color="{DynamicResource ControlLightColor}"
+                Offset="0" />
+            <GradientStop Color="{DynamicResource ControlMediumColor}"
+                Offset="0.5" />
+            <GradientStop Color="{DynamicResource ControlLightColor}"
+                Offset="1" />
+        </LinearGradientBrush>
+
+        <LinearGradientBrush x:Key="ProgressBarIndicatorAnimatedFill"
+                     StartPoint="0,0"
+                     EndPoint="1,0">
+            <LinearGradientBrush.GradientStops>
+                <GradientStopCollection>
+                    <GradientStop Color="#000000FF"
+                    Offset="0" />
+                    <GradientStop Color="#600000FF"
+                    Offset="0.4" />
+                    <GradientStop Color="#600000FF"
+                    Offset="0.6" />
+                    <GradientStop Color="#000000FF"
+                    Offset="1" />
+                </GradientStopCollection>
+            </LinearGradientBrush.GradientStops>
+        </LinearGradientBrush>
+
+        <!-- FocusVisual -->
+
+        <Style x:Key="ButtonFocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Border>
+                            <Rectangle Margin="2"
+                     StrokeThickness="1"
+                     Stroke="#60000000"
+                     StrokeDashArray="1 2" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!-- Button -->
+        <Style TargetType="Button">
+            <Setter Property="SnapsToDevicePixels"
+          Value="true" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+            <Setter Property="FocusVisualStyle"
+          Value="{StaticResource ButtonFocusVisual}" />
+            <Setter Property="MinHeight"
+          Value="23" />
+            <Setter Property="MinWidth"
+          Value="75" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border TextBlock.Foreground="{TemplateBinding Foreground}"
+                x:Name="Border"
+                CornerRadius="2"
+                BorderThickness="1">
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="{DynamicResource BorderLightColor}"
+                                Offset="0.0" />
+                                            <GradientStop Color="{DynamicResource BorderDarkColor}"
+                                Offset="1.0" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+
+                            </Border.BorderBrush>
+                            <Border.Background>
+                                <LinearGradientBrush EndPoint="0.5,1"
+                                 StartPoint="0.5,0">
+                                    <GradientStop Color="{DynamicResource ControlLightColor}"
+                            Offset="0" />
+                                    <GradientStop Color="{DynamicResource ControlMediumColor}"
+                            Offset="1" />
+                                </LinearGradientBrush>
+                            </Border.Background>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualStateGroup.Transitions>
+                                        <VisualTransition GeneratedDuration="0:0:0.5" />
+                                        <VisualTransition GeneratedDuration="0"
+                                  To="Pressed" />
+                                    </VisualStateGroup.Transitions>
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="MouseOver">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource ControlMouseOverColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource ControlPressedColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[0].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource PressedBorderDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource PressedBorderLightColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Panel.Background).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledControlDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames
+                      Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledForegroundColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Border.BorderBrush).
+                      (GradientBrush.GradientStops)[1].(GradientStop.Color)"
+                                                Storyboard.TargetName="Border">
+                                                <EasingColorKeyFrame KeyTime="0"
+                                         Value="{StaticResource DisabledBorderDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter Margin="2"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            RecognizesAccessKey="True" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsDefault"
+                   Value="true">
+
+                                <Setter TargetName="Border"
+                    Property="BorderBrush">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0"
+                                     EndPoint="0,1">
+                                            <GradientBrush.GradientStops>
+                                                <GradientStopCollection>
+                                                    <GradientStop Color="{DynamicResource DefaultBorderBrushLightBrush}" Offset="0.0" />
+                                                    <GradientStop Color="{DynamicResource DefaultBorderBrushDarkColor}" Offset="1.0" />
+                                                </GradientStopCollection>
+                                            </GradientBrush.GradientStops>
+                                        </LinearGradientBrush>
+
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--Style and template for TextBox.-->
+
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="SnapsToDevicePixels"
+          Value="True" />
+            <Setter Property="OverridesDefaultStyle"
+          Value="True" />
+            <Setter Property="KeyboardNavigation.TabNavigation"
+          Value="None" />
+            <Setter Property="FocusVisualStyle"
+          Value="{x:Null}" />
+            <Setter Property="MinWidth"
+          Value="50" />
+            <Setter Property="MinHeight"
+          Value="20" />
+            <Setter Property="AllowDrop"
+          Value="true" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                        <Border Name="Border" CornerRadius="3" Padding="2" BorderThickness="1">
+                            <Border.Background>
+                                <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+                            </Border.Background>
+                            <Border.BorderBrush>
+                                <LinearGradientBrush StartPoint="0,0"
+                                 EndPoint="0,1">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="{DynamicResource BorderLightColor}" Offset="0.0" />
+                                            <GradientStop Color="{DynamicResource BorderDarkColor}"  Offset="1.0" />
+                                        </GradientStopCollection>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Border.BorderBrush>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlLightColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="ReadOnly">
+                                        <Storyboard>
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetName="Border"
+                                                Storyboard.TargetProperty="(Panel.Background).(SolidColorBrush.Color)">
+                                                <EasingColorKeyFrame KeyTime="0" Value="{StaticResource DisabledControlDarkColor}" />
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="MouseOver" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ScrollViewer Margin="0"
+                        x:Name="PART_ContentHost" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+
+    </Window.Resources>
+
+
+    <Grid>
+        <Label Content="Please Note this is only for use with ACE EMU" HorizontalAlignment="Right" Margin="10,10,10,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
+        <Label Content="Death Treasure DID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Tier" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Loot Qualtiy Mod (Luck)" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Unknown\Heritage Chance" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold" ToolTip="Type of Heritage Armor = For retail use 19"/>
+
+        <TextBox x:Name="tbDeathTreasureDID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Profile Number"/>
+        <TextBox x:Name="tbTier" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Loot Tier (1-8)"/>
+        <TextBox x:Name="tbLootQualityMod" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Float Value (ex enter 0.3 for 30%)"/>
+        <TextBox x:Name="tbUnknownChances" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,110,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="1-24. For Retail use 19."/>
+
+        <Label Content="Item Chance" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Min Amount" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Max Amount" HorizontalAlignment="Left" Margin="10,230,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Item Treasure Type" HorizontalAlignment="Left" Margin="10,260,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <TextBox x:Name="tbItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,170,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Percent as a whole number (ex 100% = 100)"/>
+        <TextBox x:Name="tbItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,200,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Minimum Amount of items to be generated"/>
+        <TextBox x:Name="tbItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="150,230,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Maximum Amount of items to be generated"/>
+        <ComboBox x:Name="cbItemTreasureType" SelectionChanged="cbItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="150,260,0,0" VerticalAlignment="Top" Width="100" ToolTip="Select the Treasure Type Chances"/>
+
+        <Label Content="Magic Item Chance" HorizontalAlignment="Left" Margin="10,330,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Min Amount" HorizontalAlignment="Left" Margin="10,360,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Max Amount" HorizontalAlignment="Left" Margin="10,390,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Magic Item Treasure Type" HorizontalAlignment="Left" Margin="10,420,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <TextBox x:Name="tbMagicItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,330,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Percent as a whole number (ex 100% = 100)"/>
+        <TextBox x:Name="tbMagicItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,360,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Minimum Amount of magical items to be generated"/>
+        <TextBox x:Name="tbMagicItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,390,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Maximum Amount of magical items to be generated"/>
+        <ComboBox x:Name="cbMagicItemTreasureType" SelectionChanged="cbMagicItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="180,420,0,0" VerticalAlignment="Top" Width="100" ToolTip="Select the Treasure Type Chances"/>
+
+        <Label Content="Mundane Item Chance" HorizontalAlignment="Left" Margin="10,520,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Min Amount" HorizontalAlignment="Left" Margin="10,550,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Max Amount" HorizontalAlignment="Left" Margin="10,580,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Mundane Item Treasure Type" HorizontalAlignment="Left" Margin="10,610,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Last Modifed:" HorizontalAlignment="Left" Margin="10,700,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+
+        <TextBox x:Name="tbMundaneItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,520,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Percent as a whole number (ex 100% = 100)"/>
+        <TextBox x:Name="tbMundaneItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,550,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Minimum Amount of mundane items to be generated"/>
+        <TextBox x:Name="tbMundaneItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,580,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Maximum Amount of mundane items to be generated"/>
+        <ComboBox x:Name="cbMundaneItemTreasureType" SelectionChanged="cbMundaneItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="200,610,0,0" VerticalAlignment="Top" Width="100" ToolTip="Select the Treasure Type Chances"/>
+
+        <TextBox x:Name="tbLastModifed" HorizontalAlignment="Left" Margin="100,700,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" IsEnabled="False"/>
+
+        <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="350,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileOpen_Click"/>
+        <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="445,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileSave_Click"/>
+        <Button x:Name="btnClearForm" Content="Clear Form" HorizontalAlignment="Left" Margin="540,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnClearForm_Click"/>
+        <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Left" Margin="494,710,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileClose_Click"/>
+        <Button x:Name="btnFormDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="399,710,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnFormDefaults_Click"/>
+
+        <Label Content="Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbItemTreasureChance" HorizontalAlignment="Left" Margin="350,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="130" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
+
+        <Label Content="Magic Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,300,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbMagicItemTreasureChance" HorizontalAlignment="Left" Margin="350,322,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="143" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
+
+        <Label Content="Mundane Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,489,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbMundaneItemTreasureChance" HorizontalAlignment="Left" Margin="350,512,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="130" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
+
+
+    </Grid>
+</Window>
