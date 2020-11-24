@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="LootProfiler" Height="780" Width="650" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFE1E8F5">
+        Title="LootProfiler" Height="780" Width="650" HorizontalAlignment="Center" VerticalAlignment="Center" WindowStartupLocation="CenterOwner" ResizeMode="NoResize" Background="#FFE1E8F5" Icon="/lp_icon.ico">
     <Window.Resources>
         <!--Control colors.-->
         <Color x:Key="WindowColor">#FFE8EDF9</Color>
@@ -310,10 +310,10 @@
         <Label Content="Loot Qualtiy Mod (Luck)" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Unknown\Heritage Chance" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold" ToolTip="Type of Heritage Armor = For retail use 19"/>
 
-        <TextBox x:Name="tbDeathTreasureDID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbDeathTreasureDID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Profile Number"/>
         <TextBox x:Name="tbTier" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,50,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Loot Tier (1-8)"/>
         <TextBox x:Name="tbLootQualityMod" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Float Value (ex enter 0.3 for 30%)"/>
-        <TextBox x:Name="tbUnknownChances" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,110,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
+        <TextBox x:Name="tbUnknownChances" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,110,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="1-24. For Retail use 19."/>
 
         <Label Content="Item Chance" HorizontalAlignment="Left" Margin="10,170,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Item Min Amount" HorizontalAlignment="Left" Margin="10,200,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
