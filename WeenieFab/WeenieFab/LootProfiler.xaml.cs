@@ -52,6 +52,50 @@ namespace WeenieFab
                 SaveDeathTreasureFile(SaveDeathTreasureForm(), sfd.FileName);
             }
         }
+        private void btnClearForm_Click(object sender, RoutedEventArgs e)
+        {
+            tbDeathTreasureDID.Text = "";
+            tbTier.Text = "";
+            tbLootQualityMod.Text = "";
+            tbUnknownChances.Text = "";
+
+            tbItemChance.Text = "";
+            tbItemMinAmount.Text = "";
+            tbItemMaxAmount.Text = "";
+            cbItemTreasureType.SelectedIndex = 0;
+
+            tbMagicItemChance.Text = "";
+            tbMagicItemMinAmount.Text = "";
+            tbMagicItemMaxAmount.Text = "";
+            cbMagicItemTreasureType.SelectedIndex = 0;
+
+            tbMundaneItemChance.Text = "";
+            tbMundaneItemMinAmount.Text = "";
+            tbMundaneItemMaxAmount.Text = "";
+            cbMundaneItemTreasureType.SelectedIndex = 0;
+
+            tbLastModifed.Text = "";
+        }
+        private void btnFormDefaults_Click(object sender, RoutedEventArgs e)
+        {
+            tbLootQualityMod.Text = "0";
+            tbUnknownChances.Text = "19";
+
+            tbItemChance.Text = "100";
+            tbItemMinAmount.Text = "1";
+            tbItemMaxAmount.Text = "2";
+            cbItemTreasureType.SelectedIndex = 7;
+
+            tbMagicItemChance.Text = "100";
+            tbMagicItemMinAmount.Text = "1";
+            tbMagicItemMaxAmount.Text = "2";
+            cbMagicItemTreasureType.SelectedIndex = 7;
+
+            tbMundaneItemChance.Text = "100";
+            tbMundaneItemMinAmount.Text = "1";
+            tbMundaneItemMaxAmount.Text = "2";
+            cbMundaneItemTreasureType.SelectedIndex = 6;
+        }
         private void FillForm(DeathTreasure lootProfile)
         {
             tbDeathTreasureDID.Text = lootProfile.DTdid.ToString();
@@ -700,5 +744,7 @@ namespace WeenieFab
             }
 
         }
+
+
     }
 }

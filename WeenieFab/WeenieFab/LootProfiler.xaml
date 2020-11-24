@@ -307,7 +307,7 @@
         <Label Content="Please Note this is only for use with ACE EMU" HorizontalAlignment="Right" Margin="10,10,10,0" VerticalAlignment="Top" FontWeight="Bold" FontSize="14"/>
         <Label Content="Death Treasure DID" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Tier" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Loot Qualtiy Mod" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Loot Qualtiy Mod (Luck)" HorizontalAlignment="Left" Margin="10,80,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Unknown\Heritage Chance" HorizontalAlignment="Left" Margin="10,110,0,0" VerticalAlignment="Top" FontWeight="Bold" ToolTip="Type of Heritage Armor = For retail use 19"/>
 
         <TextBox x:Name="tbDeathTreasureDID" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,10,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100"/>
@@ -339,19 +339,20 @@
         <Label Content="Mundane Item Min Amount" HorizontalAlignment="Left" Margin="10,550,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Mundane Item Max Amount" HorizontalAlignment="Left" Margin="10,580,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <Label Content="Mundane Item Treasure Type" HorizontalAlignment="Left" Margin="10,610,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
-        <Label Content="Last Modifed:" HorizontalAlignment="Left" Margin="10,670,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label Content="Last Modifed:" HorizontalAlignment="Left" Margin="10,700,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
 
         <TextBox x:Name="tbMundaneItemChance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,520,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Percent as a whole number (ex 100% = 100)"/>
         <TextBox x:Name="tbMundaneItemMinAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,550,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Minimum Amount of mundane items to be generated"/>
         <TextBox x:Name="tbMundaneItemMaxAmount" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="200,580,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" ToolTip="Maximum Amount of mundane items to be generated"/>
         <ComboBox x:Name="cbMundaneItemTreasureType" SelectionChanged="cbMundaneItemTreasureType_SelectionChanged" HorizontalAlignment="Left" Margin="200,610,0,0" VerticalAlignment="Top" Width="100" ToolTip="Select the Treasure Type Chances"/>
 
-        <TextBox x:Name="tbLastModifed" HorizontalAlignment="Left" Margin="100,670,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" IsEnabled="False"/>
+        <TextBox x:Name="tbLastModifed" HorizontalAlignment="Left" Margin="100,700,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" IsEnabled="False"/>
 
         <Button x:Name="btnLootProfileOpen" Content="Open File" HorizontalAlignment="Left" Margin="350,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileOpen_Click"/>
         <Button x:Name="btnLootProfileSave" Content="Save File" HorizontalAlignment="Left" Margin="445,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileSave_Click"/>
-        <Button x:Name="btnClearForm" Content="Clear Form" HorizontalAlignment="Left" Margin="540,671,0,0" VerticalAlignment="Top" Width="85" Height="25"/>
-        <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Center" Margin="0,711,0,0" VerticalAlignment="Top" Width="100" Height="35" Click="btnLootProfileClose_Click"/>
+        <Button x:Name="btnClearForm" Content="Clear Form" HorizontalAlignment="Left" Margin="540,671,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnClearForm_Click"/>
+        <Button x:Name="btnLootProfileClose" Content="Close Window" HorizontalAlignment="Left" Margin="494,710,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnLootProfileClose_Click"/>
+        <Button x:Name="btnFormDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="399,710,0,0" VerticalAlignment="Top" Width="85" Height="25" Click="btnFormDefaults_Click"/>
 
         <Label Content="Item Treasure Type Chances Table" HorizontalAlignment="Left" Margin="350,140,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
         <TextBox x:Name="tbItemTreasureChance" HorizontalAlignment="Left" Margin="350,162,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="250" Height="130" FontFamily="Courier New" FontSize="11" IsEnabled="False"/>
