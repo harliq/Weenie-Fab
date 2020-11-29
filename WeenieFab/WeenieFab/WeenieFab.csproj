@@ -5,6 +5,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
     <Version>0.9.9.1</Version>
+    <ApplicationIcon>WeenieFabAppIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
