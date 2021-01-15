@@ -20,6 +20,7 @@ namespace WeenieFab
             tbDefaultJsonPath.Text = WeenieFabUser.Default.DefaultJsonPath;
             tbDefaultESPath.Text = WeenieFabUser.Default.DefaultESPath;
             chkbAutoLoadEsFiles.IsChecked = WeenieFabUser.Default.AutoLoadESFiles;
+            chkbUseLastPathFileOpenSave.IsChecked = WeenieFabUser.Default.UseFilePaths;
         }
         private void btnSetSqlPath_Click(object sender, RoutedEventArgs e)
         {
@@ -39,6 +40,7 @@ namespace WeenieFab
             Properties.WeenieFabUser.Default.DefaultJsonPath = tbDefaultJsonPath.Text;
             Properties.WeenieFabUser.Default.DefaultESPath = tbDefaultESPath.Text;
             Properties.WeenieFabUser.Default.AutoLoadESFiles = chkbAutoLoadEsFiles.IsChecked.Value;
+            Properties.WeenieFabUser.Default.UseFilePaths = chkbUseLastPathFileOpenSave.IsChecked.Value;
 
             WeenieFabUser.Default.Save();
 

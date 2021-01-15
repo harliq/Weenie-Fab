@@ -25,8 +25,14 @@ namespace WeenieFab
         {
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Open Weenie File";
-            ofd.Filter = "All Weenie Types|*.sql;*.json|SQL files|*.sql|JSON files|*.json";
-            ofd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+            ofd.Filter = "All Weenie Types|*.sql;*.json|SQL files|*.sql|JSON files|*.json";            
+            ofd.RestoreDirectory = true;
+
+            if (WeenieFabUser.Default.UseFilePaths == false)
+            {
+                ofd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+            }
+
             Nullable<bool> result = ofd.ShowDialog();
 
             if (result == true)
@@ -122,7 +128,14 @@ namespace WeenieFab
             sfd.Title = "Save Weenie File";
             sfd.Filter = "SQL files|*.sql";
             sfd.FileName = $"{weenieWCID} {weenieName}.sql";
-            sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+            sfd.RestoreDirectory = true;
+
+            if (WeenieFabUser.Default.UseFilePaths == false)
+            {
+                sfd.InitialDirectory = WeenieFabUser.Default.DefaultSqlPath;
+            }
+
+            
 
             Nullable<bool> result = sfd.ShowDialog();
 
@@ -556,7 +569,14 @@ namespace WeenieFab
             OpenFileDialog ofd = new OpenFileDialog();
             ofd.Title = "Open EmoteScript File";
             ofd.Filter = "ES files|*.es";
-            ofd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+            ofd.RestoreDirectory = true;
+
+            if (WeenieFabUser.Default.UseFilePaths == false)
+            {
+                ofd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+            }
+            
+
             Nullable<bool> result = ofd.ShowDialog();
 
             if (result == true)
@@ -572,7 +592,12 @@ namespace WeenieFab
             sfd.Title = "Save EmoteScript File";
             sfd.Filter = "ES files|*.es";
             sfd.FileName = tbWCID.Text + $".es";
-            sfd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+            sfd.RestoreDirectory = true;
+
+            if (WeenieFabUser.Default.UseFilePaths == false)
+            {
+                sfd.InitialDirectory = WeenieFabUser.Default.DefaultESPath;
+            }
 
             Nullable<bool> result = sfd.ShowDialog();
 
