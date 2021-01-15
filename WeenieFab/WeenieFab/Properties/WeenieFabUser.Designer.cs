@@ -70,7 +70,22 @@ namespace WeenieFab.Properties {
                 this["AutoLoadESFiles"] = value;
             }
         }
-        
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool UseFilePaths
+        {
+            get
+            {
+                return ((bool)(this["UseFilePaths"]));
+            }
+            set
+            {
+                this["UseFilePaths"] = value;
+            }
+        }
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
