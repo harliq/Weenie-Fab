@@ -173,6 +173,7 @@ namespace WeenieFab
             string bookInfoBlob = "";
             string bookPageBlob = "";
             string positionsBlob = "";
+            string generatorBlob = "";
 
             string line;
 
@@ -349,6 +350,15 @@ namespace WeenieFab
                         {
                             emoteBlob += ReadEmoteBlob(line, sr);
                         }
+
+                        else if (line.Contains("INSERT INTO `weenie_properties_generator`"))
+                        {
+                            
+                            //generatorBlob += "INSERT INTO `weenie_properties_generator` (`object_Id`, `probability`, `weenie_Class_Id`, `delay`, `init_Create`, `max_Create`, `when_Create`, `where_Create`, `stack_Size`, `palette_Id`, `shade`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)\r\n";
+                            generatorBlob += ReadEmoteBlob(line, sr);
+                            tbGenerator.Text = generatorBlob;
+                        }
+
                         else if (line.Contains("INSERT INTO `weenie_properties_create_list`"))
                         {
 
@@ -365,6 +375,7 @@ namespace WeenieFab
                             //dgCreateItems.DataContext = createListDataTable;
 
                         }
+
                     }
 
                     string tempES = "";
@@ -500,6 +511,14 @@ namespace WeenieFab
             header = $"INSERT INTO `weenie_properties_book_page_data` (`object_Id`, `page_Id`, `author_Id`, `author_Name`, `author_Account`, `ignore_Author`, `page_Text`)";
             body += TableToSql.ConvertBookPages(bookPagesDataTable, tbWCID.Text, header);
 
+            // Generator
+
+            if (tbGenerator.Text != "")
+            {
+                // header = $"INSERT INTO `weenie_properties_generator` (`object_Id`, `probability`, `weenie_Class_Id`, `delay`, `init_Create`, `max_Create`, `when_Create`, `where_Create`, `stack_Size`, `palette_Id`, `shade`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)";
+                // body += header;
+                body += tbGenerator.Text;
+            }
             File.WriteAllText(filename, body);
 
         }

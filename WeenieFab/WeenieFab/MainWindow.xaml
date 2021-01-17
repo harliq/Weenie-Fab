@@ -2152,6 +2152,7 @@
                 </TabItem>
                 <TabItem Header="Generator">
                     <Grid Background="#FFE1E8F5">
+                        <TextBox x:Name="tbGenerator" HorizontalAlignment="Center" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="10,51,10,10" Width="1150" Height="400" FontFamily="Courier New" FontSize="12" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Auto"/>
 
                     </Grid>
                 </TabItem>
