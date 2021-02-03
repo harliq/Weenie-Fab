@@ -353,6 +353,9 @@ namespace WeenieFab
             rtbEmoteScript.Document.Blocks.Clear();
             rtbBodyParts.Document.Blocks.Clear();
 
+            // Generator Tab
+            tbGenerator.Text = "";
+
             cbWeenieType.SelectedIndex = 1;
             cbInt32Props.SelectedIndex = 1;
             cbInt64Props.SelectedIndex = 1;
