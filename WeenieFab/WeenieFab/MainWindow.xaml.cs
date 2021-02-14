@@ -240,6 +240,15 @@ namespace WeenieFab
             Int32.TryParse(text, out i);
             return i;
         }
+
+        public static long ConvertToLong(string text)
+        {
+            long i = 0;
+            Int64.TryParse(text, out i);
+            return i;
+        }
+
+
         public static uint ConvertToUInteger(string text)
         {
             uint i = 0;

@@ -1198,7 +1198,7 @@ namespace WeenieFab
 
             dr[0] = ConvertToInteger(cbPosition.SelectedIndex.ToString());
 
-            dr[1] = ConvertToInteger(tbCellID.Text);
+            dr[1] = ConvertToLong(tbCellID.Text);
 
             dr[2] = ConvertToFloat(tbOriginX.Text);
             dr[3] = ConvertToFloat(tbOriginY.Text);
@@ -1223,7 +1223,7 @@ namespace WeenieFab
 
             dr[0] = ConvertToInteger(cbPosition.SelectedIndex.ToString());
 
-            dr[1] = ConvertToInteger(tbCellID.Text);
+            dr[1] = ConvertToLong(tbCellID.Text);
 
             dr[2] = ConvertToFloat(tbOriginX.Text);
             dr[3] = ConvertToFloat(tbOriginY.Text);
@@ -1262,7 +1262,10 @@ namespace WeenieFab
             var match = Regex.Match(tbPositionLoc.Text, rgxPattern);
             string tloc = match.Groups[1].ToString().Replace("0x", "");
 
-            int loc = int.Parse(tloc, System.Globalization.NumberStyles.HexNumber);
+            // long loc = int64.Parse(tloc, System.Globalization.NumberStyles.HexNumber);
+
+            long loc = Convert.ToInt64(tloc, 16);
+
 
             tbCellID.Text = loc.ToString();
             tbOriginX.Text = match.Groups[2].ToString();
