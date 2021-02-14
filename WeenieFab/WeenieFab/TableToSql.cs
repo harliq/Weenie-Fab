@@ -455,7 +455,7 @@ namespace WeenieFab
                 foreach (DataRow row in dt.Rows)
                 {
 
-                    int loc = MainWindow.ConvertToInteger(row[1].ToString());
+                    long loc = MainWindow.ConvertToLong(row[1].ToString());
                     string locHex = loc.ToString("X");
 
                     // string toriginX = string.Format("F6", row[2].ToString());

@@ -320,7 +320,7 @@ namespace WeenieFab
             DataColumn positionDescription = new DataColumn("Description");
 
             positionType.DataType = Type.GetType("System.Int32");
-            cellID.DataType = Type.GetType("System.Int32");
+            cellID.DataType = Type.GetType("System.Int64");
 
             xOrigin.DataType = Type.GetType("System.Single");
             yOrigin.DataType = Type.GetType("System.Single");

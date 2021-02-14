@@ -2157,7 +2157,7 @@
                     </Grid>
                 </TabItem>
 
-                <TabItem Header="Positions">
+                <TabItem Header="Positions" HorizontalAlignment="Center" VerticalAlignment="Bottom">
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Position Type" HorizontalAlignment="Left" Margin="92,25,0,0" VerticalAlignment="Top"/>
                         <Label Content="Cell ID" HorizontalAlignment="Left" Margin="290,25,0,0" VerticalAlignment="Top"/>

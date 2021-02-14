@@ -390,7 +390,7 @@ namespace WeenieFab
                 DataRow dr = tempDataTable.NewRow();
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
-                dr[1] = MainWindow.ConvertToInteger(match.Groups[3].ToString());
+                dr[1] = MainWindow.ConvertToLong(match.Groups[3].ToString());
 
                 dr[2] = MainWindow.ConvertToFloat(match.Groups[4].ToString());
                 dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
