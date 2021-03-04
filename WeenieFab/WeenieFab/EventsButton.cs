@@ -1078,6 +1078,9 @@ namespace WeenieFab
         {
 
             string emotescript = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
+            // to fix the new lines issue with Rich Text Boxes
+            emotescript = emotescript.Replace("\n", "\r\n");
+            emotescript = emotescript.Replace("\r\r\n", "\r\n");
             SaveESFile(emotescript);
  
         }
