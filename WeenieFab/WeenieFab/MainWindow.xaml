@@ -1814,8 +1814,8 @@
                         <Label Content="Attributes" HorizontalAlignment="Left" Margin="238,2,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
                         <Label Content="Strength" HorizontalAlignment="Left" Margin="90,30,0,0" VerticalAlignment="Top"/>
                         <Label Content="Endurance" HorizontalAlignment="Left" Margin="90,55,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Quickness" HorizontalAlignment="Left" Margin="90,80,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Coordination" HorizontalAlignment="Left" Margin="90,105,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Quickness" HorizontalAlignment="Left" Margin="90,106,0,0" VerticalAlignment="Top"/>
+                        <Label Content="Coordination" HorizontalAlignment="Left" Margin="90,82,0,0" VerticalAlignment="Top"/>
                         <Label Content="Focus" HorizontalAlignment="Left" Margin="90,130,0,0" VerticalAlignment="Top"/>
                         <Label Content="Self" HorizontalAlignment="Left" Margin="90,155,0,0" VerticalAlignment="Top"/>
                         <Label Content="Health, Stamina, Mana" HorizontalAlignment="Left" Margin="205,350,0,0" VerticalAlignment="Top" FontWeight="Bold"/>
@@ -1832,8 +1832,8 @@
                         <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <TextBox x:Name="tbAttribStrength" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Strength"/>
                         <TextBox x:Name="tbAttribEndurance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Endurance"/>
-                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Quickness"/>
-                        <TextBox x:Name="tbAttribCoordination" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Coordination"/>
+                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Quickness"/>
+                        <TextBox x:Name="tbAttribCoordination" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Coordination"/>
                         <TextBox x:Name="tbAttribFocus" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Focus"/>
                         <TextBox x:Name="tbAttribSelf" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Self (Willpower)"/>
                         <Button x:Name="btnAttribDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,120,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="btnAttribDefaults_Click" ToolTip="Set Basic Defaults"/>
@@ -2077,11 +2077,6 @@
                             </Button.Resources>
                         </Button>
                         <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="White" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
-                            <RichTextBox.Resources>
-                                <Style TargetType="{x:Type Paragraph}">
-                                    <Setter Property="Margin" Value="0"/>
-                                </Style>
-                            </RichTextBox.Resources>
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>

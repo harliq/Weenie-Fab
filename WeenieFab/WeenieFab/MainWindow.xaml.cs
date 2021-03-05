@@ -63,6 +63,21 @@ namespace WeenieFab
 
             btnGenerateBodyTable.Visibility = Visibility.Hidden;
             rtbBodyParts.Visibility = Visibility.Hidden;
+
+            // For getting filename
+            string[] args = Environment.GetCommandLineArgs();
+            string fileToOpen = "";
+
+            for (int i = 1; i <= args.Length -1; i++)
+            {
+                fileToOpen += args[i].ToString() + " ";
+            }
+            // Open File if one is dragged or specified.
+            if (fileToOpen.Contains(".sql"))
+            {
+                OpenSqlFile(fileToOpen);
+            }
+
         }
 
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
