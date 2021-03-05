@@ -2077,6 +2077,11 @@
                             </Button.Resources>
                         </Button>
                         <RichTextBox x:Name="rtbEmoteScript" FontFamily="Courier New" Background="White" VerticalScrollBarVisibility="Auto" FontWeight="Bold" HorizontalAlignment="Left" Margin="10,47,10,10" MinHeight="196" AcceptsTab="True" IsTabStop="False" MinWidth="500">
+                            <RichTextBox.Resources>
+                                <Style TargetType="{x:Type Paragraph}">
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </RichTextBox.Resources>
                             <FlowDocument>
                                 <Paragraph>
                                     <Run Text="RichTextBox"/>
