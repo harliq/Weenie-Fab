@@ -88,6 +88,18 @@ namespace WeenieFab
             }
         }
 
+        public void OpenSqlFile(string filename)
+        {
+            ClearAllDataTables();
+            ClearAllFields();
+            ReadSQLFile(filename);
+            Globals.WeenieFileName = filename;
+            this.Title = "WeenieFab - " + filename;
+            //var dateTime = DateTime.Now;
+            txtBlockFileStatus.Text = "File Not saved ";
+
+        }
+
         public void SaveFile()
         {
             //string weenieName = GetSavedFileName(stringDataTable);
@@ -485,6 +497,11 @@ namespace WeenieFab
 
             // Emotes
             string tempES = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
+            
+            // To fix the issue with Rich Text Boxes
+            tempES = tempES.Replace("\n", "\r\n");
+            tempES = tempES.Replace("\r\r\n", "\r\n");
+
             string[] saES = tempES.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
             int tWCID = ConvertToInteger(tbWCID.Text);
             string finalEmotes = "";
