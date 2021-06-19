@@ -76,7 +76,10 @@ namespace WeenieFab
             if (fileToOpen.Contains(".sql"))
             {
                 OpenSqlFile(fileToOpen);
+                UpdateMinionDamage();
             }
+
+
 
         }
 

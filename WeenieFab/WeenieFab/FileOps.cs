@@ -82,6 +82,9 @@ namespace WeenieFab
                     this.Title = "WeenieFab - " + ofd.FileName;
                     //var dateTime = DateTime.Now;
                     txtBlockFileStatus.Text = "File Not saved ";
+
+                    //For Minoion Script Testing
+                    UpdateMinionDamage();
                 }
                 else
                     MessageBox.Show("File Extension Not Reconized");
@@ -94,9 +97,12 @@ namespace WeenieFab
             ClearAllFields();
             ReadSQLFile(filename);
             Globals.WeenieFileName = filename;
+            Globals.WeenieWCID = tbWCID.Text;
             this.Title = "WeenieFab - " + filename;
             //var dateTime = DateTime.Now;
             txtBlockFileStatus.Text = "File Not saved ";
+
+
 
         }
 
@@ -220,6 +226,7 @@ namespace WeenieFab
                             string pattern = @"VALUES \s*\((\d+),\s*'(.*)',\s*(\d+).*$";
                             var match = Regex.Match(wcidblob, pattern);
                             tbWCID.Text = match.Groups[1].ToString();
+                            Globals.WeenieWCID = match.Groups[1].ToString();
                             tbWeenieName.Text = match.Groups[2].ToString();
                             cbWeenieType.SelectedIndex = ConvertToInteger(match.Groups[3].ToString());
 
