@@ -340,7 +340,8 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    avse = MainWindow.ConvertToInteger(row[4].ToString()) / 2;
+                    avse = MainWindow.ConvertToInteger(row[4].ToString());// / 2;
+                    avsnether = avse;
                     if (counter == 1)
                         sqltext += $" ({wcid},{row[0],3},{row[1],3},{row[2],3},{row[3],5},{row[4],5}," +   // 6 fields
                                    $"{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avse,5},{avsnether,5}," +   // 8 fields
