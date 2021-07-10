@@ -33,7 +33,7 @@ namespace WeenieFab
             foreach (DataRow row in dt.Rows)
             {
                 float damage = (int)row[2];
-                float variance = (float)0.5;
+                // float variance = (float)0.5;
                 int finalDamage = 0;
                 float waspDamagePerSecond = 0;
                 float avgDelay = (float)0.5;
@@ -72,7 +72,7 @@ namespace WeenieFab
                     finalDamage = (int)Math.Round(calcedDamage);
 
                     row[2] = finalDamage;
-                    row[3] = variance;
+                    // row[3] = variance;
                     bodypartsDataTable.AcceptChanges();
                 }
             }
