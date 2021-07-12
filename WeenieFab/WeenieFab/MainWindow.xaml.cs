@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -275,9 +276,17 @@ namespace WeenieFab
         }
         public static float ConvertToFloat(string text)
         {
-            float i = 0f;
-            float.TryParse(text, out i);
-            return i;
+            double i = 0f;
+            try
+            {
+                i = Double.Parse(text, NumberStyles.Float | NumberStyles.AllowExponent | NumberStyles.AllowDecimalPoint);
+            }
+            catch (Exception)
+            {
+                System.Windows.Forms.MessageBox.Show("Value is not a float " + text);
+                //throw;
+            }
+            return (float)i;
         }
         public static decimal ConvertToDecimal(string text)
         {
