@@ -126,7 +126,13 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    string sValue = "'" + row[1] + "'";
+                    string sValue = "";
+                    string sValueCheck = row[1].ToString();
+                    if (sValueCheck.Contains("'"))
+                        sValue = "\"" + row[1] + "\"";
+                    else
+                        sValue = "'" + row[1] + "'";
+
                     if (counter == 1 && counter == rowcount)
                         sqltext += $" ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */;\n";
                     else if (counter == 1)
@@ -321,8 +327,8 @@ namespace WeenieFab
                     counter++;
                 }
             }
-            //if (rowcount > 0)
-            //    sqltext += $"\n";
+            if (rowcount > 0)
+                sqltext += $"\n";
 
             return sqltext;
         }
@@ -501,6 +507,48 @@ namespace WeenieFab
                             sqltext += $"/* @teleloc 0x{locHex} [{originX} {originY} {originZ}] {angleW} {angleX} {angleY} {angleZ} */\n";
                         }
 
+                    }
+                    counter++;
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
+            return sqltext;
+        }
+        public static string ConvertIidTable(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    // Check for Hex
+                    int iidValue = 0;
+                    string checkHex = row[1].ToString();
+                    if (checkHex.Contains("x") || checkHex.Contains("X"))
+                        iidValue = (int)  MainWindow.ConvertToDecimal(checkHex);
+                    else
+                        iidValue = MainWindow.ConvertToInteger(checkHex);
+
+
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],4},{iidValue,11}) /* {row[2]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],4},{iidValue,11}) /* {row[2]} */\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],4},{iidValue,11}) /* {row[2]} */;\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],4},{iidValue,11}) /* {row[2]} */\n";
                     }
                     counter++;
                 }

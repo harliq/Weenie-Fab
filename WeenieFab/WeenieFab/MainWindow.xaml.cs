@@ -61,6 +61,8 @@ namespace WeenieFab
             CreateSpellList();
             GetVersion();
 
+            Globals.FileChanged = false;
+
             btnGenerateBodyTable.Visibility = Visibility.Hidden;
             rtbBodyParts.Visibility = Visibility.Hidden;
 
@@ -79,6 +81,8 @@ namespace WeenieFab
             }
 
         }
+
+
 
         private static bool SearchForDuplicateProps(DataTable tempTable, string searchProp)
         {
@@ -607,6 +611,29 @@ namespace WeenieFab
             }
 
         }
+        public void FileChanged()
+        {
+            Globals.FileChanged = true;
+
+            txtBlockFileStatus.Text = "File has been changed, please save changes.";
+
+        }
+        public void FileChangedCheck()
+        {
+
+            MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            MessageBoxImage icon = MessageBoxImage.Question;
+            MessageBoxResult result = MessageBox.Show("Save current Weenie?", "Possible Unsaved Changes", buttons, icon);
+            if (result == MessageBoxResult.Yes)
+            {
+                SaveFile();
+            }
+            else if (result == MessageBoxResult.No)
+            {
+
+            }
+        }
+
         // Not used currently (button is hidden) but have ideas for this.   Reuse  for importing body tables.
         private void btnGenerateBodyTable_Click(object sender, RoutedEventArgs e)
         {
@@ -617,6 +644,11 @@ namespace WeenieFab
             rtbBodyParts.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(bodyparts)));
         }
 
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            FileChangedCheck();
+
+        }
     }
 
 }

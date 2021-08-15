@@ -16,31 +16,41 @@ namespace WeenieFab
         // ****Toolbar Buttons****
         private void btnNew_Click(object sender, RoutedEventArgs e)
         {
-            MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
-            MessageBoxImage icon = MessageBoxImage.Question;
-            MessageBoxResult result = MessageBox.Show("Save current Weenie?", "Possible Unsaved Changes", buttons, icon);
-            if (result == MessageBoxResult.Yes)
-            {
-                SaveFile();
-                ClearAllDataTables();
-                ClearAllFields();
-                this.Title = "WeenieFab";
-            }
-            else if (result == MessageBoxResult.No)
-            {
-                ClearAllDataTables();
-                ClearAllFields();
-                this.Title = "WeenieFab";
-            }
-            else
-            {
-            }
+            //MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
+            //MessageBoxImage icon = MessageBoxImage.Question;
+            //MessageBoxResult result = MessageBox.Show("Save current Weenie?", "Possible Unsaved Changes", buttons, icon);
+            //if (result == MessageBoxResult.Yes)
+            //{
+            //    SaveFile();
+            //    ClearAllDataTables();
+            //    ClearAllFields();
+            //    this.Title = "WeenieFab";
+            //}
+            //else if (result == MessageBoxResult.No)
+            //{
+            //    ClearAllDataTables();
+            //    ClearAllFields();
+            //    this.Title = "WeenieFab";
+            //}
+            //else
+            //{
+            //}
+
+            FileChangedCheck();
+
+            ClearAllDataTables();
+            ClearAllFields();
+            this.Title = "WeenieFab";
+
 
             txtBlockFileStatus.Text = "New File not saved";
             Globals.WeenieFileName = "";
         }
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
+            if (Globals.FileChanged == true)
+                FileChangedCheck();
+
             OpenFile();
         }
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
@@ -48,11 +58,13 @@ namespace WeenieFab
             ProgressBarAnimation();
             SaveFile();
             ProgressBarClearAnimation();
+            Globals.FileChanged = false;
         }
         private void btnSaveAsSqlFile_Click(object sender, RoutedEventArgs e)
         {          
             SaveFileAs();
             ProgressBarClearAnimation();
+            Globals.FileChanged = false;
         }
         private void btnOptions_Click(object sender, RoutedEventArgs e)
         {
@@ -103,6 +115,7 @@ namespace WeenieFab
                 dgInt32.DataContext = integerDataTable.DefaultView;
                 dgInt32.Items.Refresh();
             }
+            FileChanged();
         }           
         private void btnInt32Remove_Click(object sender, RoutedEventArgs e)
         {
@@ -120,6 +133,7 @@ namespace WeenieFab
                 LogError(ex);
             }
             dgInt32.Items.Refresh();
+            FileChanged();
         }
         private void btnUpdateInt32_Click(object sender, RoutedEventArgs e)
         {
@@ -142,12 +156,15 @@ namespace WeenieFab
 
                 integerDataTable.AcceptChanges();
                 dgInt32.Items.Refresh();
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+
+            FileChanged();
         }
         // Integer 64
         private void btnAddInt64_Click(object sender, RoutedEventArgs e)
@@ -169,6 +186,7 @@ namespace WeenieFab
                 dgInt64.DataContext = integer64DataTable.DefaultView;
                 dgInt64.Items.Refresh();               
             }
+            FileChanged();
         }
         private void btnUpdateInt64_Click(object sender, RoutedEventArgs e)
         {
@@ -200,6 +218,7 @@ namespace WeenieFab
                 LogError(ex);
                 // MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
             }
+            FileChanged();
         }
         private void btnRemoveInt64_Click(object sender, RoutedEventArgs e)
         {
@@ -216,6 +235,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // Boolean
         private void btnAddBool_Click(object sender, RoutedEventArgs e)
@@ -239,6 +259,7 @@ namespace WeenieFab
                 dgBool.Items.Refresh();
 
             }
+            FileChanged();
         }
         private void btnUpdateBool_Click(object sender, RoutedEventArgs e)
         {
@@ -266,6 +287,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveBool_Click(object sender, RoutedEventArgs e)
         {
@@ -282,6 +304,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // Float
         private void btnAddFloat_Click(object sender, RoutedEventArgs e)
@@ -304,6 +327,7 @@ namespace WeenieFab
                 dgFloat.DataContext = floatDataTable.DefaultView;
                 dgFloat.Items.Refresh();
             }
+            FileChanged();
         }
         private void btnUpdateFloat_Click(object sender, RoutedEventArgs e)
         {
@@ -331,6 +355,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveFloat_Click(object sender, RoutedEventArgs e)
         {
@@ -347,6 +372,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
 
         // Strings
@@ -371,6 +397,7 @@ namespace WeenieFab
                 dgString.DataContext = stringDataTable.DefaultView;
                 dgString.Items.Refresh();
             }
+            FileChanged();
         }
         private void btnUpdateString_Click(object sender, RoutedEventArgs e)
         {
@@ -398,6 +425,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveString_Click(object sender, RoutedEventArgs e)
         {
@@ -414,6 +442,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // DiD
         private void btnAddDiD_Click(object sender, RoutedEventArgs e)
@@ -437,6 +466,7 @@ namespace WeenieFab
                 dgDiD.Items.Refresh();
              
             }
+            FileChanged();
         }
         private void btnUpdateDiD_Click(object sender, RoutedEventArgs e)
         {
@@ -464,6 +494,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveDiD_Click(object sender, RoutedEventArgs e)
         {
@@ -480,6 +511,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // Instance ID
         private void btnAddIid_Click(object sender, RoutedEventArgs e)
@@ -490,10 +522,19 @@ namespace WeenieFab
             }
             else
             {
+
+                // Check to see if value is a hex
+                int iidValue = 0;
+                string checkHex = tbiidValue.Text;
+                if (checkHex.Contains("x") || checkHex.Contains("X"))
+                    iidValue = (int)ConvertToDecimal(checkHex);
+                else
+                    iidValue = ConvertToInteger(checkHex);
+
                 string[] description = cbIidProps.Text.Split(" ");
                 DataRow dr = iidDataTable.NewRow();
                 dr[0] = ConvertToInteger(cbIidProps.SelectedIndex.ToString());
-                dr[1] = ConvertToInteger(tbiidValue.Text);
+                dr[1] = iidValue;
                 dr[2] = description[1];
 
                 iidDataTable.Rows.Add(dr);
@@ -502,6 +543,7 @@ namespace WeenieFab
                 dgIid.Items.Refresh();
 
             }
+            FileChanged();
         }
         private void btnUpdateIid_Click(object sender, RoutedEventArgs e)
         {
@@ -516,10 +558,18 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgIid.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = iidDataTable.Rows[currentRowIndex.GetIndex()];
 
+                // Check to see if value is a hex
+                int iidValue = 0;
+                string checkHex = tbiidValue.Text;
+                if (checkHex.Contains("x") || checkHex.Contains("X"))
+                    iidValue = (int)ConvertToDecimal(checkHex);
+                else
+                    iidValue = ConvertToInteger(checkHex);
+
                 string[] description = cbIidProps.Text.Split(" ");
 
                 dr[0] = ConvertToInteger(cbIidProps.SelectedIndex.ToString());
-                dr[1] = ConvertToInteger(tbiidValue.Text);
+                dr[1] = iidValue;
                 dr[2] = description[1];
 
                 iidDataTable.AcceptChanges();
@@ -529,6 +579,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveIid_Click(object sender, RoutedEventArgs e)
         {
@@ -546,6 +597,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
 
         }
         // Spells Tab
@@ -565,6 +617,7 @@ namespace WeenieFab
                 spellDataTable.Rows.Add(dr);
                 dgSpell.Items.Refresh();
             }
+            FileChanged();
         }
         private void btnUpdateSpell_Click(object sender, RoutedEventArgs e)
         {
@@ -591,6 +644,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveSpell_Click(object sender, RoutedEventArgs e)
         {
@@ -607,6 +661,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // Attributes and Skills Tab
         // Attributes
@@ -658,6 +713,7 @@ namespace WeenieFab
 
             dgAttributes.Items.Refresh();
             updateAttribs();
+            FileChanged();
 
         }
         private void btnAttribUpdate_Click(object sender, RoutedEventArgs e)
@@ -709,13 +765,15 @@ namespace WeenieFab
                 attribRow[3] = 0;
 
                 attributeDataTable.Rows.Add(attribRow);
+                
             }
+            FileChanged();
         }
         private void btnAttribClear_Click(object sender, RoutedEventArgs e)
         {
             attributeDataTable.Clear();
             ClearAttributeFields();
-
+            FileChanged();
         }
 
         // Attributes 2 - Health, Stamina, Mana
@@ -756,6 +814,7 @@ namespace WeenieFab
             }
             dgAttributesTwo.Items.Refresh();
             updateAttribs2();
+            FileChanged();
         }
 
         private void btnAttrib2Update_Click(object sender, RoutedEventArgs e)
@@ -793,13 +852,14 @@ namespace WeenieFab
 
                 attribute2DataTable.Rows.Add(attrib2Row);
             }
+            FileChanged();
         }
         private void btnAttrib2Clear_Click(object sender, RoutedEventArgs e)
         {
 
             attribute2DataTable.Clear();
             ClearAttribute2Fields();
-
+            FileChanged();
         }
         // Skills
         private void btnSkillsAdd_Click(object sender, RoutedEventArgs e)
@@ -839,6 +899,7 @@ namespace WeenieFab
                 dgSkills.DataContext = skillsDataTable.DefaultView;
                 dgSkills.Items.Refresh();
             }
+            FileChanged();
         }
 
         private void btnSkillsUpdate_Click(object sender, RoutedEventArgs e)
@@ -882,6 +943,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
 
         }
         private void btnSkillsRemove_Click(object sender, RoutedEventArgs e)
@@ -899,6 +961,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         // Create Items
         private void btnAddCreateItem_Click(object sender, RoutedEventArgs e)
@@ -914,6 +977,7 @@ namespace WeenieFab
             dr[6] = tbCreateItemsDescription.Text;
 
             createListDataTable.Rows.Add(dr);
+            FileChanged();
 
         }
         private void btnUpdateCreateItem_Click(object sender, RoutedEventArgs e)
@@ -940,6 +1004,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveCreateItem_Click(object sender, RoutedEventArgs e)
         {
@@ -956,6 +1021,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
 
         // BodyParts
@@ -996,6 +1062,7 @@ namespace WeenieFab
             
             dgBodyParts.DataContext = bodypartsDataTable.DefaultView;
             dgBodyParts.Items.Refresh();
+            FileChanged();
         }
         private void btnUpdateBodyPart_Click(object sender, RoutedEventArgs e)
         {
@@ -1044,6 +1111,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveBodyPart_Click(object sender, RoutedEventArgs e)
         {
@@ -1060,6 +1128,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnBodyPartHelpWiki_Click(object sender, RoutedEventArgs e)
         {
@@ -1072,7 +1141,7 @@ namespace WeenieFab
             string emotescript = OpenESFile();
             rtbEmoteScript.Document.Blocks.Clear();
             rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(emotescript)));
-            
+            FileChanged();
         }
         private void btnSaveES_Click(object sender, RoutedEventArgs e)
         {
@@ -1100,7 +1169,7 @@ namespace WeenieFab
             else
             {
             }
-
+            FileChanged();
         }
         // Book Tab
         // Book
@@ -1111,6 +1180,7 @@ namespace WeenieFab
             dr[1] = ConvertToInteger(tbMaxChars.Text);
             
             bookInfoDataTable.Rows.Add(dr);
+            FileChanged();
         }
 
         private void btnUpateBook_Click(object sender, RoutedEventArgs e)
@@ -1131,10 +1201,12 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnRemoveBook_Click(object sender, RoutedEventArgs e)
         {
             bookInfoDataTable.Clear();
+            FileChanged();
         }
         // Book Pages
         private void btnAddPage_Click(object sender, RoutedEventArgs e)
@@ -1148,6 +1220,7 @@ namespace WeenieFab
             dr[5] = tbPageText.Text;
 
             bookPagesDataTable.Rows.Add(dr);
+            FileChanged();
         }
 
         private void btnUpdatePage_Click(object sender, RoutedEventArgs e)
@@ -1173,6 +1246,7 @@ namespace WeenieFab
                 MessageBox.Show("The row you selected is blank");
                 LogError(ex);
             }
+            FileChanged();
 
         }
         private void btnRemovePage_Click(object sender, RoutedEventArgs e)
@@ -1190,6 +1264,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
 
         // Positions Tab
@@ -1215,6 +1290,7 @@ namespace WeenieFab
             dr[9] = description[1];         
 
             positionsDataTable.Rows.Add(dr);
+            FileChanged();
         }
         private void btnUpdatePosition_Click(object sender, RoutedEventArgs e)
         {
@@ -1240,6 +1316,7 @@ namespace WeenieFab
             dr[9] = description[1];
 
             positionsDataTable.AcceptChanges();
+            FileChanged();
 
         }
         private void btnRemovePosition_Click(object sender, RoutedEventArgs e)
@@ -1257,6 +1334,7 @@ namespace WeenieFab
                 MessageBox.Show("You can not delete that row!");
                 LogError(ex);
             }
+            FileChanged();
         }
         private void btnUseLoc_Click(object sender, RoutedEventArgs e)
         {
@@ -1277,7 +1355,9 @@ namespace WeenieFab
             tbAngleW.Text = match.Groups[5].ToString();
             tbAngleX.Text = match.Groups[6].ToString();
             tbAngleY.Text = match.Groups[7].ToString();
-            tbAngleZ.Text = match.Groups[8].ToString();           
+            tbAngleZ.Text = match.Groups[8].ToString();
+
+            FileChanged();
         }
 
         // Clear Attrib Fields
@@ -1289,6 +1369,7 @@ namespace WeenieFab
             tbAttribCoordination.Text = "";
             tbAttribFocus.Text = "";
             tbAttribSelf.Text = "";
+            
         }
 
         public void ClearAttribute2Fields()
@@ -1299,6 +1380,7 @@ namespace WeenieFab
             tbStaminaInitLevel.Text = "";
             tbManaCurrentLevel.Text = "";
             tbManaInitLevel.Text = "";
+            
         }
 
         // Converter
