@@ -39,6 +39,46 @@ namespace WeenieFab
             }
             return tempDataTable;
         }
+        public static DataTable DecodeInstanceID(string integerblob, string pattern)
+        {
+            DataTable tempDataTable = new DataTable();
+
+            DataColumn propertyInt = new DataColumn("Property");
+            DataColumn valueInt = new DataColumn("Value");
+            DataColumn descript = new DataColumn("Description");
+
+            propertyInt.DataType = Type.GetType("System.Int32");
+            valueInt.DataType = Type.GetType("System.Int32");
+
+            tempDataTable.Columns.Add(propertyInt);
+            tempDataTable.Columns.Add(valueInt);
+            tempDataTable.Columns.Add(descript);
+
+            foreach (var blobLine in integerblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (blobLine == "" || blobLine == "\r\n")
+                    break;
+
+                var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[4].ToString();
+                DataRow dr = tempDataTable.NewRow();
+
+                // Check for Hex
+                int iidValue = 0;
+                string checkHex = match.Groups[3].ToString();
+                if (checkHex.Contains("x") || checkHex.Contains("X"))
+                    iidValue = (int)MainWindow.ConvertToDecimal(checkHex);
+                else
+                    iidValue = MainWindow.ConvertToInteger(checkHex);
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = iidValue;
+                dr[2] = description.Trim();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
+
         public static DataTable DecodeInt64(string integerblob, string pattern)
         {
             //DataTable tempDataTable = new DataTable();
@@ -158,6 +198,11 @@ namespace WeenieFab
 
             foreach (var blobLine in floatblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
+                if (blobLine.Contains("\""))
+                    pattern = @"\((\d+),\s*(\d+),\s*""(.*)""\)\s*\/\*\s*(.*)\s*\*\/.*.*$"; // For double quotes in strings
+                else
+                    pattern = @"\((\d+),\s*(\d+),\s*'(.*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
+
                 var match = Regex.Match(blobLine, pattern);
                 string description = match.Groups[4].ToString();
 

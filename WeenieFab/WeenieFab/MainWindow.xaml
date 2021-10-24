@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="Weenie Fab" Height="775" Width="1200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/weeniefactoryicon.ico">
-
+        Title="Weenie Fab" Height="775" Width="1200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/weeniefactoryicon.ico" Closing="Window_Closing">
+    
 
     <Window.Resources>
         <!--Control colors.-->

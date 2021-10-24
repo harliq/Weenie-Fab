@@ -277,7 +277,7 @@ namespace WeenieFab
                         else if (line.Contains("INSERT INTO `weenie_properties_i_i_d`"))
                         {
                             iidBlob = ReadBlob(sr);
-                            iidDataTable = DecodeSql.DecodeThreeValuesInt(iidBlob, didPattern);
+                            iidDataTable = DecodeSql.DecodeInstanceID(iidBlob, didPattern);
                             iidDataTable.AcceptChanges();
                             iidDataTable = ResortDataTable(iidDataTable, "Property", "ASC");
                             dgIid.DataContext = iidDataTable;
@@ -465,7 +465,7 @@ namespace WeenieFab
 
             // IiD
             header = $"INSERT INTO `weenie_properties_i_i_d` (`object_Id`, `type`, `value`)";
-            body += TableToSql.ConvertTriValueTable(iidDataTable, tbWCID.Text, header);
+            body += TableToSql.ConvertIidTable(iidDataTable, tbWCID.Text, header);
             
             // Positions
             header = $"INSERT INTO `weenie_properties_position` (`object_Id`, `position_Type`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)";
