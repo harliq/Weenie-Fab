@@ -534,7 +534,7 @@ namespace WeenieFab
                     int iidValue = 0;
                     string checkHex = row[1].ToString();
                     if (checkHex.Contains("x") || checkHex.Contains("X"))
-                        iidValue = (int)  MainWindow.ConvertToDecimal(checkHex);
+                        iidValue = (int)MainWindow.ConvertToDecimal(checkHex);
                     else
                         iidValue = MainWindow.ConvertToInteger(checkHex);
 
