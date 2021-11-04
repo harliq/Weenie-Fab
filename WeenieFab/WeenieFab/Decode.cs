@@ -65,11 +65,29 @@ namespace WeenieFab
 
                 // Check for Hex
                 int iidValue = 0;
-                string checkHex = match.Groups[3].ToString();
-                if (checkHex.Contains("x") || checkHex.Contains("X"))
-                    iidValue = (int)MainWindow.ConvertToDecimal(checkHex);
+                string checkHex = "";
+                if (match.Groups[3].ToString().Contains("0x"))
+                {
+                    checkHex = match.Groups[3].ToString().Replace("0x", "");
+                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                }
+                else if (match.Groups[3].ToString().Contains("0X"))
+                {
+                    checkHex = match.Groups[3].ToString().Replace("0X", "");
+                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                }
                 else
+                {
                     iidValue = MainWindow.ConvertToInteger(checkHex);
+                }
+
+
+                //string checkHex = match.Groups[3].ToString().Replace("0x" || "0X", "");
+
+                //if (checkHex.Contains("x") || checkHex.Contains("X"))                   
+                //    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                //else
+                //    iidValue = MainWindow.ConvertToInteger(checkHex);
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
                 dr[1] = iidValue;

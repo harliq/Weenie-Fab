@@ -286,10 +286,25 @@ namespace WeenieFab
             decimal.TryParse(text, out i);
             return i;
         }
-        public static decimal ConvertHexToDecimal(string text)
+        public static int ConvertHexToDecimal(string hexValue)
         {
-            decimal i = 0;
-            decimal.TryParse(text, out i);
+            //decimal i = 0;
+            //decimal.TryParse(text, out i);
+            //return i;
+            int i = 0;
+            //int i = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
+            Int32.TryParse(hexValue, out i);
+
+            try
+            {
+                i = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
             return i;
         }
         // UI Stuff

@@ -195,7 +195,11 @@ namespace WeenieFab
             var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$"; // Spells also uses same pattern.
             var stringPattern = @"\((\d+),\s*(\d+),\s*'(.*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             // var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ .!?]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
-            var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            // var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            // var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$|\((\d+),\s*(\d+),\s*(-?0[xX][0-9a-fA-F]+)\) \/\*(.*)\*\/*.*$";
+
+            var didPattern = @"\((\d+),\s*(\d+),\s*(-?[a-zA-Z0-9_.-]*)\) \/\*(.*)\*\/*.*$";
+
             var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\) \/\*(.*)\*\/*.*$";
@@ -269,7 +273,7 @@ namespace WeenieFab
                         else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
                         {
                             didBlob = ReadBlob(sr);
-                            didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
+                            didDataTable = DecodeSql.DecodeInstanceID(didBlob, didPattern);
                             didDataTable.AcceptChanges();
                             didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
                             dgDiD.DataContext = didDataTable;
@@ -706,6 +710,47 @@ namespace WeenieFab
 
             txtBlockProgressBar.Text = "";
             pgBarOne.BeginAnimation(ProgressBar.ValueProperty, null);
+
+        }
+        public static bool IsHexProperty(int property)
+        {
+            switch (property)
+            {
+
+                case 43:  //PropertyDataId.AccountHouseId:
+                case 57:  //PropertyDataId.AlternateCurrency:
+                case 56:  //PropertyDataId.AugmentationCreateItem:
+                case 54:  //PropertyDataId.AugmentationEffect:
+                case 58:  //PropertyDataId.BlueSurgeSpell:
+                case 39:  //PropertyDataId.DeathSpell:
+                case 35:  //PropertyDataId.DeathTreasureType:
+                case 42:  //PropertyDataId.HouseId:
+                case 37:  //PropertyDataId.ItemSkillLimit:
+                case 41:  //PropertyDataId.ItemSpecializedOnly:
+                case 47:  //PropertyDataId.LastPortal:
+                case 31:  //PropertyDataId.LinkedPortalOne:
+                case 48:  //PropertyDataId.LinkedPortalTwo:
+                case 61:  //PropertyDataId.OlthoiDeathTreasureType:
+                case 49:  //PropertyDataId.OriginalPortal:
+                case 30:  //PropertyDataId.PhysicsScript:
+                case 55:  //PropertyDataId.ProcSpell:
+                case 60:  //PropertyDataId.RedSurgeSpell:
+                case 44:  //PropertyDataId.RestrictionEffect:
+                case 28:  //PropertyDataId.Spell:
+                case 29:  //PropertyDataId.SpellComponent:
+                case 38:  //PropertyDataId.UseCreateItem:
+                case 23:  //PropertyDataId.UseSound:
+                case 40:  //PropertyDataId.VendorsClassId:
+                case 32:  //PropertyDataId.WieldedTreasureType:
+                case 59:  //PropertyDataId.YellowSurgeSpell:
+
+                case int i when i >= 8001:
+                    return false;
+
+
+                default:
+                    return true;
+            }
 
         }
     }
