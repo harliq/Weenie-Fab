@@ -465,7 +465,7 @@ namespace WeenieFab
 
             // DiD
             header = $"INSERT INTO `weenie_properties_d_i_d` (`object_Id`, `type`, `value`)";
-            body += TableToSql.ConvertTriValueTable(didDataTable, tbWCID.Text, header);
+            body += TableToSql.ConvertDidTable(didDataTable, tbWCID.Text, header);
 
             // IiD
             header = $"INSERT INTO `weenie_properties_i_i_d` (`object_Id`, `type`, `value`)";
@@ -712,47 +712,7 @@ namespace WeenieFab
             pgBarOne.BeginAnimation(ProgressBar.ValueProperty, null);
 
         }
-        public static bool IsHexProperty(int property)
-        {
-            switch (property)
-            {
 
-                case 43:  //PropertyDataId.AccountHouseId:
-                case 57:  //PropertyDataId.AlternateCurrency:
-                case 56:  //PropertyDataId.AugmentationCreateItem:
-                case 54:  //PropertyDataId.AugmentationEffect:
-                case 58:  //PropertyDataId.BlueSurgeSpell:
-                case 39:  //PropertyDataId.DeathSpell:
-                case 35:  //PropertyDataId.DeathTreasureType:
-                case 42:  //PropertyDataId.HouseId:
-                case 37:  //PropertyDataId.ItemSkillLimit:
-                case 41:  //PropertyDataId.ItemSpecializedOnly:
-                case 47:  //PropertyDataId.LastPortal:
-                case 31:  //PropertyDataId.LinkedPortalOne:
-                case 48:  //PropertyDataId.LinkedPortalTwo:
-                case 61:  //PropertyDataId.OlthoiDeathTreasureType:
-                case 49:  //PropertyDataId.OriginalPortal:
-                case 30:  //PropertyDataId.PhysicsScript:
-                case 55:  //PropertyDataId.ProcSpell:
-                case 60:  //PropertyDataId.RedSurgeSpell:
-                case 44:  //PropertyDataId.RestrictionEffect:
-                case 28:  //PropertyDataId.Spell:
-                case 29:  //PropertyDataId.SpellComponent:
-                case 38:  //PropertyDataId.UseCreateItem:
-                case 23:  //PropertyDataId.UseSound:
-                case 40:  //PropertyDataId.VendorsClassId:
-                case 32:  //PropertyDataId.WieldedTreasureType:
-                case 59:  //PropertyDataId.YellowSurgeSpell:
-
-                case int i when i >= 8001:
-                    return false;
-
-
-                default:
-                    return true;
-            }
-
-        }
     }
 
 }

@@ -307,6 +307,16 @@ namespace WeenieFab
 
             return i;
         }
+        public static string ConvertToHex(string value)
+        {
+
+            int i = ConvertToInteger(value);
+            string hexValue = i.ToString("X8");
+
+            return hexValue;
+
+        }
+
         // UI Stuff
         public void ClearAllDataTables()
         {
