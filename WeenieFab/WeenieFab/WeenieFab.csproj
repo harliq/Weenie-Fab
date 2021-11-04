@@ -4,10 +4,10 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.9.9.701</Version>
+    <Version>0.9.9.731</Version>
     <ApplicationIcon>WeenieFabAppIcon.ico</ApplicationIcon>
-    <AssemblyVersion>0.9.9.720</AssemblyVersion>
-    <FileVersion>0.9.9.701</FileVersion>
+    <AssemblyVersion>0.9.9.731</AssemblyVersion>
+    <FileVersion>0.9.9.731</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
