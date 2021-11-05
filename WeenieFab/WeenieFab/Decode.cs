@@ -78,6 +78,7 @@ namespace WeenieFab
                 }
                 else
                 {
+                    checkHex = match.Groups[3].ToString();
                     iidValue = MainWindow.ConvertToInteger(checkHex);
                 }
 
