@@ -590,7 +590,9 @@ namespace WeenieFab
                     else
                     {
                         if (IsHexProperty(propertyValue))
-                        iidValue = "0x" + MainWindow.ConvertToHex(checkHex);
+                            iidValue = "0x" + MainWindow.ConvertToHex(checkHex);
+                        else
+                            iidValue = checkHex;
                     }
 
                     if (counter == 1 && counter == rowcount)
