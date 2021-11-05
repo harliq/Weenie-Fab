@@ -385,11 +385,6 @@ namespace WeenieFab
                             dgCreateItems.DataContext = createListDataTable;
                             dgCreateItems.Items.Refresh();
 
-                            //createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
-                            //createListDataTable.AcceptChanges();
-                            //// createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                            //dgCreateItems.DataContext = createListDataTable;
-
                         }
 
                     }
