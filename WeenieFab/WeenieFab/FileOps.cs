@@ -195,7 +195,11 @@ namespace WeenieFab
             var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$"; // Spells also uses same pattern.
             var stringPattern = @"\((\d+),\s*(\d+),\s*'(.*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             // var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ .!?]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
-            var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            // var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
+            // var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$|\((\d+),\s*(\d+),\s*(-?0[xX][0-9a-fA-F]+)\) \/\*(.*)\*\/*.*$";
+
+            var didPattern = @"\((\d+),\s*(\d+),\s*(-?[a-zA-Z0-9_.-]*)\) \/\*(.*)\*\/*.*$";
+
             var attribPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var attrib2Pattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+)\) \/\*(.*)\*\/*.*$";
             var skillsPattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\) \/\*(.*)\*\/*.*$";
@@ -269,7 +273,7 @@ namespace WeenieFab
                         else if (line.Contains("INSERT INTO `weenie_properties_d_i_d`"))
                         {
                             didBlob = ReadBlob(sr);
-                            didDataTable = DecodeSql.DecodeThreeValuesInt(didBlob, didPattern);
+                            didDataTable = DecodeSql.DecodeInstanceID(didBlob, didPattern);
                             didDataTable.AcceptChanges();
                             didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
                             dgDiD.DataContext = didDataTable;
@@ -381,11 +385,6 @@ namespace WeenieFab
                             dgCreateItems.DataContext = createListDataTable;
                             dgCreateItems.Items.Refresh();
 
-                            //createListDataTable = DecodeSql.DecodeThreeValuesFloat(createListBlob, createListPattern);
-                            //createListDataTable.AcceptChanges();
-                            //// createListDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
-                            //dgCreateItems.DataContext = createListDataTable;
-
                         }
 
                     }
@@ -461,7 +460,7 @@ namespace WeenieFab
 
             // DiD
             header = $"INSERT INTO `weenie_properties_d_i_d` (`object_Id`, `type`, `value`)";
-            body += TableToSql.ConvertTriValueTable(didDataTable, tbWCID.Text, header);
+            body += TableToSql.ConvertDidTable(didDataTable, tbWCID.Text, header);
 
             // IiD
             header = $"INSERT INTO `weenie_properties_i_i_d` (`object_Id`, `type`, `value`)";
@@ -708,6 +707,7 @@ namespace WeenieFab
             pgBarOne.BeginAnimation(ProgressBar.ValueProperty, null);
 
         }
+
     }
 
 }

@@ -65,11 +65,21 @@ namespace WeenieFab
 
                 // Check for Hex
                 int iidValue = 0;
-                string checkHex = match.Groups[3].ToString();
-                if (checkHex.Contains("x") || checkHex.Contains("X"))
-                    iidValue = (int)MainWindow.ConvertToDecimal(checkHex);
+                string checkHex = "";
+                if (match.Groups[3].ToString().Contains("0x"))
+                {
+                    checkHex = match.Groups[3].ToString().Replace("0x", "");
+                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                }
+                else if (match.Groups[3].ToString().Contains("0X"))
+                {
+                    checkHex = match.Groups[3].ToString().Replace("0X", "");
+                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                }
                 else
+                {
                     iidValue = MainWindow.ConvertToInteger(checkHex);
+                }
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
                 dr[1] = iidValue;
@@ -81,18 +91,7 @@ namespace WeenieFab
 
         public static DataTable DecodeInt64(string integerblob, string pattern)
         {
-            //DataTable tempDataTable = new DataTable();
 
-            //DataColumn propertyInt = new DataColumn("Property");
-            //DataColumn valueInt = new DataColumn("Value");
-            //DataColumn descript = new DataColumn("Description");
-
-            //propertyInt.DataType = Type.GetType("System.Int32");
-            //valueInt.DataType = Type.GetType("System.Int32");
-
-            //tempDataTable.Columns.Add(propertyInt);
-            //tempDataTable.Columns.Add(valueInt);
-            //tempDataTable.Columns.Add(descript);
             DataTable tempDataTable = MainWindow.integer64DataTable.Clone();
             tempDataTable.Clear();
 
@@ -146,17 +145,6 @@ namespace WeenieFab
         {
             DataTable tempDataTable = MainWindow.boolDataTable.Clone();
             tempDataTable.Clear();
-            //DataTable tempDataTable = new DataTable();
-
-            //DataColumn propertyInt = new DataColumn("Property");
-            //DataColumn valueBool = new DataColumn("Value");
-            //DataColumn descript = new DataColumn("Description");
-            //propertyInt.DataType = Type.GetType("System.Int32");
-            //valueBool.DataType = Type.GetType("System.Boolean");
-
-            //tempDataTable.Columns.Add(propertyInt);
-            //tempDataTable.Columns.Add(valueBool);
-            //tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in boolblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
@@ -183,18 +171,6 @@ namespace WeenieFab
         {
             DataTable tempDataTable = MainWindow.stringDataTable.Clone();
             tempDataTable.Clear();
-
-            //DataTable tempDataTable = new DataTable();
-
-            //DataColumn propertyInt = new DataColumn("Property");
-            //DataColumn valueString = new DataColumn("Value");
-            //DataColumn descript = new DataColumn("Description");
-            //propertyInt.DataType = Type.GetType("System.Int32");
-            //valueString.DataType = Type.GetType("System.String");
-
-            //tempDataTable.Columns.Add(propertyInt);
-            //tempDataTable.Columns.Add(valueString);
-            //tempDataTable.Columns.Add(descript);
 
             foreach (var blobLine in floatblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
             {
