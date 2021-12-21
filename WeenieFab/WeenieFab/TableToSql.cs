@@ -494,7 +494,7 @@ namespace WeenieFab
                         sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /*{row[9]}*/\n";
                         sqltext += $"/* @teleloc 0x{locHex} [{originX} {originY} {originZ}] {angleW} {angleX} {angleY} {angleZ} */\n";
                     }
-                    else
+                    else //Update
                     {
                         if (counter == rowcount)
                         {
