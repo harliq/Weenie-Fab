@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -662,6 +663,39 @@ namespace WeenieFab
                 LogError(ex);
             }
             FileChanged();
+        }
+        private void btnGenerateProbability_Click(object sender, RoutedEventArgs e)
+        {
+            txtBoxSpellProbabilityDetails.Text = "";
+
+            int counter = 1;
+            int rowcount = spellDataTable.Rows.Count;
+            float tempProb = 0;
+
+            List<SpellProbabilityChances> spellProbList = new List<SpellProbabilityChances>();
+
+            List<float> SpellProb = new List<float>();
+
+            if (rowcount > 0)
+            {
+
+                foreach (DataRow row in spellDataTable.Rows)
+                {
+                    tempProb = ConvertToFloat(row[1].ToString());
+                    SpellProb.Add(ConvertToFloat(row[1].ToString()) - 2);
+
+                    spellProbList.Add(new SpellProbabilityChances(row[2].ToString(), ConvertToFloat(row[1].ToString()) - 2));
+                }
+            }
+            txtBoxSpellProbabilityDetails.Text = SpellbookToIndependent(SpellProb, spellProbList);
+
+        }
+        private void ButtonActualSpellChance_Click(object sender, RoutedEventArgs e)
+        {
+            SpellProbability winSpellChances = new SpellProbability();
+            winSpellChances.Owner = this;
+            winSpellChances.Show();
+
         }
         // Attributes and Skills Tab
         // Attributes
@@ -1405,6 +1439,120 @@ namespace WeenieFab
             tdr[2] = description;
 
             return tdr;
+        }
+
+
+        private string SpellbookToIndependent(List<float> SpellProb, List<SpellProbabilityChances> spellProbabilities)
+        {
+            string spellProbablityInfo = "";
+            //string individualOverallSpellCastingPercentage = "";
+            //float totalPercentChance = 0;
+            //float totalIndependentChance = 0;
+            
+
+            spellProbablityInfo += $"Spellbook probabilities: {string.Join(", ", SpellProb.Select(i => PercentFormat(i)))}\n\n";
+
+            var castChance = GetProbabilityAny(SpellProb);
+
+            spellProbablityInfo += $"Chance for each spell:\n\n";
+
+            for (var i = 0; i < SpellProb.Count; i++)
+            {
+                var prevChanceNone = i > 0 ? GetProbabilityNone(SpellProb.GetRange(0, i)) : 1.0f;
+
+                //spellProbablityInfo += $"Chance of casting spell #{i + 1}: {PercentFormat(SpellProb[i] * prevChanceNone)}\n";
+                spellProbablityInfo += $"{spellProbabilities.ElementAt(i).spell}: {PercentFormat(SpellProb[i] * prevChanceNone)}\n";
+
+            }
+            spellProbablityInfo += $"\nTotal casting chance: {PercentFormat(castChance)}\n";
+
+            return spellProbablityInfo;
+        }
+
+
+
+        private string IndependentToSpellbook(List<float> SpellProb, List<SpellProbability> spellProbabilities)
+        {
+            
+            string spellProbablityInfo = "";
+            string individualOverallSpellCastingPercentage = "";
+            float totalPercentChance = 0;
+            float totalIndependentChance = 0;
+
+
+            spellProbablityInfo = $"Independent probabilities (cannot go above 100% additive): {string.Join(", ", SpellProb.Select(i => PercentFormat(i)))}\n";
+            foreach (var independentChance in SpellProb)
+                totalIndependentChance += independentChance;
+            if(totalIndependentChance > 1)
+                spellProbablityInfo += $"\n*WARNING* Independent Additive Probability is over 100% \nTotal Independent Additive Probability is {PercentFormat(totalIndependentChance)}\n\n";
+            else
+                spellProbablityInfo += $"\nTotal Independent Additive Probability is {PercentFormat(totalIndependentChance)}\n\n";
+
+            var spellbook = new List<float>();
+
+            //for (var i = 0; i < SpellProb.Count; i++)
+            //{
+            //    var prevChanceNone = i > 0 ? GetProbabilityNone(spellbook) : 1.0f;
+
+            //    //spellbook.Add(SpellProb[i] / prevChanceNone);
+            //    spellbook.Add(SpellProb[i] *  prevChanceNone);
+            //}
+
+            for (var i = 0; i < SpellProb.Count; i++)
+            {
+                var prevChanceNone = i > 0 ? GetProbabilityNone(spellbook) : 1.0f;
+
+                //spellbook.Add(SpellProb[i] / prevChanceNone);
+                spellbook.Add(SpellProb[i] * prevChanceNone);
+                //individualOverallSpellCastingPercentage += $"{spellProbabilities.GetType}";
+            }
+
+
+            spellProbablityInfo += $"Spellbook format: {string.Join(", ", spellbook.Select(i => PercentFormat(i)))}\n";
+            
+            foreach (var percent in spellbook)
+                totalPercentChance += percent;
+            spellProbablityInfo += $"\nTotal chance of casting a spell = {PercentFormat(totalPercentChance)}";
+
+            return spellProbablityInfo;
+        }
+
+        /// <summary>
+        /// Returns the probability of none of the events occurring
+        /// from a list of chances
+        /// </summary>
+        public static float GetProbabilityNone(List<float> chances)
+        {
+            var probability = 1.0f;
+
+            foreach (var chance in chances)
+                probability *= 1.0f - chance;
+
+            return probability;
+        }
+
+        /// <summary>
+        /// Returns the probability of any of the events occurring
+        /// from a list of chances
+        /// </summary>
+        public static float GetProbabilityAny(List<float> chances)
+        {
+            return 1.0f - GetProbabilityNone(chances);
+        }
+
+        public static string PercentFormat(float percent)
+        {
+            return $"{Math.Round(percent * 100, 2)}%";
+        }
+        class SpellProbabilityChances
+        {
+            public SpellProbabilityChances(string spellName, float spellProbability)
+            {
+                this.spell = spellName;
+                this.probabiliy = spellProbability;
+            }
+            public string spell { get; set; }
+            public float probabiliy { get; set; }
         }
     }
 }
