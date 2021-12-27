@@ -680,6 +680,17 @@ namespace WeenieFab
             FileChangedCheck();
 
         }
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            // for .NET Core you need to add UseShellExecute = true
+            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
+            Process browser = new Process();
+            browser.StartInfo.UseShellExecute = true;
+            browser.StartInfo.FileName = e.Uri.AbsoluteUri;
+            browser.Start();
+            e.Handled = true;
+        }
+
     }
 
 }

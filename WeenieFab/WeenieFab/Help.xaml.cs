@@ -43,12 +43,21 @@ namespace WeenieFab
         }       
         private void Hyperlink_OnRequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-            var urlPart = ((Hyperlink)sender).NavigateUri;
-            var fullUrl = urlPart.ToString();
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));           
+            // for .NET Core you need to add UseShellExecute = true
+            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
+            Process browser = new Process();
+            browser.StartInfo.UseShellExecute = true;
+            browser.StartInfo.FileName = e.Uri.AbsoluteUri;
+            browser.Start();
+            e.Handled = true;
+
+            //var urlPart = ((Hyperlink)sender).NavigateUri;
+            //var fullUrl = urlPart.ToString();
+            //Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));           
             try
             {
-                Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));
+                browser.Start();
+                //Process.Start(new ProcessStartInfo("cmd", $"/c start {fullUrl}"));
             }
             catch (Exception ex)
             {

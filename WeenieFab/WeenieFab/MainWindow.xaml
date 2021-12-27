@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
         Title="Weenie Fab" Height="775" Width="1200" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" WindowStartupLocation="CenterScreen" Icon="/weeniefactoryicon.ico" Closing="Window_Closing">
-    
+
 
     <Window.Resources>
         <!--Control colors.-->
@@ -1979,6 +1979,12 @@
                 </TabItem>
                 <TabItem Header="SpellBook">
                     <Grid Background="#FFE1E8F5">
+                        <TextBlock HorizontalAlignment="Left" Margin="300,0,20,0" VerticalAlignment="Top">
+                            To see how to use this feature, please see the WeenieFab Wiki:
+                            <Hyperlink NavigateUri="https://github.com/harliq/Weenie-Fab/wiki/Spellbook" RequestNavigate="Hyperlink_RequestNavigate">
+                                WeenieFab Wiki - Spellbook Tab
+                            </Hyperlink>
+                        </TextBlock>
                         <Label Content="Probabilitly (Float)" HorizontalAlignment="Left" Margin="625,85,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="466,85,0,0" VerticalAlignment="Top"/>
                         <Label Content="Spell Description" HorizontalAlignment="Left" Margin="466,135,0,0" VerticalAlignment="Top"/>
@@ -1998,6 +2004,7 @@
                         <Button x:Name="btnAddSpell1" Content="Add " HorizontalAlignment="Left" Margin="466,191,0,0" VerticalAlignment="Top" Width="100" Click="btnAddSpell_Click" ToolTip="Add spell"/>
                         <Button x:Name="btnUpdateSpell1" Content="Update" HorizontalAlignment="Left" Margin="591,191,0,0" VerticalAlignment="Top" Click="btnUpdateSpell_Click" Width="100" RenderTransformOrigin="1.465,0.555" ToolTip="Update selected spell" IsDefault="True"/>
                         <Button x:Name="btnRemoveSpell1" Content="Remove" HorizontalAlignment="Left" Margin="716,191,0,0" VerticalAlignment="Top" Width="100" Click="btnRemoveSpell_Click" ToolTip="Remove selected spell"/>
+                        <Button x:Name="btnGenerateProbability" Content="Generate Probability Details" HorizontalAlignment="Left" Margin="466,242,0,0" VerticalAlignment="Top" Width="163" Click="btnGenerateProbability_Click"/>
                         <DataGrid x:Name="dgSpell" ItemsSource="{Binding}" Margin="85,290,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="275" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="400" VerticalAlignment="Top" ToolTip="Select a spell to edit/change" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False">
                             <DataGrid.Columns>
                                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.5*"/>
@@ -2005,6 +2012,15 @@
                                 <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="6.8*"/>
                             </DataGrid.Columns>
                         </DataGrid>
+                        <TextBox x:Name="txtBoxSpellProbabilityDetails" HorizontalAlignment="Right" Margin="0,85,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="480"/>
+                        <Label Content="Spell Probability Details" HorizontalAlignment="Left" Margin="832,57,0,0" VerticalAlignment="Top" Width="225"/>
+                        <Button x:Name="ButtonActualSpellChance" Content="Change Actual Spell Chance" HorizontalAlignment="Left" Margin="651,242,0,0" VerticalAlignment="Top" Width="164" Click="ButtonActualSpellChance_Click"/>
+                        <TextBlock HorizontalAlignment="Left" Margin="85,0,0,2" VerticalAlignment="Bottom">
+                            For more Info on how Spellbooks work, please see the ACE Wiki:
+                            <Hyperlink NavigateUri="https://github.com/ACEmulator/ACE/wiki/Spell-Books" RequestNavigate="Hyperlink_RequestNavigate">
+                                Ace Wiki - Spellbook Probability
+                            </Hyperlink>
+                        </TextBlock>
                     </Grid>
                 </TabItem>
                 <TabItem Header="CreateItems" Background="#FFE1E8F5">
