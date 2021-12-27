@@ -34,6 +34,7 @@ namespace WeenieFab
             CalculateSpellPercentTable(SpellBook);
             this.Owner = App.Current.MainWindow;
             //return SpellBookProbability;
+            TextBoxSpellBookProb.Visibility = Visibility.Hidden;
         }
 
         private class SpellBookChances

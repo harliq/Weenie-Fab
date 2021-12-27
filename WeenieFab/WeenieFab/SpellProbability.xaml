@@ -283,7 +283,7 @@
         <Label Content="Total Chance of any spell being cast:" HorizontalAlignment="Left" Margin="30,0,0,50" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="14"/>
         <Label x:Name="LabelTotalSpellPercent" Content="00" HorizontalAlignment="Left" Margin="260,0,0,50" VerticalAlignment="Bottom" FontSize="14"/>
         <Button x:Name="ButtonGenerateProbSpellBookTable" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Margin="0,0,110,10" Click="ButtonGenerateProbSpellBookTable_Click" ToolTip="Click to generate probability, and update spell book"/>
-        <TextBox x:Name="TextBoxSpellBookProb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="95" Margin="555,230,0,0"/>
+        <TextBox x:Name="TextBoxSpellBookProb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="95" Margin="555,230,0,0" Visibility="Visible"/>
         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top"/>
         <Label Content="Chance Spell will be cast in %" HorizontalAlignment="Left" Margin="550,95,0,0" VerticalAlignment="Top"/>
         <Label Content="Spell Description" HorizontalAlignment="Left" Margin="550,135,0,0" VerticalAlignment="Top"/>
