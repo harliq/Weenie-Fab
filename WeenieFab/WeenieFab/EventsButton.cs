@@ -62,7 +62,7 @@ namespace WeenieFab
             Globals.FileChanged = false;
         }
         private void btnSaveAsSqlFile_Click(object sender, RoutedEventArgs e)
-        {          
+        {
             SaveFileAs();
             ProgressBarClearAnimation();
             Globals.FileChanged = false;
@@ -117,7 +117,7 @@ namespace WeenieFab
                 dgInt32.Items.Refresh();
             }
             FileChanged();
-        }           
+        }
         private void btnInt32Remove_Click(object sender, RoutedEventArgs e)
         {
             var index = dgInt32.SelectedIndex;
@@ -157,7 +157,7 @@ namespace WeenieFab
 
                 integerDataTable.AcceptChanges();
                 dgInt32.Items.Refresh();
-                
+
             }
             catch (Exception ex)
             {
@@ -185,7 +185,7 @@ namespace WeenieFab
                 integer64DataTable.Rows.Add(dr);
                 integer64DataTable = ResortDataTable(integer64DataTable, "Property", "ASC");
                 dgInt64.DataContext = integer64DataTable.DefaultView;
-                dgInt64.Items.Refresh();               
+                dgInt64.Items.Refresh();
             }
             FileChanged();
         }
@@ -465,7 +465,7 @@ namespace WeenieFab
                 didDataTable = ResortDataTable(didDataTable, "Property", "ASC");
                 dgDiD.DataContext = didDataTable.DefaultView;
                 dgDiD.Items.Refresh();
-             
+
             }
             FileChanged();
         }
@@ -693,13 +693,26 @@ namespace WeenieFab
         private void ButtonActualSpellChance_Click(object sender, RoutedEventArgs e)
         {
             SpellProbability winSpellChances = new SpellProbability(spellDataTable);
-            //winSpellChances.Owner = this;
+            winSpellChances.Owner = this;
             //winSpellChances.Show();
 
-            if(winSpellChances.ShowDialog()==false)
+            if (winSpellChances.ShowDialog() == true)
             {
-                dgSpell.DataContext = winSpellChances.SpellBookProbability;
-                dgSpell.Items.Refresh();
+                if (winSpellChances.SpellBookProbability is null)
+                {
+
+                }
+                else
+                {
+                    spellDataTable = winSpellChances.SpellBookProbability;
+                    spellDataTable.AcceptChanges();
+                    dgSpell.DataContext = spellDataTable;
+                    //dgSpell.DataContext = winSpellChances.SpellBookProbability;
+                    dgSpell.Items.Refresh();
+                }
+            }
+            else
+            {
             }
             //dgSpell.ItemsSource = spellDataTable.DefaultView;
             

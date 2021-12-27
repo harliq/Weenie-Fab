@@ -271,29 +271,29 @@
     </Window.Resources>
 
     <Grid>
-        <Button x:Name="ButtonClose" Content="Close" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Click="ButtonClose_Click"/>
+        <Button x:Name="ButtonClose" Content="Cancel" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Click="ButtonClose_Click" IsCancel="True" ToolTip="Click to cancel and return to previous window"/>
         <DataGrid x:Name="dgSpellProbability" ItemsSource="{Binding}" Margin="30,50,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpellProbability_Selected"  HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="275" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="400" VerticalAlignment="Top" ToolTip="Select a spell to edit/change" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Width="500" Height="275">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.2*"/>
                 <DataGridTextColumn Header="Spell Being Cast %" IsReadOnly="True"  Binding="{Binding Value}" Width="2.8*"/>
-                <DataGridTextColumn Header="Description" IsReadOnly="False"  Binding="{Binding Description}" Width="6.0*"/>
+                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="6.0*"/>
             </DataGrid.Columns>
         </DataGrid>
         <Label Content="Actual Percentage Chance of Each Spell in the Spell Book" HorizontalAlignment="Left" Margin="30,10,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Total Chance of any spell being cast:" HorizontalAlignment="Left" Margin="30,0,0,50" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="14"/>
         <Label x:Name="LabelTotalSpellPercent" Content="00" HorizontalAlignment="Left" Margin="260,0,0,50" VerticalAlignment="Bottom" FontSize="14"/>
-        <Button x:Name="ButtonGenerateProbSpellBookTable" Content="Gen Prob SpellBook" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Margin="0,0,110,10" Click="ButtonGenerateProbSpellBookTable_Click"/>
-        <TextBox x:Name="TextBoxSpellBookProb" HorizontalAlignment="Right" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="210" Height="80" Margin="0,0,10,50"/>
+        <Button x:Name="ButtonGenerateProbSpellBookTable" Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Margin="0,0,110,10" Click="ButtonGenerateProbSpellBookTable_Click" ToolTip="Click to generate probability, and update spell book"/>
+        <TextBox x:Name="TextBoxSpellBookProb" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="95" Margin="555,230,0,0"/>
         <Label Content="Spell ID" HorizontalAlignment="Left" Margin="550,50,0,0" VerticalAlignment="Top"/>
-        <Label Content="Chance Spell will be cast in %" HorizontalAlignment="Left" Margin="550,100,0,0" VerticalAlignment="Top"/>
-        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="550,157,0,0" VerticalAlignment="Top"/>
+        <Label Content="Chance Spell will be cast in %" HorizontalAlignment="Left" Margin="550,95,0,0" VerticalAlignment="Top"/>
+        <Label Content="Spell Description" HorizontalAlignment="Left" Margin="550,135,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="tbSpellId" HorizontalAlignment="Left" Margin="555,75,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" IsEnabled="False"/>
-        <TextBox x:Name="tbSpellPercentValue" HorizontalAlignment="Left" Margin="555,125,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-        <TextBox x:Name="tbSpellDescription" HorizontalAlignment="Left" Margin="555,183,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
-        <Label Content="%" HorizontalAlignment="Left" Margin="605,118,0,0" VerticalAlignment="Top" FontSize="14" Cursor="UpArrow"/>
-        <Button x:Name="ButtonUpdateSpellPercent" Content="Update Spell Percent" HorizontalAlignment="Left" Margin="558,226,0,0" VerticalAlignment="Top" Click="ButtonUpdateSpellPercent_Click"/>
+        <TextBox x:Name="tbSpellPercentValue" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="555,120,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
+        <TextBox x:Name="tbSpellDescription" HorizontalAlignment="Left" Margin="555,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="190" IsEnabled="False"/>
+        <Label Content="%" HorizontalAlignment="Left" Margin="605,115,0,0" VerticalAlignment="Top" FontSize="14" Cursor="UpArrow"/>
+        <Button x:Name="ButtonUpdateSpellPercent" Content="Update Spell Percent" HorizontalAlignment="Left" Margin="555,190,0,0" VerticalAlignment="Top" Click="ButtonUpdateSpellPercent_Click"/>
         <TextBlock HorizontalAlignment="Left" Margin="30,0,0,5" VerticalAlignment="Bottom">
-            To see how to use this feature in WeenieFab, please see the WF Wiki:
+            To see how to use this feature, please see the WeenieFab Wiki:
             <Hyperlink NavigateUri="https://github.com/harliq/Weenie-Fab/wiki/Spellbook" RequestNavigate="Hyperlink_RequestNavigate">
                 WeenieFab Wiki - Spellbook Tab
             </Hyperlink>

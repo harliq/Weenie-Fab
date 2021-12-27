@@ -4,6 +4,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -80,6 +81,7 @@ namespace WeenieFab
 
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
+            this.DialogResult = false;
             this.Close();
         }
         private void ButtonGenerateProbSpellBookTable_Click(object sender, RoutedEventArgs e)
@@ -102,6 +104,8 @@ namespace WeenieFab
             }
             CreateProbabilityTable(SpellBookPercent);
 
+            this.DialogResult = true;
+            this.Close();
         }
         private void CalculateSpellPercentTable(DataTable weenieSpellBook)
         {
@@ -204,7 +208,7 @@ namespace WeenieFab
             var spellbookFinal = new List<float>();
             foreach(var tempProb in spellbook)
             {
-                spellbookFinal.Add((float)Math.Round(tempProb + 2, 3));
+                spellbookFinal.Add((float)Math.Round(tempProb + 2, 2));
             }
 
             return spellbookFinal;
@@ -256,13 +260,11 @@ namespace WeenieFab
             var probabilityList = ConvertSpellPercentToSpellBookProbability(percentList);
             var spellBookList = ConvertDataTableToList(dataTable);
 
-
             DataTable tempDataTable = MainWindow.spellDataTable.Clone();
             tempDataTable.Clear();
 
             for (var i = 0; i < probabilityList.Count; i++)
             {
-                //var prevChanceNone = i > 0 ? GetProbabilityNone(dataTable.GetRange(0, i)) : 1.0f;
                 DataRow dr = tempDataTable.NewRow();
                 float tempProb = probabilityList[i];
 
@@ -271,12 +273,12 @@ namespace WeenieFab
                 dr[2] = spellBookList.ElementAt(i).spellname;
                 tempDataTable.Rows.Add(dr);
             }
-
-            //MainWindow.spellDataTable = tempDataTable;
-            //dgSpell.ItemsSource = spellDataTable.DefaultView;
-            //dgSpell.Items.Refresh();
             SpellBookProbability = tempDataTable;
-
+        }
+        private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("[^0-9.-]+");
+            e.Handled = regex.IsMatch(e.Text);
         }
     }
 }
