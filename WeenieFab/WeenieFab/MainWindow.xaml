@@ -2009,7 +2009,12 @@
                         <TextBox x:Name="txtBoxSpellProbabilityDetails" HorizontalAlignment="Right" Margin="0,85,10,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="340" Height="480"/>
                         <Label Content="Spell Probability Details" HorizontalAlignment="Left" Margin="832,57,0,0" VerticalAlignment="Top" Width="225"/>
                         <Button x:Name="ButtonActualSpellChance" Content="Change Actual Spell Chance" HorizontalAlignment="Left" Margin="651,242,0,0" VerticalAlignment="Top" Width="164" Click="ButtonActualSpellChance_Click"/>
-
+                        <TextBlock HorizontalAlignment="Left" Margin="85,0,0,2" VerticalAlignment="Bottom">
+                            For more Info on how Spellbooks work, please see the ACE Wiki:
+                            <Hyperlink NavigateUri="https://github.com/ACEmulator/ACE/wiki/Spell-Books" RequestNavigate="Hyperlink_RequestNavigate">
+                                Ace Wiki - Spellbook Probability
+                            </Hyperlink>
+                        </TextBlock>
                     </Grid>
                 </TabItem>
                 <TabItem Header="CreateItems" Background="#FFE1E8F5">

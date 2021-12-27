@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -10,6 +11,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace WeenieFab
@@ -21,12 +23,16 @@ namespace WeenieFab
     {
         private DataTable SpellBook;
         private DataTable SpellBookPercent;
+        public DataTable SpellBookProbability;
+
 
         public SpellProbability(DataTable spellbook)
         {
             InitializeComponent();
             SpellBook = spellbook;
             CalculateSpellPercentTable(SpellBook);
+            this.Owner = App.Current.MainWindow;
+            //return SpellBookProbability;
         }
 
         private class SpellBookChances
@@ -42,12 +48,49 @@ namespace WeenieFab
             public float probability { get; set; }
 
         }
+        // Button Events
+        private void ButtonUpdateSpellPercent_Click(object sender, RoutedEventArgs e)
+        {
+            var index = dgSpellProbability.SelectedIndex;
+            if (index < 0)
+            {
+                MessageBox.Show("Please Select a row");
+                return;
+            }
+            try
+            {
+                DataGridRow currentRowIndex = dgSpellProbability.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+                DataRow dr = SpellBookPercent.Rows[currentRowIndex.GetIndex()];
+
+                dr[0] = MainWindow.ConvertToInteger(tbSpellId.Text);
+                dr[1] = MainWindow.ConvertToFloat(tbSpellPercentValue.Text);
+                dr[2] = tbSpellDescription.Text;
+
+                SpellBookPercent.AcceptChanges();
+                dgSpellProbability.Items.Refresh();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("The row you selected is blank");
+                MainWindow.LogError(ex);
+            }
+            CalculateTotalPercentChance(SpellBookPercent, false);
+
+        }
+
         private void ButtonClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
         private void ButtonGenerateProbSpellBookTable_Click(object sender, RoutedEventArgs e)
         {
+            float testChance = CalculateTotalPercentChance(SpellBookPercent, false);
+            if(testChance > 100)
+            {
+                MessageBox.Show("Warning! Total Percent is over 100%! Please fix first!");
+                return;
+            }
+
             var percentList = GetDataTableProbability(SpellBookPercent, false);
             var probabilityList = ConvertSpellPercentToSpellBookProbability(percentList);
             TextBoxSpellBookProb.Text = "";
@@ -57,6 +100,7 @@ namespace WeenieFab
                 
                 TextBoxSpellBookProb.Text += $"{spell}\n";
             }
+            CreateProbabilityTable(SpellBookPercent);
 
         }
         private void CalculateSpellPercentTable(DataTable weenieSpellBook)
@@ -67,6 +111,12 @@ namespace WeenieFab
 
             SpellBookPercent = SpellbookToIndependent(probabilityList, spellBookList);
             dgSpellProbability.DataContext = SpellBookPercent;
+
+            //CalculateTotalPercentChance(weenieSpellBook, true);
+            if (totalChance > 1)
+                LabelTotalSpellPercent.Foreground = Brushes.Red;
+            else
+                LabelTotalSpellPercent.Foreground = Brushes.Green;
             LabelTotalSpellPercent.Content = PercentFormat(totalChance) + "%";
 
         }
@@ -160,6 +210,73 @@ namespace WeenieFab
             return spellbookFinal;
         }
 
+        private void dgSpellProbability_Selected(object sender, RoutedEventArgs e)
+        {
+            var index = dgSpellProbability.SelectedIndex;
+            DataGridRow currentRowIndex = dgSpellProbability.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
+            if (index + 1 > SpellBookPercent.Rows.Count)
+            {
+            }
+            else
+            {
+                DataRow dr = SpellBookPercent.Rows[currentRowIndex.GetIndex()];
+                tbSpellId.Text = dr[0].ToString();
+                tbSpellPercentValue.Text = dr[1].ToString();
+                tbSpellDescription.Text = dr[2].ToString();
+            }
+        }
+        private float CalculateTotalPercentChance(DataTable dataTable, bool removeTwo)
+        {
+            float totalPercentChance = 0;
 
+            foreach (DataRow row in dataTable.Rows)
+            {
+                totalPercentChance += MainWindow.ConvertToFloat(row[1].ToString());
+            }
+            if (totalPercentChance > 100)
+                LabelTotalSpellPercent.Foreground = Brushes.Red;
+            else
+                LabelTotalSpellPercent.Foreground = Brushes.Green;
+            LabelTotalSpellPercent.Content = totalPercentChance + "%";
+            return totalPercentChance;
+        }
+        private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+            // for .NET Core you need to add UseShellExecute = true
+            // see https://docs.microsoft.com/dotnet/api/system.diagnostics.processstartinfo.useshellexecute#property-value
+            Process browser = new Process();
+            browser.StartInfo.UseShellExecute = true;
+            browser.StartInfo.FileName = e.Uri.AbsoluteUri;
+            browser.Start();
+            e.Handled = true;
+        }
+        private void CreateProbabilityTable(DataTable dataTable)
+        {
+            var percentList = GetDataTableProbability(dataTable, false);
+            var probabilityList = ConvertSpellPercentToSpellBookProbability(percentList);
+            var spellBookList = ConvertDataTableToList(dataTable);
+
+
+            DataTable tempDataTable = MainWindow.spellDataTable.Clone();
+            tempDataTable.Clear();
+
+            for (var i = 0; i < probabilityList.Count; i++)
+            {
+                //var prevChanceNone = i > 0 ? GetProbabilityNone(dataTable.GetRange(0, i)) : 1.0f;
+                DataRow dr = tempDataTable.NewRow();
+                float tempProb = probabilityList[i];
+
+                dr[0] = spellBookList.ElementAt(i).spellId;
+                dr[1] = tempProb;
+                dr[2] = spellBookList.ElementAt(i).spellname;
+                tempDataTable.Rows.Add(dr);
+            }
+
+            //MainWindow.spellDataTable = tempDataTable;
+            //dgSpell.ItemsSource = spellDataTable.DefaultView;
+            //dgSpell.Items.Refresh();
+            SpellBookProbability = tempDataTable;
+
+        }
     }
 }

@@ -693,8 +693,16 @@ namespace WeenieFab
         private void ButtonActualSpellChance_Click(object sender, RoutedEventArgs e)
         {
             SpellProbability winSpellChances = new SpellProbability(spellDataTable);
-            winSpellChances.Owner = this;
-            winSpellChances.Show();
+            //winSpellChances.Owner = this;
+            //winSpellChances.Show();
+
+            if(winSpellChances.ShowDialog()==false)
+            {
+                dgSpell.DataContext = winSpellChances.SpellBookProbability;
+                dgSpell.Items.Refresh();
+            }
+            //dgSpell.ItemsSource = spellDataTable.DefaultView;
+            
 
         }
         // Attributes and Skills Tab
