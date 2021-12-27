@@ -668,7 +668,7 @@ namespace WeenieFab
         {
             txtBoxSpellProbabilityDetails.Text = "";
 
-            int counter = 1;
+            //int counter = 1;
             int rowcount = spellDataTable.Rows.Count;
             float tempProb = 0;
 
@@ -692,7 +692,7 @@ namespace WeenieFab
         }
         private void ButtonActualSpellChance_Click(object sender, RoutedEventArgs e)
         {
-            SpellProbability winSpellChances = new SpellProbability();
+            SpellProbability winSpellChances = new SpellProbability(spellDataTable);
             winSpellChances.Owner = this;
             winSpellChances.Show();
 
@@ -1475,7 +1475,7 @@ namespace WeenieFab
         {
             
             string spellProbablityInfo = "";
-            string individualOverallSpellCastingPercentage = "";
+            //string individualOverallSpellCastingPercentage = "";
             float totalPercentChance = 0;
             float totalIndependentChance = 0;
 
@@ -1544,7 +1544,7 @@ namespace WeenieFab
         {
             return $"{Math.Round(percent * 100, 2)}%";
         }
-        class SpellProbabilityChances
+        private class SpellProbabilityChances
         {
             public SpellProbabilityChances(string spellName, float spellProbability)
             {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WeenieFab"
         mc:Ignorable="d"
-        Title="SpellProbability" Height="450" Width="800" Background="#FFE1E8F5" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="Spell Book Percentage Chance" Height="450" Width="800" Background="#FFE1E8F5" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
 
 
     <Window.Resources>
@@ -271,14 +271,17 @@
     </Window.Resources>
 
     <Grid>
-        <Button x:Name="ButtonClose" Content="Close" HorizontalAlignment="Left" Margin="703,401,0,0" VerticalAlignment="Top" Click="ButtonClose_Click"/>
-        <DataGrid x:Name="dgSpellProbability" ItemsSource="{Binding}" Margin="43,90,0,0" AutoGenerateColumns="False" DataGridCell.Selected="dgSpell_RowSelected" HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="275" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="400" VerticalAlignment="Top" ToolTip="Select a spell to edit/change" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Width="506">
+        <Button x:Name="ButtonClose" Content="Close" HorizontalAlignment="Right" Margin="0,0,20,10" VerticalAlignment="Bottom" Click="ButtonClose_Click"/>
+        <DataGrid x:Name="dgSpellProbability" ItemsSource="{Binding}" Margin="43,90,0,0" AutoGenerateColumns="False"  HorizontalGridLinesBrush="#FF767575" HorizontalAlignment="Left" MinHeight="275" MaxWidth="730" GridLinesVisibility="Horizontal" Background="#FFEDFCFF" MaxHeight="400" VerticalAlignment="Top" ToolTip="Select a spell to edit/change" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False" Width="506">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="SpellId" IsReadOnly="True" Binding="{Binding Property}" Width="1.2*"/>
                 <DataGridTextColumn Header="Spell Being Cast %" IsReadOnly="True"  Binding="{Binding Value}" Width="2.8*"/>
                 <DataGridTextColumn Header="Description" IsReadOnly="False"  Binding="{Binding Description}" Width="6.0*"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Label Content="Actual Percentage Chance of Each Spell in the Spell Book" HorizontalAlignment="Left" Margin="43,30,0,0" VerticalAlignment="Top" FontSize="18"/>
+        <Label Content="Total Chance of any spell being cast:" HorizontalAlignment="Left" Margin="43,0,0,20" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="14"/>
+        <Label x:Name="LabelTotalSpellPercent" Content="00" HorizontalAlignment="Left" Margin="281,0,0,20" VerticalAlignment="Bottom" FontSize="14"/>
 
     </Grid>
 </Window>
