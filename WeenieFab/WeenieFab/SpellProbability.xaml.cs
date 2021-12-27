@@ -116,7 +116,6 @@ namespace WeenieFab
             SpellBookPercent = SpellbookToIndependent(probabilityList, spellBookList);
             dgSpellProbability.DataContext = SpellBookPercent;
 
-            //CalculateTotalPercentChance(weenieSpellBook, true);
             if (totalChance > 1)
                 LabelTotalSpellPercent.Foreground = Brushes.Red;
             else

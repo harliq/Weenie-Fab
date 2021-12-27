@@ -694,7 +694,6 @@ namespace WeenieFab
         {
             SpellProbability winSpellChances = new SpellProbability(spellDataTable);
             winSpellChances.Owner = this;
-            //winSpellChances.Show();
 
             if (winSpellChances.ShowDialog() == true)
             {
@@ -707,16 +706,12 @@ namespace WeenieFab
                     spellDataTable = winSpellChances.SpellBookProbability;
                     spellDataTable.AcceptChanges();
                     dgSpell.DataContext = spellDataTable;
-                    //dgSpell.DataContext = winSpellChances.SpellBookProbability;
                     dgSpell.Items.Refresh();
                 }
             }
             else
             {
-            }
-            //dgSpell.ItemsSource = spellDataTable.DefaultView;
-            
-
+            }           
         }
         // Attributes and Skills Tab
         // Attributes
