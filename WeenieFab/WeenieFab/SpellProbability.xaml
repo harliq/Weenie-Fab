@@ -282,6 +282,8 @@
         <Label Content="Actual Percentage Chance of Each Spell in the Spell Book" HorizontalAlignment="Left" Margin="43,30,0,0" VerticalAlignment="Top" FontSize="18"/>
         <Label Content="Total Chance of any spell being cast:" HorizontalAlignment="Left" Margin="43,0,0,20" VerticalAlignment="Bottom" VerticalContentAlignment="Top" FontSize="14"/>
         <Label x:Name="LabelTotalSpellPercent" Content="00" HorizontalAlignment="Left" Margin="281,0,0,20" VerticalAlignment="Bottom" FontSize="14"/>
+        <Button x:Name="ButtonGenerateProbSpellBookTable" Content="Gen Prob SpellBook" HorizontalAlignment="Right" VerticalAlignment="Bottom" IsDefault="True" Margin="0,0,110,10" Click="ButtonGenerateProbSpellBookTable_Click"/>
+        <TextBox x:Name="TextBoxSpellBookProb" HorizontalAlignment="Left" Margin="575,90,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="210" Height="250"/>
 
     </Grid>
 </Window>

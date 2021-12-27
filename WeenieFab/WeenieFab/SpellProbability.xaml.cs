@@ -20,12 +20,13 @@ namespace WeenieFab
     public partial class SpellProbability : Window
     {
         private DataTable SpellBook;
+        private DataTable SpellBookPercent;
 
         public SpellProbability(DataTable spellbook)
         {
             InitializeComponent();
             SpellBook = spellbook;
-            CalculateSpellProbTable(SpellBook);
+            CalculateSpellPercentTable(SpellBook);
         }
 
         private class SpellBookChances
@@ -45,13 +46,27 @@ namespace WeenieFab
         {
             this.Close();
         }
-        private void CalculateSpellProbTable(DataTable weenieSpellBook)
+        private void ButtonGenerateProbSpellBookTable_Click(object sender, RoutedEventArgs e)
+        {
+            var percentList = GetDataTableProbability(SpellBookPercent, false);
+            var probabilityList = ConvertSpellPercentToSpellBookProbability(percentList);
+            TextBoxSpellBookProb.Text = "";
+
+            foreach (var spell in probabilityList)
+            {
+                
+                TextBoxSpellBookProb.Text += $"{spell}\n";
+            }
+
+        }
+        private void CalculateSpellPercentTable(DataTable weenieSpellBook)
         {
             var spellBookList = ConvertDataTableToList(weenieSpellBook);
-            var probabilityList = GetDataTableProbability(weenieSpellBook);
+            var probabilityList = GetDataTableProbability(weenieSpellBook, true);
             var totalChance = GetProbabilityAny(probabilityList);
 
-            dgSpellProbability.DataContext = SpellbookToIndependent(probabilityList, spellBookList);
+            SpellBookPercent = SpellbookToIndependent(probabilityList, spellBookList);
+            dgSpellProbability.DataContext = SpellBookPercent;
             LabelTotalSpellPercent.Content = PercentFormat(totalChance) + "%";
 
         }
@@ -89,7 +104,7 @@ namespace WeenieFab
             }
             return spellProbList;
         }
-        private List<float> GetDataTableProbability(DataTable dataTable)
+        private List<float> GetDataTableProbability(DataTable dataTable, bool subtractTwo)
         {
             List<float> spellProb = new List<float>();
             int rowcount = dataTable.Rows.Count;
@@ -98,7 +113,10 @@ namespace WeenieFab
             foreach (DataRow row in dataTable.Rows)
             {
                 tempProb = MainWindow.ConvertToFloat(row[1].ToString());
-                spellProb.Add(MainWindow.ConvertToFloat(row[1].ToString()) - 2);
+                if(subtractTwo)
+                    spellProb.Add(MainWindow.ConvertToFloat(row[1].ToString()) - 2);
+                else
+                    spellProb.Add(MainWindow.ConvertToFloat(row[1].ToString()));
             }
             return spellProb;
         }
@@ -119,5 +137,29 @@ namespace WeenieFab
         {
             return $"{Math.Round(percent * 100, 2)}";
         }
+        private List<float> ConvertSpellPercentToSpellBookProbability(List<float> percentChances)
+        {
+            var chances = new List<float>();
+
+            foreach(var spellpercentchance in percentChances)
+            {              
+                chances.Add(spellpercentchance / 100);
+            }
+            var spellbook = new List<float>();
+            for (var i = 0; i < chances.Count; i++)
+            {
+                var prevChanceNone = i > 0 ? GetProbabilityNone(spellbook) : 1.0f;               
+                spellbook.Add(chances[i] / prevChanceNone);                
+            }
+            var spellbookFinal = new List<float>();
+            foreach(var tempProb in spellbook)
+            {
+                spellbookFinal.Add((float)Math.Round(tempProb + 2, 3));
+            }
+
+            return spellbookFinal;
+        }
+
+
     }
 }
