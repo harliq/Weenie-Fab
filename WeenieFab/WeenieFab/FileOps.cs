@@ -192,7 +192,8 @@ namespace WeenieFab
             // Regex Patterns
             var intPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             var boolPattern = @"\((\d+),\s*(\d+),\s*(\w+)\s*\)\s*\/\*\s*(.*)\s*\*\/*.*$";
-            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$"; // Spells also uses same pattern.
+            var floatPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+)\)\s*\/\*\s*(.*)\s*\*\/*.*$";
+            var spellbookPattern = @"\((\d+),\s*(\d+),\s*([-+]?[0-9]*\.[0-9]+|[0-9]+).*\)\s*\/\*\s*(.*)\s*\*\/*.*$";
             var stringPattern = @"\((\d+),\s*(\d+),\s*'(.*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             // var stringPattern = @"\((\d+),\s*(\d+),\s*'([a-zA-Z0-9_ .!?]*)'\)\s*\/\*\s*(.*)\s*\*\/.*.*$";
             // var didPattern = @"\((\d+),\s*(\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
@@ -335,7 +336,7 @@ namespace WeenieFab
                         {
                             spellBookBlob = ReadBlob(sr);
 
-                            spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, floatPattern);
+                            spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, spellbookPattern);
                             spellDataTable.AcceptChanges();
                             spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
                             dgSpell.DataContext = spellDataTable;
