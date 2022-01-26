@@ -126,12 +126,13 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    string sValue = "";
-                    string sValueCheck = row[1].ToString();
-                    if (sValueCheck.Contains("'"))
-                        sValue = "\"" + row[1] + "\"";
-                    else
-                        sValue = "'" + row[1] + "'";
+                    //string sValue = "";
+                    //string sValueCheck = row[1].ToString();
+                    //if (sValueCheck.Contains("'"))
+                    //    sValue = "\"" + row[1] + "\"";
+                    //else
+                    //    sValue = "'" + row[1] + "'";
+                    string sValue = "'" + row[1] + "'";
 
                     if (counter == 1 && counter == rowcount)
                         sqltext += $" ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */;\n";

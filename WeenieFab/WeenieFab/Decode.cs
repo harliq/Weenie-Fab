@@ -453,7 +453,9 @@ namespace WeenieFab
             else
             {
                 checkString = checkhex;
-                value = MainWindow.ConvertHexToDecimal(checkString);
+                //value = MainWindow.ConvertHexToDecimal(checkString);
+                int tvalue = MainWindow.ConvertToInteger(checkhex);
+                value = (uint)tvalue;
             }
 
             return value;
