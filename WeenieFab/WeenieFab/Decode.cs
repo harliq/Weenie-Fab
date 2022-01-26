@@ -63,24 +63,26 @@ namespace WeenieFab
                 string description = match.Groups[4].ToString();
                 DataRow dr = tempDataTable.NewRow();
 
-                // Check for Hex
-                int iidValue = 0;
-                string checkHex = "";
-                if (match.Groups[3].ToString().Contains("0x"))
-                {
-                    checkHex = match.Groups[3].ToString().Replace("0x", "");
-                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
-                }
-                else if (match.Groups[3].ToString().Contains("0X"))
-                {
-                    checkHex = match.Groups[3].ToString().Replace("0X", "");
-                    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
-                }
-                else
-                {
-                    checkHex = match.Groups[3].ToString();
-                    iidValue = MainWindow.ConvertToInteger(checkHex);
-                }
+                //// Check for Hex
+                //int iidValue = 0;
+                //string checkHex = "";
+                //if (match.Groups[3].ToString().Contains("0x"))
+                //{
+                //    checkHex = match.Groups[3].ToString().Replace("0x", "");
+                //    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                //}
+                //else if (match.Groups[3].ToString().Contains("0X"))
+                //{
+                //    checkHex = match.Groups[3].ToString().Replace("0X", "");
+                //    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
+                //}
+                //else
+                //{
+                //    checkHex = match.Groups[3].ToString();
+                //    iidValue = MainWindow.ConvertToInteger(checkHex);
+                //}
+
+                long iidValue = CheckHex(match.Groups[3].ToString());
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
                 dr[1] = iidValue;
@@ -410,9 +412,11 @@ namespace WeenieFab
                 var match = Regex.Match(blobLine, pattern);              
 
                 DataRow dr = tempDataTable.NewRow();
+                string cellID = CheckHex(match.Groups[3].ToString()).ToString();
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
-                dr[1] = MainWindow.ConvertToLong(match.Groups[3].ToString());
+                //dr[1] = MainWindow.ConvertToLong(match.Groups[3].ToString());
+                dr[1] = cellID;
 
                 dr[2] = MainWindow.ConvertToFloat(match.Groups[4].ToString());
                 dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
@@ -429,6 +433,30 @@ namespace WeenieFab
             }
             return tempDataTable;
 
+        }
+        public static uint CheckHex(string checkhex)
+        {
+            // Check for Hex
+            uint value = 0;
+            string checkString = "";
+            if (checkhex.Contains("0x"))
+            {
+                checkString = checkhex.Replace("0x", "");
+                //value = MainWindow.ConvertHexToDecimal(checkHex);
+                value = MainWindow.ConvertHexToDecimal(checkString);
+            }
+            else if (checkhex.Contains("0X"))
+            {
+                checkString = checkhex.Replace("0X", "");
+                value = MainWindow.ConvertHexToDecimal(checkString);
+            }
+            else
+            {
+                checkString = checkhex;
+                value = MainWindow.ConvertHexToDecimal(checkString);
+            }
+
+            return value;
         }
     }
 }
