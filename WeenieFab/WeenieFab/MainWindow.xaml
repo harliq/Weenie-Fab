@@ -1771,8 +1771,8 @@
                 </TabItem>
                 <TabItem Header="String">
                     <Grid Background="#FFE1E8F5">
-                        <Label Content="String - **NOTE**  If string contains an apostraphe ('), you need to escape it with a preceding apostraphe.  Ex.  Branith''s Staff" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Strings" HorizontalAlignment="Left" Margin="92,5,0,0" VerticalAlignment="Top"/>
+                        <Label Content="String" HorizontalAlignment="Left" Margin="92,63,0,0" VerticalAlignment="Top"/>
+                        <Label Content="String Property" HorizontalAlignment="Left" Margin="92,5,0,0" VerticalAlignment="Top"/>
                         <ComboBox x:Name="cbStringProps" HorizontalAlignment="Left" Margin="92,36,0,0" VerticalAlignment="Top" ItemsSource="{Binding dInt}" Width="398" ToolTip="Select the Property You wish to Add/Change"/>
                         <TextBox x:Name="tbStringValue" HorizontalAlignment="Left" Margin="92,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="0" ToolTip="String Text" MaxWidth="500" MinWidth="900"/>
                         <Button x:Name="btnAddString" Content="Add " HorizontalAlignment="Left" Margin="95,122,0,0" VerticalAlignment="Top" Width="100" Click="btnAddString_Click" ToolTip="Add property" Padding="0,3,0,0"/>

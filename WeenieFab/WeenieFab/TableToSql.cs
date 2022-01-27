@@ -132,7 +132,21 @@ namespace WeenieFab
                     //    sValue = "\"" + row[1] + "\"";
                     //else
                     //    sValue = "'" + row[1] + "'";
-                    string sValue = "'" + row[1] + "'";
+                    string tempWeenieString = row[1].ToString();
+                    string finalWeenieString = "";
+                    if (tempWeenieString.Contains("''"))
+                        finalWeenieString = tempWeenieString;
+                    else
+                    {
+                        if (tempWeenieString.Contains("'"))
+                        {
+                            finalWeenieString = tempWeenieString.Replace("'", "''");
+                        }
+                        else
+                            finalWeenieString = tempWeenieString;
+                    }
+
+                    string sValue = "'" + finalWeenieString + "'";
 
                     if (counter == 1 && counter == rowcount)
                         sqltext += $" ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */;\n";
