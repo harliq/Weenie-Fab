@@ -237,7 +237,7 @@ namespace WeenieFab
         // Texbox Validations
         private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
@@ -286,18 +286,18 @@ namespace WeenieFab
             decimal.TryParse(text, out i);
             return i;
         }
-        public static int ConvertHexToDecimal(string hexValue)
+        public static uint ConvertHexToDecimal(string hexValue)
         {
             //decimal i = 0;
             //decimal.TryParse(text, out i);
             //return i;
-            int i = 0;
+            uint i = 0;
             //int i = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
-            Int32.TryParse(hexValue, out i);
+            //Int32.TryParse(hexValue, out i);
 
             try
             {
-                i = int.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
+                i = uint.Parse(hexValue, System.Globalization.NumberStyles.HexNumber);
             }
             catch (Exception)
             {

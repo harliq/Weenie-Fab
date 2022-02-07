@@ -126,12 +126,22 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    string sValue = "";
-                    string sValueCheck = row[1].ToString();
-                    if (sValueCheck.Contains("'"))
-                        sValue = "\"" + row[1] + "\"";
+
+                    string tempWeenieString = row[1].ToString();
+                    string finalWeenieString = "";
+                    if (tempWeenieString.Contains("''"))
+                        finalWeenieString = tempWeenieString;
                     else
-                        sValue = "'" + row[1] + "'";
+                    {
+                        if (tempWeenieString.Contains("'"))
+                        {
+                            finalWeenieString = tempWeenieString.Replace("'", "''");
+                        }
+                        else
+                            finalWeenieString = tempWeenieString;
+                    }
+
+                    string sValue = "'" + finalWeenieString + "'";
 
                     if (counter == 1 && counter == rowcount)
                         sqltext += $" ({wcid},{row[0],4}, {sValue,1}) /* {row[2]} */;\n";
@@ -486,7 +496,7 @@ namespace WeenieFab
 
                     if (counter == 1 && counter == rowcount)
                     {
-                        sqltext += $" ({wcid},{row[0],3}, {row[1]}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /*{row[9]}*/\n";
+                        sqltext += $" ({wcid},{row[0],2}, 0x{locHex}, {row[2]}, {row[3]}, {row[4]}, {row[5]}, {row[6]}, {row[7]}, {row[8]}) /*{row[9]}*/\n";
                         sqltext += $"/* @teleloc 0x{locHex} [{originX} {originY} {originZ}] {angleW} {angleX} {angleY} {angleZ} */;\n";
                     }
                     else if (counter == 1)
