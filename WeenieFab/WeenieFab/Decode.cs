@@ -63,25 +63,6 @@ namespace WeenieFab
                 string description = match.Groups[4].ToString();
                 DataRow dr = tempDataTable.NewRow();
 
-                //// Check for Hex
-                //int iidValue = 0;
-                //string checkHex = "";
-                //if (match.Groups[3].ToString().Contains("0x"))
-                //{
-                //    checkHex = match.Groups[3].ToString().Replace("0x", "");
-                //    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
-                //}
-                //else if (match.Groups[3].ToString().Contains("0X"))
-                //{
-                //    checkHex = match.Groups[3].ToString().Replace("0X", "");
-                //    iidValue = MainWindow.ConvertHexToDecimal(checkHex);
-                //}
-                //else
-                //{
-                //    checkHex = match.Groups[3].ToString();
-                //    iidValue = MainWindow.ConvertToInteger(checkHex);
-                //}
-
                 long iidValue = CheckHex(match.Groups[3].ToString());
 
                 dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
