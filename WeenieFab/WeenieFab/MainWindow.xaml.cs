@@ -237,7 +237,7 @@ namespace WeenieFab
         // Texbox Validations
         private void IntValidationTextBox(object sender, TextCompositionEventArgs e)
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9-]+");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void FloatValidationTextBox(object sender, TextCompositionEventArgs e)
