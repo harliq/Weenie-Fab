@@ -244,10 +244,13 @@ namespace WeenieFab
                 sqltext = header + $"\nVALUES";
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (counter == 1)
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],3},{row[1],2},{row[2],2},{row[3],2},{row[4],4},{row[5],2},{row[6],2}) /* {row[7]} */;\n";
+                    else if (counter == 1)
                         sqltext += $" ({wcid},{row[0],3},{row[1],2},{row[2],2},{row[3],2},{row[4],4},{row[5],2},{row[6],2}) /* {row[7]} */\n";
+
                     else
-                    {
+                            {
                         if (counter == rowcount)
                             sqltext += $"     , ({wcid},{row[0],3},{row[1],2},{row[2],2},{row[3],2},{row[4],4},{row[5],2},{row[6],2}) /* {row[7]} */;\n";
                         else
