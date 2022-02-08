@@ -393,12 +393,27 @@ namespace WeenieFab
                     string tempES = "";
                     string[] emotes = emoteBlob.Split(new string[] { System.Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
 
-                    var es = EmoteScriptLib.Converter.sql2es(emotes);
 
-                    foreach (var esline in es)
+                    try
                     {
-                        tempES += esline + "\r\n";
+                        var es = EmoteScriptLib.Converter.sql2es(emotes);
+
+                        foreach (var esline in es)
+                        {
+                            tempES += esline + "\r\n";
+                        }
                     }
+                    catch (Exception ex)
+                    {
+
+                        LogError(ex);
+                        MessageBoxButton buttons = MessageBoxButton.OK;
+                        MessageBoxImage icon = MessageBoxImage.Error;
+                        MessageBoxResult result = MessageBox.Show("ERROR READING EMOTES! Issue with Emote Script.  Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
+                        //MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
+                        //throw;
+                    }
+
                     rtbEmoteScript.Document.Blocks.Clear();
                     rtbEmoteScript.Document.Blocks.Add(new System.Windows.Documents.Paragraph(new Run(tempES)));
 
@@ -506,14 +521,27 @@ namespace WeenieFab
             int tWCID = ConvertToInteger(tbWCID.Text);
             string finalEmotes = "";
 
-                // var eslist = EmoteScriptLib.Converter.es2sql(saES, ConvertToInteger(tbWCID.Text));
-            var eslist = EmoteScriptLib.Converter.es2sql(saES, (uint)tWCID);
+            // var eslist = EmoteScriptLib.Converter.es2sql(saES, ConvertToInteger(tbWCID.Text));
 
-            foreach (var emoteline in eslist)
+            try
             {
-                finalEmotes += emoteline + "\r\n";
+                var eslist = EmoteScriptLib.Converter.es2sql(saES, (uint)tWCID);
+                foreach (var emoteline in eslist)
+                {
+                    finalEmotes += emoteline + "\r\n";
+                }
             }
+            catch (Exception ex)
+            {
 
+                LogError(ex);
+                MessageBoxButton buttons = MessageBoxButton.OK;
+                MessageBoxImage icon = MessageBoxImage.Error;
+                MessageBoxResult result = MessageBox.Show("FILE NOT SAVED WITH E MOTES! Please Copy Emotes and save outside of WF.  Issue with Emote Script.  Please send WeenieFabErrorLog.txt to Harli Quinn on Discord", "ERROR!", buttons, icon);
+                //MessageBox.Show($"{ex.Message} \n {ex.StackTrace} \n {ex.Source} \n {ex.TargetSite}");
+                //throw;
+            }
+            
             body += finalEmotes;
             
             // Create Items
