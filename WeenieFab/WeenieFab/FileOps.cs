@@ -338,7 +338,7 @@ namespace WeenieFab
 
                             spellDataTable = DecodeSql.DecodeThreeValuesFloat(spellBookBlob, spellbookPattern);
                             spellDataTable.AcceptChanges();
-                            spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
+                            //spellDataTable = ResortDataTable(spellDataTable, "Property", "ASC");
                             dgSpell.DataContext = spellDataTable;
 
                         }
