@@ -589,10 +589,30 @@ namespace WeenieFab
             string line;
             string tLine;
 
+            bool isMultiLineComment = false;
             while ((line = sr.ReadLine()) != null) 
             {
+                if (isMultiLineComment)
+                {
+                    if (!line.Contains("*/"))
+                        continue;
+                    else
+                    {
+                        // This line ends the multi-line comment.
+                        isMultiLineComment = false;
+                        continue;
+                    }
+                }
+                else if (line.Contains("/*") && !line.Contains("*/")) // This line starts a multi-line comment.
+                {
+                    if (line.EndsWith(" - "))
+                        line = line.Remove(line.Length - 3); // Just some cleanup so it looks prettier in the description field.
+                    line += " */"; // Close the comment so the code below can interpret it properly.
+                    isMultiLineComment = true;
+                }
+
                 // Making this a little more tolerable of spaces and tabs being on blank line - This should help considerably.
-                
+
                 if (line == "" || line == "\r\n" || line == " " || line == "  " || line == "   " || line == "    " || line == "     " || line == "\t " || line == "\t")
                     return blob;
                 else
