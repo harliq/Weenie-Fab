@@ -47,6 +47,7 @@ namespace WeenieFab
         public static DataTable bookPagesDataTable = new DataTable();
         public static DataTable iidDataTable = new DataTable();
         public static DataTable positionsDataTable = new DataTable();
+        public static DataTable eventDataTable = new DataTable();
 
         public MainWindow()
         {
@@ -336,6 +337,7 @@ namespace WeenieFab
             bookInfoDataTable.Clear();
             bookPagesDataTable.Clear();
             positionsDataTable.Clear();
+            eventDataTable.Clear();
         }
         public void ResetIndexAllDataGrids()
         {

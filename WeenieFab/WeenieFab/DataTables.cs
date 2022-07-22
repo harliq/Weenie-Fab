@@ -375,6 +375,14 @@ namespace WeenieFab
             positionsDataTable.Columns.Add(positionDescription);
 
             dgPosition.DataContext = positionsDataTable;
+
+            // Events
+            DataColumn eventId = new DataColumn("Event");
+            eventId.DataType = Type.GetType("System.Int32");
+            DataColumn descriptionEvent = new DataColumn("Description");
+
+            eventDataTable.Columns.Add(eventId);
+            eventDataTable.Columns.Add(descriptionEvent);
         }
     }
 }

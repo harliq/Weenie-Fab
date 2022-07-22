@@ -186,6 +186,7 @@ namespace WeenieFab
             string bookPageBlob = "";
             string positionsBlob = "";
             string generatorBlob = "";
+            string eventFilterBlob = "";
 
             string line;
 
@@ -211,6 +212,7 @@ namespace WeenieFab
             var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*)).*$";
             //var positionsPatern = @"\((\d+),\s+(\d+),\s+(\d+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\)\s+\/\*(.*)\*\/*.*$";
             var positionsPatern = @"\((\d+),\s+(\d+),\s+(-?[a-zA-Z0-9_.-]*),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\)\s+\/\*(.*)\*\/*.*$";
+            var eventPattern = @"\((\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             try
             {
                 using (StreamReader sr = new StreamReader(filepath))
@@ -388,6 +390,15 @@ namespace WeenieFab
 
                         }
 
+                        else if (line.Contains("INSERT INTO `weenie_properties_event_filter`"))
+                        {
+                            eventFilterBlob = ReadBlob(sr);
+
+                            eventDataTable = DecodeSql.DecodeTwoValuesInt(eventFilterBlob, eventPattern);
+                            eventDataTable.AcceptChanges();
+                            eventDataTable = ResortDataTable(eventDataTable, "Event", "ASC");
+                        }
+
                     }
 
                     string tempES = "";
@@ -543,7 +554,11 @@ namespace WeenieFab
             }
             
             body += finalEmotes;
-            
+
+            // Event
+            header = $"INSERT INTO `weenie_properties_event_filter` (`object_Id`, `event`)";
+            body += TableToSql.ConvertBiValueTable(eventDataTable, tbWCID.Text, header);
+
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
             body += TableToSql.ConvertCreateItemsTable(createListDataTable, tbWCID.Text, header);
@@ -564,8 +579,8 @@ namespace WeenieFab
                 // body += header;
                 body += tbGenerator.Text;
             }
-            File.WriteAllText(filename, body);
 
+            File.WriteAllText(filename, body);
         }
 
         public static string ReadBlob(StreamReader sr)

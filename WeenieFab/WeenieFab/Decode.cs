@@ -8,6 +8,33 @@ namespace WeenieFab
 {
     public static class DecodeSql
     {
+        public static DataTable DecodeTwoValuesInt(string integerblob, string pattern)
+        {
+            DataTable tempDataTable = new DataTable();
+
+            DataColumn eventInt = new DataColumn("Event");
+            DataColumn descript = new DataColumn("Description");
+
+            eventInt.DataType = Type.GetType("System.Int32");
+
+            tempDataTable.Columns.Add(eventInt);
+            tempDataTable.Columns.Add(descript);
+
+            foreach (var blobLine in integerblob.Split(new string[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                if (blobLine == "" || blobLine == "\r\n")
+                    break;
+
+                var match = Regex.Match(blobLine, pattern);
+                string description = match.Groups[3].ToString();
+                DataRow dr = tempDataTable.NewRow();
+
+                dr[0] = MainWindow.ConvertToInteger(match.Groups[2].ToString());
+                dr[1] = description.Trim();
+                tempDataTable.Rows.Add(dr);
+            }
+            return tempDataTable;
+        }
         public static DataTable DecodeThreeValuesInt(string integerblob, string pattern)
         {
             DataTable tempDataTable = new DataTable();

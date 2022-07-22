@@ -8,6 +8,40 @@ namespace WeenieFab
 {
     public class TableToSql
     {
+        public static string ConvertBiValueTable(DataTable dt, string wcid, string header)
+        {
+            string sqltext = "";
+
+            int counter = 1;
+            int rowcount = dt.Rows.Count;
+
+            if (rowcount > 0)
+            {
+                sqltext = header + $"\nVALUES";
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (counter == 1 && counter == rowcount)
+                        sqltext += $" ({wcid},{row[0],11}) /* {row[1]} */;\n";
+                    else if (counter == 1)
+                        sqltext += $" ({wcid},{row[0],11}) /* {row[1]} */\n";
+                    else
+                    {
+                        if (counter == rowcount)
+                            sqltext += $"     , ({wcid},{row[0],11}) /* {row[1]} */;\n";
+                        else
+                            sqltext += $"     , ({wcid},{row[0],11}) /* {row[1]} */\n";
+                    }
+                    counter++;
+                }
+            }
+            if (rowcount > 0)
+                sqltext += $"\n";
+            else
+            {
+            }
+            return sqltext;
+        }
+
         public static string ConvertTriValueTable(DataTable dt, string wcid, string header)
         {
             string sqltext = "";
