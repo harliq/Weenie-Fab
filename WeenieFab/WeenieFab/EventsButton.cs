@@ -1307,7 +1307,7 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = bookPagesDataTable.Rows[currentRowIndex.GetIndex()];
                 dr.Delete();
-                bodypartsDataTable.AcceptChanges();
+                bookInfoDataTable.AcceptChanges();
             }
             catch (Exception ex)
             {
