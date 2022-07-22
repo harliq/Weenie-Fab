@@ -521,6 +521,10 @@ namespace WeenieFab
             header = $"INSERT INTO `weenie_properties_spell_book` (`object_Id`, `spell`, `probability`)";
             body += TableToSql.ConvertSpellTable(spellDataTable, tbWCID.Text, header);
 
+            // Event
+            header = $"INSERT INTO `weenie_properties_event_filter` (`object_Id`, `event`)";
+            body += TableToSql.ConvertBiValueTable(eventDataTable, tbWCID.Text, header);
+
             // Emotes
             string tempES = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
             
@@ -554,10 +558,6 @@ namespace WeenieFab
             }
             
             body += finalEmotes;
-
-            // Event
-            header = $"INSERT INTO `weenie_properties_event_filter` (`object_Id`, `event`)";
-            body += TableToSql.ConvertBiValueTable(eventDataTable, tbWCID.Text, header);
 
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
