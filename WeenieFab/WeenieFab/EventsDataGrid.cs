@@ -412,13 +412,13 @@ namespace WeenieFab
                     case 18:  // Item Appraisal - Item Tink
                         tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + coord) / 2)).ToString();
                         break;
-                    case 19:  // Personal Appraisal - Assess Persoon
+                    case 19:  // Personal Appraisal - Assess Person
                     case 20:  // Deception
-                    case 27:  // Creature Appraisal - Asses Creature
+                    case 27:  // Creature Appraisal - Assess Creature
                     case 35:  // Leadership
                     case 36:  // Loyalty
                     case 40:  // Salvaging
-                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text)).ToString();
                         break;
                     case 21:  // Healing
                     case 23:  // Lockpick
