@@ -223,24 +223,34 @@ namespace WeenieFab
 
                 tbBodyPartDamageValue.Text = dr[2].ToString();
                 tbBodyPartDamageVariance.Text = dr[3].ToString();
+
                 tbBodyPartArmorLevel.Text = dr[4].ToString();
-                tbBodyPartBase_Height.Text = dr[5].ToString();
+                tbBodyPartArmorLevelSlash.Text = dr[5].ToString();
+                tbBodyPartArmorLevelPierce.Text = dr[6].ToString();
+                tbBodyPartArmorLevelBludgeon.Text = dr[7].ToString();
+                tbBodyPartArmorLevelCold.Text = dr[8].ToString();
+                tbBodyPartArmorLevelFire.Text = dr[9].ToString();
+                tbBodyPartArmorLevelAcid.Text = dr[10].ToString();
+                tbBodyPartArmorLevelElectric.Text = dr[11].ToString();
+                tbBodyPartArmorLevelNether.Text = dr[12].ToString();
 
-                tbBodyPartQuadHighLF.Text = dr[6].ToString();
-                tbBodyPartQuadMiddleLF.Text = dr[7].ToString();
-                tbBodyPartQuadLowLF.Text = dr[8].ToString();
+                tbBodyPartBase_Height.Text = dr[13].ToString();
 
-                tbBodyPartQuadHighRF.Text = dr[9].ToString();
-                tbBodyPartQuadMiddleRF.Text = dr[10].ToString();
-                tbBodyPartQuadLowRF.Text = dr[11].ToString();
+                tbBodyPartQuadHighLF.Text = dr[14].ToString();
+                tbBodyPartQuadMiddleLF.Text = dr[15].ToString();
+                tbBodyPartQuadLowLF.Text = dr[16].ToString();
 
-                tbBodyPartQuadHighLB.Text = dr[12].ToString();
-                tbBodyPartQuadMiddleLB.Text = dr[13].ToString();
-                tbBodyPartQuadLowLB.Text = dr[14].ToString();
+                tbBodyPartQuadHighRF.Text = dr[17].ToString();
+                tbBodyPartQuadMiddleRF.Text = dr[18].ToString();
+                tbBodyPartQuadLowRF.Text = dr[19].ToString();
 
-                tbBodyPartQuadHighRB.Text = dr[15].ToString();
-                tbBodyPartQuadMiddleRB.Text = dr[16].ToString();
-                tbBodyPartQuadLowRB.Text = dr[17].ToString();
+                tbBodyPartQuadHighLB.Text = dr[20].ToString();
+                tbBodyPartQuadMiddleLB.Text = dr[21].ToString();
+                tbBodyPartQuadLowLB.Text = dr[22].ToString();
+
+                tbBodyPartQuadHighRB.Text = dr[23].ToString();
+                tbBodyPartQuadMiddleRB.Text = dr[24].ToString();
+                tbBodyPartQuadLowRB.Text = dr[25].ToString();
             }
         }
         // Books

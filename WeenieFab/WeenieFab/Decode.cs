@@ -300,28 +300,36 @@ namespace WeenieFab
                 dr[3] = MainWindow.ConvertToFloat(match.Groups[5].ToString());
 
                 dr[4] = MainWindow.ConvertToInteger(match.Groups[6].ToString());
+                dr[5] = MainWindow.ConvertToInteger(match.Groups[7].ToString());
+                dr[6] = MainWindow.ConvertToInteger(match.Groups[8].ToString());
+                dr[7] = MainWindow.ConvertToInteger(match.Groups[9].ToString());
+                dr[8] = MainWindow.ConvertToInteger(match.Groups[10].ToString());
+                dr[9] = MainWindow.ConvertToInteger(match.Groups[11].ToString());
+                dr[10] = MainWindow.ConvertToInteger(match.Groups[12].ToString());
+                dr[11] = MainWindow.ConvertToInteger(match.Groups[13].ToString());
+                dr[12] = MainWindow.ConvertToInteger(match.Groups[14].ToString());
 
-                dr[5] = MainWindow.ConvertToInteger(match.Groups[15].ToString());
+                dr[13] = MainWindow.ConvertToInteger(match.Groups[15].ToString());
 
                 // Start Float Quads
 
-                dr[6] = MainWindow.ConvertToFloat(match.Groups[16].ToString());
-                dr[7] = MainWindow.ConvertToFloat(match.Groups[17].ToString());
-                dr[8] = MainWindow.ConvertToFloat(match.Groups[18].ToString());
+                dr[14] = MainWindow.ConvertToFloat(match.Groups[16].ToString());
+                dr[15] = MainWindow.ConvertToFloat(match.Groups[17].ToString());
+                dr[16] = MainWindow.ConvertToFloat(match.Groups[18].ToString());
 
-                dr[9] = MainWindow.ConvertToFloat(match.Groups[19].ToString());
-                dr[10] = MainWindow.ConvertToFloat(match.Groups[20].ToString());
-                dr[11] = MainWindow.ConvertToFloat(match.Groups[21].ToString());
+                dr[17] = MainWindow.ConvertToFloat(match.Groups[19].ToString());
+                dr[18] = MainWindow.ConvertToFloat(match.Groups[20].ToString());
+                dr[19] = MainWindow.ConvertToFloat(match.Groups[21].ToString());
 
-                dr[12] = MainWindow.ConvertToFloat(match.Groups[22].ToString());
-                dr[13] = MainWindow.ConvertToFloat(match.Groups[23].ToString());
-                dr[14] = MainWindow.ConvertToFloat(match.Groups[24].ToString());
+                dr[20] = MainWindow.ConvertToFloat(match.Groups[22].ToString());
+                dr[21] = MainWindow.ConvertToFloat(match.Groups[23].ToString());
+                dr[22] = MainWindow.ConvertToFloat(match.Groups[24].ToString());
 
-                dr[15] = MainWindow.ConvertToFloat(match.Groups[25].ToString());
-                dr[16] = MainWindow.ConvertToFloat(match.Groups[26].ToString());
-                dr[17] = MainWindow.ConvertToFloat(match.Groups[27].ToString());
+                dr[23] = MainWindow.ConvertToFloat(match.Groups[25].ToString());
+                dr[24] = MainWindow.ConvertToFloat(match.Groups[26].ToString());
+                dr[25] = MainWindow.ConvertToFloat(match.Groups[27].ToString());
 
-                dr[18] = description.Trim();
+                dr[26] = description.Trim();
 
                 tempDataTable.Rows.Add(dr);
             }

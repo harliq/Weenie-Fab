@@ -364,7 +364,17 @@ namespace WeenieFab
 
             tbBodyPartDamageValue.Text = "";
             tbBodyPartDamageVariance.Text = "";
+            
             tbBodyPartArmorLevel.Text = "";
+            tbBodyPartArmorLevelSlash.Text = "";
+            tbBodyPartArmorLevelPierce.Text = "";
+            tbBodyPartArmorLevelBludgeon.Text = "";
+            tbBodyPartArmorLevelCold.Text = "";
+            tbBodyPartArmorLevelFire.Text = "";
+            tbBodyPartArmorLevelAcid.Text = "";
+            tbBodyPartArmorLevelElectric.Text = "";
+            tbBodyPartArmorLevelNether.Text = "";
+
             tbBodyPartBase_Height.Text = "";
 
             tbBodyPartQuadHighLF.Text = "";
