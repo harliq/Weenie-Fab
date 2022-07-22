@@ -223,24 +223,34 @@ namespace WeenieFab
 
                 tbBodyPartDamageValue.Text = dr[2].ToString();
                 tbBodyPartDamageVariance.Text = dr[3].ToString();
+
                 tbBodyPartArmorLevel.Text = dr[4].ToString();
-                tbBodyPartBase_Height.Text = dr[5].ToString();
+                tbBodyPartArmorLevelSlash.Text = dr[5].ToString();
+                tbBodyPartArmorLevelPierce.Text = dr[6].ToString();
+                tbBodyPartArmorLevelBludgeon.Text = dr[7].ToString();
+                tbBodyPartArmorLevelCold.Text = dr[8].ToString();
+                tbBodyPartArmorLevelFire.Text = dr[9].ToString();
+                tbBodyPartArmorLevelAcid.Text = dr[10].ToString();
+                tbBodyPartArmorLevelElectric.Text = dr[11].ToString();
+                tbBodyPartArmorLevelNether.Text = dr[12].ToString();
 
-                tbBodyPartQuadHighLF.Text = dr[6].ToString();
-                tbBodyPartQuadMiddleLF.Text = dr[7].ToString();
-                tbBodyPartQuadLowLF.Text = dr[8].ToString();
+                tbBodyPartBase_Height.Text = dr[13].ToString();
 
-                tbBodyPartQuadHighRF.Text = dr[9].ToString();
-                tbBodyPartQuadMiddleRF.Text = dr[10].ToString();
-                tbBodyPartQuadLowRF.Text = dr[11].ToString();
+                tbBodyPartQuadHighLF.Text = dr[14].ToString();
+                tbBodyPartQuadMiddleLF.Text = dr[15].ToString();
+                tbBodyPartQuadLowLF.Text = dr[16].ToString();
 
-                tbBodyPartQuadHighLB.Text = dr[12].ToString();
-                tbBodyPartQuadMiddleLB.Text = dr[13].ToString();
-                tbBodyPartQuadLowLB.Text = dr[14].ToString();
+                tbBodyPartQuadHighRF.Text = dr[17].ToString();
+                tbBodyPartQuadMiddleRF.Text = dr[18].ToString();
+                tbBodyPartQuadLowRF.Text = dr[19].ToString();
 
-                tbBodyPartQuadHighRB.Text = dr[15].ToString();
-                tbBodyPartQuadMiddleRB.Text = dr[16].ToString();
-                tbBodyPartQuadLowRB.Text = dr[17].ToString();
+                tbBodyPartQuadHighLB.Text = dr[20].ToString();
+                tbBodyPartQuadMiddleLB.Text = dr[21].ToString();
+                tbBodyPartQuadLowLB.Text = dr[22].ToString();
+
+                tbBodyPartQuadHighRB.Text = dr[23].ToString();
+                tbBodyPartQuadMiddleRB.Text = dr[24].ToString();
+                tbBodyPartQuadLowRB.Text = dr[25].ToString();
             }
         }
         // Books
@@ -402,13 +412,13 @@ namespace WeenieFab
                     case 18:  // Item Appraisal - Item Tink
                         tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((focus + coord) / 2)).ToString();
                         break;
-                    case 19:  // Personal Appraisal - Assess Persoon
+                    case 19:  // Personal Appraisal - Assess Person
                     case 20:  // Deception
-                    case 27:  // Creature Appraisal - Asses Creature
+                    case 27:  // Creature Appraisal - Assess Creature
                     case 35:  // Leadership
                     case 36:  // Loyalty
                     case 40:  // Salvaging
-                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text)).ToString();
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text)).ToString();
                         break;
                     case 21:  // Healing
                     case 23:  // Lockpick
@@ -458,19 +468,25 @@ namespace WeenieFab
                     case 54:  // Summoning
                         tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((endur + self) / 3)).ToString();
                         break;
+                    case 1: // Axe
+                    case 5: // Mace
+                    case 9: // Spear
+                    case 10: // Staff
+                    case 11: // Sword
+                    case 13: // Unarmed Combat
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((strength + coord) / 3)).ToString();
+                        break;
+                    case 2: // Bow
+                    case 3: // Crossbow
+                    case 12: // Thrown Weapon
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + coord / 2).ToString();
+                        break;
+                    case 4: // Dagger
+                        tbSkillFinalLevel.Text = (ConvertToInteger(tbSkillLevel.Text) + ((quick + coord) / 3)).ToString();
+                        break;
                     // Ignored (Unused)
                     case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
                     case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
                     case 17:
                     case 25:
                     case 26:
