@@ -567,7 +567,7 @@ namespace WeenieFab
                         break;
                     case 15:  // Magic D
                         tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 7)).ToString();
-                        break; 
+                        break;
                     case 16:  // Mana C
                         tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 6)).ToString();
                         break;
@@ -667,7 +667,7 @@ namespace WeenieFab
             txtBlockFileStatus.Text = "File has been changed, please save changes.";
 
         }
-        public void FileChangedCheck()
+        public bool FileChangedCheck()
         {
 
             MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
@@ -676,11 +676,12 @@ namespace WeenieFab
             if (result == MessageBoxResult.Yes)
             {
                 SaveFile();
+                return true;
             }
             else if (result == MessageBoxResult.No)
-            {
-
-            }
+                return true;
+            else
+                return false;
         }
 
         // Not used currently (button is hidden) but have ideas for this.   Reuse  for importing body tables.
@@ -695,8 +696,11 @@ namespace WeenieFab
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FileChangedCheck();
-
+            if (Globals.FileChanged == true)
+            {
+                if (!FileChangedCheck())
+                    e.Cancel = true;
+            }
         }
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {

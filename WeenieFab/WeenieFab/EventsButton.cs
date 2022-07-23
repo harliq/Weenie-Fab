@@ -37,22 +37,27 @@ namespace WeenieFab
             //{
             //}
 
-            FileChangedCheck();
+            if (FileChangedCheck())
+            {
 
-            ClearAllDataTables();
-            ClearAllFields();
-            this.Title = "WeenieFab";
+                ClearAllDataTables();
+                ClearAllFields();
+                this.Title = "WeenieFab";
 
 
-            txtBlockFileStatus.Text = "New File not saved";
-            Globals.WeenieFileName = "";
+                txtBlockFileStatus.Text = "New File not saved";
+                Globals.WeenieFileName = "";
+            }
         }
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
             if (Globals.FileChanged == true)
-                FileChangedCheck();
-
-            OpenFile();
+            {
+                if(FileChangedCheck())
+                    OpenFile();
+            }
+            else
+                OpenFile();
         }
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
