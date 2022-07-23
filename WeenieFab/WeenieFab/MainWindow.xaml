@@ -2004,6 +2004,9 @@
                             <TextBox x:Name="tbBodyPartArmorLevelNether" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="455,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
                             <Label Content="Armor" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"/>
                         </Grid>
+                        <Label Content="Multiply All Armor By Factor" HorizontalAlignment="Left" Margin="976,167,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbMultiplyAllArmor" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1063,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" ToolTip="Multiply all armor by this value"/>
+                        <Button x:Name="btnScaleArmor" Content="Scale" HorizontalAlignment="Left" Margin="981,195,0,0" VerticalAlignment="Top" ToolTip="Multiply All Armor by Factor" Click="btnScaleArmor_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="SpellBook">

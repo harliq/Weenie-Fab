@@ -37,22 +37,27 @@ namespace WeenieFab
             //{
             //}
 
-            FileChangedCheck();
+            if (FileChangedCheck())
+            {
 
-            ClearAllDataTables();
-            ClearAllFields();
-            this.Title = "WeenieFab";
+                ClearAllDataTables();
+                ClearAllFields();
+                this.Title = "WeenieFab";
 
 
-            txtBlockFileStatus.Text = "New File not saved";
-            Globals.WeenieFileName = "";
+                txtBlockFileStatus.Text = "New File not saved";
+                Globals.WeenieFileName = "";
+            }
         }
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
             if (Globals.FileChanged == true)
-                FileChangedCheck();
-
-            OpenFile();
+            {
+                if(FileChangedCheck())
+                    OpenFile();
+            }
+            else
+                OpenFile();
         }
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
@@ -1427,6 +1432,29 @@ namespace WeenieFab
             tbAngleY.Text = match.Groups[7].ToString();
             tbAngleZ.Text = match.Groups[8].ToString();
 
+            FileChanged();
+        }
+        private void btnScaleArmor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                float factor = ConvertToFloat(tbMultiplyAllArmor.Text);
+
+                tbBodyPartArmorLevel.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevel.Text) * factor)).ToString();
+                tbBodyPartArmorLevelSlash.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelSlash.Text) * factor)).ToString();
+                tbBodyPartArmorLevelPierce.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelPierce.Text) * factor)).ToString();
+                tbBodyPartArmorLevelBludgeon.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelBludgeon.Text) * factor)).ToString();
+                tbBodyPartArmorLevelCold.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelCold.Text) * factor)).ToString();
+                tbBodyPartArmorLevelFire.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelFire.Text) * factor)).ToString();
+                tbBodyPartArmorLevelAcid.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelAcid.Text) * factor)).ToString();
+                tbBodyPartArmorLevelElectric.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelElectric.Text) * factor)).ToString();
+                tbBodyPartArmorLevelNether.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelNether.Text) *factor)).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid value in some of the fields");
+                LogError(ex);
+            }
             FileChanged();
         }
 
