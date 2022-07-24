@@ -1,0 +1,6 @@
+[submodule "ACData"]
+	path = ACData
+	url = https://github.com/gmriggs/ACData.git
+[submodule "EmoteScript"]
+	path = EmoteScript
+	url = https://github.com/ACEmulator/EmoteScript.git
