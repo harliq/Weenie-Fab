@@ -4,9 +4,9 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <Version>0.9.9.92</Version>
+    <Version>0.9.9.921</Version>
     <ApplicationIcon>WeenieFabAppIcon.ico</ApplicationIcon>
-    <AssemblyVersion>0.9.9.92</AssemblyVersion>
+    <AssemblyVersion>0.9.9.921</AssemblyVersion>
     <FileVersion>0.9.9.92</FileVersion>
   </PropertyGroup>
 
@@ -104,8 +104,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\ACData\ACDataLib\ACDataLib.csproj" />
-    <ProjectReference Include="..\..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj" />
+    <ProjectReference Include="..\..\ACData\ACDataLib\ACDataLib.csproj" />
+    <ProjectReference Include="..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj" />
   </ItemGroup>
 
   <ItemGroup>
