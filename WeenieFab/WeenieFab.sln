@@ -5,9 +5,9 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeenieFab", "WeenieFab\WeenieFab.csproj", "{19DB01D5-4389-4C1E-8490-523D8027A9BE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmoteScriptLib", "..\..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj", "{12E817BD-BF6C-46D5-AF95-9F46A6D7F224}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmoteScriptLib", "..\EmoteScript\EmoteScriptLib\EmoteScriptLib.csproj", "{12E817BD-BF6C-46D5-AF95-9F46A6D7F224}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACDataLib", "..\..\ACData\ACDataLib\ACDataLib.csproj", "{8442E4B5-3DC3-4340-8D04-659E96646BED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ACDataLib", "..\ACData\ACDataLib\ACDataLib.csproj", "{8442E4B5-3DC3-4340-8D04-659E96646BED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
