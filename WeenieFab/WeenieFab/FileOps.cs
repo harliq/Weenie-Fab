@@ -186,6 +186,7 @@ namespace WeenieFab
             string bookPageBlob = "";
             string positionsBlob = "";
             string generatorBlob = "";
+            string eventFilterBlob = "";
 
             string line;
 
@@ -211,6 +212,7 @@ namespace WeenieFab
             var bookPagePattern = @"\((\d+),\s*(\d+),\s*(\d+),\s*'(.*)',\s*'(.*)',\s*(\w+),\s*'((?s:.*)).*$";
             //var positionsPatern = @"\((\d+),\s+(\d+),\s+(\d+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\)\s+\/\*(.*)\*\/*.*$";
             var positionsPatern = @"\((\d+),\s+(\d+),\s+(-?[a-zA-Z0-9_.-]*),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+),\s+([-+]?[0-9]*\.[0-9]+|[-+]?[0-9]+)\)\s+\/\*(.*)\*\/*.*$";
+            var eventPattern = @"\((\d+),\s*(-?\d+)\) \/\*(.*)\*\/*.*$";
             try
             {
                 using (StreamReader sr = new StreamReader(filepath))
@@ -388,6 +390,15 @@ namespace WeenieFab
 
                         }
 
+                        else if (line.Contains("INSERT INTO `weenie_properties_event_filter`"))
+                        {
+                            eventFilterBlob = ReadBlob(sr);
+
+                            eventDataTable = DecodeSql.DecodeTwoValuesInt(eventFilterBlob, eventPattern);
+                            eventDataTable.AcceptChanges();
+                            eventDataTable = ResortDataTable(eventDataTable, "Event", "ASC");
+                        }
+
                     }
 
                     string tempES = "";
@@ -485,15 +496,7 @@ namespace WeenieFab
             // Positions
             header = $"INSERT INTO `weenie_properties_position` (`object_Id`, `position_Type`, `obj_Cell_Id`, `origin_X`, `origin_Y`, `origin_Z`, `angles_W`, `angles_X`, `angles_Y`, `angles_Z`)";
             body += TableToSql.ConvertPositionTable(positionsDataTable, tbWCID.Text, header);
-
-            // Body Parts
-            header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
-            body += TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
-
-            //string bodyparts = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
-            //if (bodyparts != "")
-            //    body += TableToSql.ConvertBodyTable(bodyparts, tbWCID.Text, header);
-            
+         
             // Attributes
             header = $"INSERT INTO `weenie_properties_attribute` (`object_Id`, `type`, `init_Level`, `level_From_C_P`, `c_P_Spent`)";
             body += TableToSql.ConvertAttributeTable(attributeDataTable, tbWCID.Text, header);
@@ -505,10 +508,22 @@ namespace WeenieFab
             // Skills
             header = $"INSERT INTO `weenie_properties_skill` (`object_Id`, `type`, `level_From_P_P`, `s_a_c`, `p_p`, `init_Level`, `resistance_At_Last_Check`, `last_Used_Time`)";
             body += TableToSql.ConvertSkillsTable(skillsDataTable, tbWCID.Text, header);
-            
+
+            // Body Parts
+            header = $"INSERT INTO `weenie_properties_body_part` (`object_Id`, `key`, `d_Type`, `d_Val`, `d_Var`, `base_Armor`, `armor_Vs_Slash`, `armor_Vs_Pierce`, `armor_Vs_Bludgeon`, `armor_Vs_Cold`, `armor_Vs_Fire`, `armor_Vs_Acid`, `armor_Vs_Electric`, `armor_Vs_Nether`, `b_h`, `h_l_f`, `m_l_f`, `l_l_f`, `h_r_f`, `m_r_f`, `l_r_f`, `h_l_b`, `m_l_b`, `l_l_b`, `h_r_b`, `m_r_b`, `l_r_b`)";
+            body += TableToSql.ConvertBodyPart(bodypartsDataTable, tbWCID.Text, header);
+
+            //string bodyparts = new TextRange(rtbBodyParts.Document.ContentStart, rtbBodyParts.Document.ContentEnd).Text;
+            //if (bodyparts != "")
+            //    body += TableToSql.ConvertBodyTable(bodyparts, tbWCID.Text, header);
+
             // Spells
             header = $"INSERT INTO `weenie_properties_spell_book` (`object_Id`, `spell`, `probability`)";
             body += TableToSql.ConvertSpellTable(spellDataTable, tbWCID.Text, header);
+
+            // Event
+            header = $"INSERT INTO `weenie_properties_event_filter` (`object_Id`, `event`)";
+            body += TableToSql.ConvertBiValueTable(eventDataTable, tbWCID.Text, header);
 
             // Emotes
             string tempES = new TextRange(rtbEmoteScript.Document.ContentStart, rtbEmoteScript.Document.ContentEnd).Text;
@@ -543,7 +558,7 @@ namespace WeenieFab
             }
             
             body += finalEmotes;
-            
+
             // Create Items
             header = $"INSERT INTO `weenie_properties_create_list` (`object_Id`, `destination_Type`, `weenie_Class_Id`, `stack_Size`, `palette`, `shade`, `try_To_Bond`)";
             body += TableToSql.ConvertCreateItemsTable(createListDataTable, tbWCID.Text, header);
@@ -564,8 +579,8 @@ namespace WeenieFab
                 // body += header;
                 body += tbGenerator.Text;
             }
-            File.WriteAllText(filename, body);
 
+            File.WriteAllText(filename, body);
         }
 
         public static string ReadBlob(StreamReader sr)
@@ -574,10 +589,30 @@ namespace WeenieFab
             string line;
             string tLine;
 
+            bool isMultiLineComment = false;
             while ((line = sr.ReadLine()) != null) 
             {
+                if (isMultiLineComment)
+                {
+                    if (!line.Contains("*/"))
+                        continue;
+                    else
+                    {
+                        // This line ends the multi-line comment.
+                        isMultiLineComment = false;
+                        continue;
+                    }
+                }
+                else if (line.Contains("/*") && !line.Contains("*/")) // This line starts a multi-line comment.
+                {
+                    if (line.EndsWith(" - "))
+                        line = line.Remove(line.Length - 3); // Just some cleanup so it looks prettier in the description field.
+                    line += " */"; // Close the comment so the code below can interpret it properly.
+                    isMultiLineComment = true;
+                }
+
                 // Making this a little more tolerable of spaces and tabs being on blank line - This should help considerably.
-                
+
                 if (line == "" || line == "\r\n" || line == " " || line == "  " || line == "   " || line == "    " || line == "     " || line == "\t " || line == "\t")
                     return blob;
                 else

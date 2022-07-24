@@ -200,6 +200,15 @@ namespace WeenieFab
             DataColumn damageValue = new DataColumn("Damage");
             DataColumn damageVariance = new DataColumn("DamageVariance");
             DataColumn armorLevel = new DataColumn("ArmorLevel");
+            DataColumn armorLevelSlash = new DataColumn("ArmorLevelSlash");
+            DataColumn armorLevelPierce = new DataColumn("ArmorLevelPierce");
+            DataColumn armorLevelBludgeon = new DataColumn("ArmorLevelBludgeon");
+            DataColumn armorLevelCold = new DataColumn("ArmorLevelCold");
+            DataColumn armorLevelFire = new DataColumn("ArmorLevelFire");
+            DataColumn armorLevelAcid = new DataColumn("ArmorLevelAcid");
+            DataColumn armorLevelElectric = new DataColumn("ArmorLevelElectric");
+            DataColumn armorLevelNether = new DataColumn("ArmorLevelNether");
+
             DataColumn baseHeight = new DataColumn("Height");
 
             DataColumn hlfQuad = new DataColumn("HLF");
@@ -224,7 +233,17 @@ namespace WeenieFab
             damageType.DataType = Type.GetType("System.Int32");
             damageValue.DataType = Type.GetType("System.Int32");
             damageVariance.DataType = Type.GetType("System.Single");
+
             armorLevel.DataType = Type.GetType("System.Int32");
+            armorLevelSlash.DataType = Type.GetType("System.Int32");
+            armorLevelPierce.DataType = Type.GetType("System.Int32");
+            armorLevelBludgeon.DataType = Type.GetType("System.Int32");
+            armorLevelCold.DataType = Type.GetType("System.Int32");
+            armorLevelFire.DataType = Type.GetType("System.Int32");
+            armorLevelAcid.DataType = Type.GetType("System.Int32");
+            armorLevelElectric.DataType = Type.GetType("System.Int32");
+            armorLevelNether.DataType = Type.GetType("System.Int32");
+
             baseHeight.DataType = Type.GetType("System.Int32");
 
             hlfQuad.DataType = Type.GetType("System.Single");
@@ -247,7 +266,17 @@ namespace WeenieFab
             bodypartsDataTable.Columns.Add(damageType);
             bodypartsDataTable.Columns.Add(damageValue);
             bodypartsDataTable.Columns.Add(damageVariance);
+
             bodypartsDataTable.Columns.Add(armorLevel);
+            bodypartsDataTable.Columns.Add(armorLevelSlash);
+            bodypartsDataTable.Columns.Add(armorLevelPierce);
+            bodypartsDataTable.Columns.Add(armorLevelBludgeon);
+            bodypartsDataTable.Columns.Add(armorLevelCold);
+            bodypartsDataTable.Columns.Add(armorLevelFire);
+            bodypartsDataTable.Columns.Add(armorLevelAcid);
+            bodypartsDataTable.Columns.Add(armorLevelElectric);
+            bodypartsDataTable.Columns.Add(armorLevelNether);
+
             bodypartsDataTable.Columns.Add(baseHeight);
 
             bodypartsDataTable.Columns.Add(hlfQuad);
@@ -346,6 +375,14 @@ namespace WeenieFab
             positionsDataTable.Columns.Add(positionDescription);
 
             dgPosition.DataContext = positionsDataTable;
+
+            // Events
+            DataColumn eventId = new DataColumn("Event");
+            eventId.DataType = Type.GetType("System.Int32");
+            DataColumn descriptionEvent = new DataColumn("Description");
+
+            eventDataTable.Columns.Add(eventId);
+            eventDataTable.Columns.Add(descriptionEvent);
         }
     }
 }

@@ -37,22 +37,27 @@ namespace WeenieFab
             //{
             //}
 
-            FileChangedCheck();
+            if (FileChangedCheck())
+            {
 
-            ClearAllDataTables();
-            ClearAllFields();
-            this.Title = "WeenieFab";
+                ClearAllDataTables();
+                ClearAllFields();
+                this.Title = "WeenieFab";
 
 
-            txtBlockFileStatus.Text = "New File not saved";
-            Globals.WeenieFileName = "";
+                txtBlockFileStatus.Text = "New File not saved";
+                Globals.WeenieFileName = "";
+            }
         }
         private void btnOpenSqlFile_Click(object sender, RoutedEventArgs e)
         {
             if (Globals.FileChanged == true)
-                FileChangedCheck();
-
-            OpenFile();
+            {
+                if(FileChangedCheck())
+                    OpenFile();
+            }
+            else
+                OpenFile();
         }
         private void btnSaveSqlFile_Click(object sender, RoutedEventArgs e)
         {
@@ -1087,26 +1092,36 @@ namespace WeenieFab
             dr[1] = ConvertToInteger(damageType[0].ToString());
             dr[2] = ConvertToInteger(tbBodyPartDamageValue.Text);
             dr[3] = ConvertToFloat(tbBodyPartDamageVariance.Text);
+
             dr[4] = ConvertToInteger(tbBodyPartArmorLevel.Text);
-            dr[5] = ConvertToInteger(tbBodyPartBase_Height.Text);
+            dr[5] = ConvertToInteger(tbBodyPartArmorLevelSlash.Text);
+            dr[6] = ConvertToInteger(tbBodyPartArmorLevelPierce.Text);
+            dr[7] = ConvertToInteger(tbBodyPartArmorLevelBludgeon.Text);
+            dr[8] = ConvertToInteger(tbBodyPartArmorLevelCold.Text);
+            dr[9] = ConvertToInteger(tbBodyPartArmorLevelFire.Text);
+            dr[10] = ConvertToInteger(tbBodyPartArmorLevelAcid.Text);
+            dr[11] = ConvertToInteger(tbBodyPartArmorLevelElectric.Text);
+            dr[12] = ConvertToInteger(tbBodyPartArmorLevelNether.Text);
 
-            dr[6] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
-            dr[7] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
-            dr[8] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
+            dr[13] = ConvertToInteger(tbBodyPartBase_Height.Text);
 
-            dr[9] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
-            dr[10] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
-            dr[11] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
+            dr[14] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
+            dr[15] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
+            dr[16] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
 
-            dr[12] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
-            dr[13] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
-            dr[14] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
+            dr[17] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
+            dr[18] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
+            dr[19] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
 
-            dr[15] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
-            dr[16] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
-            dr[17] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+            dr[20] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
+            dr[21] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
+            dr[22] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
 
-            dr[18] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
+            dr[23] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
+            dr[24] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
+            dr[25] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+
+            dr[26] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
 
             bodypartsDataTable.Rows.Add(dr);
             
@@ -1132,26 +1147,36 @@ namespace WeenieFab
                 dr[1] = ConvertToInteger(damageType[0].ToString());
                 dr[2] = ConvertToInteger(tbBodyPartDamageValue.Text);
                 dr[3] = ConvertToFloat(tbBodyPartDamageVariance.Text);
+
                 dr[4] = ConvertToInteger(tbBodyPartArmorLevel.Text);
-                dr[5] = ConvertToInteger(tbBodyPartBase_Height.Text);
+                dr[5] = ConvertToInteger(tbBodyPartArmorLevelSlash.Text);
+                dr[6] = ConvertToInteger(tbBodyPartArmorLevelPierce.Text);
+                dr[7] = ConvertToInteger(tbBodyPartArmorLevelBludgeon.Text);
+                dr[8] = ConvertToInteger(tbBodyPartArmorLevelCold.Text);
+                dr[9] = ConvertToInteger(tbBodyPartArmorLevelFire.Text);
+                dr[10] = ConvertToInteger(tbBodyPartArmorLevelAcid.Text);
+                dr[11] = ConvertToInteger(tbBodyPartArmorLevelElectric.Text);
+                dr[12] = ConvertToInteger(tbBodyPartArmorLevelNether.Text);
 
-                dr[6] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
-                dr[7] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
-                dr[8] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
+                dr[13] = ConvertToInteger(tbBodyPartBase_Height.Text);
 
-                dr[9] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
-                dr[10] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
-                dr[11] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
+                dr[14] = ConvertToFloat(tbBodyPartQuadHighLF.Text);
+                dr[15] = ConvertToFloat(tbBodyPartQuadMiddleLF.Text);
+                dr[16] = ConvertToFloat(tbBodyPartQuadLowLF.Text);
 
-                dr[12] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
-                dr[13] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
-                dr[14] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
+                dr[17] = ConvertToFloat(tbBodyPartQuadHighRF.Text);
+                dr[18] = ConvertToFloat(tbBodyPartQuadMiddleRF.Text);
+                dr[19] = ConvertToFloat(tbBodyPartQuadLowRF.Text);
 
-                dr[15] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
-                dr[16] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
-                dr[17] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+                dr[20] = ConvertToFloat(tbBodyPartQuadHighLB.Text);
+                dr[21] = ConvertToFloat(tbBodyPartQuadMiddleLB.Text);
+                dr[22] = ConvertToFloat(tbBodyPartQuadLowLB.Text);
 
-                dr[18] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
+                dr[23] = ConvertToFloat(tbBodyPartQuadHighRB.Text);
+                dr[24] = ConvertToFloat(tbBodyPartQuadMiddleRB.Text);
+                dr[25] = ConvertToFloat(tbBodyPartQuadLowRB.Text);
+
+                dr[26] = $"{bodyPartDescription[1].ToString()} - {damageType[1]}";
 
 
                 bodypartsDataTable.AcceptChanges();
@@ -1307,7 +1332,7 @@ namespace WeenieFab
                 DataGridRow currentRowIndex = dgBookPages.ItemContainerGenerator.ContainerFromIndex(index) as DataGridRow;
                 DataRow dr = bookPagesDataTable.Rows[currentRowIndex.GetIndex()];
                 dr.Delete();
-                bodypartsDataTable.AcceptChanges();
+                bookInfoDataTable.AcceptChanges();
             }
             catch (Exception ex)
             {
@@ -1407,6 +1432,29 @@ namespace WeenieFab
             tbAngleY.Text = match.Groups[7].ToString();
             tbAngleZ.Text = match.Groups[8].ToString();
 
+            FileChanged();
+        }
+        private void btnScaleArmor_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                float factor = ConvertToFloat(tbMultiplyAllArmor.Text);
+
+                tbBodyPartArmorLevel.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevel.Text) * factor)).ToString();
+                tbBodyPartArmorLevelSlash.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelSlash.Text) * factor)).ToString();
+                tbBodyPartArmorLevelPierce.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelPierce.Text) * factor)).ToString();
+                tbBodyPartArmorLevelBludgeon.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelBludgeon.Text) * factor)).ToString();
+                tbBodyPartArmorLevelCold.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelCold.Text) * factor)).ToString();
+                tbBodyPartArmorLevelFire.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelFire.Text) * factor)).ToString();
+                tbBodyPartArmorLevelAcid.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelAcid.Text) * factor)).ToString();
+                tbBodyPartArmorLevelElectric.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelElectric.Text) * factor)).ToString();
+                tbBodyPartArmorLevelNether.Text = ((int)(ConvertToFloat(tbBodyPartArmorLevelNether.Text) *factor)).ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Invalid value in some of the fields");
+                LogError(ex);
+            }
             FileChanged();
         }
 

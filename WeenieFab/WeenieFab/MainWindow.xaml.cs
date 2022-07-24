@@ -47,6 +47,7 @@ namespace WeenieFab
         public static DataTable bookPagesDataTable = new DataTable();
         public static DataTable iidDataTable = new DataTable();
         public static DataTable positionsDataTable = new DataTable();
+        public static DataTable eventDataTable = new DataTable();
 
         public MainWindow()
         {
@@ -336,6 +337,7 @@ namespace WeenieFab
             bookInfoDataTable.Clear();
             bookPagesDataTable.Clear();
             positionsDataTable.Clear();
+            eventDataTable.Clear();
         }
         public void ResetIndexAllDataGrids()
         {
@@ -364,7 +366,17 @@ namespace WeenieFab
 
             tbBodyPartDamageValue.Text = "";
             tbBodyPartDamageVariance.Text = "";
+            
             tbBodyPartArmorLevel.Text = "";
+            tbBodyPartArmorLevelSlash.Text = "";
+            tbBodyPartArmorLevelPierce.Text = "";
+            tbBodyPartArmorLevelBludgeon.Text = "";
+            tbBodyPartArmorLevelCold.Text = "";
+            tbBodyPartArmorLevelFire.Text = "";
+            tbBodyPartArmorLevelAcid.Text = "";
+            tbBodyPartArmorLevelElectric.Text = "";
+            tbBodyPartArmorLevelNether.Text = "";
+
             tbBodyPartBase_Height.Text = "";
 
             tbBodyPartQuadHighLF.Text = "";
@@ -555,7 +567,7 @@ namespace WeenieFab
                         break;
                     case 15:  // Magic D
                         tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 7)).ToString();
-                        break; 
+                        break;
                     case 16:  // Mana C
                         tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((focus + self) / 6)).ToString();
                         break;
@@ -618,19 +630,25 @@ namespace WeenieFab
                     case 54:  // Summoning
                         tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((endur + self) / 3)).ToString();
                         break;
+                    case 1: // Axe
+                    case 5: // Mace
+                    case 9: // Spear
+                    case 10: // Staff
+                    case 11: // Sword
+                    case 13: // Unarmed Combat
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((strength + coord) / 3)).ToString();
+                        break;
+                    case 2: // Bow
+                    case 3: // Crossbow
+                    case 12: // Thrown Weapon
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - coord / 2).ToString();
+                        break;
+                    case 4: // Dagger
+                        tbSkillLevel.Text = (ConvertToInteger(tbSkillFinalLevel.Text) - ((quick + coord) / 3)).ToString();
+                        break;
                     // Ignored (Unused)
                     case 0:
-                    case 1:
-                    case 2:
-                    case 3:
-                    case 4:
-                    case 5:
                     case 8:
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                    case 13:
                     case 17:
                     case 25:
                     case 26:
@@ -649,7 +667,7 @@ namespace WeenieFab
             txtBlockFileStatus.Text = "File has been changed, please save changes.";
 
         }
-        public void FileChangedCheck()
+        public bool FileChangedCheck()
         {
 
             MessageBoxButton buttons = MessageBoxButton.YesNoCancel;
@@ -658,11 +676,12 @@ namespace WeenieFab
             if (result == MessageBoxResult.Yes)
             {
                 SaveFile();
+                return true;
             }
             else if (result == MessageBoxResult.No)
-            {
-
-            }
+                return true;
+            else
+                return false;
         }
 
         // Not used currently (button is hidden) but have ideas for this.   Reuse  for importing body tables.
@@ -677,8 +696,11 @@ namespace WeenieFab
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            FileChangedCheck();
-
+            if (Globals.FileChanged == true)
+            {
+                if (!FileChangedCheck())
+                    e.Cancel = true;
+            }
         }
         private void Hyperlink_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {

@@ -1832,24 +1832,24 @@
                         <Label Content="(Set Attributes First)" HorizontalAlignment="Left" Margin="368,105,0,0" VerticalAlignment="Top" Grid.Column="2"/>
                         <TextBox x:Name="tbAttribStrength" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Strength"/>
                         <TextBox x:Name="tbAttribEndurance" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Endurance"/>
-                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Quickness"/>
                         <TextBox x:Name="tbAttribCoordination" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Coordination"/>
+                        <TextBox x:Name="tbAttribQuickness" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,105,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Quickness"/>
                         <TextBox x:Name="tbAttribFocus" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,130,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Focus"/>
                         <TextBox x:Name="tbAttribSelf" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="180,155,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" ToolTip="Set the amount of Self (Willpower)"/>
-                        <Button x:Name="btnAttribDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,120,0,0" VerticalAlignment="Top" Width="100" Grid.ColumnSpan="2" Click="btnAttribDefaults_Click" ToolTip="Set Basic Defaults"/>
                         <Button x:Name="btnAttribUpdate" Content="Update" HorizontalAlignment="Left" Margin="305,155,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttribUpdate_Click" ToolTip="Update all Attributes"/>
+                        <Button x:Name="btnAttribDefaults" Content="Defaults" HorizontalAlignment="Left" Margin="346,120,0,0" VerticalAlignment="Top" Width="100" Click="btnAttribDefaults_Click" ToolTip="Set Basic Defaults"/>
                         <Button x:Name="btnAttribClear" Content="Clear" HorizontalAlignment="Left" Margin="410,155,0,0" VerticalAlignment="Top" Width="80" Click="btnAttribClear_Click" ToolTip="Clear all Attributes"/>
-                        <CheckBox x:Name="chkbAutoHealth" Content="Auto Calculate" Checked="chkbAutoHealth_Changed" Unchecked="chkbAutoHealth_Changed" HorizontalAlignment="Left" Margin="345,377,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want Weenie Fab to auto calcutate values"/>
+                        <CheckBox x:Name="chkbAutoHealth" Content="Auto Calculate" Checked="chkbAutoHealth_Changed" Unchecked="chkbAutoHealth_Changed" HorizontalAlignment="Left" Margin="345,377,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want Weenie Fab to auto calcutate values" KeyboardNavigation.IsTabStop="False"/>
                         <TextBox x:Name="tbHealthInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Health Amount to add to Endurance (Endurance /2)"/>
                         <TextBox x:Name="tbStaminaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Stamina Amount to add to Endurance (Endurance)"/>
                         <TextBox x:Name="tbManaInitLevel" IsReadOnly="{Binding ElementName=chkbAutoHealth, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="140,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Mana Amount to add to Self (Self)"/>
                         <TextBox x:Name="tbHealthCurrentLevel" TextChanged="tbHealthCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="220,395,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Health (includes Endurance Attribute)"/>
                         <TextBox x:Name="tbStaminaCurrentLevel" TextChanged="tbStaminaCurrentLevel_TextChanged"  PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,420,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Stamina (includes Endurance Attribute)"/>
                         <TextBox x:Name="tbManaCurrentLevel" TextChanged="tbManaCurrentLevel_TextChanged" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="221,445,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="60" ToolTip="Max Mana (includes Self Attribute)"/>
-                        <Button x:Name="btnAttrib2Defaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,415,0,0" VerticalAlignment="Top" Width="100" Click="btnAttrib2Defaults_Click" ToolTip="Set Basic Defaults"/>
                         <Button x:Name="btnAttrib2Update" Content="Update" HorizontalAlignment="Left" Margin="305,445,0,0" VerticalAlignment="Top" Width="80" Grid.ColumnSpan="2" Click="btnAttrib2Update_Click" ToolTip="Update Health/Stamina/Mana values" />
+                        <Button x:Name="btnAttrib2Defaults" Content="Defaults" HorizontalAlignment="Left" Margin="345,415,0,0" VerticalAlignment="Top" Width="100" Click="btnAttrib2Defaults_Click" ToolTip="Set Basic Defaults"/>
                         <Button x:Name="btnAttrib2Clear" Content="Clear" HorizontalAlignment="Left" Margin="410,445,0,0" VerticalAlignment="Top" Width="80" Click="btnAttrib2Clear_Click" ToolTip="Clear Health/Stamina/Mana Values"/>
-                        <ComboBox x:Name="cbSkillType" SelectionChanged="cbSkillType_SelectionChanged" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="2" Width="220" ToolTip="Select the Skill you wish to Add/Change"/>
+                        <ComboBox x:Name="cbSkillType" SelectionChanged="cbSkillType_SelectionChanged" HorizontalAlignment="Left" Margin="55,60,0,0" VerticalAlignment="Top" Grid.Column="1" Width="500" ToolTip="Select the Skill you wish to Add/Change"/>
                         <RadioButton x:Name="rdbSpec" Content="Specialized" Grid.Column="1" HorizontalAlignment="Left" Margin="60,100,0,0" VerticalAlignment="Top" FontWeight="Bold" ToolTip="Select if you want skill Specialized"/>
                         <RadioButton x:Name="rdbTrained" Content="Trained" Grid.Column="1" HorizontalAlignment="Left" Margin="190,100,0,0" VerticalAlignment="Top" FontWeight="Bold" IsChecked="True" ToolTip="Select if you want skill Trained"/>
                         <TextBox x:Name="tbSkillLevel" IsReadOnly="{Binding ElementName=chkbSkillCalc, Path=IsChecked}" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="55,150,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="80" Grid.Column="2" ToolTip="Skill Level (Attributes not inculded)"/>
@@ -1857,7 +1857,7 @@
                         <Button x:Name="btnSkillsAdd" Content="Add" HorizontalAlignment="Left" Margin="295,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsAdd_Click" ToolTip="Add Skill"/>
                         <Button x:Name="btnSkillsUpdate" Content="Update" HorizontalAlignment="Left" Margin="385,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsUpdate_Click" ToolTip="Update Skill" IsDefault="True"/>
                         <Button x:Name="btnSkillsRemove" Content="Remove" HorizontalAlignment="Left" Margin="475,150,0,0" VerticalAlignment="Top" Width="80" Grid.Column="2" Click="btnSkillsRemove_Click" ToolTip="Remove Skill"/>
-                        <CheckBox x:Name="chkbSkillCalc" Checked="chkbSkillCalc_Changed" Unchecked="chkbSkillCalc_Changed" Content="Auto Calculate Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want WeenieFab to do the calcs for you"/>
+                        <CheckBox x:Name="chkbSkillCalc" Checked="chkbSkillCalc_Changed" Unchecked="chkbSkillCalc_Changed" Content="Auto Calculate Skill" Grid.Column="1" HorizontalAlignment="Left" Margin="355,95,0,0" VerticalAlignment="Top" IsChecked="True" ToolTip="Check if you want WeenieFab to do the calcs for you" KeyboardNavigation.IsTabStop="False"/>
 
                         <DataGrid x:Name="dgAttributes" ItemsSource="{Binding}" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" AutoGenerateColumns="False" Margin="85,185,0,0" HorizontalAlignment="Left" Width="406" Height="160" VerticalAlignment="Top" Grid.ColumnSpan="2" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False">
                             <DataGrid.Columns>
@@ -1895,7 +1895,6 @@
                 <TabItem Header="BodyParts">
                     <Grid Background="#FFE1E8F5">
                         <Label Content="Body Part" HorizontalAlignment="Left" Margin="70,0,0,0" VerticalAlignment="Top"/>
-                        <Label Content="Base Armor Level" HorizontalAlignment="Left" Margin="850,0,0,0" VerticalAlignment="Top"/>
                         <Label Content="Damage Type" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top"/>
                         <Label Content="Damage Value" HorizontalAlignment="Left" Margin="550,0,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
                         <Label Content="Damage Variance" HorizontalAlignment="Left" Margin="700,0,0,0" VerticalAlignment="Top" UseLayoutRounding="True"/>
@@ -1920,7 +1919,6 @@
                         <ComboBox x:Name="cbBodyPartDamageType" HorizontalAlignment="Left" Margin="300,25,0,0" VerticalAlignment="Top" Width="120" MinWidth="200" ToolTip="Select Body Part Damage Type"/>
                         <TextBox x:Name="tbBodyPartDamageValue" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="550,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="How much damage body part does"/>
                         <TextBox x:Name="tbBodyPartDamageVariance" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="700,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body part damage variance"/>
-                        <TextBox x:Name="tbBodyPartArmorLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="850,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Body Part Base Armor Level"/>
                         <TextBox x:Name="tbBodyPartBase_Height" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="1000,25,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" ToolTip="Height of the body part (1=High, 2=Middle, 3=Low)"/>
                         <TextBox x:Name="tbBodyPartQuadHighLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="50,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50" MinWidth="50"/>
                         <TextBox x:Name="tbBodyPartQuadMiddleLF" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="120,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
@@ -1934,19 +1932,29 @@
                         <TextBox x:Name="tbBodyPartQuadHighRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="940,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <TextBox x:Name="tbBodyPartQuadMiddleRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1010,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
                         <TextBox x:Name="tbBodyPartQuadLowRB" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1080,115,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="50"/>
-                        <Button x:Name="btnAddBodyPart" Content="Add" HorizontalAlignment="Left" Margin="466,145,0,0" VerticalAlignment="Top" Click="btnAddBodyPart_Click" ToolTip="Add Body Party"/>
-                        <Button x:Name="btnUpdateBodyPart" Content="Update" HorizontalAlignment="Left" Margin="561,145,0,0" VerticalAlignment="Top" Click="btnUpdateBodyPart_Click" ToolTip="Update Body Part" IsDefault="True"/>
-                        <Button x:Name="btnRemoveBodyPart" Content="Remove" HorizontalAlignment="Left" Margin="655,145,0,0" VerticalAlignment="Top" Click="btnRemoveBodyPart_Click" ToolTip="Remove Body Part"/>
+                        <Button x:Name="btnAddBodyPart" Content="Add" HorizontalAlignment="Left" Margin="466,235,0,0" VerticalAlignment="Top" Click="btnAddBodyPart_Click" ToolTip="Add Body Party"/>
+                        <Button x:Name="btnUpdateBodyPart" Content="Update" HorizontalAlignment="Left" Margin="561,235,0,0" VerticalAlignment="Top" Click="btnUpdateBodyPart_Click" ToolTip="Update Body Part" IsDefault="True"/>
+                        <Button x:Name="btnRemoveBodyPart" Content="Remove" HorizontalAlignment="Left" Margin="655,235,0,0" VerticalAlignment="Top" Click="btnRemoveBodyPart_Click" ToolTip="Remove Body Part"/>
                         <Button x:Name="btnBodyPartHelpWiki" Content="Body Parts Help (wiki)" HorizontalAlignment="Center" Margin="0,104,0,0" VerticalAlignment="Top" Click="btnBodyPartHelpWiki_Click"/>
-                        <Button x:Name="btnGenerateBodyTable" Content="GenBodyTable" HorizontalAlignment="Left" Margin="342,147,0,0" VerticalAlignment="Top" Click="btnGenerateBodyTable_Click"/>
-                        <DataGrid x:Name="dgBodyParts" ItemsSource="{Binding}" DataGridCell.Selected="dgBodyParts_RowSelected" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="1100" MinHeight="250" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="1100" MaxHeight="255" ToolTip="Select a body part to edit/change" Margin="40,180,0,0" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False">
+                        <Button x:Name="btnGenerateBodyTable" Content="GenBodyTable" HorizontalAlignment="Left" Margin="342,237,0,0" VerticalAlignment="Top" Click="btnGenerateBodyTable_Click"/>
+                        <DataGrid x:Name="dgBodyParts" ItemsSource="{Binding}" DataGridCell.Selected="dgBodyParts_RowSelected" AutoGenerateColumns="False" HorizontalGridLinesBrush="#FF767575" VerticalGridLinesBrush="#FF747474" Background="#FFFFE9E9" MinWidth="1100" MinHeight="250" VerticalAlignment="Top" HorizontalAlignment="Left" MaxWidth="1100" MaxHeight="255" ToolTip="Select a body part to edit/change" Margin="40,270,0,0" CanUserSortColumns="False" CanUserReorderColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" CanUserResizeRows="False">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Header="BodyPart" IsReadOnly="True" Binding="{Binding BodyPart}" Width="0.6*"/>
-                                <DataGridTextColumn Header="DamageType" IsReadOnly="True"  Binding="{Binding DamageType}" Width="0.8*"/>
-                                <DataGridTextColumn Header="Damage" IsReadOnly="True"  Binding="{Binding Damage}" Width="0.5*"/>
+                                <DataGridTextColumn Header="BodyPart" IsReadOnly="True" Binding="{Binding BodyPart}" Width="0.55*"/>
+                                <DataGridTextColumn Header="DmgType" IsReadOnly="True"  Binding="{Binding DamageType}" Width="0.55*"/>
+                                <DataGridTextColumn Header="Dmg" IsReadOnly="True"  Binding="{Binding Damage}" Width="0.35*"/>
                                 <DataGridTextColumn Header="Variance" IsReadOnly="True"  Binding="{Binding DamageVariance}" Width="0.5*"/>
-                                <DataGridTextColumn Header="ArmorLevel" IsReadOnly="True"  Binding="{Binding ArmorLevel}" Width="0.7*"/>
-                                <DataGridTextColumn Header="Height" IsReadOnly="True"  Binding="{Binding Height}" Width="0.5*"/>
+
+                                <DataGridTextColumn Header="AL" IsReadOnly="True"  Binding="{Binding ArmorLevel}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALS" IsReadOnly="True"  Binding="{Binding ArmorLevelSlash}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALP" IsReadOnly="True"  Binding="{Binding ArmorLevelPierce}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALB" IsReadOnly="True"  Binding="{Binding ArmorLevelBludgeon}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALC" IsReadOnly="True"  Binding="{Binding ArmorLevelCold}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALF" IsReadOnly="True"  Binding="{Binding ArmorLevelFire}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALA" IsReadOnly="True"  Binding="{Binding ArmorLevelAcid}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALE" IsReadOnly="True"  Binding="{Binding ArmorLevelElectric}" Width="0.3*"/>
+                                <DataGridTextColumn Header="ALN" IsReadOnly="True"  Binding="{Binding ArmorLevelNether}" Width="0.3*"/>
+
+                                <DataGridTextColumn Header="Height" IsReadOnly="True"  Binding="{Binding Height}" Width="0.45*"/>
 
                                 <DataGridTextColumn Header="HLF" IsReadOnly="True"  Binding="{Binding HLF}" Width="0.3*"/>
                                 <DataGridTextColumn Header="MLF" IsReadOnly="True"  Binding="{Binding MLF}" Width="0.3*"/>
@@ -1964,7 +1972,7 @@
                                 <DataGridTextColumn Header="MRB" IsReadOnly="True"  Binding="{Binding MRB}" Width="0.3*"/>
                                 <DataGridTextColumn Header="LRB" IsReadOnly="True"  Binding="{Binding LRB}" Width="0.3*"/>
 
-                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="1.3*"/>
+                                <DataGridTextColumn Header="Description" IsReadOnly="True"  Binding="{Binding Description}" Width="0.75*"/>
 
                             </DataGrid.Columns>
                         </DataGrid>
@@ -1975,6 +1983,30 @@
                                 </Paragraph>
                             </FlowDocument>
                         </RichTextBox>
+                        <Grid HorizontalAlignment="Left" Height="76" Margin="336,142,0,0" VerticalAlignment="Top" Width="508">
+                            <Label Content="Base" HorizontalAlignment="Left" Margin="8,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevel" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="0,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Slash" HorizontalAlignment="Left" Margin="64,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelSlash" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="57,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Pierce" HorizontalAlignment="Left" Margin="119,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelPierce" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="114,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Bludgeon" HorizontalAlignment="Left" Margin="167,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelBludgeon" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="171,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Cold" HorizontalAlignment="Center" Margin="0,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelCold" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Center" Margin="0,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Fire" HorizontalAlignment="Left" Margin="296,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelFire" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="285,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Acid" HorizontalAlignment="Left" Margin="350,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelAcid" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="342,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Electric" HorizontalAlignment="Left" Margin="400,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelElectric" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="398,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Nether" HorizontalAlignment="Left" Margin="459,29,0,0" VerticalAlignment="Top"/>
+                            <TextBox x:Name="tbBodyPartArmorLevelNether" PreviewTextInput="IntValidationTextBox" HorizontalAlignment="Left" Margin="455,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52" ToolTip="Body Part Base Armor Level"/>
+                            <Label Content="Armor" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="14"/>
+                        </Grid>
+                        <Label Content="Multiply All Armor By Factor" HorizontalAlignment="Left" Margin="976,167,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="tbMultiplyAllArmor" PreviewTextInput="FloatValidationTextBox" HorizontalAlignment="Left" Margin="1063,196,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77" ToolTip="Multiply all armor by this value"/>
+                        <Button x:Name="btnScaleArmor" Content="Scale" HorizontalAlignment="Left" Margin="981,195,0,0" VerticalAlignment="Top" ToolTip="Multiply All Armor by Factor" Click="btnScaleArmor_Click"/>
                     </Grid>
                 </TabItem>
                 <TabItem Header="SpellBook">
